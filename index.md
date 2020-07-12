@@ -5,30 +5,80 @@ permalink: index.html  # Is the only page that doesn't follow the pattern /:path
 ---
 
 > ## Instructor
-> - **Instructor**: Golden Rams
-> - **Office**: the Quad
-> - **Office Hours**: 24/7
-> - **Email**: goldenrams AT wcupa DOT edu
-> - **Phone**: 123 456 7890
+> - **Instructor**: Linh B. Ngo
+> - **Office**: UNA 138
+> - **Office Hours**: TBD
+> - **Email**: lngo AT wcupa DOT edu
+> - **Phone**: 610-436-2595
 {: .prereq}
 
 > ## Course Description
-> Course description goes here
+> In this course, we will learn fundamental concepts of modern computer systems. Unlike courses
+> in Computer Organizations, Operating Systems, and Computer Architecture, we will be approaching
+> these concepts from the perspective of system users rather than system builders. This will help
+> us to understand how various computer system components, including CPU, memory, storage, and
+> networking, work. Throughout the course, we will learn to use assembler language and C language
+> to explore and observe specifically how computer systems interpret and execute programs. With
+> the knowledge learned from this course, you will be able to build programs that are more efficient
+> and have better performance.
 >
 {: .prereq}
 
 > ## Learning Objectives:
 >
 > ### Student Learning Objectives:
-> - SLO1
+> - Be able to apply theory, techniques, and methodologies to create and/or maintain high quality
+> computing systems that function effectively and reliably in the emerging and future information
+> infrastructure.
 >
-> ### General Education Learning Objectives:
-> - GELO1
+> ### Student Learning Outcomes:
+> 1. Analyze a complex computing problem and to apply principles of computing and other relevant
+> disciplines to identify solutions.
+> 2. Design, implement, and evaluate a computing-based solution to meet a given set of computing
+> requirements in the context of the program’s discipline.
 >
-> ### Alignment of Course to General Education Goals:
-> - Alignment 1
+> ### Course Topics:
+> - Hardware/software interfaces and interactions
+> - Different types of systems programs
+>	  - Development environments
+>   - Operating Systems
+>   - Utilities
+>   - Networking Functions
+>   - Device Drivers
+>   - Storage Frameworks
+>	  - Gaming engines
+> - Layered services design
+> - Providing and using Application Programming Interfaces (API's)
+> - Programming to operating systems internal interfaces
+> - Low level programming languages (C, Assembly, etc.)
+> - Resource optimization
+> - Resource management
+> - Run time overhead minimization
+> - Programming direct control of memory access and flow control
+> - Managing memory in systems software
+> - Security concerns in systems software
+> - Monitoring and logging systems software
 >
 > ### Artifacts used to demonstrate Student Learning Outcomes:
+> - Assignments: In writing and running programs and measuring execution performances, students will be assessed on SLO1.
+>   1. Writing C codes that demonstrate understanding and the ability to manipulate
+>   the byte-representation of different data types (int, float, char …).
+>   2. Demonstrate understanding by writing corresponding C codes that would translate
+>   to segment of Assembler codes given by the assignment.
+>   3. Demonstrate understanding of the x86 processor architecture by writing Assembler
+>   codes that would perform specific tasks for this type of processor.
+>	  4. Perform calculations to demonstrate understanding the tradeoff in accessing
+>   data stored in various memory levels, ranging from CPU cache to physical hard drives.
+>   5. Write a program that calls external programs and data files to demonstrate
+>   understanding about how file system works within the Linux operating system.
+>   6. Write a program that performs asynchronous communication tasks across a computer
+>   network.
+>	  7. Write a program that performs parallel computation using concurrent threads.
+>   Perform measurements on the program’s execution and compare the results against a
+>   sequential implementation.
+> - Labs: In the labs, students will learn to use command line tools and programs common
+> in the Linux operating systems for their programs. In completing the labs, students will
+> be assessed on SLO2.
 >
 {: .objectives}
 
@@ -47,11 +97,11 @@ permalink: index.html  # Is the only page that doesn't follow the pattern /:path
 >
 > | Percentage | Tasks |
 > | ---------- | ----- |
-> | 20% | Homework Sets (approximately 4-5 homework sets) |
-> | 15% | Labs (approximately biweekly labs) |
-> | 5% | Problets (online practice exercises) |
-> | 45% | Three Midterm Exams (15% each) |
+> | 35% | 7 Homework Sets |
+> | 25% | 5 Labs |
+> | 20% | 10 Quizzes |
 > | 15% | Final Exam |
+> |  5% | Participation |
 >
 > ### Grade Scale:
 >
@@ -141,7 +191,7 @@ permalink: index.html  # Is the only page that doesn't follow the pattern /:path
 > 1. A student found to be academically dishonest in an assignment will receive
 > zero for that assignment if it is his/her first offense in that class [the
 > course, not the class period], but an F for the course if it is for his/her
-> second offense in that class [the course].  
+> second offense in that class [the course].
 > 2. A student found to be academically dishonest in a test will receive the
 > grade of F in that class [the course].
 > 3. For the purposes of this document on academic dishonesty, every form or
@@ -186,7 +236,7 @@ permalink: index.html  # Is the only page that doesn't follow the pattern /:path
 > Monday – Friday 8:30 a.m. – 4:30 p.m. Their phone number is 610-436-2564,
 > fax number is 610-436-2600, and their email address is [ossd@wcupa.edu](ossd@wcupa.edu).
 > More information can be found at
-> the [OSSD website](http://www.wcupa.edu/ussss/ossd).  
+> the [OSSD website](http://www.wcupa.edu/ussss/ossd).
 >
 > ### Title IX Statement:
 > West Chester University and its faculty are committed to assuring a safe and
@@ -201,7 +251,7 @@ permalink: index.html  # Is the only page that doesn't follow the pattern /:path
 > University-approved research project. Faculty members are obligated to
 > report sexual violence or any other abuse of a student who was, or is, a
 > child (a person under 18 years of age) when the abuse allegedly occurred to
-> the person designated in the University protection of minors policy.  
+> the person designated in the University protection of minors policy.
 > Information regarding the reporting of sexual violence and the resources
 > that are available to victims of sexual violence is set forth at the
 > [Office of Social Equity website](http://www.wcupa.edu/_admin/social.equity).
