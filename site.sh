@@ -2,4 +2,4 @@
 set -x
 
 bundle exec jekyll build
-rsync --size-only  -r _site/* lngo@cs.wcupa.edu:~/public_html/csc142
+scp -rq _site/* lngo@cs.wcupa.edu:~/public_html/csc231
