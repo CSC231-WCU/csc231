@@ -61,19 +61,19 @@ permalink: index.html  # Is the only page that doesn't follow the pattern /:path
 >
 > ### Artifacts used to demonstrate Student Learning Outcomes:
 > - Assignments: In writing and running programs and measuring execution performances, students will be assessed on SLO1.
->   1. Writing C codes that demonstrate understanding and the ability to manipulate
+>   - Writing C codes that demonstrate understanding and the ability to manipulate
 >   the byte-representation of different data types (int, float, char …).
->   2. Demonstrate understanding by writing corresponding C codes that would translate
+>   - Demonstrate understanding by writing corresponding C codes that would translate
 >   to segment of Assembler codes given by the assignment.
->   3. Demonstrate understanding of the x86 processor architecture by writing Assembler
+>   - Demonstrate understanding of the x86 processor architecture by writing Assembler
 >   codes that would perform specific tasks for this type of processor.
->	  4. Perform calculations to demonstrate understanding the tradeoff in accessing
+>   - Perform calculations to demonstrate understanding the tradeoff in accessing
 >   data stored in various memory levels, ranging from CPU cache to physical hard drives.
->   5. Write a program that calls external programs and data files to demonstrate
+>   - Write a program that calls external programs and data files to demonstrate
 >   understanding about how file system works within the Linux operating system.
->   6. Write a program that performs asynchronous communication tasks across a computer
+>   - Write a program that performs asynchronous communication tasks across a computer
 >   network.
->	  7. Write a program that performs parallel computation using concurrent threads.
+>   - Write a program that performs parallel computation using concurrent threads.
 >   Perform measurements on the program’s execution and compare the results against a
 >   sequential implementation.
 > - Labs: In the labs, students will learn to use command line tools and programs common
