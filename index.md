@@ -46,11 +46,11 @@ permalink: index.html  # Is the only page that doesn't follow the pattern /:path
 >   - Networking Functions
 >   - Device Drivers
 >   - Storage Frameworks
->	  - Gaming engines
+>   - Gaming engines
+> - Low level programming languages (C, Assembly, etc.)
 > - Layered services design
 > - Providing and using Application Programming Interfaces (API's)
 > - Programming to operating systems internal interfaces
-> - Low level programming languages (C, Assembly, etc.)
 > - Resource optimization
 > - Resource management
 > - Run time overhead minimization
