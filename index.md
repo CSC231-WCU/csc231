@@ -48,14 +48,16 @@ permalink: index.html  # Is the only page that doesn't follow the pattern /:path
 >   - Storage Frameworks
 >   - Gaming engines
 > - Low level programming languages (C, Assembly, etc.)
-> - Layered services design
-> - Providing and using Application Programming Interfaces (API's)
-> - Programming to operating systems internal interfaces
-> - Resource optimization
-> - Resource management
-> - Run time overhead minimization
-> - Programming direct control of memory access and flow control
-> - Managing memory in systems software
+>   - Layered services design
+>   - Providing and using Application Programming Interfaces (API's)
+>   - Programming to operating systems internal interfaces
+> - Memory hierarchy
+>   - Programming direct control of memory access and flow control
+>   - Managing memory in systems software
+> - Optimizing program performance
+>   - Resource optimization
+>   - Resource management
+>   - Run time overhead minimization
 > - Security concerns in systems software
 > - Monitoring and logging systems software
 >
