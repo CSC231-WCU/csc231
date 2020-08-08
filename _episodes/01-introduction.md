@@ -50,7 +50,7 @@ keypoints:
 > ~~~
 > {: .language-bash}
 > 
-> <img src="../fig/01-intro/01.png" alt="Compile and run nums.c" style="height:700px">
+> <img src="../fig/01-intro/01.png" alt="Compile and run nums.c" style="height:300px">
 > 
 {: .slide}
 
@@ -114,7 +114,7 @@ keypoints:
 > ~~~
 > {: .language-bash}
 > 
-> <img src="../fig/01-intro/01.png" alt="Compile and run nums.c" style="height:700px">
+> <img src="../fig/01-intro/01.png" alt="Compile and run nums.c" style="height:300px">
 > 
 {: .slide}
 
@@ -134,7 +134,7 @@ keypoints:
 >   - Program in Java, Ruby, Python, ML, …
 >   - Understand what possible interactions may occur
 >   - Use or develop tools to detect referencing errors (e.g. Valgrind)
-> {: .slide}
+{: .slide}
 
 
 > ## Beyond asymptotic complexity
@@ -147,7 +147,7 @@ keypoints:
 >   - How programs compiled and executed.
 >   - How to measure program performance and identify bottlenecks. 
 >   - How to improve performance without destroying code modularity and generality. 
-> {: .slide}
+{: .slide}
 
 
 > ## Hands-on 3: Memory system performance
@@ -161,7 +161,7 @@ keypoints:
 > ~~~
 > {: .language-bash}
 > 
-> <img src="../fig/01-intro/01.png" alt="Compile and run nums.c" style="height:700px">
+> <img src="../fig/01-intro/01.png" alt="Compile and run nums.c" style="height:300px">
 > 
 {: .slide}
 
