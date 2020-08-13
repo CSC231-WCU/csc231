@@ -114,7 +114,7 @@ keypoints:
 > ~~~
 > {: .language-bash}
 > 
-> <img src="../fig/01-intro/01.png" alt="Compile and run nums.c" style="height:300px">
+> <img src="../fig/01-intro/02.png" alt="Compile and run mem1.c" style="height:300px">
 > 
 {: .slide}
 
@@ -161,7 +161,7 @@ keypoints:
 > ~~~
 > {: .language-bash}
 > 
-> <img src="../fig/01-intro/01.png" alt="Compile and run nums.c" style="height:300px">
+> <img src="../fig/01-intro/03.png" alt="Compile and run nums.c" style="height:300px">
 > 
 {: .slide}
 
@@ -179,7 +179,22 @@ keypoints:
 {: .slide}
 
 
-
+> ## Layered Services
+>
+> - Direct communication between applications and hardware components are impractice due
+> to complexity. 
+> - Operating systems provide much-needed interfaces between applications and haward 
+> through:
+>   - OS/application interface: `system calls`.
+>   - HW/SW interface: `x86 standard` and `device drivers`. 
+> - Systems programming: develop software systems that ...
+>   - are composed of multiple modules
+>   - are complex
+>   - meets specific requirements in aspects such as performance, security, or fault tolerance.
+>
+> <img src="../fig/01-intro/04.png" alt="Compile and run nums.c" style="height:300px">
+>
+{: .slide}
 
 
 
