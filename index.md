@@ -51,18 +51,18 @@ permalink: index.html  # Is the only page that doesn't follow the pattern /:path
 >
 > ### Course Topics:
 > - Hardware/software interfaces and interactions
-> - Different types of systems programs
->	  - Development environments
->   - Operating Systems
->   - Utilities
->   - Networking Functions
->   - Device Drivers
->   - Storage Frameworks
->   - Gaming engines
-> - Low level programming languages (C, Assembly, etc.)
 >   - Layered services design
->   - Providing and using Application Programming Interfaces (API's)
+>   - Different types of systems programs
+>     - Operating Systems
+>     - Utilities
+>     - Networking Functions
+>     - Device Drivers
+>     - Storage Frameworks
+>     - Gaming engines
+>     - Development environments
+> - Low level programming languages (C, Assembly, etc.)
 >   - Programming to operating systems internal interfaces
+>   - Providing and using Application Programming Interfaces (API's)
 > - Memory hierarchy
 >   - Programming direct control of memory access and flow control
 >   - Managing memory in systems software
