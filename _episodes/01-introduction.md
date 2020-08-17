@@ -196,8 +196,5 @@ keypoints:
 >
 {: .slide}
 
-
-
-
 {% include links.md %}
 
