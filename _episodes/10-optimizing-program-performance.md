@@ -1,5 +1,5 @@
 ---
-title: "Introduction"
+title: "C programming optimization"
 teaching: 0
 exercises: 0
 questions:

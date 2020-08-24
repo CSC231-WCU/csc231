@@ -1,5 +1,5 @@
 ---
-title: "Introduction"
+title: "Memory hierarchy"
 teaching: 0
 exercises: 0
 questions:

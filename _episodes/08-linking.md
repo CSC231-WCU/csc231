@@ -1,5 +1,5 @@
 ---
-title: "Introduction"
+title: "Linking of libraries"
 teaching: 0
 exercises: 0
 questions:

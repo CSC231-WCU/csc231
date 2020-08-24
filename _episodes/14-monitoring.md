@@ -1,5 +1,5 @@
 ---
-title: "Introduction"
+title: "Monitoring and logging system software"
 teaching: 0
 exercises: 0
 questions:
