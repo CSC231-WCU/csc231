@@ -98,11 +98,12 @@ permalink: index.html  # Is the only page that doesn't follow the pattern /:path
 
 
 > ## Prerequisites
-> This course requires ...
+> - CSC 142: Computer Science II
 {: .prereq}
 
 > ## Required Text (either print or e-book):
->
+> **Computer Systems, A programmer's perspective** by Randal E. Bryant and David R. O'Hallaron (3rd Ed.). 
+> This textbook is available via VitalSource/Integrated option on D2L. 
 {: .prereq}
 
 > ## Evaluation Policy:
