@@ -45,3 +45,4 @@
 [swc-releases]: https://github.com/swcarpentry/swc-releases
 [training]: https://carpentries.github.io/instructor-training/
 [yaml]: http://yaml.org/
+[github]: https://github.com
