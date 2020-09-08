@@ -3,7 +3,7 @@ title: "Memory hierarchy"
 teaching: 0
 exercises: 0
 questions:
-- "Key question (FIXME)"
+- "What else is there besides RAM?"
 objectives:
 - "First learning objective. (FIXME)"
 keypoints:

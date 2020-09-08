@@ -3,7 +3,7 @@ title: "Machine language and debugging"
 teaching: 0
 exercises: 0
 questions:
-- "Key question (FIXME)"
+- "Getting closer to the hardware via machine languages"
 objectives:
 - "First learning objective. (FIXME)"
 keypoints:

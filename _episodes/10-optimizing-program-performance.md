@@ -3,7 +3,7 @@ title: "C programming optimization"
 teaching: 0
 exercises: 0
 questions:
-- "Key question (FIXME)"
+- "How can programs run faster?"
 objectives:
 - "First learning objective. (FIXME)"
 keypoints:

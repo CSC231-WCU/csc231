@@ -3,7 +3,7 @@ title: "Managing flow control"
 teaching: 0
 exercises: 0
 questions:
-- "Key question (FIXME)"
+- "Flow control in computer systems"
 objectives:
 - "First learning objective. (FIXME)"
 keypoints:

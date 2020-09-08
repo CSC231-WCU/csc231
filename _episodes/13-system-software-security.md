@@ -3,7 +3,7 @@ title: "System software security"
 teaching: 0
 exercises: 0
 questions:
-- "Key question (FIXME)"
+- "Introduction to system software security"
 objectives:
 - "First learning objective. (FIXME)"
 keypoints:

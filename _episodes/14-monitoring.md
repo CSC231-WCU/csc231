@@ -3,7 +3,7 @@ title: "Monitoring and logging system software"
 teaching: 0
 exercises: 0
 questions:
-- "Key question (FIXME)"
+- "Mechanisms to monitor and log progress of system software"
 objectives:
 - "First learning objective. (FIXME)"
 keypoints:

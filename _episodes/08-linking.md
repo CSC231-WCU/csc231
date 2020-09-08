@@ -3,7 +3,7 @@ title: "Linking of libraries"
 teaching: 0
 exercises: 0
 questions:
-- "Key question (FIXME)"
+- "Combining object files and libraries into a single executable"
 objectives:
 - "First learning objective. (FIXME)"
 keypoints:

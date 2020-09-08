@@ -3,7 +3,7 @@ title: "Network programming"
 teaching: 0
 exercises: 0
 questions:
-- "Key question (FIXME)"
+- "Introduction to network programming"
 objectives:
 - "First learning objective. (FIXME)"
 keypoints:
