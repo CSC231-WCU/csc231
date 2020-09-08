@@ -3,7 +3,7 @@ title: "C programming: application API"
 teaching: 0
 exercises: 0
 questions:
-- "Key question (FIXME)"
+- "How to design/build API in C"
 objectives:
 - "First learning objective. (FIXME)"
 keypoints:

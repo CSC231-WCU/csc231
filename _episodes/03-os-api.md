@@ -3,7 +3,7 @@ title: "C programming: POSIX API"
 teaching: 0
 exercises: 0
 questions:
-- "Key question (FIXME)"
+- "How do we interact with underlying system functionalities programmatically?"
 objectives:
 - "First learning objective. (FIXME)"
 keypoints:
