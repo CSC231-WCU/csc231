@@ -36,18 +36,50 @@ permalink: index.html  # Is the only page that doesn't follow the pattern /:path
 >
 {: .prereq}
 
-> ## Learning Objectives:
->
-> ### Student Learning Objectives:
-> - Be able to apply theory, techniques, and methodologies to create and/or maintain high quality
-> computing systems that function effectively and reliably in the emerging and future information
-> infrastructure.
->
-> ### Student Learning Outcomes:
-> 1. Analyze a complex computing problem and to apply principles of computing and other relevant
-> disciplines to identify solutions.
-> 2. Design, implement, and evaluate a computing-based solution to meet a given set of computing
-> requirements in the context of the program’s discipline.
+> ## Learning Objectives
+> <table>
+>   <thead>
+>     <tr>
+>       <th> Course Level Student Learning Outcomes (SLO) </th>
+>       <th> CS/ABET Program Outcomes </th>
+>       <th> CS Program Objectives </th>
+>       <th> Assessment </th>    
+>     </tr>
+>   </thead>
+>   <tbody>
+>     <tr>
+>       <td> 1. Be able to understand and manipulate the byte-representation of different data types (int, float, char …) </td>
+>       <td rowspan="4"> 1. Analyze a complex computing problem and to apply principles of computing and other relevant disciplines to identify solutions. </td>
+>       <td rowspan="7"> 1. Be able to apply theory, techniques, and methodologies to create and/or maintain high quality computing systems that function effectively and reliably in the emerging and future information infrastructure.</td>
+>       <td> Assignment </td>     
+>     </tr>
+>     <tr>
+>       <td> 2. Be able to understand simple segment of Assembler codes </td>
+>       <td> Assignment, Quiz, Exam </td>     
+>     </tr>
+>     <tr>
+>       <td> 3. Be able to understand the tradeoff in accessing data stored in various memory levels, ranging from CPU cache to physical hard drives </td>
+>       <td> Lab, Quiz, Exam </td>
+>     </tr>
+>     <tr>
+>       <td> 4. Be able to understand how file system works within the Linux operating system </td>
+>       <td> Assignment </td>
+>     </tr>
+>     <tr>
+>       <td> 5. Be able to understand how simple network communication works within the Linux operating system </td>
+>       <td rowspan="3"> 2. Design, implement, and evaluate a computing-based solution to meet a given set of computing requirements in the context of the program’s discipline.  </td>
+>       <td> Assignment, Quiz, Exam </td>
+>     </tr>
+>     <tr>
+>       <td> 6. Be able to understand potential performance improvements and pitfalls in thread-based parallel computation </td>
+>       <td> Lab, Quiz, Exam </td>
+>     </tr>
+>     <tr>
+>       <td> 7. Be able to understand how layered service designs and API works from a systems programming perspective </td>
+>       <td> Lab, Quiz, Exam </td>
+>     </tr>
+>   </tbody>
+> </table>
 >
 > ### Course Topics:
 > - Hardware/software interfaces and interactions
@@ -75,12 +107,11 @@ permalink: index.html  # Is the only page that doesn't follow the pattern /:path
 >
 > ### Artifacts used to demonstrate Student Learning Outcomes:
 > - Assignments: In writing and running programs and measuring execution performances, students will be assessed on SLO1.
+>   - Writing introductory C codes that demonstrate understanding of the language. 
 >   - Writing C codes that demonstrate understanding and the ability to manipulate
 >   the byte-representation of different data types (int, float, char …).
 >   - Demonstrate understanding by writing corresponding C codes that would translate
 >   to segment of Assembler codes given by the assignment.
->   - Demonstrate understanding of the x86 processor architecture by writing Assembler
->   codes that would perform specific tasks for this type of processor.
 >   - Perform calculations to demonstrate understanding the tradeoff in accessing
 >   data stored in various memory levels, ranging from CPU cache to physical hard drives.
 >   - Write a program that calls external programs and data files to demonstrate
@@ -93,9 +124,8 @@ permalink: index.html  # Is the only page that doesn't follow the pattern /:path
 > - Labs: In the labs, students will learn to use command line tools and programs common
 > in the Linux operating systems for their programs. In completing the labs, students will
 > be assessed on SLO2.
->
+> - Quiz and Exams: Multiple choice, code reading, and code correction. 
 {: .objectives}
-
 
 > ## Prerequisites
 > - CSC 142: Computer Science II
