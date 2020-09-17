@@ -49,7 +49,7 @@ permalink: index.html  # Is the only page that doesn't follow the pattern /:path
 >   <tbody>
 >     <tr>
 >       <td> 1. Be able to understand and manipulate the byte-representation of different data types (int, float, char …) </td>
->       <td rowspan="4"> 1. Analyze a complex computing problem and to apply principles of computing and other relevant disciplines to identify solutions. </td>
+>       <td rowspan="4"> 1. Analyze a complex computing problem and to apply principles of computing and other relevant disciplines to identify solutions (ABET 1). </td>
 >       <td rowspan="7"> 1. Be able to apply theory, techniques, and methodologies to create and/or maintain high quality computing systems that function effectively and reliably in the emerging and future information infrastructure.</td>
 >       <td> Assignment </td>     
 >     </tr>
@@ -67,7 +67,7 @@ permalink: index.html  # Is the only page that doesn't follow the pattern /:path
 >     </tr>
 >     <tr>
 >       <td> 5. Be able to understand how simple network communication works within the Linux operating system </td>
->       <td rowspan="3"> 2. Design, implement, and evaluate a computing-based solution to meet a given set of computing requirements in the context of the program’s discipline.  </td>
+>       <td rowspan="3"> 2. Design, implement, and evaluate a computing-based solution to meet a given set of computing requirements in the context of the program’s discipline (ABET 2).  </td>
 >       <td> Assignment, Quiz, Exam </td>
 >     </tr>
 >     <tr>
