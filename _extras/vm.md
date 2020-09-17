@@ -7,7 +7,7 @@ title: Setup Virtual Machine
 - To emulate an operating system, we will use VirtualBox.
 - Even if you are already running Linux or Linux/Unix-based OSes (e.g., Mac, ChromeOS ...), 
 it is necessary to use VirtualBox to create an isolated environment for operating system.
-- The installation file can be downloaded from [VirtualBox's Download Page][virtualbox].
+- The installation file can be downloaded from [VirtualBox's Download Page](https://www.virtualbox.org/wiki/Downloads).
 - Install VirtualBox by following the [online instruction page](https://www.virtualbox.org/manual/UserManual.html#installation).
 
 <img src="../fig/vm/virtualbox_1.png" alt="VirtualBox" style="height:400px">
