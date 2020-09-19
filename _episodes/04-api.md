@@ -1,9 +1,9 @@
 ---
-title: "C programming: application API"
+title: "C programming: API"
 teaching: 0
 exercises: 0
 questions:
-- "How to design/build API in C"
+- "How to use system API and design application API in C"
 objectives:
 - "First learning objective. (FIXME)"
 keypoints:
