@@ -53,7 +53,7 @@ the bit-size limitations."
 > | C data type | typical 32-bit | typical 64-bit | x86_64  |  
 > | ----------- | -------------- | -------------- | ------- |  
 > | char        | 1              | 1              | 1       |  
-> | short       | 2              | 2              | 3       |  
+> | short       | 2              | 2              | 2       |  
 > | int         | 4              | 4              | 4       |  
 > | long        | 4              | 8              | 8       |  
 > | float       | 4              | 4              | 4       |  
@@ -190,7 +190,7 @@ the bit-size limitations."
 >
 > - Values for different word sizes:
 >
-> |      | 8    | 16      | 32             | 64                         |
+> |      | 8 (1 byte)    | 16 (2 bytes)      | 32 (4 bytes)             | 64 (8 bytes)                         |
 > | ---- | ---- | ------- | -------------- | -------------------------- |
 > | UMax | 255  | 65,535  | 4,294,967,295  | 18,446,744,073,709,551,615 |
 > | TMax | 127  | 32,767  | 2,147,483,647  | 9,223,372,036,854,775,807  |
@@ -314,6 +314,382 @@ the bit-size limitations."
 > - Human control:
 >   - Kruschev was in New York on October 5, 1960. 
 >   - Someone at Thule said, "why not go check outside?"
+{: .slide}
+
+> ## 18. Unsigned addition
+> - Given `w` bits operands
+>  - True sum can have `w + 1` bits (carry bit). 
+>  - Carry bit is discarded. 
+> - Implementation:
+>  - s = (u + v) mod 2<sup>w</sup>
+{: .slide}
+
+> ## 19. Hands on: unsigned addition
+>
+> - Make sure that you are inside `03-data` directory.
+> - Create a file named `unsigned_addition.c` with the following contents:
+> 
+> <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=unsigned_addition.c"></script>
+> 
+> - Compile and run `unsigned_addition.c`.
+> - Confirm that calculated values are correct. 
+>
+{: .slide}
+
+> ## 20. 2's complement addition
+> - Almost similar bit-level behavior as unsigned addition
+>   - True sum of `w`-bit operands will have `w+1`-bit, but
+>   - Carry bit is discarded. 
+>   - Remainding bits are treated as 2's complement integers. 
+> -  Overflow behavior is different
+>   - TAdd<sub>w</sub>(u, v) = u + v + 2<sup>w</sup> if u + v < TMin<sub>w</sub> (**Negative Overflow**)
+>   - TAdd<sub>w</sub>(u, v) = u + v if TMin<sub>w</sub> <= u + v <= TMax<sub>w</sub>
+>   - TAdd<sub>w</sub>(u, v) = u + v - 2<sup>w</sup> if u + v > TMax<sub>w</sub> (**Positive Overflow**)
+{: .slide}
+
+> ## 21. Hands on: signed addition
+>
+> - Make sure that you are inside `03-data` directory.
+> - Create a file named `signed_addition.c` with the following contents:
+> 
+> <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=signed_addition.c"></script>
+> 
+> - Compile and run `signed_addition.c`.
+> - Confirm that calculated values are correct. 
+>
+{: .slide}
+
+> ## 22. Multiplication
+> - Compute product of `w`-bit numbers x and y. 
+> - Exact results can be bigger than `w` bits. 
+>   - Unsigned: up to `2w` bits: 0 <= x * y <= (2<sup>w</sup> - 1)<sup>2</sup>
+>   - 2's complement (negative): up to `2w - 1` bits: x * y >= (-2)<sup>2w-2</sup> + 2<sup>2w-1</sup>
+>   - 2's complement (positive): up to `2w` bits: x * y <= 2<sup>2w-2</sup>
+> - To maintain exact results:
+>   - Need to keep expanding word size with each product computed. 
+>   - Is done by software if needed ([arbitrary precision arithmetic packages](https://en.wikipedia.org/wiki/List_of_arbitrary-precision_arithmetic_software)).
+> - **Trust your compiler**: Modern CPUs and OSes will most likely know to select the optimal method
+> to multiply. 
+{: .slide}
+
+> ## 23. Multiplication and Division by power-of-2
+> - Power-of-2 multiply with shift
+>   - `u >> k` gives u * 2<sup>k</sup>
+>   - True product has `w + k` bits: discard `k` bits. 
+> - Unsigned power-of-2 divide with shift
+>   - `u >> k` gives floor(u / 2<sup>k</sup>)
+>   - Use logical shift.
+> - Signed power-of-2 divide with shift
+>   - x > 0: `x >> k` gives floor(u / 2<sup>k</sup>)
+>   - x < 0: `(x + (1 << k) - 1) >> k` gives ceiling(u / 2<sup>k</sup>)
+>   - C statement: `(x < 0 ? x + (1 << k) - 1: x) >> k`
+{: .slide}
+
+> ## 24. Negation: complement and increase
+> - Negate through complement and increment:
+>   - `~x + 1 == -x`
+{: .slide}
+
+> ## 25. Challenge
+> 
+> - Implement a C program called `negation.c` that implements and validates
+> the equation in slide 24. The program should take in a command line argument
+> that takes in a number of type `short` to be negated. 
+> - What happens if you try to negate `-32768`?
+>
+> > ## Solution
+> > <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=negation.c"></script>
+> >
+> {: .solution}
+{: .challenge}
+
+> ## 26. Byte-oriented memory organization
+> - Programs refer to data by address
+>   - Conceptually, envision it as a very large array of bytes
+>     - In reality, it’s not, but can think of it that way
+>   - An address is like an index into that array
+>     - and, a pointer variable stores an address
+> - Note: system provides private address spaces to each "process"
+>   - Think of a process as a program being executed
+>   - So, a program can clobber its own data, but not that of others
+{: .slide}
+
+> ## 27. Machine words
+> - Any given computer has a "Word Size"
+> - `word size": Nominal size of integer-valued data and of addresses
+> - Until recently, most machines used 32 bits (4 bytes) as word size
+>   - Limits addresses to 4GB (232 bytes)
+> - Increasingly, machines have 64-bit word size
+>   - Potentially, could have 18 EB (exabytes) of addressable memory
+>   - That’s 18.4 X 1018
+> - Machines still support multiple data formats
+>   - Fractions or multiples of word size
+>   - Always integral number of bytes
+{: .slide}
+
+> ## 28. Word-oriented memory organization
+> 
+> - Addresses specific byte locations
+>   - Address of first byte in word.
+>   - Address of successive words differ by 4 (32-bit) or 8 (64-bit). 
+>
+> <img src="../fig/03-data-representation/data_08.png" alt="word-oriented memory organization" style="height:500px">
+{: .slide}
+
+> ## 30. Byte ordering in memory
+> - Machine-dependent
+> - Big Endian:  Sun (Oracle SPARC), PPC Mac, Internet (network data transfer)
+>   - Least significant byte has the highest address.
+> - Little Endian: x86, ARM processors running Android, iOS, and Linux
+>   - Least significant byte has lowest address.
+> - Example
+>   - Variable x has 4-byte value of 0x01234567
+>   - Address given by `&x` is 0x100
+> 
+> <img src="../fig/03-data-representation/data_09.png" alt="Byte ordering example" style="height:500px">
+{: .slide}
+
+> ## 31. Hands on: byte ordering in memory
+>
+> - Make sure that you are inside `03-data` directory.
+> - Create a file named `byte_ordering.c` with the following contents:
+> 
+> <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=byte_ordering.c"></script>
+> 
+> - Compile and run `byte_ordering.c`.
+> - Confirm that calculated values are correct. 
+>
+{: .slide}
+
+> ## 32. Fractional binary numbers
+> - What is 1011.101<sub>2</sub>?
+>   - 8 + 0 + 2 + 1 + 1/2 + 0 + 1/4
+> - Can only exactly represent numbers of the form x/2<sup>k</sup>
+> - Limited range of numbers within the `w`-bit word size. 
+> 
+{: .slide}
+
+> ## 33. IEEE Foating point
+> - [IEEE Standard 754](https://standards.ieee.org/standard/754-2019.html)
+>   - Established in 185 as uniform standard for floating point arithmetic
+>   - Supported by all major CPUs
+>   - Some CPUs don’t implement IEEE 754 in fulle.g., early GPUs, Cell BE processor
+> - Driven by numerical concerns
+>   - Nice standards for rounding, overflow, underflow
+>   - Hard to make fast in hardware (Numerical analysts predominated over hardware 
+> designers in defining standard).
+{: .slide}
+
+> ## 34. Importance of floating-point arithmetic accuracy
+> - Ariane 5 explordes on maiden voyage: $500 million dollars lost. 
+>   - [64-bit floating point number assigned to 16-bit integer](http://sunnyday.mit.edu/nasa-class/Ariane5-report.html)
+>   - Cause rocket to get incorrect value of horizontal velocity and crash. 
+> - Patriot Missle defense system misses Scud: 28 dead
+>   - [Velocity is a real number that can be expressed as a whole number and a decimal 
+>   (e.g., 3750.2563...miles per hour). Time is kept continuously by the system’s internal clock 
+>   in tenths of seconds but is expressed as an integer or whole number (e.g., 32,33, 34...). 
+>   The longer the system has been running, the larger the number representing time. To predict 
+>   where the Scud will next appear, both time and velocity must be expressed as real numbers. 
+>   Because of the way the Patriot computer performs its calculations and the fact that its 
+>   registers4 are only 24 bits long, the conversion of time from an integer to a real number 
+>   cannot be any more precise than 24 bits. This conversion results in a loss of precision 
+>   causing a less accurate time calculation. The effect of this inaccuracy on the range gate’s 
+>   calculation is directly proportional to the target’s velocity and the length of time 
+>   the system has been running. Consequently, performing the conversion after the Patriot has 
+>   been running continuously for extended periods causes the range gate to shift away from 
+>   the center of the target, making it less likely that the target, in this case a Scud, 
+>   will be successfully intercepted.](https://www.gao.gov/assets/220/215614.pdf)
+{: .slide}
+
+> ## 35. IEEE Foating point representation
+> - Numerical form: (-1)<sup>s</sup>M2<sup>E</sup>
+>   - Sign bit `s` determins whether the number is negative or positive. 
+>   - Significantd `M` normalizes a fractional value in range [1.0, 2.0).
+>   - Exponent `E` weights value by power of two. 
+> - Encoding
+>   - Most significant bit is sign bit `s`. 
+>   - `exp` field encodes `E` (but is not equal to `E`)
+>   - `frac` field encodes `M` (but is not equalt to `M`)
+> 
+> <img src="../fig/03-data-representation/data_10.png" alt="floating encoding" style="height:100px">
+>
+> - Single precision: 32 bits
+>
+> <img src="../fig/03-data-representation/data_11.png" alt="32-bit encoding" style="height:100px">
+>
+> - Double precision: 64 bits
+>
+> <img src="../fig/03-data-representation/data_12.png" alt="64-bit encoding" style="height:100px">
+{: .slide}
+
+> ## 36. Three "kinds" of floating point numbers
+> - Depends on the `exp` field (`E`).
+> - Denormalized: `exp` contains all 0s.
+> - Special: `exp` contains all 1s.
+> - Normalized: `exp` contains a mix of 0s and 1s. 
+{: .slide}
+
+> ## 37. Normalized floating point numbers
+> - When: exp != 000…0 and exp != 111…1
+> - Exponent coded as a biased value: E  =  exp – Bias
+>   - exp: unsigned value of `exp` field 
+>   - Bias = 2<sup>k-1</sup> - 1, where `k` is number of exponent bits
+>     - Single precision: 127 (exp: 1…254, E: -126…127)
+>     - Double precision: 1023 (exp: 1…2046, E: -1022…1023)
+> - Significand coded with implied leading 1: M  =  1.xxx…x<sub>2</sub>
+>   - xxx…x: bits of `frac` field
+>   - Minimum when frac=000…0 (M = 1.0)
+>   - Maximum when frac=111…1 (M = 2.0 – ε)
+>   - Get extra leading bit for "free" (hence the range: `[1.0, 2.0)`)
+{: .slide}
+
+> ## 38. Example: normalized floating point numbers
+> - Value: float F = 15213.0;
+>   - 15213<sub>10</sub> = 11101101101101<sub>2</sub> = 1.1101101101101<sub>2</sub> * 2<sup>13</sup>
+> - Significand:
+>   - M = 1.1101101101101<sub>2</sub>
+>   - `frac` = 11011011011010000000000<sub>2</sub>
+> - Exponent:
+>   - E = 13
+>   - Bias = 127
+>   - `exp` = 140 = 10001100<sub>2</sub>
+>  - Result: `0`|`10001100`|`11011011011010000000000` 
+{: .slide}
+
+> ## 39. Hands on: check floating point representation
+>
+> - Make sure that you are inside `03-data` directory.
+> - Create a file named `show_fp.c` with the following contents:
+> 
+> <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=show_fp.c"></script>
+> 
+> - Compile and run `show_fp.c`.
+> - Confirm that calculated values in slide 38 are correct. 
+>
+{: .slide}
+
+> ## 40. Denormalized floating point
+> - Condition: exp = 000…0 
+> - Exponent value: E = 1 – Bias
+>  - Significand coded with implied leading 0: M = 0.xxx…x<sub>2</sub>
+>    - xxx…x: bits of frac
+> - Cases
+>   - exp = 000…0, frac = 000…0
+>     - Represents zero value
+>     - Note distinct values: +0 and –0
+>   - exp = 000…0, frac ≠ 000…0
+>     - Numbers closest to 0.0
+>     - Equispaced
+{: .slide}
+
+> ## 41. Special cases
+> - Condition: exp = 111...1 
+> - Case: exp = 111…1, frac = 000…0
+>   - Represents value infinity
+>   - Operation that overflows
+>   - Both positive and negative
+> - Case: exp = 111…1, frac != 000…0
+>   - Not-a-Number (NaN)
+>   - Represents case when no numeric value can be determined
+{: .slide}
+
+> ## 42. Floating operations: basic idea
+> - Compute exact result. 
+> - Make it fit into desired precision. 
+>   - Possible overflow if exponent too large
+>   - Possible round to fit into `frac`
+>
+> - Rounding modes
+>
+> |                        | 1.40 | 1.60 | 1.50 | 2.50 | -1.50 |
+> | ---------------------- | ---- | ---- | ---- | ---- | ----- |
+> | Towards zero           | 1    | 1    | 1    | 2    | -1    |
+> | Round down             | 1    | 1    | 1    | 2    | -2    |
+> | Round up               | 2    | 1    | 1    | 3    | -1    |
+> | Nearest even (default) | 1    | 2    | 2    | 2    | -2    |
+>
+> - Nearest even
+>   - Hard to get any other mode without dropping into assembly. 
+>   - C99 has support for rounding mode management
+> - All others are statistically based
+>   - Sum of set of positive numbers will consistently be over- or under-estimated. 
+{: .slide}
+
+> ## 43. Floating point multiplication
+> - (-1)<sup>s<sub>1</sub></sup>M<sub>1</sub>2<sup>E<sub>1</sub></sup> * (-1)<sup>s<sub>2</sub></sup>M<sub>2</sub>2<sup>E<sub>2</sub></sup>. 
+> - Exact result: (-1)<sup>s</sup>M2<sup>E</sup> 
+>   - s = s<sub>1</sub>^s<sub>2</sub>
+>   - M = M<sub>1</sub>*M<sub>2</sub>
+>   - E = E<sub>1</sub>+E<sub>2</sub>
+> - Correction
+>   - If M >= 2, shift M right, increment E. 
+>   - If E out of range, overflow. 
+>   - Round M to fit `frac` precision
+> - Implementation: Biggest chore is multiplying significands.  
+{: .slide}
+
+> ## 44. Floating point addition
+> - (-1)<sup>s<sub>1</sub></sup>M<sub>1</sub>2<sup>E<sub>1</sub></sup> + (-1)<sup>s<sub>2</sub></sup>M<sub>2</sub>2<sup>E<sub>2</sub></sup>. 
+> - Exact result: (-1)<sup>s</sup>M2<sup>E</sup> 
+>   - Sign s, significand M: result of signed align and add
+>   - E = E<sub>1</sub>
+> - Correction
+>   - If M >= 2, shift M right, increment E. 
+>   - If M < 1, shift M left k positions, decrement E by k. 
+>   - Overflow if E out of range
+>   - Round M to fit `frac` precision
+> - Implementation: Biggest chore is multiplying significands.  
+{: .slide}
+
+> ## 45. Mathematical properties of floating point addition
+> - Compare to those of [Abelian group  ](https://en.wikipedia.org/wiki/Abelian_group) 
+> (a group in which the result of applying the group operation to two group elements 
+> does not depend on the order in which they are written):
+>   - Closed under addition? **Yes** (but may generate infinity or NaN)
+>   - Communicative? **Yes**
+>   - Associative? **No**
+>     - Overflow and inexactness of rounding
+>     - (3.14+1e10)-1e10 = 0, 3.14+(1e10-1e10) = 3.14
+>   - 0 is additive identity? **Yes**
+>   - Every elemtn has additive inverse? **Almost**
+>     - Except for infinities and NaN
+> - Monotonicity?
+>   - **Almost**
+>   - Except for infinities and NaN
+{: .slide}
+
+> ## 46. Mathematical properties of floating point multiplication
+> - Compare to those of [Abelian group  ](https://en.wikipedia.org/wiki/Abelian_group) 
+> (a group in which the result of applying the group operation to two group elements 
+> does not depend on the order in which they are written):
+>   - Closed under addition? **Yes** (but may generate infinity or NaN)
+>   - Communicative? **Yes**
+>   - Associative? **No**
+>     - Overflow and inexactness of rounding
+>     - (1e20 * 1e20) * 1e-20= inf, 1e20 * (1e20 * 1e-20)= 1e20
+>   - 1 is additive identity? **Yes**
+>   - Multiplication distributes over addition? **No**
+>     - Overflow and inexactness of rounding
+>     - 1e20 * (1e20-1e20)= 0.0,  1e20 * 1e20 – 1e20 * 1e20 = NaN
+> - Monotonicity?
+>   - **Almost**
+>   - Except for infinities and NaN
+{: .slide}
+
+> ## 47. Floating point in C
+> - C guarantees two levels
+>   - `float`: single precision
+>   - `double`: double precision
+> - Conversion/casting
+>   - Casting between int, float, and double changes bit representation
+>   - double/float to int
+>     - Truncates fractional part
+>     - Like rounding toward zero
+>     - Not defined when out of range or NaN: Generally sets to TMin
+>   - int to double
+>     - Exact conversion, as long as int has ≤ 53 bit word size
+>   - int to float
+>     - Will round according to rounding mode
 {: .slide}
 
 {% include links.md %}
