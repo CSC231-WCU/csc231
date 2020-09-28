@@ -147,7 +147,7 @@ the bit-size limitations."
 > |     | -16 | 8  | 4  | 2 | 1 |                   |
 > | --  | --- | -- | -- | - | - | ----------------- |  
 > | 10  | 0   | 1  | 0  | 1 | 0 | 8 + 2 = 10        |  
-> | -10 | 1   | 0  | 1  | 1 | 0 | -16 + 4 + 2 = 10  |
+> | -10 | 1   | 0  | 1  | 1 | 0 | -16 + 4 + 2 = -10 |
 >
 > - Complex example
 >
@@ -473,7 +473,7 @@ the bit-size limitations."
 > - [IEEE Standard 754](https://standards.ieee.org/standard/754-2019.html)
 >   - Established in 185 as uniform standard for floating point arithmetic
 >   - Supported by all major CPUs
->   - Some CPUs don’t implement IEEE 754 in fulle.g., early GPUs, Cell BE processor
+>   - Some CPUs don’t implement IEEE 754 in full, for example, early GPUs, Cell BE processor
 > - Driven by numerical concerns
 >   - Nice standards for rounding, overflow, underflow
 >   - Hard to make fast in hardware (Numerical analysts predominated over hardware 
@@ -491,7 +491,7 @@ the bit-size limitations."
 >   The longer the system has been running, the larger the number representing time. To predict 
 >   where the Scud will next appear, both time and velocity must be expressed as real numbers. 
 >   Because of the way the Patriot computer performs its calculations and the fact that its 
->   registers4 are only 24 bits long, the conversion of time from an integer to a real number 
+>   registers are only 24 bits long, the conversion of time from an integer to a real number 
 >   cannot be any more precise than 24 bits. This conversion results in a loss of precision 
 >   causing a less accurate time calculation. The effect of this inaccuracy on the range gate’s 
 >   calculation is directly proportional to the target’s velocity and the length of time 
