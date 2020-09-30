@@ -68,7 +68,7 @@ the bit-size limitations."
 > - Algebraic representation of logic: encode `True` as `1` and `False` as `0`. 
 > - Operations: `AND` (`&`), `OR` (`|`), `XOR` (`^`), `NOT` (`~`).
 > 
-> | A | B | A&B  | A|B  | A^B | ~A |
+> | A | B | A&B  | A\|B  | A^B | ~A |
 > | - | - | ---- | ---- | --- | -- | 
 > | 0 | 0 | 0    | 0    | 0   | 1  |
 > | 0 | 1 | 0    | 1    | 1   | 1  |
