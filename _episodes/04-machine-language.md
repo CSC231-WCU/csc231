@@ -118,6 +118,12 @@ keypoints:
 {: .slide}
 
 
+> ## 6. Hands on: assembly/machine code example
+>
+> TBA
+>
+{: .slide}
+
 
 {% include links.md %}
 
