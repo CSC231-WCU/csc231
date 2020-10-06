@@ -120,8 +120,59 @@ keypoints:
 
 > ## 6. Hands on: assembly/machine code example
 >
-> TBA
+> - In your home directory, create a directory called `04-machine` and change into this directory.
+> - Create a file named `mstore.c` with the following contents:
 >
+> <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=mstore.c"></script>
+>
+> - Run the following commands 
+> *It is capital o, not number 0*
+>
+> ~~~
+> $ gcc -Og -S mstore.c
+> $ cat mstore.s
+> $ gcc -Og -c mstore.c
+> $ objdump -d mstore.o
+> ~~~
+> {: .language-bash}
+>
+> <img src="../fig/04-machine/05.png" alt="Assembler code" style="height:700px">
+>
+> - x86_64 instructions range in length from 1 to 15 bytes
+> - The disassembler determines the assembly code based purely on the 
+> byte-sequence in the machine-code file. 
+> - All lines begin with `.`  are directirves to the assembler and linker. 
+{: .slide}
+
+
+> ## 7. Data format
+>
+> 
+> | C data type | Intel data type  | Assembly-code suffix | Size  |  
+> | ----------- | ---------------- | -------------------- | ----- |  
+> | char        | Byte             | b                    | 1     |  
+> | short       | Word             | w                    | 2     |  
+> | int         | Double word      | l                    | 4     |  
+> | long        | Quad word        | q                    | 8     |  
+> | char *      | Quad word        | q                    | 8     |  
+> | float       | Single precision | s                    | 4     |  
+> | double      | Double precision | l                    | 8     |  
+>
+{: .slide}
+
+
+> ## 8. Integer registers
+>
+> - x86_64 CPU contains a set of 16 `general purpose registers` storing 64-bit values.  
+> - Original 8086 design has eight 16-bit registers, `%ax` through `%sp`. 
+> - After IA32 extension, these registers grew to 32 bits, labeled `%eax` through `%esp`. 
+> - After x86_64 extension, these registers were expanded to 64 bits, labeled `%rax` 
+> through `%rsp`. Eight new registered were added: `%r8` through `%r15`. 
+> - Instructions can operate on data of different sizes stored in low-order bytes of the
+> 16 registers. 
+>
+> <img src="../fig/04-machine/06.png" alt="general purpose registers" style="height:800px">
+> *Bryant and O' Hallaron, Computer Systems: A Programmer's Perspective, Third Edition*
 {: .slide}
 
 
