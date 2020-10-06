@@ -176,5 +176,16 @@ keypoints:
 {: .slide}
 
 
+> ## 9. Assembly characteristics: operations
+>
+> - Transfer data between memory and register
+>   - Load data from memory into register
+>   - Store register data into memory
+> - Perform arithmetic function on register or memory data
+> - Transfer control
+>   - Unconditional jumps to/from procedures
+>   - Conditional branches
+>   - Indirect branches
+{: .slide}
 {% include links.md %}
 
