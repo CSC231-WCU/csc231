@@ -165,6 +165,15 @@ keypoints:
 >
 > - x86_64 CPU contains a set of 16 `general purpose registers` storing 64-bit values.  
 > - Original 8086 design has eight 16-bit registers, `%ax` through `%sp`. 
+>   - Origin (mostly obsolete)
+>     - `%ax`: accumulate
+>     - `%cx`: counter
+>     - `%dx`: data
+>     - `%bx`: base
+>     - `%si`: source index
+>     - `%di`: destination index
+>     - `%sp`: stack pointer
+>     - `%bp`: base pointer
 > - After IA32 extension, these registers grew to 32 bits, labeled `%eax` through `%esp`. 
 > - After x86_64 extension, these registers were expanded to 64 bits, labeled `%rax` 
 > through `%rsp`. Eight new registered were added: `%r8` through `%r15`. 
@@ -187,5 +196,237 @@ keypoints:
 >   - Conditional branches
 >   - Indirect branches
 {: .slide}
+
+
+> ## 10. Data movement
+> - Example: `movq Source, Dest`
+> - Note: This is ATT notation. Intel uses `mov Dest, Source`
+> - Operand Types:
+>   - Immediate (Imm): Constant integer data. 
+>      - `$0x400`, `$-533`. 
+>      - Like C constant, but prefixed with `$`.
+>      - Encoded with 1, 2, or 4 bytes. 
+>   - Register (Reg): One of 16 integer registers
+>      - Example: `%rax`, `%r13`
+>      - `%rsp` reserved for special use. 
+>      - Others have special uses in particular instructions. 
+>   - Memory (Mem): 8 (`q` in `movq`) consecutive bytes of memory at 
+>   address given by register. 
+>      - Example: `(%rax)`
+>      - Various other **addressing mode** (See textbook page 181, Figure 3.3). 
+> - Other `mov`:
+>   - `movb`: move byte
+>   - `movw`: move word
+>   - `movl`: move double word
+>   - `movq`: move quad word
+>   - `moveabsq`: move absolute quad word
+{: .slide}
+
+
+> ## 11. movq Operand Combinations
+>
+> | `movq` | Source | Dest  | Src, Dest           |  C Analog    |
+> | ------ | ------ | ----- | ------------------- | ------------ |
+> |        | Imm    | Reg   | `movq $0x4, %rax`   | tmp = 0x4;   |
+> |        | Imm    | Mem   | `movq $-147,(%rax)` | *p = -147;   |
+> |        | Reg    | Reg   | `movq %rax,%rdx`    | tmp2 = tmp1; |
+> |        | Reg    | Mem   | `movq %rax,(%rdx)`  | *p = tmp;    |
+> |        | Mem    | Reg   | `movq (%rax),%rdx`  | tmp = *p;    |
+{: .slide}
+
+
+> ## 12. Simple memory addressing mode
+>
+> - Normal:	(R)	Mem[Reg[R]]
+>   - Register R specifies memory address
+>   - Aha! Pointer dereferencing in C
+>   - `movq (%rcx),%rax`
+> - Displacement	D(R)	Mem[Reg[R]+D]
+>   - Register R specifies start of memory region
+>   - Constant displacement D specifies offset
+>   - `movq 8(%rbp),%rdx`
+{: .slide}
+
+> ## 13. x86_64 Cheatsheet
+>
+> [Brown University - Dr. Doeppner](https://cs.brown.edu/courses/cs033/docs/guides/x64_cheatsheet.pdf)
+>
+{: .slide}
+
+
+> ## 14. Hands on: data movement
+>
+> - Create a file named `swap.c` in `04-machine` with the following contents:
+>
+> <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=swap.c"></script>
+>
+> - Run the following commands 
+>
+> ~~~
+> $ gcc -Og -c swap.c
+> $ objdump -d swap.o
+> ~~~
+> {: .language-bash}
+>
+> <img src="../fig/04-machine/07.png" alt="swap.c" style="height:500px">
+>
+> - [Why `%rsi` and `%rdi`?](http://6.s081.scripts.mit.edu/sp18/x86-64-architecture-guide.html)
+{: .slide}
+
+
+
+> ## 15. Hands on: data movement
+>
+> - Create a file named `swap_dsp.c` in `04-machine` with the following contents:
+>
+> <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=swap_dsp.c"></script>
+>
+> - Run the following commands 
+>
+> ~~~
+> $ gcc -Og -c swap_dsp.c
+> $ objdump -d swap_dsp.o
+> ~~~
+> {: .language-bash}
+>
+> <img src="../fig/04-machine/08.png" alt="swap_dsp.c" style="height:500px">
+>
+> - What is the meaning of `0x190`?
+{: .slide}
+
+
+> ## 16. Complete memory addressing mode
+>
+> - Most General Form
+>   - `D(Rb,Ri,S)`: `Mem[Reg[Rb]+S*Reg[Ri]+ D]`
+>   - D: 	Constant **displacement** 1, 2, or 4 bytes
+>   - Rb: Base register: Any of 16 integer registers
+>   - Ri:	Index register: Any, except for `%rsp`
+>   - S: Scale: 1, 2, 4, or 8 
+> - Special Cases
+>   - `(Rb,Ri)`:	`Mem[Reg[Rb]+Reg[Ri]]`
+>   - `D(Rb,Ri)`: `Mem[Reg[Rb]+Reg[Ri]+D]`
+>   - `(Rb,Ri,S)`: `Mem[Reg[Rb]+S*Reg[Ri]]`
+>   - `(,Ri,S)`: `Mem[S*Reg[Ri]]`
+>   - `D(,Ri,S)`: `Mem[S*Reg[Ri] + D]`
+>
+{: .slide}
+
+
+> ## 17. Arithmetic and logical operations: lea
+>
+> - `lea`: load effective address
+> - A form of `movq` intsruction
+>   - `lea S, D`: Write `&S` to `D`. 
+>   - can be used to generate pointers
+>   - can also be used to describe common arithmetic operations. 
+{: .slide}
+
+
+> ## 18. Hands on: lea
+>
+> - Create a file named `m12.c` in `04-machine` with the following contents:
+>
+> <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=m12.c"></script>
+>
+> - Run the following commands 
+>
+> ~~~
+> $ gcc -Og -c m12.c
+> $ objdump -d m12.o
+> ~~~
+> {: .language-bash}
+>
+> <img src="../fig/04-machine/09.png" alt="m12.c" style="height:500px">
+>
+> - Review slide 16
+> - `%rdi`: x
+> - `(%rdi, %rdi,2)` = x + 2 * x 
+> - The above result is moved to `%rdx` with `lea`. 
+> - `0x0(,%rdx,4)` = 4 * (x + 2 * x) = 12*x
+> - The above result is moved to `%rax` with `lea`. 
+{: .slide}
+
+
+> ## 19. Other arithmetic operations
+>
+> - Omitting suffixes comparing to the book. 
+>
+> | Format          | Computation |  Description       |
+> | --------------- | ----------- | ------------------ |  
+> | `add Src,Dest`  | D <- D + S  | add                |   
+> | `sub Src,Dest`  | D <- D - S  | subtract           |  
+> | `imul Src,Dest` | D <- D * S  | multiply           |  
+> | --------------- | ----------- | ------------------ |  
+> | `shl Src,Dest`  | D <- D << S | shift left         |  
+> | `sar Src,Dest`  | D <- D >> S | arith. shift right |  
+> | `shr Src,Dest`  | D <- D >> S | shift right        |  
+> | `sal Src,Dest`  | D <- D << S | arith. shift left  |  
+> | --------------- | ----------- | ------------------ |  
+> | `xor Src,Dest`  | D <- D ^ S  | exclusive or       |  
+> | `and Src,Dest`  | D <- D & S  | and                |  
+> | `or Src,Dest`   | D <- D \| S | or                 |  
+> | --------------- | ----------- | ------------------ |  
+> | `inc Src`       | D <- D + 1  | increment          |  
+> | `dec Src`       | D <- D - 1  | decrement          |  
+> | `neg Src`       | D <- -D     | negate             |  
+> | `not Src`       | D <- -D     | complement         |  
+>
+>
+> - Watch out for argument order (ATT versus Intel)
+> - No distinction between signed and unsigned int. Why is that?
+{: .slide}
+
+
+> ## 20. Challenge: lea
+>
+> - Create a file named `scale.c` in `04-machine` with the following contents:
+>
+> <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=scale.c"></script>
+>
+> - Run the following commands 
+>
+> ~~~
+> $ gcc -Og -c scale.c
+> $ objdump -d scale.o
+> ~~~
+> {: .language-bash}
+>
+> <img src="../fig/04-machine/10.png" alt="scale.c" style="height:500px">
+>
+> - Identify the registers holding x, y, and z.  
+> - Which register contains the final return value?
+>
+> > ## Solution
+> > - `%rdi`: x
+> > - `%rsi`: y
+> > - `%rdx`: z
+> > - `%rax` contains the final return value. 
+> {: .solution}
+{: .challenge}
+
+
+
+> ## 21. Hands on: long arithmetic
+>
+> - Create a file named `arith.c` in `04-machine` with the following contents:
+>
+> <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=arith.c"></script>
+>
+> - Run the following commands 
+>
+> ~~~
+> $ gcc -Og -c arith.c
+> $ objdump -d arith.o
+> ~~~
+> {: .language-bash}
+>
+> - Understand how the Assembly code represents the actual arithmetic operation in the C code. 
+>
+> <img src="../fig/04-machine/11.png" alt="arith.c" style="height:500px">
+>
+{: .slide}
+
+
 {% include links.md %}
 
