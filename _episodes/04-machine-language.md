@@ -68,8 +68,8 @@ keypoints:
 >   - ca. 2019 CPUs (e.g., Ryzen) are competitive again
 >   - 2020 Epyc
 > 
-> <img src="../fig/04-machine/01.jpeg" alt="amd trolls intel 1" style="height:300px">
-> <img src="../fig/04-machine/02.jpeg" alt="amd trolls intel 2" style="height:300px">
+> <img src="../fig/04-machine/01.jpg" alt="amd trolls intel 1" style="height:300px">
+> <img src="../fig/04-machine/02.jpg" alt="amd trolls intel 2" style="height:300px">
 {: .slide}
 
 
