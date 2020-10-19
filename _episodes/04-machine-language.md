@@ -428,5 +428,82 @@ keypoints:
 {: .slide}
 
 
+> ## 22. Quick review: processor state
+>
+> - Information about currently executing program
+>   - temporary data (`%rax`,...)
+>   - location of runtime stack (`%rsp`)
+>   - location of current code control point (`%rip`,...)
+>   - status of recent tests (`CF`, `ZF`, `SF`, `OF` in `%EFLAGS`)
+>
+> <img src="../fig/04-machine/12.png" alt="processor state" style="height:500px">
+>
+{: .slide}
+
+
+> ## 23. Condition codes (implicit setting)
+>
+> - Single-bit registers
+>   - `CF`: the most recent operation generated a carry out of the most significant bit. 
+>   - `ZF`: the most recent operation yielded zero.
+>   - `SF`: the most recent operation yielded negative. 
+>   - `OF`: the most recent operation caused a two's-complement overflow. 
+> - Implicitly set (as side effect) of arithmetic operations. 
+>
+{: .slide}
+
+
+> ## 24. Condition branches (jX)
+>
+> - Jump to different part of code depending on condition codes
+> - Implicit reading of condition codes
+> 
+> | jX    | Condition      |  Description         |
+> | ----- | -------------- | -------------------- |  
+> | `jmp` | 1              | direct jump          |   
+> | `je`  | ZF             | equal/zero           |  
+> | `jne` | ~ZF            | not equal/not zero   |  
+> | `js`  | SF             | negative             |  
+> | `jns` | ~SF            | non-negative         |  
+> | `jg`  | ~(SF^OF) & ~ZF | greater              |  
+> | `jge` | ~(SF^OF)       | greater or equal to  |  
+> | `jl`  | SF^OF          | lesser               |  
+> | `jle` | SF^OF \| ZF    | lesser or equal to   |  
+> | `ja`  | ~CF & ~ZF      | above                |    
+> | `jb`  | CF             | below                |  
+>
+{: .slide}
+
+
+> ## 25. Hands on: a simple jump
+>
+> - Create a file named `arith.c` in `04-machine` with the following contents:
+>
+> <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=arith.c"></script>
+>
+> - Run the following commands 
+>
+> ~~~
+> $ gcc -Og -c arith.c
+> $ objdump -d arith.o
+> ~~~
+> {: .language-bash}
+>
+> - Understand how the Assembly code represents the actual arithmetic operation in the C code. 
+>
+> <img src="../fig/04-machine/11.png" alt="arith.c" style="height:500px">
+>
+{: .slide}
+
+
+
+
+
+
+
+
+
+
+
 {% include links.md %}
 
