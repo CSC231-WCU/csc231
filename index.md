@@ -145,7 +145,8 @@ permalink: index.html  # Is the only page that doesn't follow the pattern /:path
 > | 35% | 7 Homework Sets |
 > | 25% | 5 Labs |
 > | 20% | 10 Quizzes |
-> | 15% | Final Exam |
+> | 5%  | Midterm Exam |
+> | 10% | Final Exam |
 > |  5% | Participation |
 >
 > ### Grade Scale:
