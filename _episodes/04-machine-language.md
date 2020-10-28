@@ -477,26 +477,50 @@ keypoints:
 
 > ## 25. Hands on: a simple jump
 >
-> - Create a file named `arith.c` in `04-machine` with the following contents:
+> - Create a file named `jump.c` in `04-machine` with the following contents:
 >
-> <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=arith.c"></script>
+> <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=jump.c"></script>
 >
 > - Run the following commands 
 >
 > ~~~
-> $ gcc -Og -c arith.c
-> $ objdump -d arith.o
+> $ gcc -Og -c jump.c
+> $ objdump -d jump.o
 > ~~~
 > {: .language-bash}
 >
-> - Understand how the Assembly code represents the actual arithmetic operation in the C code. 
+> - Understand how the Assembly code enables jump across instructions to support conditional workflow. 
 >
-> <img src="../fig/04-machine/11.png" alt="arith.c" style="height:500px">
->
+> <img src="../fig/04-machine/13.png" alt="jump.c" style="height:400px">
+> 
+> - Rerun the above commands but ommit `-Og` flag. Think about the differences in the resulting Assembly code. 
 {: .slide}
 
 
-
+> ## 26. Hands on: loop
+>
+> - Create a file named `fact_loop.c` in `04-machine` with the following contents:
+>
+> <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=fact_loop.c"></script>
+>
+> - Run the following commands 
+>
+> ~~~
+> $ gcc -Og -c fact_loop.c
+> $ objdump -d fact_loop.o
+> ~~~
+> {: .language-bash}
+>
+> - Understand how the Assembly code enables jump across instructions to support loop. 
+>
+> <img src="../fig/04-machine/14.png" alt="fact_loop.c" style="height:400px">
+> 
+> - Create `fact_loop_2.c` and `fact_loop_3.c` from `fact_loop`.c. 
+> - Modify `fact_loop_2.c` so that the factorial is implemented with a `while` loop. Study the 
+> resulting Assembly code. 
+> - Modify `fact_loop_3.c` so that the factorial is implemented with a `for` loop. Study the 
+> resulting Assembly code. 
+{: .slide}
 
 
 
