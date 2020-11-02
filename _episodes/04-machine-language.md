@@ -583,7 +583,7 @@ keypoints:
 >   - Register `%rsp` contains **lowest stack address**. 
 >   - address of "top" element
 >
-> <img src="../fig/04-machine/16.png" alt="stack frames" style="height:250px">
+> <img src="../fig/04-machine/16.png" alt="stack frames" style="height:200px">
 {: .slide}
 
 
