@@ -453,6 +453,20 @@ keypoints:
 {: .slide}
 
 
+> ## 24. Condition codes (explicit setting)
+>
+> - Exlicit setting by Compare instruction
+>   - `cmpq Src2, Src1`
+>   - `cmpq b, a` like computing `a - b` without setting destination
+> - `CF` set if carry/borrow out from most significant bit (unsigned comparisons) 
+> - `ZF` set if `a == b`
+> - `SF` set if `(a - b) < 0` 
+> - `OF` set if two's complement (signed) overflow
+>   - `(a>0 && b<0 && (a-b)<0) || (a<0 && b>0 && (a-b)>0)`
+{: .slide}
+
+
+
 > ## 24. Condition branches (jX)
 >
 > - Jump to different part of code depending on condition codes
@@ -523,8 +537,99 @@ keypoints:
 {: .slide}
 
 
+> ## 27. Hands on: switch
+>
+> - Create a file named `switch.c` in `04-machine` with the following contents:
+>
+> <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=switch.c"></script>
+>
+> - View `switch.c` and the resulting `switch.s` in a two-column tmux terminal. 
+>
+> ~~~
+> $ gcc -Og -S switch.c
+> ~~~
+> {: .language-bash}
+>
+> <img src="../fig/04-machine/15.png" alt="switch.c" style="height:400px">
+> 
+{: .slide}
 
 
+> ## 28. Mechanisms in procedures
+>
+> - Passing control
+>   - To beginning of procedure code
+>   - Back to return point
+> - Passing data
+>   - Procedure arguments
+>   - Return value
+> - Memory management
+>   - Allocate during procedure execution
+>   - Deallocate upon return
+> - Mechanisms all implemented with machine instructions
+> - x86-64 implementation of a procedure uses only those mechanisms required
+> - Machine instructions implement the mechanisms, but the choices are determined by designers. 
+> These choices make up the **Application Binary Interface (ABI).**
+{: .slide}
+
+
+> ## 29. x86-64 stack
+>
+> - Region of memory managed with stack discipline
+>   - Memory viewed as array of bytes.
+>   - Different regions have different purposes.
+>   - (Like ABI, a policy decision)
+> - Grows toward lower addresses
+>   - Register `%rsp` contains **lowest stack address**. 
+>   - address of "top" element
+>
+> <img src="../fig/04-machine/16.png" alt="stack frames" style="height:400px">
+{: .slide}
+
+
+> ## 30. Stack push and pop
+> 
+> - `pushq Src`
+>   - Fetch operand at `Src`
+>   - Decrement `%rsp` by 8
+>   - Write operand at address given by `%rsp`
+> - `popq Dest`
+>   - Read value at address given by `%rsp`
+>   - Increment `%rsp` by 8
+>   - Store value at Dest (usually a register)
+> <img src="../fig/04-machine/17.png" alt="Push and pop" style="height:400px">
+{: .slide}
+
+
+> ## 31. Hands on: function calls
+>
+> - Create a file named `mult.c` in `04-machine` with the following contents:
+>
+> <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=mult.c"></script>
+>
+> - Setup a two-column tmux terminal. 
+> - Compile with `-g` flag run `gdb` on the left panel, and view the source code of 
+> `mult.c` on the right panel.  
+>
+> ~~~
+> $ gcc -g -Og -o mult mult.c
+> ~~~
+> {: .language-bash}
+>
+> - Setup gdb with a breakpoint at `main` and start running. 
+> 
+> <img src="../fig/04-machine/18.png" alt="function" style="height:400px">
+>
+> - Press `n` twice. We are now just before the call to function `multstore`. 
+> 
+> <img src="../fig/04-machine/19.png" alt="function" style="height:400px">
+> 
+> - Press `s` to step into `multstore`, then `n` to see how we move before the `mult2` call. 
+> 
+> <img src="../fig/04-machine/19.png" alt="function" style="height:400px">
+>
+> - Keep pressing `n` until we step back out of all functions. 
+{: .slide}
 
 
 
