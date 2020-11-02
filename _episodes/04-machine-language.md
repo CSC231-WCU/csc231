@@ -550,7 +550,7 @@ keypoints:
 > ~~~
 > {: .language-bash}
 >
-> <img src="../fig/04-machine/15.png" alt="switch.c" style="height:400px">
+> <img src="../fig/04-machine/15.png" alt="switch.c" style="height:550px">
 > 
 {: .slide}
 
@@ -583,7 +583,7 @@ keypoints:
 >   - Register `%rsp` contains **lowest stack address**. 
 >   - address of "top" element
 >
-> <img src="../fig/04-machine/16.png" alt="stack frames" style="height:400px">
+> <img src="../fig/04-machine/16.png" alt="stack frames" style="height:250px">
 {: .slide}
 
 
