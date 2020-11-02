@@ -583,7 +583,7 @@ keypoints:
 >   - Register `%rsp` contains **lowest stack address**. 
 >   - address of "top" element
 >
-> <img src="../fig/04-machine/16.png" alt="stack frames" style="height:200px">
+> <img src="../fig/04-machine/16.png" alt="stack frames" style="height:400px">
 {: .slide}
 
 
@@ -618,7 +618,7 @@ keypoints:
 >
 > - Setup gdb with a breakpoint at `main` and start running. 
 > 
-> <img src="../fig/04-machine/18.png" alt="function" style="height:400px">
+> <img src="../fig/04-machine/18.png" alt="function" style="height:200px">
 >
 > - Press `n` twice. We are now just before the call to function `multstore`. 
 > 
