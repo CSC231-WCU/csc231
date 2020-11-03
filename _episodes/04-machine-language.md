@@ -467,7 +467,7 @@ keypoints:
 
 
 
-> ## 24. Condition branches (jX)
+> ## 25. Condition branches (jX)
 >
 > - Jump to different part of code depending on condition codes
 > - Implicit reading of condition codes
@@ -489,7 +489,7 @@ keypoints:
 {: .slide}
 
 
-> ## 25. Hands on: a simple jump
+> ## 26. Hands on: a simple jump
 >
 > - Create a file named `jump.c` in `04-machine` with the following contents:
 >
@@ -511,7 +511,7 @@ keypoints:
 {: .slide}
 
 
-> ## 26. Hands on: loop
+> ## 27. Hands on: loop
 >
 > - Create a file named `fact_loop.c` in `04-machine` with the following contents:
 >
@@ -537,7 +537,7 @@ keypoints:
 {: .slide}
 
 
-> ## 27. Hands on: switch
+> ## 28. Hands on: switch
 >
 > - Create a file named `switch.c` in `04-machine` with the following contents:
 >
@@ -555,17 +555,24 @@ keypoints:
 {: .slide}
 
 
-> ## 28. Mechanisms in procedures
+> ## 29. Mechanisms in procedures
 >
+> - Function = procedure (book terminology)
+> - Support procedure `P` calls procedure `Q`. 
 > - Passing control
->   - To beginning of procedure code
->   - Back to return point
+>   - To beginning of procedure code 
+>     - starting instruction of `Q`
+>   - Back to return point 
+>     - next instruction in `P` after `Q`
 > - Passing data
 >   - Procedure arguments
+>     - `P` passes one or more parameters to `Q`. 
+>     - `Q` returns a value back to `P`. 
 >   - Return value
 > - Memory management
->   - Allocate during procedure execution
->   - Deallocate upon return
+>   - Allocate during procedure execution and de-allocate upon return
+>     - `Q` needs to allocate space for local variables and free that storage
+>     once finishes. 
 > - Mechanisms all implemented with machine instructions
 > - x86-64 implementation of a procedure uses only those mechanisms required
 > - Machine instructions implement the mechanisms, but the choices are determined by designers. 
@@ -573,21 +580,21 @@ keypoints:
 {: .slide}
 
 
-> ## 29. x86-64 stack
+> ## 30. x86-64 stack
 >
 > - Region of memory managed with stack discipline
 >   - Memory viewed as array of bytes.
 >   - Different regions have different purposes.
 >   - (Like ABI, a policy decision)
 > - Grows toward lower addresses
->   - Register `%rsp` contains **lowest stack address**. 
+>   - Register `%rsp` contains **lowest stack address**. 
 >   - address of "top" element
 >
 > <img src="../fig/04-machine/16.png" alt="stack frames" style="height:400px">
 {: .slide}
 
 
-> ## 30. Stack push and pop
+> ## 31. Stack push and pop
 > 
 > - `pushq Src`
 >   - Fetch operand at `Src`
@@ -601,37 +608,174 @@ keypoints:
 {: .slide}
 
 
-> ## 31. Hands on: function calls
+> ## 32. Hands on: function calls
 >
 > - Create a file named `mult.c` in `04-machine` with the following contents:
 >
 > <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=mult.c"></script>
 >
-> - Setup a two-column tmux terminal. 
-> - Compile with `-g` flag run `gdb` on the left panel, and view the source code of 
-> `mult.c` on the right panel.  
+> - Compile with `-g` and `-Og` flags and run `gdb` on the resulting executable.  
 >
 > ~~~
 > $ gcc -g -Og -o mult mult.c
+> $ gdb mult
 > ~~~
 > {: .language-bash}
 >
 > - Setup gdb with a breakpoint at `main` and start running. 
+> - A new GDB command is `s` or `step`: executing the next instruction (machine or code instruction). 
+>   - It will execute the highlighted (greened and arrowed) instruction in the `code` section.
+> - **Be careful, Intel notation in the code segment of GDB**
+> - Run `s` once to execute `sub rsp,0x8`
 > 
-> <img src="../fig/04-machine/18.png" alt="function" style="height:200px">
+> <img src="../fig/04-machine/18.png" alt="function" style="height:700px">
 >
-> - Press `n` twice. We are now just before the call to function `multstore`. 
-> 
-> <img src="../fig/04-machine/19.png" alt="function" style="height:400px">
-> 
-> - Press `s` to step into `multstore`, then `n` to see how we move before the `mult2` call. 
-> 
-> <img src="../fig/04-machine/19.png" alt="function" style="height:400px">
+> - Use `s` to execute the instruction: `mov edi,0x8`.
+> - The next instruction, `call 0x0400410 <malloc@plt>` is actually a function call
+> and we don't want to step into this call, so we need to use `n`: Run `n` to execute this call.  
+> - These are the instructions for the `malloc` call. 
 >
-> - Keep pressing `n` until we step back out of all functions. 
+> ~~~
+> mov edi,0x8
+> call 0x0400410 <malloc@plt>
+> ~~~
+> {: .language-assembly}
+>
+> - Pay attention to the next three instructions after `call 0x0400410 <malloc@plt`. 
+>   - Recall that the return value of malloc is placed into `%rax`.
+> - These instructions setup the parameters for the upcoming `multstore(1,2,p)` call. 
+>   - `mov rdx,rax`. 
+>   - `mov esi,0x2`
+>   - `mov edi,0x1`
+> - Also, check the values of `rax` and `p`
+>
+> ~~~
+> gdb-peda$ p $rax
+> gdb-peda$ p p
+> ~~~
+> {: .language-bash}
+>
+> - This is the value of the memory block allocated via `malloc` to contain one `long` element. 
+> - Run `s` to step into `multstore(1,2,p)`
+>
+> <img src="../fig/04-machine/19.png" alt="malloc" style="height:720px">
+> 
+> - Inside `mulstore`, we immediately prepare to launch `mult2`. 
+> - Run `s` once. This will store the value in `rdx` into `rbx`. This is to save the 
+> value in `rdx` because we need to use it later. 
+> parameters for the `mult2` call. 
+> - Procedure Data Flow:
+>   - First six parameters will be placed into `rdi`, `rsi`, `rdx`, `rcx`, `r8`, `r9`. 
+>   - The remaining parameters will be pushed on to the stack of the calling function (
+>   in this case `mulstore`).
+>   - Note that `rsp` (stack pointer of `multstore`) is currently at `0x7ffffffe320`.
+> - Run `s` to step into `mult2`. 
+>
+> <img src="../fig/04-machine/20.png" alt="multstore" style="height:700px">
+>
+> - The 7<sup>th</sup> parameter of `mult2` is pushed on to the stack frame of 
+> `multstore` and is stored at address `0x7ffffffe318`. 
+> - Function/procedure `mult2` has no local variable, hence the stack frame is 
+> almost empty. The stack pointer, `rsp`, of `mult2`, is actually pointing toward 
+> the address of the 7<sup>th</sup> parameter. 
+> - Run `s`. 
+> - The subsequence instructions (`<mult2>` through `<mult2+23>`) are for the multiplication. 
+> - The final value will be stored in `rax` to be returned to `multstore`. 
+> - Examine the two screenshots below to see how specific registers contain certain values?
+>   - `rcx`?
+>   - `r8`?
+>   - `r9`?
+>   - What is value of `rax` after `<mult2+20>`?
+>   - What is value of `rax` after `<mult2+23>`?
+>
+> <img src="../fig/04-machine/21.png" alt="mult2" style="height:700px">
+> <img src="../fig/04-machine/22.png" alt="mult2" style="height:700px">
+>
+> - Continue running `s` to finish the program. 
 {: .slide}
 
 
+> ## 33. Hands on: array and multi-dimensional arrays
+>
+> - Create a file named `array.c` in `04-machine` with the following contents:
+>
+> <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=array.c"></script>
+>
+> - Run `cat -n array.c` and remember the line number of the `printf` statement. 
+> - Compile with `-g` flag and run `gdb` on the resulting executable.  
+>
+> ~~~
+> $ cat -n array.c
+> $ gcc -g -o array array.c
+> $ gdb array
+> ~~~
+> {: .language-bash}
+>
+> - Setup gdb with a breakpoint at the line number for the `printf` statement and start running. 
+> - Run `i locals` to view all local variables. 
+> - Use `p` and variety of pointer/array syntax to view their values and addresses: `*`, `[]`, `&`. 
+> 
+> <img src="../fig/04-machine/23.png" alt="array" style="height:400px">
+>
+{: .slide}
+
+
+> ## 34. Hands on: struct
+>
+> - Create a new data type (non-primitive) that groups objects of possibly different
+> types into a single object. 
+>   - Think classes in object-oriented programming minus the methods. 
+> - Create a file named `struct.c` in `04-machine` with the following contents:
+>
+> <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=struct.c"></script>
+>
+> - Compile with `-g` flag and run `gdb` on the resulting executable.  
+>
+> ~~~
+> $ gcc -g -o struct struct.c
+> $ gdb struct
+> ~~~
+> {: .language-bash}
+>
+> - Setup gdb with a breakpoint at `main`` and start running. 
+> - Use `n` to walk through the program and answer the following questions:
+>   - How many bytes are there in the memory block allocated for variable `p`? 
+>   - How are the addresses of `x`, `y`, and `c` relative to `p`?
+>
+> <img src="../fig/04-machine/24.png" alt="struct" style="height:700px">
+>
+{: .slide}
+
+
+> ## 35. Data alignment
+>
+> - Intel recommends data to be aligned to improve memory system performance. 
+>   - K-alignment rule: Any primitive object of `K` bytes must have an address that is multiple of `K`: 1 for `char`, 2 for `short`, 4 for `int` and `float`, and 8 for `long`, `double`, and `char *`. 
+> - Create a file named `alignment.c` in `04-machine` with the following contents:
+>
+> <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=alignment.c"></script>
+>
+> - Run `cat -n alignment.c` and remember the line number of the `return` statement. 
+> - Compile with `-g` flag and run `gdb` on the resulting executable.  
+>
+> ~~~
+> $ cat -n array.c
+> $ gcc -g -o array array.c
+> $ gdb array
+> gdb-peda$ b 17
+> gdb-peda$ run
+> ~~~
+> {: .language-bash}
+>
+> - Run `i locals` to view all local variables. 
+> - Use `p` and `&` to view addresses of the three `char` array
+> variables and the `i` variable. 
+> - Why does address displacement is not an exact match between the `i` variable
+> and the next array variable versus between the array variables?
+>
+> <img src="../fig/04-machine/25.png" alt="alignment" style="height:1000px">
+>
+{: .slide}
 
 
 {% include links.md %}
