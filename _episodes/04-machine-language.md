@@ -697,6 +697,9 @@ keypoints:
 
 > ## 33. Hands on: array and multi-dimensional arrays
 >
+> - Given array of data type `T` and length `L`: `T A[L]`
+>   - Contiguous allocated region of `L` * `sizeof(T)` bytes in memory. 
+>   - Identifier `A` can be used as a pointer to array element 0. 
 > - Create a file named `array.c` in `04-machine` with the following contents:
 >
 > <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=array.c"></script>
