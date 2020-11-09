@@ -192,7 +192,9 @@ keypoints:
 > known as a memory hierarchy.
 >
 > <img src="../fig/05-memory/05.png" alt="memory hierarchy" style="height:400px">
-{:. slide}
+> 
+{: .slide}
+
 
 > ## 8. Caching
 > 
@@ -207,14 +209,14 @@ keypoints:
 >   - Thus, the storage at level k+1 can be slower, and thus larger and cheaper per bit.
 > - Big Idea (Ideal):  The memory hierarchy creates a large poolof storage that costs as much as the cheap 
 > storage near the bottom, but that serves data to programs at the rate of the fast storage near the top.
-{:. slide}
+{: .slide}
 
 
-> ## 8. Caching: general concepts
+> ## 9. Caching: general concepts
 > 
-> <img src="../fig/05-memory/06.png" alt="cache concepts" style="height:400px">
-> <img src="../fig/05-memory/07.png" alt="cache hits" style="height:400px">
-> <img src="../fig/05-memory/08.png" alt="cache misses" style="height:400px">
+> <img src="../fig/05-memory/06.png" alt="cache concepts" style="height:350px">
+> <img src="../fig/05-memory/07.png" alt="cache hits" style="height:350px">
+> <img src="../fig/05-memory/08.png" alt="cache misses" style="height:350px">
 >
 > - Cold (compulsory) miss
 >   - Cold misses occur because the cache starts empty and this is the first reference to the block.
@@ -240,10 +242,68 @@ keypoints:
 > | Network buffer cache  | Part of files        | Local disk          | 10,000,000       | NFS client       |
 > | Browser cache         | Web pages            | Local disk          | 10,000,000       | Web browser      |
 > | Web cache             | Web pages            | Remote server disks | 1,000,000,000    | Web proxy server |
+> 
 {: .slide}
 
 
+> ## 10. Cache memories
+> 
+> - Small, fast SRAM-based memories managed automatically in hardware.
+> - Hold frequently accessed blocks of main memory.
+> - CPU looks first for data in cache.
+>
+> <img src="../fig/05-memory/09.png" alt="cache" style="height:400px">
+> <img src="../fig/05-memory/10.png" alt="cache" style="height:400px">
+{: .slide}
 
+
+> ## 11. General cache organization
+> 
+> - Assume a computer system with `m-bit` addresses. 
+> - Three values, `S`, `E`, and `B` represent the cache organization:
+>   - A cache for this system is organized as an array of `S` = 2<sup>`s`</sup> cache sets.
+>   - Each set consists of `E` cache lines. 
+>   - Each cache line has a data block of size `B` = 2<sup>`b`</sup> bytes, a valid bit that indicates
+>   whether this line contains meaningful data, and a tag of size `t` bits: `t = m - (b + s)`.  
+> - Actual data address (`m` bits) are mapped to `t`, `b`, `s` to help determine whether the data 
+> is stored in cache. 
+> 
+> <img src="../fig/05-memory/11.png" alt="cache organization" style="height:400px">
+{: .slide}
+
+
+> ## 12. Example: direct mapped cache (E=1)
+> 
+> <img src="../fig/05-memory/12.png" alt="direct mapped cache" style="height:400px">
+{: .slide}
+
+
+> ## 13. Example: two-way associative cache (E=2)
+> 
+> <img src="../fig/05-memory/13.png" alt="two-way associative cache" style="height:400px">
+{: .slide}
+
+
+> ## 14. What about writes?
+>
+> - Multiple copies of data exist:: L1, L2, L3, Main Memory, Disk
+> - What to do on a write-hit?
+>   - `Write-through` (write immediately to memory)
+>   - `Write-back` (defer write to memory until replacement of line)
+>     - Each cache line needs a dirty bit (set if data differs from memory)
+> - What to do on a write-miss?
+>   - Write-allocate (load into cache, update line in cache): Good if more writes to the location will follow
+>   - No-write-allocate (writes straight to memory, does not load into cache)
+> - Typical
+>   - Write-through + No-write-allocate
+>   - Write-back + Write-allocate
+{: .slide}
+
+
+> ## 15. Example: Core i7 L1 Data Cache
+>
+> <img src="../fig/05-memory/14.png" alt="Intel i7 L1" style="height:400px">
+{: .slide}
 
 
 {% include links.md %}
