@@ -306,5 +306,60 @@ keypoints:
 {: .slide}
 
 
+> ## 16. Cache performance metrics
+>
+> - Miss Rate
+>   - Fraction of memory references not found in cache `(misses / accesses) = 1 – hit rate`
+>   - Typical numbers (in percentages):
+>     - 3-10% for L1
+>     - can be quite small (e.g., < 1%) for L2, depending on size, etc.
+> - Hit Time
+>   - Time to deliver a line in the cache to the processor
+>     - includes time to determine whether the line is in the cache
+>   - Typical numbers:
+>     - 4 clock cycle for L1
+>     - 10 clock cycles for L2
+> - Miss Penalty
+>   - Additional time required because of a miss
+>     - typically 50-200 cycles for main memory (Trend: increasing!)
+{: .slide}
+
+
+> ## 17. What those numbers mean?
+>
+> - Huge difference between a hit and a miss
+>   - Could be 100x, if just L1 and main memory
+> - Would you believe 99% hits is twice as good as 97%?
+>   - Consider this simplified example: 
+>     - cache hit time of 1 cycle
+>     - miss penalty of 100 cycles
+>   - Average access time:
+>     - 97% hits:  1 cycle + 0.03 x 100 cycles = 4 cycles
+>     - 99% hits:  1 cycle + 0.01 x 100 cycles = 2 cycles
+> - This is why `miss rate` is used instead of `hit rate`.
+{: .slide}
+
+
+> ## 18. Write cache friendly code
+>
+> - Make the common case go fast
+>   - Focus on the inner loops of the core functions
+> - Minimize the misses in the inner loops
+>   - Repeated references to variables are good (temporal locality)
+>   - Stride-1 reference patterns are good (spatial locality)
+> - Key idea: our qualitative notion of locality is quantified through
+> our understanding of cache memories. 
+{: .slide}
+
+
+> ## 19. The memory mountain
+>
+> - Read throughput (read bandwidth)
+>   - Number of bytes read from memory per second (MB/s)
+> - Memory mountain: Measured read throughput as a function of spatial and temporal locality.
+>   - Compact way to characterize memory system performance. 
+{: .slide}
+
+
 {% include links.md %}
 
