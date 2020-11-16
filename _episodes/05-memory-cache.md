@@ -477,7 +477,7 @@ keypoints:
 >   - C = 1
 >   - Average miss per iteration = 2
 >
-> <img src="../fig/05-memory/17.png" alt="miss rate II" style="height:300px">
+> <img src="../fig/05-memory/18.png" alt="miss rate II" style="height:300px">
 >
 {: .slide}
 
