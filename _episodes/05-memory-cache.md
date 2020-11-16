@@ -352,13 +352,135 @@ keypoints:
 {: .slide}
 
 
-> ## 19. The memory mountain
+> ## 19. Matrix multiplication example
 >
-> - Read throughput (read bandwidth)
->   - Number of bytes read from memory per second (MB/s)
-> - Memory mountain: Measured read throughput as a function of spatial and temporal locality.
->   - Compact way to characterize memory system performance. 
+> - Multiply N x N matrices
+> - Matrix elements are doubles (8 bytes)
+> - O(N<sup>3</sup>) total operations
+> - N reads per source element
+> - N values summed per destination but may be able to hold in register 
+>
+> <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=mm.c"></script>
+>
 {: .slide}
+
+
+> ## 20. Miss rate analysis for matrix multiply
+>
+> - Assume:
+>   - Block size = 32B (big enough for four doubles)
+>   - Matrix dimension (N) is very large: Approximate 1/N as 0.0
+>   - Cache is not even big enough to hold multiple rows
+> - Analysis Method:
+>   - Look at access pattern of inner loop
+>
+> ~~~
+> /* ijk */
+> for (i=0; i<n; i++)  {
+>   for (j=0; j<n; j++) {
+>     sum = 0.0;
+>     for (k=0; k<n; k++) 
+>       sum += a[i][k] * b[k][j];
+>     c[i][j] = sum;
+>   }
+> } 
+> ~~~
+> {: .language-c}
+>
+> <img src="../fig/05-memory/15.png" alt="array directions" style="height:300px">
+{: .slide}
+
+
+> ## 21. Layout of C arrays in memory
+>
+> - C arrays allocated in row-major order
+>   - each row in contiguous memory locations
+> - Stepping through columns in one row:
+>   - for (i = 0; i < N; i++)  
+>       sum += a[0][i];
+>   - accesses successive elements
+>   - if block size (B) > sizeof(a<sup>ij</sup>) bytes, exploit spatial locality
+>     - miss rate = sizeof(a<sup>ij</sup>) / B
+> - Stepping through rows in one column:
+>   - for (i = 0; i < n; i++)  
+>       sum += a[i][0];
+>   - accesses distant elements
+>   - no spatial locality!
+>   - miss rate = 1 (i.e. 100%)
+>
+{: .slide}
+
+
+> ## 22. Matrix multiplication
+>
+> - C arrays allocated in row-major order
+>
+> ~~~
+> /* ijk */
+> for (i=0; i<n; i++)  {
+>   for (j=0; j<n; j++) {
+>     sum = 0.0;
+>     for (k=0; k<n; k++) 
+>       sum += a[i][k] * b[k][j];
+>     c[i][j] = sum;
+>   }
+> } 
+> ~~~
+> {: .language-c}
+>
+> - Miss rate for inner loop iterations:
+> - Block size = 32 bytes (4 doubles)
+>   - A = 8 / 32 = 0.25
+>   - B = 1
+>   - C = 0
+>   - Average miss per iteration = 1.25
+>
+> <img src="../fig/05-memory/16.png" alt="miss rate I" style="height:300px">
+>
+> ~~~
+> /* kij */
+> for (k=0; k<n; k++)  {
+>   for (i=0; i<n; i++) {
+>     r = a[i][k];
+>     for (j=0; j<n; j++) 
+>       c[i][j] += r * b[k][j];
+>   }
+> } 
+> ~~~
+> {: .language-c}
+>
+> - Miss rate for inner loop iterations:
+> - Block size = 32 bytes (4 doubles)
+>   - A = 0
+>   - B = 8 / 32 = 0.25
+>   - C = 8 / 32 = 0.25
+>   - Average miss per iteration = 0.5
+>
+> <img src="../fig/05-memory/17.png" alt="miss rate II" style="height:300px">
+>
+> ~~~
+> /* jki */
+> for (j=0; j<n; j++)  {
+>   for (k=0; k<n; k++) {
+>     r = b[k][j];
+>     for (i=0; i<n; i++) 
+>       c[i][j] += a[i][k] * r;
+>   }
+> } 
+> ~~~
+> {: .language-c}
+>
+> - Miss rate for inner loop iterations:
+> - Block size = 32 bytes (4 doubles)
+>   - A = 1
+>   - B = 0
+>   - C = 1
+>   - Average miss per iteration = 2
+>
+> <img src="../fig/05-memory/17.png" alt="miss rate II" style="height:300px">
+>
+{: .slide}
+
 
 
 {% include links.md %}
