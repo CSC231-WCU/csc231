@@ -477,9 +477,23 @@ keypoints:
 >   - C = 1
 >   - Average miss per iteration = 2
 >
-> <img src="../fig/05-memory/18.png" alt="miss rate II" style="height:300px">
+> <img src="../fig/05-memory/18.png" alt="miss rate III" style="height:300px">
 >
 {: .slide}
+
+
+> ## 20. The memory mountain
+>
+> - This is the cover of the book. 
+> - Y-axis: Read throughput (read bandwidth)
+>   - Number of bytes read from memory per second (MB/s)
+> - Memory mountain: Measured read throughput as a function of spatial and temporal locality.
+> - Compact way to characterize memory system performance. 
+>
+> <img src="../fig/05-memory/19.png" alt="memory mountain" style="height:300px">
+>
+{: .slide}
+
 
 
 
