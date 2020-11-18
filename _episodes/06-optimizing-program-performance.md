@@ -64,7 +64,7 @@ keypoints:
 > $ ./bad_fib
 > ~~~
 >  
-> <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=mm.c"></script>
+> <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=bad_fib.c"></script>
 >
 > - Constructing a hypothesis: 
 >   - `while (n > 1)`: did we mess up the loop in fib?
