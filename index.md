@@ -58,52 +58,49 @@ permalink: index.html  # Is the only page that doesn't follow the pattern /:path
 >       <td> Assignment, Quiz, Exam </td>     
 >     </tr>
 >     <tr>
->       <td> 3. Be able to understand the tradeoff in accessing data stored in various memory levels, ranging from CPU cache to physical hard drives </td>
+>       <td> 3. Be able to understand how processes are loaded into memory and memory placements of stack, heap, and code within the virtual memory </td>
 >       <td> Lab, Quiz, Exam </td>
 >     </tr>
 >     <tr>
->       <td> 4. Be able to understand how file system works within the Linux operating system </td>
->       <td> Assignment </td>
+>       <td> 4. Be able to understand the tradeoff in accessing data stored in various memory hierarchical levels </td>
+>       <td> Lab, Quiz, Exam </td>
 >     </tr>
 >     <tr>
 >       <td> 5. Be able to understand how simple network communication works within the Linux operating system </td>
 >       <td rowspan="3"> 2. Design, implement, and evaluate a computing-based solution to meet a given set of computing requirements in the context of the program’s discipline (ABET 2).  </td>
->       <td> Assignment, Quiz, Exam </td>
+>       <td> Lab, Quiz, Exam </td>
 >     </tr>
 >     <tr>
->       <td> 6. Be able to understand potential performance improvements and pitfalls in thread-based parallel computation </td>
->       <td> Lab, Quiz, Exam </td>
+>       <td> 6. Be able to understand how to perform various debugging and optimization techniques </td>
+>       <td> Lab, Exam </td>
 >     </tr>
 >     <tr>
 >       <td> 7. Be able to understand how layered service designs and API works from a systems programming perspective </td>
->       <td> Lab, Quiz, Exam </td>
+>       <td> Lab, Exam </td>
 >     </tr>
 >   </tbody>
 > </table>
 >
+> ### Certificate in Computer Security Program Outcomes
+> 1. Analyze and resolve security issues in network and computer systems to secure 
+>  an IT infrastructure
+> 
 > ### Course Topics:
 > - Hardware/software interfaces and interactions
 >   - Layered services design
 > - Low level programming languages (C, Assembly, etc.)
 >   - Programming to operating systems internal interfaces
->   - Providing and using Application Programming Interfaces (API's)
 > - Memory hierarchy
->   - Programming direct control of memory access and flow control
+>   - Programming direct control of memory access
 >   - Managing memory in systems software
 > - Optimizing program performance
 >   - Resource optimization
 >   - Resource management
->   - Run time overhead minimization
 > - Different types of systems programs
 >   - Operating Systems
->   - Utilities
 >   - Networking Functions
->   - Device Drivers
->   - Storage Frameworks
->   - Gaming engines
 >   - Development environments
 > - Security concerns in systems software
-> - Monitoring and logging systems software
 >
 > ### Artifacts used to demonstrate Student Learning Outcomes:
 > - Assignments: In writing and running programs and measuring execution performances, students will be assessed on SLO1.
@@ -113,14 +110,9 @@ permalink: index.html  # Is the only page that doesn't follow the pattern /:path
 >   - Demonstrate understanding by writing corresponding C codes that would translate
 >   to segment of Assembler codes given by the assignment.
 >   - Perform calculations to demonstrate understanding the tradeoff in accessing
->   data stored in various memory levels, ranging from CPU cache to physical hard drives.
->   - Write a program that calls external programs and data files to demonstrate
->   understanding about how file system works within the Linux operating system.
+>   data stored in various memory levels.
 >   - Write a program that performs asynchronous communication tasks across a computer
 >   network.
->   - Write a program that performs parallel computation using concurrent threads.
->   Perform measurements on the program’s execution and compare the results against a
->   sequential implementation.
 > - Labs: In the labs, students will learn to use command line tools and programs common
 > in the Linux operating systems for their programs. In completing the labs, students will
 > be assessed on SLO2.
@@ -142,9 +134,9 @@ permalink: index.html  # Is the only page that doesn't follow the pattern /:path
 >
 > | Percentage | Tasks |
 > | ---------- | ----- |
-> | 35% | 7 Homework Sets |
+> | 35% | 5 Homework Sets |
 > | 25% | 5 Labs |
-> | 20% | 10 Quizzes |
+> | 20% | 5 Quizzes |
 > | 5%  | Midterm Exam |
 > | 10% | Final Exam |
 > |  5% | Participation |
