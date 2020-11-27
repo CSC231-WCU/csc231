@@ -190,5 +190,48 @@ keypoints:
 >  
 {: .slide}
 
+
+> ## 12. Leveraging cache blocks
+>
+> - Check the size of cache blocks 
+>
+> ~~~
+> $ getconf -a | grep CACHE
+> ~~~
+> {: .language-bash}
+>
+> <img src="../fig/06-optimization/02.png" alt="cache size" style="height:300px">
+> 
+> - We focus on cache blocks for optimization:
+>   - If caculations can be performed using smaller matrices of
+>   A, B, and C (blocks) that all fit in cache, we can further
+>   minimize the amount of cache misses per calculation. 
+> 
+> <img src="../fig/06-optimization/03.png" alt="block division" style="height:300px">
+>
+> - 3 blocks are needed (for A, B, and C). 
+> - Each block has dimension B, so the total block size is B<sup>2</sup>
+> - Therefore: 3B<sup>2</sup> < cache_size
+> - Based on the information above: B = 8 (so that `8 * 8 = 64` fits
+> in cache line).
+> - `3 * 8 * 8 < 32768`.
+> 
+{: .slide}
+
+
+> ## 13. Hands-on: 
+>
+> - Check the size of cache blocks 
+>
+> ~~~
+> $ getconf -a | grep CACHE
+> ~~~
+> {: .language-bash}
+>
+> <img src="../fig/06-optimization/02.png" alt="cache size" style="height:300px">
+>
+{: .slide}
+
+
 {% include links.md %}
 
