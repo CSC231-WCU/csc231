@@ -203,7 +203,7 @@ keypoints:
 > <img src="../fig/06-optimization/02.png" alt="cache size" style="height:300px">
 > 
 > - We focus on cache blocks for optimization:
->   - If caculations can be performed using smaller matrices of
+>   - If calculations can be performed using smaller matrices of
 >   A, B, and C (blocks) that all fit in cache, we can further
 >   minimize the amount of cache misses per calculation. 
 > 
@@ -219,7 +219,7 @@ keypoints:
 {: .slide}
 
 
-> ## 13. Hands-on: 
+> ## 13. Hands-on: matrix multiplications
 >
 > - Check the size of cache blocks 
 >
@@ -228,7 +228,90 @@ keypoints:
 > ~~~
 > {: .language-bash}
 >
-> <img src="../fig/06-optimization/02.png" alt="cache size" style="height:300px">
+>
+> - Create the following two files: `matrix_mult.c` and `block_matrix_mult.c` inside a
+> directory called `06-optimization`. 
+>
+> <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=matrix_mult.c"></script>
+> <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=block_matrix_mult.c"></script>
+>
+> - Compile and run the two files:
+> 
+> ~~~
+> $ gcc -o mm matrix_mult.c
+> $ ./mm 512
+> $ ./mm 1024
+> $ ./mm 2048
+> $ gcc -o bmm block_matrix_mult.c
+> $ ./bmm 512
+> $ ./bmm 1024
+> $ ./bmm 2048
+> ~~~
+> {: .language-bash}
+>
+> <img src="../fig/06-optimization/04.png" alt="matrix run with block optimization" style="height:300px">
+>
+> - Repeat the process with optimized compilation flag `O3`:
+>
+> ~~~
+> $ gcc -O3 -o mm matrix_mult.c
+> $ ./mm 512
+> $ ./mm 1024
+> $ ./mm 2048
+> $ gcc -O3 -o bmm block_matrix_mult.c
+> $ ./bmm 512
+> $ ./bmm 1024
+> $ ./bmm 2048
+> ~~~
+> {: .language-bash}
+>
+> <img src="../fig/06-optimization/05.png" alt="matrix run with block optimization and compiler optimization" style="height:300px">
+>
+{: .slide}
+
+
+> ## 14. General optimization: you or your compiler should do it. 
+>
+> - Reduce code motion: reduce frequency with which computation performed
+>   - Need to produce same results
+>   - Move code out of loop. 
+>
+> <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=block_matrix_mult_2.c"></script>
+>
+> - Reduction in strength: replace costly operation with simpler ones (multiply to addition). 
+>   - Recognize sequence of products.
+>
+> <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=block_matrix_mult_3.c"></script> 
+>
+> - Create the following file to automate the installations. 
+> 
+> <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=eval.sh"></script>
+>
+> ~~~
+> $ chmod 755 eval.sh
+> $ ./eval.sh block_matrix_mult
+> $ ./eval.sh block_matrix_mult_2
+> $ ./eval.sh block_matrix_mult_3
+> ~~~
+> {: .language-bash}
+>
+> <img src="../fig/06-optimization/06.png" alt="other optimizations" style="height:700px">
+{: .slide}
+
+
+> ## 15. General optimization: when your compiler can't. 
+>
+> - Operate under fundamental constraint
+>  - Must not cause any change in program behavior
+>  - Often prevents optimizations that affect only "edge case" behavior
+> - Behavior obvious to the programmer is not obvious to compiler
+>   - e.g., Data range may be more limited than types suggest (short vs. int)
+> - Most analysis is only within a procedure
+>   - Whole-program analysis is usually too expensive
+>   - Sometimes compiler does interprocedural analysis within a file (new GCC)
+> - Most analysis is based only on static information
+>   - Compiler has difficulty anticipating run-time inputs
+> - When in doubt, the compiler must be conservative
 >
 {: .slide}
 
