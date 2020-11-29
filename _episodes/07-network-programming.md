@@ -307,5 +307,32 @@ keypoints:
 >
 {: .slide}
 
+
+> ## 19. Hands on: client/server network programming
+>
+> - Create a directory called `07-networks`.
+> - Create the following files `server.c` and `client.c`.
+>  
+> <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=server.c"></script>
+> <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=client.c"></script>
+>
+> - Compile the two programs. 
+> - Open a dual panel tmux and run `server` and `client` on each panel. 
+> - Type strings into `client` and observe how it shows up on `server`. 
+> - Type a corresponding string on `server` and observe how it shows on `client`. 
+> - Type `exit` on each side to stop `client` and `server`. 
+>
+> ~~~
+> $ gcc -o server server.c
+> $ gcc -o client client.c
+> ~~~
+>
+> <img src="../fig/07-networks/09.png" alt="server/client" style="height:400px">
+>
+{: .slide}
+
+
+
+
 {% include links.md %}
 
