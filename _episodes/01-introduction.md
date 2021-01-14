@@ -38,18 +38,41 @@ keypoints:
 
 > ## Hands-on 1: Getting started
 >
-> - Log into `taz.cs.wcupa.edu`.  
-> - Clone the `examples` repository: 
+> - Open a terminal (Windows Terminal or Mac Terminal).  
+> - Reminder: It is `podman` on Windows and `docker` on Mac. Everything else 
+> is the same!. 
+> - Launch the container: 
+>
+> > ## Windows:
+> >
+> > ~~~
+> > $ podman run --rm --userns keep-id --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it -p 2222:22 -v /mnt/c/csc231:/home/$USER/csc231:Z localhost/csc-container /bin/bash
+> > ~~~
+> > {: .language-bash}
+> >
+> {:.slide}
+>
+> > ## Mac:
+> >
+> > ~~~
+> > $ podman run --rm --userns keep-id --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it -p 2222:22 -v /Users/$USER/csc231:/home/$USER/csc231:Z localhost/csc-container /bin/bash
+> > ~~~
+> > {: .language-bash}
+> >
+> {:.slide}
+>
+> - Once inside the container, clone the `examples` repository, and 
+> compile and run the example: 
 >
 > ~~~
-> $ cd
+> $ cd csc231
 > $ git clone https://github.com/CSC231-WCU/examples.git
 > $ cd examples/01-intro
 > $ gcc -Wno-overflow nums.c
 > $ ./a.out
 > ~~~
 > {: .language-bash}
-> 
+>
 > <img src="../fig/01-intro/01.png" alt="Compile and run nums.c" style="height:300px">
 > 
 {: .slide}
@@ -61,7 +84,7 @@ keypoints:
 >   - Arithmetic operations have important mathematical properties. 
 > - Cannot assume all **usual** mathematical properties.
 >   - Due to finiteness of representations. 
->   - Integer operations satisfy **ring** properties: commutativity, associativity, distritubitivy.
+>   - Integer operations satisfy **ring** properties: commutativity, associativity, distributivity.
 >   - Floating point operations satisfy **ordering** properties: monotonicity, values of signs. 
 > - Observation
 >   - Need to understand which abstractions apply in which contexts. 
@@ -105,16 +128,15 @@ keypoints:
 
 > ## Hands-on 2: Memory referencing bug
 >
-> - Inside the `examples` directory on `taz.cs.wcupa.edu`.  
+> - We are still inside `examples\intro-01` directory from Hands-on 1.   
 >
 > ~~~
-> $ cd ~/examples/01-intro
 > $ gcc mem1.c
 > $ ./a.out
 > ~~~
 > {: .language-bash}
 > 
-> <img src="../fig/01-intro/02.png" alt="Compile and run mem1.c" style="height:300px">
+> <img src="../fig/01-intro/02.png" alt="Compile and run mem1.c" style="height:250px">
 > 
 {: .slide}
 
@@ -124,7 +146,7 @@ keypoints:
 > - C and C++ do not provide any memory protection
 >   - Out of bounds array references
 >   - Invalid pointer values
->   - Abuses of malloc/free
+>   - Abuses of `malloc`/`free`
 > - Can lead to nasty bugs
 >   - Whether or not bug has any effect depends on system and compiler
 >   - Action at a distance
@@ -152,16 +174,15 @@ keypoints:
 
 > ## Hands-on 3: Memory system performance
 >
-> - Inside the `examples` directory on `taz.cs.wcupa.edu`.  
+> - We are still inside `examples\intro-01` directory from Hands-on 1.  
 >
 > ~~~
-> $ cd ~/examples/01-intro
 > $ gcc mem2.c
 > $ ./a.out
 > ~~~
 > {: .language-bash}
 > 
-> <img src="../fig/01-intro/03.png" alt="Compile and run nums.c" style="height:300px">
+> <img src="../fig/01-intro/03.png" alt="Compile and run mem2.c" style="height:150px">
 > 
 {: .slide}
 
@@ -181,9 +202,9 @@ keypoints:
 
 > ## Layered Services
 >
-> - Direct communication between applications and hardware components are impractice due
+> - Direct communication between applications and hardware components are impractical due
 > to complexity. 
-> - Operating systems provide much-needed interfaces between applications and haward 
+> - Operating systems provide much-needed interfaces between applications and hardware 
 > through:
 >   - OS/application interface: `system calls`.
 >   - HW/SW interface: `x86 standard` and `device drivers`. 
@@ -192,7 +213,7 @@ keypoints:
 >   - are complex
 >   - meets specific requirements in aspects such as performance, security, or fault tolerance.
 >
-> <img src="../fig/01-intro/04.png" alt="Compile and run nums.c" style="height:300px">
+> <img src="../fig/01-intro/04.png" alt="Layered Service Design" style="height:300px">
 >
 {: .slide}
 

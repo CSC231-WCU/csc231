@@ -67,20 +67,42 @@ previously known languages."
 
 > ## How Java programs run
 >
-> <img src="../assets/figure/guide/java.png" alt="Java programs" style="height:400px">
+> <img src="../fig/02-c/java.png" alt="Java programs" style="height:400px">
 {: .slide}
 
 > ## How C programs run
 >
-> <img src="../assets/figure/guide/c.png" alt="C programs" style="height:400px">
+> <img src="../fig/02-c/c.png" alt="C programs" style="height:400px">
 {: .slide}
+
 
 > ## Hands-on 1: Getting started
 >
-> - Connect VSCode to `taz.cs.wcupa.edu`. 
-> - Navigate to your home directory.
-> - Open a terminal
+> - Open a terminal (Windows Terminal or Mac Terminal).  
+> - Reminder: It is `podman` on Windows and `docker` on Mac. Everything else 
+> is the same!. 
+> - Launch the container: 
+>
+> > ## Windows:
+> >
+> > ~~~
+> > $ podman run --rm --userns keep-id --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it -p 2222:22 -v /mnt/c/csc231:/home/$USER/csc231:Z localhost/csc-container /bin/bash
+> > ~~~
+> > {: .language-bash}
+> >
+> {:.slide}
+>
+> > ## Mac:
+> >
+> > ~~~
+> > $ podman run --rm --userns keep-id --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it -p 2222:22 -v /Users/$USER/csc231:/home/$USER/csc231:Z localhost/csc-container /bin/bash
+> > ~~~
+> > {: .language-bash}
+> >
+> {:.slide}
+> 
 {: .slide}
+
 
 > ## Hands-on 2: Setup directory
 >
@@ -88,62 +110,58 @@ previously known languages."
 > then change into that directory.
 >
 > ~~~
-> $ cd
+> $ cd ~/csc231
 > $ pwd
 > $ mkdir intro-c
 > $ ls
 > $ cd intro-c
+> $ pwd
 > ~~~
 > {: .language-bash}
 > 
-> <img src="../assets/figure/guide/02.png" alt="create intro-c directory" style="height:200px">
+> <img src="../fig/02-c/02.png" alt="create intro-c directory" style="height:250px">
 >
 {: .slide}
+
 
 > ## Hands-on 3: Create hello.c
 >
-> - In the **EXPLORER** window, right-click on `intro-c` and select `New File`.
-> - Type `hello.c` as the file name and hits Enter. 
-> - Enter the following source code in the editor windows:
-> - Save the file when you are done: 
->   - `Ctrl-S` for Windows/Linux
->   - `Command-S` for Macs
-> - **Memorize your key-combos!**.
+> - Inside the terminal, make suse that you are still inside
+> `intro-c`, then use `nano` to create `hello.c`with the source code below. 
 >
 > ~~~
-> /*
->  * File: hello.c
->  */
-> #include <stdio.h>
-> int main(int argc, char *argv[]) {
->   printf("Hello world!\n");
->   return 0;
-> }
+> $ pwd
+> $ nano intro-c
 > ~~~
-> {: .language-c}
+> {: .language-bash}
+>
+> <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=hello.c"></script>
 > 
-> <img src="../assets/figure/guide/03.png" alt="create hello.c" style="height:700px">
 >
-{: .slide}
-
-> ## What's in the code?
+> - Once finished editing in `nano`:
+>   - first hit `Ctrl-X` (same for both Windows and Mac). 
+>   - Next hit `Y` to save modified buffer (new contents). 
+>   - Hit `Enter` to save to the same file name as what you opened with. 
+> - **Memorize your key-combos!**.
+> 
+> <img src="../fig/02-c/03.png" alt="Creating hello.c using nano" style="height:550px">
 >
-> - Line 1-3: Comments, similar to Java.
-> - Line 4: Standard C library for I/O, similar to Java's `import`.
-> - Line 5-8: Function declaration for `main`:
->   - Line 5: 
+> ### What's in the code?
+>
+> - Line 1: Standard C library for I/O, similar to Java's `import`.
+> - Line 2-4: Function declaration/definition for `main`:
+>   - Line 2: 
 >     - return type: `int`
 >     - function name: `main`
 >     - parameter list: 
 >        - `argc`: number of command line arguments.
 >        - `*argv[]`: pointers to array of command line argument strings. 
->    - Line 6: Invoke builtin function `printf` to print out  string `Hello world!`
+>    - Line 3: Invoke builtin function `printf` to print out  string `Hello world!`
 >    with an end-of-line character `\n`. This is similar to `System.out.printf`.
->    - Line 7: Exit a successfully executed program with a return value of 0. 
+>    - Line 4: Exit a successfully executed program with a return value of 0. 
 >
 > {: .language-c}
 > 
-> <img src="../assets/figure/guide/04.png" alt="examine hello.c code" style="height:300px">
 >
 {: .slide}
 
@@ -154,32 +172,32 @@ previously known languages."
 > - Before compile, make sure that you are still inside `intro-c` in the terminal. 
 >
 > ~~~
-> $ pwd
 > $ ls
+> $ pwd
 > $ gcc -o hello hello.c
 > $ ls
 > $ ./hello
 > ~~~
 > {: .language-bash}
 > 
-> <img src="../assets/figure/guide/05.png" alt="compile and run hello.c" style="height:300px">
+> <img src="../fig/02-c/04.png" alt="Creating hello.c using nano" style="height:350px">
 >
 {: .slide}
 
 
-> ## Hands-on 4: Compile and show everything
+> ## Hands-on 5: Compile and show everything
 >
 > - There are a number of steps from C codes to executable binaries.  
 >
 > ~~~
-> $ ls
+> $ ls -l
 > $ gcc -save-temps -o hello2 hello.c
 > $ ls -l
 > $ ./hello2
 > ~~~
 > {: .language-bash}
 > 
-> <img src="../assets/figure/guide/06.png" alt="compile and run hello.c, keeping intermediate files" style="height:300px">
+> <img src="../fig/02-c/05.png" alt="compile and run hello.c, keeping intermediate files" style="height:400px">
 >
 {: .slide}
 
@@ -189,14 +207,14 @@ previously known languages."
 > - `hello.i`: generated by pre-processor
 > - `hello.s`: generated by compiler.
 > - `hello.o`: generated by assembler.
-> - `hello`: executable, generated by linker.
+> - `hello` (or `hello2`): executable, generated by linker.
 > 
-> <img src="../assets/figure/guide/07.png" alt="hello.c compilation process" style="height:700px">
+> <img src="../fig/02-c/06.png" alt="hello.c compilation process" style="height:700px">
 >
 {: .slide}
 
 
-> ## Hands-on 5: View files
+> ## Hands-on 6: View files
 >
 > - For `hello.i` and `hello.s`, they can be view on the editor. 
 > - For `hello.o` and `hello`, we need to dump the binary contents first. 
