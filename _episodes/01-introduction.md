@@ -11,7 +11,7 @@ keypoints:
 - "First key point. Brief Answer to questions. (FIXME)"
 ---
 
-> ## Overview     
+> ## 1. Overview     
 >  
 >  - **Systems** knowledge is power!
 >    - How hardware (processors, memories, disk drives, network infrastructure) plus
@@ -22,7 +22,7 @@ keypoints:
 {: .slide}
 
 
-> ## Understand how things work
+> ## 2. Understand how things work
 >
 > - Why do I need to know this stuff?
 >   - Abstraction is good, but don’t forget reality
@@ -36,7 +36,7 @@ keypoints:
 >   of control or performance you need
 {: .slide}
 
-> ## Hands-on 1: Getting started
+> ## 3. Hands-on: Getting started
 >
 > - Open a terminal (Windows Terminal or Mac Terminal).  
 > - Reminder: It is `podman` on Windows and `docker` on Mac. Everything else 
@@ -78,7 +78,7 @@ keypoints:
 {: .slide}
 
 
-> ## Computer arithmetic
+> ## 4. Computer arithmetic
 >
 > - Does not generate random values
 >   - Arithmetic operations have important mathematical properties. 
@@ -92,7 +92,7 @@ keypoints:
 {: .slide}
 
 
-> ## Assembly
+> ## 5. Assembly
 >
 > - You are more likely than not to never write programs in assembly. 
 >   - Compilers take care of this for you. 
@@ -110,7 +110,7 @@ keypoints:
 {: .slide}
 
 
-> ## Memory Matters
+> ## 6. Memory Matters
 >
 > - Random Access Memory is an unphysical abstraction.
 > - Memory is not unbounded. 
@@ -126,7 +126,7 @@ keypoints:
 
 
 
-> ## Hands-on 2: Memory referencing bug
+> ## 7. Hands-on: Memory referencing bug
 >
 > - We are still inside `examples\intro-01` directory from Hands-on 1.   
 >
@@ -141,7 +141,7 @@ keypoints:
 {: .slide}
 
 
-> ## Memory referencing errors
+> ## 8. Memory referencing errors
 >
 > - C and C++ do not provide any memory protection
 >   - Out of bounds array references
@@ -159,7 +159,7 @@ keypoints:
 {: .slide}
 
 
-> ## Beyond asymptotic complexity
+> ## 9. Beyond asymptotic complexity
 >
 > - Constant factors matter!
 > - Exact op count does not predict performance.
@@ -172,7 +172,7 @@ keypoints:
 {: .slide}
 
 
-> ## Hands-on 3: Memory system performance
+> ## 10. Hands-on: Memory system performance
 >
 > - We are still inside `examples\intro-01` directory from Hands-on 1.  
 >
@@ -187,7 +187,7 @@ keypoints:
 {: .slide}
 
 
-> ## Does computer just execute arithmetic and control flow operations?
+> ## 11. Does computer just execute arithmetic and control flow operations?
 >
 > - They need to get data in and out
 >   - I/O system critical to program reliability and performance
@@ -200,7 +200,7 @@ keypoints:
 {: .slide}
 
 
-> ## Layered Services
+> ## 12. Layered Services
 >
 > - Direct communication between applications and hardware components are impractical due
 > to complexity. 
