@@ -89,10 +89,10 @@ command (`podman` versus `docker`). All subcommands for both engines are the sam
 > ~~~
 > {: .language-bash}
 >
-> - Open the file `/ect/containers/containers.conf` using your favorite editor . You will need to run the command
+> - Open the file `/etc/containers/containers.conf` using your favorite editor . You will need to run the command
 > with `sudo`. 
-> - Find the options for `cgroup_manager` and `events_logger` (they will be commented out), uncomment, and change
-> them to the followings:
+> - Find the options for `cgroup_manager` and `events_logger` (they will be commented out), uncomment by removing
+> the `#` sign , and change them to the followings:
 > 
 > ~~~
 > cgroup_manager = "cgroupfs"
@@ -148,7 +148,7 @@ command (`podman` versus `docker`). All subcommands for both engines are the sam
 > ~~~
 > $ podman image ls
 > $ mkdir /mnt/c/csc231
-> $ podman run --rm --userns keep-id --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it -p 2222:22 -v /home/$USER/csc231:/home/$USER/csc331:Z localhost/csc-container /bin/bash
+> $ podman run --rm --userns keep-id --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it -p 2222:22 -v /mnt/c/csc231:/home/$USER/csc231:Z localhost/csc-container /bin/bash
 > $ touch csc231/test
 > ~~~
 > {: .language-bash}
