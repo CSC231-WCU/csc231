@@ -83,14 +83,15 @@ command (`podman` versus `docker`). All subcommands for both engines are the sam
 > $ curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/Release.key | sudo apt-key add -
 > $ sudo apt-get update -qq
 > $ sudo apt-get -qq -y install podman
-> sudo mkdir -p /etc/containers
-> echo -e "[registries.search]\nregistries = ['docker.io','quay.io']" | sudo tee /etc/containers/registries.conf
-> sudo cp /usr/share/containers/containers.conf /etc/containers/
+> $ sudo mkdir -p /etc/containers
+> $ echo -e "[registries.search]\nregistries = ['docker.io','quay.io']" | sudo tee /etc/containers/registries.conf
+> $ sudo cp /usr/share/containers/containers.conf /etc/containers/
 > ~~~
 > {: .language-bash}
 >
-> - Open the file `/etc/containers/containers.conf` using your favorite editor . You will need to run the command
-> with `sudo`. 
+> - Open the file `/etc/containers/containers.conf` using your favorite editor. You will need to run 
+> the command with `sudo`. 
+>   - For `nano` editor use `sudo nano /etc/containers/containers.conf`.
 > - Find the options for `cgroup_manager` and `events_logger` (they will be commented out), uncomment by removing
 > the `#` sign , and change them to the followings:
 > 
