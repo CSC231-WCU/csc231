@@ -131,7 +131,7 @@ previously known languages."
 >
 > ~~~
 > $ pwd
-> $ nano intro-c
+> $ nano -l hello.c
 > ~~~
 > {: .language-bash}
 >
