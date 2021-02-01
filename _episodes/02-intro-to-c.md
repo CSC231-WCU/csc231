@@ -126,7 +126,7 @@ previously known languages."
 
 > ## 11. Hands-on: Create hello.c
 >
-> - Inside the terminal, make suse that you are still inside
+> - Inside the terminal, make sure that you are still inside
 > `intro-c`, then use `nano` to create `hello.c`with the source code below. 
 >
 > ~~~
