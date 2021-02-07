@@ -11,5 +11,3 @@ popular one.
 control and collaboration using Git. It is highly recommended that each 
 of you create and maintain your own GitHub account. 
 
-> ## 1. Setup your GitHub account
-> 
