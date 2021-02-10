@@ -444,7 +444,7 @@ previously known languages."
 >   type `int`. 
 > - Compile and run `malloc-1.c`
 > 
-> <img src="../fig/02-c/11.png" alt="Compile and run malloc-1.c" style="height:150px">
+> <img src="../fig/02-c/12.png" alt="Compile and run malloc-1.c" style="height:150px">
 >
 {: .slide}
 
