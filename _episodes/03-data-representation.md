@@ -110,7 +110,31 @@ the bit-size limitations."
 
 > ## 7. Hands-on: bit-level operations in C
 >
-> - In your home directory, create a directory called `03-data` and change into this directory.
+> - Open a terminal (Windows Terminal or Mac Terminal).  
+> - Reminder: It is `podman` on Windows and `docker` on Mac. Everything else 
+> is the same!. 
+> - Launch the container: 
+>
+> > ## Windows:
+> >
+> > ~~~
+> > $ podman run --rm --userns keep-id --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it -v /mnt/c/csc231:/home/$USER/csc231:Z localhost/csc-container /bin/bash
+> > ~~~
+> > {: .language-bash}
+> >
+> {:.slide}
+>
+> > ## Mac:
+> >
+> > ~~~
+> > $ docker run --rm --userns=host --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it -v /Users/$USER/csc231:/home/$USER/csc231:Z csc-container /bin/bash
+> > ~~~
+> > {: .language-bash}
+> >
+> {: .slide}
+>
+> - Inside your `csc231`, create another directory called `03-data` and change 
+> into this directory.
 > - Create a file named `bitwise_demo.c` with the following contents:
 > 
 > <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=bitwise_demo.c"></script>

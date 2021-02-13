@@ -86,7 +86,7 @@ previously known languages."
 > > ## Windows:
 > >
 > > ~~~
-> > $ podman run --rm --userns keep-id --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it -p 2222:22 -v /mnt/c/csc231:/home/$USER/csc231:Z localhost/csc-container /bin/bash
+> > $ podman run --rm --userns keep-id --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it -v /mnt/c/csc231:/home/$USER/csc231:Z localhost/csc-container /bin/bash
 > > ~~~
 > > {: .language-bash}
 > >
@@ -95,7 +95,7 @@ previously known languages."
 > > ## Mac:
 > >
 > > ~~~
-> > $ docker run --rm --userns=host --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it -p 2222:22 -v /Users/$USER/csc231:/home/$USER/csc231:Z csc-container /bin/bash
+> > $ docker run --rm --userns=host --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it -v /Users/$USER/csc231:/home/$USER/csc231:Z csc-container /bin/bash
 > > ~~~
 > > {: .language-bash}
 > >
@@ -476,7 +476,7 @@ previously known languages."
 > - Return and free memory after you are done!
 > - Compile and run `malloc-3.c`
 > 
-> <img src="../fig/02-c/14.png" alt="Compile and run malloc-3.c" style="height:450px">
+> <img src="../fig/02-c/14.png" alt="Compile and run malloc-3.c" style="height:150px">
 >
 {: .slide}
 
