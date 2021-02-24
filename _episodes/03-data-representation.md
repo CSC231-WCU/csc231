@@ -166,12 +166,23 @@ the bit-size limitations."
 
 > ## 9. 2's complement examples
 >
-> - Simple example 
+> - **2's complement representation depends on the number of bits.**
+> - Technical trick: A binary representation of the absolute value of 
+> negative 2 to the power of the number of bits minus the absolute value of the
+> negative number. 
+> - Simple example for 5-bit representation
 >
 > |     | -16 | 8  | 4  | 2 | 1 |                   |
 > | --  | --- | -- | -- | - | - | ----------------- |  
 > | 10  | 0   | 1  | 0  | 1 | 0 | 8 + 2 = 10        |  
 > | -10 | 1   | 0  | 1  | 1 | 0 | -16 + 4 + 2 = -10 |
+>
+> - Simple example for 6-bit representation
+>
+> |     | -32 | 16 | 8  | 4 | 2 | 1 |                        |
+> | --  | --- | -- | -- | - | - | - |----------------------- |  
+> | 10  | 0   | 1  | 0  | 1 | 0 | 0 | 8 + 2 = 10             |  
+> | -10 | 1   | 1  | 0  | 1 | 1 | 0 | -32 + 16 + 4 + 2 = -10 |
 >
 > - Complex example
 >
@@ -265,7 +276,7 @@ the bit-size limitations."
 >  - T2U<sub>w</sub>(x) = x + 2<sup>w</sup> if x < 0
 >  - T2U<sub>w</sub>(x) = x if x >= 0
 >
-> <img src="../fig/03-data-representation/data_04.png" alt="unsigned to 2's" style="height:200px">
+> <img src="../fig/03-data-representation/data_05.png" alt="unsigned to 2's" style="height:200px">
 >
 >  - U2T<sub>w</sub>(x) = x - 2<sup>w</sup> if x > TMax<sub>w</sub>
 >  - U2T<sub>w</sub>(x) = x if x <= TMax<sub>w</sub>
