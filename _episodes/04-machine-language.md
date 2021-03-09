@@ -120,7 +120,31 @@ keypoints:
 
 > ## 6. Hands on: assembly/machine code example
 >
-> - In your home directory, create a directory called `04-machine` and change into this directory.
+> - Open a terminal (Windows Terminal or Mac Terminal).  
+> - Reminder: It is `podman` on Windows and `docker` on Mac. Everything else 
+> is the same!. 
+> - Launch the container: 
+>
+> > ## Windows:
+> >
+> > ~~~
+> > $ podman run --rm --userns keep-id --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it -v /mnt/c/csc231:/home/$USER/csc231:Z localhost/csc-container /bin/bash
+> > ~~~
+> > {: .language-bash}
+> >
+> {:.slide}
+>
+> > ## Mac:
+> >
+> > ~~~
+> > $ docker run --rm --userns=host --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it -v /Users/$USER/csc231:/home/$USER/csc231:Z csc-container /bin/bash
+> > ~~~
+> > {: .language-bash}
+> >
+> {: .slide}
+>
+> - Inside your `csc231`, create another directory called `04-machine` and change 
+> into this directory.
 > - Create a file named `mstore.c` with the following contents:
 >
 > <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=mstore.c"></script>
@@ -630,9 +654,9 @@ keypoints:
 > 
 > <img src="../fig/04-machine/18.png" alt="function" style="height:700px">
 >
-> - Use `s` to execute the instruction: `mov edi,0x8`.
-> - The next instruction, `call 0x0400410 <malloc@plt>` is actually a function call
-> and we don't want to step into this call, so we need to use `n`: Run `n` to execute this call.  
+> - Use `n` to execute the instruction: `mov edi,0x8` and step over the next instruction, 
+> `call 0x0400410 <malloc@plt>`, which is a function call that we don't want to step into 
+> this call. 
 > - These are the instructions for the `malloc` call. 
 >
 > ~~~
