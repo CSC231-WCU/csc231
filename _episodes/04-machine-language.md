@@ -295,6 +295,10 @@ keypoints:
 > <img src="../fig/04-machine/07.png" alt="swap.c" style="height:500px">
 >
 > - [Why `%rsi` and `%rdi`?](http://6.s081.scripts.mit.edu/sp18/x86-64-architecture-guide.html)
+> - Procedure Data Flow:
+>   - First six parameters will be placed into `rdi`, `rsi`, `rdx`, `rcx`, `r8`, `r9`. 
+>   - The remaining parameters will be pushed on to the stack of the calling function.
+>
 {: .slide}
 
 
