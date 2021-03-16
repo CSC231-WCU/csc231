@@ -38,25 +38,61 @@ title: "GDB Debugger"
 
 > ## 5. tmux quickstart 1: multiple sessions
 > 
-> - SSH to `taz.cs.wcupa.edu` from a terminal. Do not use VSCode. 
-> - Start new with a session name: `tmux new -s csc231`
-> - You are now in the new tmux session. 
-> - List sessions: `tmux ls`
+> - Open a terminal (Windows Terminal or Mac Terminal).  
+> - Reminder: It is `podman` on Windows and `docker` on Mac. Everything else 
+> is the same!. 
+> - Launch the container: 
 >
-> <img src="../fig/gdb/01.png" alt="list tmux sessions" style="height:250px">
+> > ## Windows:
+> >
+> > ~~~
+> > $ podman run --rm --userns keep-id --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it -v /mnt/c/csc231:/home/$USER/csc231:Z localhost/csc-container /bin/bash
+> > ~~~
+> > {: .language-bash}
+> >
+> {:.slide}
+>
+> > ## Mac:
+> >
+> > ~~~
+> > $ docker run --rm --userns=host --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it -v /Users/$USER/csc231:/home/$USER/csc231:Z csc-container /bin/bash
+> > ~~~
+> > {: .language-bash}
+> >
+> {: .slide}
+>
+> 
+> - Start new with a session name:
+>
+> ~~~
+> $ tmux new -s csc231
+> ~~~
+> {: .language-bash}
+>
+> <img src="../fig/gdb/01.png" style="height:600px">
+>
+> - You are now in the new tmux session. 
+> - You can list all active tmux sessions. 
+>
+> ~~~
+> $ tmux ls
+> ~~~
+> {: .language-bash}
+>
+> <img src="../fig/gdb/02.png" style="height:600px">
 >
 > - **Notation**: Key press combinations connected with a single dash (`-`) means to 
-> be pressed together, otherwise, it means *lift your finger, then press*. 
+> be pressed together, otherwise, it means **lift your finger, then press ...**. 
 > - To go back to the main terminal, press `Ctrl-b`, then press `d`. 
 >
-> <img src="../fig/gdb/02.png" alt="detach from tmux session" style="height:250px">
+> <img src="../fig/gdb/03.png" style="height:50px">
 >
 > - To go back into the `csc231` session: `tmux attach-session -t csc231`. 
 >
-> <img src="../fig/gdb/03.png" alt="attach to an existing tmux session" style="height:250px">
+> <img src="../fig/gdb/04.png" style="height:600px">
 >
 > - To kill a session: 
->   - From inside the session: `exit`
+>   - From inside the session: `exit`, or
 >   - From outside the session: `tmux kill-session -t csc231`
 {: .slide}
 
@@ -71,7 +107,9 @@ title: "GDB Debugger"
 > - Use `tmux ls` to view the list of tmux sessions. 
 > - Navigate back and forth between the three sessions several times. 
 > - Kill all three sessions using only `exit`!
-> - SCREENSHOT
+>
+> <img src="../fig/gdb/05.png" style="height:600px">
+>
 {: .slide}
 
 > ## 7. tmux quickstart 2: multiple panes
@@ -80,18 +118,21 @@ title: "GDB Debugger"
 > - Splits terminal into vertical panels: `Ctrl-b` then `Shift-5` (technical documents
 > often write this as `Ctrl-b` and `%`).
 >
-> <img src="../fig/gdb/04.png" alt="Vertical split a tmux session" style="height:800px">
+> <img src="../fig/gdb/06.png" style="height:600px">
 >
 > - Splits terminal (the current pane) into horizontal panels: `Ctrl-b` then `Shift-'` 
 > ( technical documents often write this as `Ctrl-b` and `"`).
 >
-> <img src="../fig/gdb/05.png" alt="Horizontal split a tmux pane" style="height:800px">
+> <img src="../fig/gdb/07.png" style="height:600px">
 >
 > - Toggle between panels: `Ctrl-b` then `Space`.
 > - To move from one panel to other directionally: `Ctrl-b`then the corresponding 
 > arrow key. 
-> - Typing `exit` will close one pane. 
+> - Typing `exit` will close the pane with the activate cursor.  
+> - Run `exit` multiple times to completely close out the `p1` session. Pay attention 
+> to not get out of the container. 
 {: .slide}
+
 
 > ## 8. Hands on: creating multiple panes
 > 
@@ -103,7 +144,7 @@ title: "GDB Debugger"
 >   - The last vertical pane of `p1` has three internal horizontal panes. 
 > - Kill all panes using `exit`!
 >
-> <img src="../fig/gdb/06.png" alt="Multiple vertical/horizontal splits" style="height:800px">
+> <img src="../fig/gdb/08.png" style="height:600px">
 >
 {: .slide}
 
@@ -116,78 +157,46 @@ title: "GDB Debugger"
 > tmux sessions. 
 > - Create a new session called `p1`.
 > - Split the session horizontally.
-> - Move the active cursor to the top pane. 
-> - Open tmux command by typing `Ctrl-b` then `Shift-;`
-> - Use the following command for resizing the current pane down:
->   - `resize-pane -D 20`: (Resizes the current pane down by 20 cells)
->
-> <img src="../fig/gdb/07.png" alt="Resizing pane down" style="height:800px">
->
->
-> <img src="../fig/gdb/08.png" alt="Resizing pane down" style="height:800px">
->
-> - Move the active cursor to the bottom pane. 
-> - Open tmux command by typing `Ctrl-b` then `Shift-;`
-> - Use the following command for resizing the current pane down:
->   - `resize-pane -U 20`: (Resizes the current pane up by 20 cells)
->
-> <img src="../fig/gdb/09.png" alt="Resizing pane up" style="height:800px">
->
->
-> <img src="../fig/gdb/10.png" alt="Resizing pane up" style="height:800px">
+> - You can adjust the size of two adjacent horizontal panes by **press and hold** `Ctrl-b` then 
+> the left/right arrows.
+> - You can adjust the size of two adjacent vertical panes by **press and hold** `Ctrl-b` then 
+> the up/down arrows.
 >
 {: .slide}
 
 
-> ## 10. Hands on: creating multiple panes
-> 
-> - Run `tmux ls` to check and `tmux kill-session` to clean up all existing 
-> tmux sessions. 
-> - Create a new session called `p1`. 
-> - Split `p1` once vertically. 
-> - Use the following commands to resize the left pane:
->   - `resize-pane -L 20` (Resizes the current pane left by 20 cells)
->   - `resize-pane -R 20` (Resizes the current pane right by 20 cells)
-{: .slide}
-
-
-> ## 11. Challenge
+> ## 10. Challenge
 > 
 > Redo the hands-on activity of slide 8 so that all the panes are aesthetically 
 > proportional. 
 >
 {: .challenge}
 
-> ## 12. Setup gdb
+> ## 11. Running and exiting gdb
 > 
-> - Run `tmux ls` to check and `tmux kill-session` to clean up all existing 
-> tmux sessions. 
-> - Create a new session called `gdb`. 
-> - We are using an enhanced wrapper to the default gdb, called `gdb-peda`.
-> - Run the following commands in one of the tmux sessions.
+> - Create a new session tmux called `gdb`. 
+> - Run the following command in the `gdb` session.
 >
 > ~~~
-> $ cd
-> $ git clone https://github.com/longld/peda.git
-> $ echo "source ~/peda/peda.py" > ~/.gdbinit
 > $ gdb
 > ~~~
 > {: .language-bash}
 >
+> - To exit from gdb type `q` and hit `Enter`. 
 >
-> <img src="../fig/gdb/11.png" alt="setup gdb" style="height:800px">
+> <img src="../fig/gdb/09.png" style="height:600px">
 >
-> - To exit from gdb type `quit` and hit `Enter`. 
 {: .slide}
 
-> ## 13. Setup an application with gdb
+
+> ## 12. Setup an application with gdb
 > 
 > - To use `gdb` to debug, we need to compile the program with a `-g` flag.
-> - Split the `gdb` session into two horizontal panes.
+> - Split the `gdb` session into two **horizontal** panes.
 > - In the top pane, run the followings command:
 >
 > ~~~
-> $ cd ~/intro-c
+> $ cd ~/csc231/intro-c
 > $ gcc -g -o hello hello.c
 > ~~~
 > {: .language-bash}
@@ -201,12 +210,12 @@ title: "GDB Debugger"
 > ~~~
 > {: .language-bash}
 >
-> <img src="../fig/gdb/12.png" alt="Run gdb" style="height:800px">
+> <img src="../fig/gdb/10.png" style="height:800px">
 >
 {: .slide}
 
 
-> ## 14. Debugging with gdb
+> ## 13. Debugging with gdb
 > 
 > - We need to set a `breakpoint`:
 >   - Could be a line number or
@@ -218,7 +227,7 @@ title: "GDB Debugger"
 > ~~~
 > {: .language-bash}
 >
-> <img src="../fig/gdb/13.png" alt="Run gdb with breakpoint" style="height:800px">
+> <img src="../fig/gdb/11.png" style="height:800px">
 >
 {: .slide}
 
@@ -230,13 +239,7 @@ title: "GDB Debugger"
 > - You can use the `Up`/`Down`/`PgUp`/`PgDn` keys to navigate. 
 > - To quit scrolling mode, type `q` or `Esc`. 
 >
-> ~~~
-> gdb-peda$ b main
-> gdb-peda$ run
-> ~~~
-> {: .language-bash}
->
-> <img src="../fig/gdb/14.png" alt="Scrolling mode in gdb" style="height:800px">
+> <img src="../fig/gdb/12.png" style="height:800px">
 >
 > - At a glance
 >   - Registers' contents
@@ -258,14 +261,15 @@ title: "GDB Debugger"
 > - What is the next line of code to be executed?
 > - Type `n` three more times to observe the line of codes being executed
 > and the final warning from `gdb`. 
+> - Type `q` to exit from `gdb`. 
 {: .slide}
 
 
 > ## 17. Examining contents of program while debugging
 > 
-> - In the top pane, compile `malloc_1.c` in debugging mode. 
+> - In the top pane, compile `malloc-1.c` in debugging mode. 
 > - In the bottom pane, quit the current gdb session and 
-> rerun it on the recently created `malloc_1` executable. 
+> rerun it on the recently created `malloc-1` executable. 
 > - Setup `main` as the `breakpoint` and start running. 
 > ~~~
 > gdb-peda$ b main
@@ -277,8 +281,6 @@ title: "GDB Debugger"
 > - Type `p p`: the first `p` is short for `print` and the second `p` is the 
 > void pointer variable `p` in the program. 
 > - Try running `p *p`. What does that feedback mean? 
-> - Type `n` and `Enter` to run the next line of code: `float *fp = (float *)p;`
-> - Type `p fp`: what is the printed value?
 > - Type `n` and `Enter` to run the next line of code: `int *ip = (int *)p;`
 > - Type `p ip`: what is the printed value?
 > - Type `n` and `Enter` to run the next line of code: `*ip = 98765;`
@@ -291,9 +293,9 @@ title: "GDB Debugger"
 
 > ## 18. Examining contents of program while debugging
 > 
-> - In the top pane, compile `array_4.c` in debugging mode. 
+> - In the top pane, compile `array-4.c` in debugging mode. 
 > - In the bottom pane, quit the current gdb session and 
-> rerun it on the recently created `array_4` executable as follows: 
+> rerun it on the recently created `array-4` executable as follows: 
 >
 > ~~~
 > $ gdb array_4
@@ -340,7 +342,7 @@ title: "GDB Debugger"
 > - Run the following commands and observe the outcomes: `p p` 
 {: .slide}
 
-> ## 19. Hands on: finish running array_4
+> ## 19. Hands on: finish running array-4
 > 
 > - Step through the `for` loop and printing out values of `i`, `p[i]`, `&p[i]`, 
 > and `p + i` at every iteration. 
