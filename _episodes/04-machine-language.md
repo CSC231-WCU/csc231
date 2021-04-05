@@ -544,7 +544,7 @@ keypoints:
 >
 > - Understand how the Assembly code enables jump across instructions to support conditional workflow. 
 >
-> <img src="../fig/04-machine/13.png" alt="jump.c" style="height:400px">
+> <img src="../fig/04-machine/13.png" alt="jump.c" style="height:700px">
 > 
 > - Rerun the above commands but ommit `-Og` flag. Think about the differences in the resulting Assembly code. 
 {: .slide}
@@ -566,7 +566,7 @@ keypoints:
 >
 > - Understand how the Assembly code enables jump across instructions to support loop. 
 >
-> <img src="../fig/04-machine/14.png" alt="fact_loop.c" style="height:400px">
+> <img src="../fig/04-machine/14.png" alt="fact_loop.c" style="height:700px">
 > 
 > - Create `fact_loop_2.c` and `fact_loop_3.c` from `fact_loop`.c. 
 > - Modify `fact_loop_2.c` so that the factorial is implemented with a `while` loop. Study the 
@@ -589,7 +589,7 @@ keypoints:
 > ~~~
 > {: .language-bash}
 >
-> <img src="../fig/04-machine/15.png" alt="switch.c" style="height:550px">
+> <img src="../fig/04-machine/15.png" alt="switch.c" style="height:700px">
 > 
 {: .slide}
 
