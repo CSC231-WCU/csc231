@@ -33,7 +33,7 @@ keypoints:
 >   - Basic storage unit is normally a cell (one bit per cell).
 >   - Multiple RAM chips form a memory.
 > - RAM comes in two varieties:
->   - SRAM (Static RAM): trasistors only
+>   - SRAM (Static RAM): transistors only
 >   - DRAM (Dynamic RAM): transistor and capacitor
 >   - Both are volatile: memory goes away without power. 
 > 
