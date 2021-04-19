@@ -482,7 +482,7 @@ keypoints:
 {: .slide}
 
 
-> ## 20. The memory mountain
+> ## 23. The memory mountain
 >
 > - This is the cover of the book. 
 > - Y-axis: Read throughput (read bandwidth)
