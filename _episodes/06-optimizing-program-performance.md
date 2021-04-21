@@ -97,7 +97,7 @@ keypoints:
 > ~~~
 > $ sudo apt-get install -y valgrind
 > $ gcc -Wall -Werror -o bad_fib bad_fib.c
-> $ valgrind bad_fib
+> $ valgrind ./bad_fib
 > ~~~
 >
 {: .slide}
