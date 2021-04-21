@@ -95,9 +95,11 @@ keypoints:
 > - Use `valgrind`, memory analyzer. 
 >
 > ~~~
+> $ sudo apt-get install -y valgrind
 > $ gcc -Wall -Werror -o bad_fib bad_fib.c
 > $ valgrind bad_fib
 > ~~~
+>
 {: .slide}
 
 
@@ -136,8 +138,8 @@ keypoints:
 > - Set a time limit: (for example)
 >   - 0 minutes – -Wall, valgrind
 >   - 1 – 10 minutes – Informal Debugging
-10 – 60 minutes – Scientific Debugging
-> 60 minutes – Take a break / Ask for help
+>   - 10 – 60 minutes – Scientific Debugging
+>   - 60 minutes – Take a break / Ask for help
 >  
 {: .slide}
 
