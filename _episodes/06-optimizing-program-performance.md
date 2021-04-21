@@ -86,7 +86,7 @@ keypoints:
 > ## 5. Hands on: brute force approach
 >
 > - Strict compilation flags: `-Wall`, `-Werror`. 
-> - Include optimization flags: `-O3` or `-O0`. 
+> - Include optimization flags (**capital letter o**): `-O3` or `-O0`. 
 >
 > ~~~
 > $ gcc -Wall -Werror -O3 -o bad_fib bad_fib.c
