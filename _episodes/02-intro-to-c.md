@@ -78,35 +78,11 @@ previously known languages."
 
 > ## 9. Hands-on: Getting started
 >
-> - Open a terminal (Windows Terminal or Mac Terminal).  
-> - Reminder: It is `podman` on Windows and `docker` on Mac. Everything else 
-> is the same!. 
-> - Launch the container: 
->
-> > ## Windows:
-> >
-> > ~~~
-> > $ podman run --rm --userns keep-id --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it -v /mnt/c/csc231:/home/$USER/csc231:Z localhost/csc-container /bin/bash
-> > ~~~
-> > {: .language-bash}
-> >
-> {:.slide}
->
-> > ## Mac:
-> >
-> > ~~~
-> > $ docker run --rm --userns=host --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it -v /Users/$USER/csc231:/home/$USER/csc231:Z csc-container /bin/bash
-> > ~~~
-> > {: .language-bash}
-> >
-> {:.slide}
-> 
-{: .slide}
-
-
-> ## 10. Hands-on: Setup directory
->
-> Create a directory named `intro-c` inside your home directory, 
+> - SSH to `molly`. Refer to the Setup page if you need a refresher on how to 
+> do so.
+> - Change into `csc231` from inside your home directory. 
+>   - Your home directory is represented by the `~` sign. 
+> - Create a directory named `intro-c` inside `csc231`, 
 > then change into that directory.
 >
 > ~~~
@@ -124,7 +100,7 @@ previously known languages."
 {: .slide}
 
 
-> ## 11. Hands-on: Create hello.c
+> ## 10. Hands-on: Create hello.c
 >
 > - Inside the terminal, make sure that you are still inside
 > `intro-c`, then use `nano` to create `hello.c`with the source code below. 

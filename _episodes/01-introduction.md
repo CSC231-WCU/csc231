@@ -8,7 +8,7 @@ objectives:
 - "Know how hardware and software interact through (programming) interfaces."
 - "Know different types of systems programs."
 keypoints:
-- "First key point. Brief Answer to questions. (FIXME)"
+- "Computer systems influence the performance and correctness of programs."
 ---
 
 > ## 1. Overview     
@@ -38,42 +38,52 @@ keypoints:
 
 > ## 3. Hands-on: Getting started
 >
-> - Open a terminal (Windows Terminal or Mac Terminal).  
-> - Reminder: It is `podman` on Windows and `docker` on Mac. Everything else 
-> is the same!. 
-> - Launch the container: 
->
-> > ## Windows:
-> >
-> > ~~~
-> > $ podman run --rm --userns keep-id --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it -p 2222:22 -v /mnt/c/csc231:/home/$USER/csc231:Z localhost/csc-container /bin/bash
-> > ~~~
-> > {: .language-bash}
-> >
-> {:.slide}
->
-> > ## Mac:
-> >
-> > ~~~
-> > $ docker run --rm --userns=host --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it -p 2222:22 -v /Users/$USER/csc231:/home/$USER/csc231:Z csc-container /bin/bash
-> > ~~~
-> > {: .language-bash}
-> >
-> {:.slide}
->
-> - Once inside the container, clone the `examples` repository, and 
-> compile and run the example: 
->
+> Log into `molly` and run the following commands:
+> 
+> - Create a directory called `csc231` in your home directory using
+> the `mkdir` command. 
+> - Change into that directory using the `cd` command.
+> - **The $ sign is not part of the command, but it indicates that the command 
+> is to be executed from a command line terminal prompt**.
 > ~~~
+> $ mkdir csc231
 > $ cd csc231
+> ~~~
+> {: .language-bash}
+>
+> - Check that you are inside `csc231` using the `pwd` command.
+> - Clone the Git repository for the class' examples. 
+> 
+> ~~~
+> $ pwd
 > $ git clone https://github.com/CSC231-WCU/examples.git
-> $ cd examples/01-intro
+> ~~~
+> {: .language-bash}
+>
+> - The `git clone` command will download the repository into a directory called 
+> `examples` inside your current directory, which is `csc231`. 
+> - Run the command `ls -l` to confirm that `examples` exists. 
+> - Change into `examples` using `cd`. 
+> - Run `ls -l` to see how many subdirectories there are inside `examples`. 
+> 
+> ~~~
+> $ ls -l
+> $ cd examples
+> $ ls -l
+> ~~~
+> {: .language-bash}
+>
+> - Change into the directory `01-intro`. 
+> - Compile and run the example code `nums.c`. 
+> 
+> ~~~
+> $ cd 01-intro
 > $ gcc -Wno-overflow nums.c
 > $ ./a.out
 > ~~~
 > {: .language-bash}
->
-> <img src="../fig/01-intro/01.png" alt="Compile and run nums.c" style="height:300px">
+> 
+> <img src="../fig/01-intro/01.png" alt="Compile and run nums.c" style="height:500px">
 > 
 {: .slide}
 

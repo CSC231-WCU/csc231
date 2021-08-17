@@ -38,13 +38,38 @@ allows us to open a command-line terminal to login to `molly`.
 >   - `USERID` is **your** WCUPA email login without the `@wcupa.edu` part. 
 > - If/when asked `Are you sure you want to continue connecting (/yes/no/[fingerprint])?`, 
 > type `yes` and press Enter. 
+> - It is normal if you type in your password when asked and nothing shows up. It is a security
+> feature, so that other cannot look at your screen and count the number of letters in your 
+> password. 
 >
 > > ~~~
 > > ssh USERID@molly.cs.wcupa.edu
 > > ~~~
 > > {: .language-bash}
 >
+> - The figures below demonstrate SSH to `molly` with the professor's login ID. 
+> 
 > <img src="fig/setup/01.png" alt="SSH to molly from a Windows Terminal" style="height:600px">
+>
+> <img src="fig/setup/02.png" alt="SSH to molly from a Mac Terminal" style="height:600px">
+>
+{: .slide}
+
+> ## Change your password
+>
+> - After login to `molly` for the first time, type `passwd` and press Enter to change 
+> the default password. 
+> - You will be asked to provide your original password, and retype a new password two 
+> times. 
+>
+> > ~~~
+> > passwd
+> > ~~~
+> > {: .language-bash}
+>
+> - The figures below demonstrate SSH to `molly` with the professor's login ID. 
+> 
+> <img src="fig/setup/03.png" alt="Changing password" style="height:150px">
 >
 {: .slide}
 
