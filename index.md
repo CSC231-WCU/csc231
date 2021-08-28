@@ -7,21 +7,31 @@ permalink: index.html  # Is the only page that doesn't follow the pattern /:path
 > ## Instructor
 > - **Instructor**: Linh B. Ngo
 > - **Office**: UNA 138
-> - **Office Hours**: TBD
+> - **Office Hours**: 
+>   - MWF 11:00AM - 12:00PM: Office/Zoom
+>   - TR 11:00AM - 12:00PM: Zoom
+>   - Office Zoom information will be posted in D2L course content. 
 > - **Email**: lngo AT wcupa DOT edu
 > - **Phone**: 610-436-2595
 {: .prereq}
 
-> ## COVID-19 Statement
-> Part of West Chester University’s response to the COVID-19 pandemic was to 
-> switch the vast majority of instruction to remote.  This decision was made 
-> out of an abundance of caution to protect the health of all members of the WCU 
-> community.  Faculty have been asked to make every effort to adapt their courses 
-> to this novel situation while still meeting the critical learning outcomes of 
-> the course.  Students are asked to discuss any problems with the new course 
-> format and schedule directly with their instructors.  Patience and flexibility 
-> on everyone’s behalf are critical to our community’s navigation of this public 
-> health crisis.
+> ## CWest Chester University’s COVID-19 Classroom Protection Requirements
+>
+> We, as a community of educators and learners, should work together to create a culture that 
+> protects our most precious resource: each other. As such, it is the expectation of all members of 
+> the University community to continue to do their part to protect the health and safety of others. 
+> In our classrooms where the university’s primary function is carried out, the following protocols are being implemented:
+>
+> - Unless otherwise directed by the faculty member, students must wear a cloth or disposable face mask that 
+> covers both the nose and mouth the entire time they are in class. 
+>   - Face shields and gaiters do not meet the university’s mask requirement.
+> - Eating and drinking in the classroom are only permitted if they are medically necessary.
+>   - Please work with the Office of Services for Students with Disabilities to notify the 
+>   university and your professors of this necessity.
+>
+> We want you to succeed in this class, but we will have to ask you to leave if you do not follow 
+> these guidelines, so please – make the most of this opportunity and help keep our campus safe.
+>
 {: .prereq}
 
 > ## Course Description
@@ -305,8 +315,9 @@ permalink: index.html  # Is the only page that doesn't follow the pattern /:path
 >
 > ### Inclusive learning environment and anti-racist statement
 > Diversity, equity, and inclusion are central to West Chester University’s mission 
-> as reflected in our Mission Statement, Values Statement, Vision Statement and Strategic 
-> Plan: Pathways to Student Success. We disavow racism and all actions that silence, 
+> as reflected in our [Mission Statement, Values Statement, Vision Statement](https://www.wcupa.edu/president/missionStatement.aspx), and [Strategic 
+> Plan: Pathways to Student Success](https://www.wcupa.edu/president/strategicPlan/default.aspx). 
+> We disavow racism and all actions that silence, 
 > threaten, or degrade historically marginalized groups in the U.S. We acknowledge that all 
 > members of this learning community may experience harm stemming from forms of oppression 
 > including but not limited to classism, ableism, heterosexism, sexism, Islamophobia, anti-Semitism, 
@@ -321,13 +332,15 @@ permalink: index.html  # Is the only page that doesn't follow the pattern /:path
 > of racism. For real, sustainable change, we must stand together as a diverse coalition against racism 
 > and oppression of any form, anywhere, at any time. 
 >
-> Resources for education and action are available through WCU’s Office for Diversity, Equity, 
-> and Inclusion (ODEI), DEI committees within departments or colleges, the student ombudsperson, and 
-> centers on campus committed to doing this work (e.g., Dowdy Multicultural Center, Center for Women 
-> and Gender Equity, and the Center for Trans and Queer Advocacy). 
+> Resources for education and action are available through WCU’s [Office for Diversity, Equity, 
+> and Inclusion (ODEI)](https://www.wcupa.edu/_admin/diversityEquityInclusion/changeBeginsHere.aspx), 
+> DEI committees within departments or colleges, the student [ombudsperson](https://www.wcupa.edu/_services/STU/studentOmbuds/), and 
+> centers on campus committed to doing this work (e.g., [Dowdy Multicultural Center](https://www.wcupa.edu/_services/multicultural/), 
+> [Center for Women and Gender Equity](https://www.wcupa.edu/_services/stu.wce/), 
+> and the [Center for Trans and Queer Advocacy](https://www.wcupa.edu/_services/transAndQueer/)). 
 >
 > Guidance on how to report incidents of discrimination and harassment is available at the University’s 
-> Office of Diversity, Equity and Inclusion.
+> [Office of Diversity, Equity and Inclusion](https://www.wcupa.edu/_admin/diversityEquityInclusion/).
 >
 > 
 > ### Emergency Preparedness:
