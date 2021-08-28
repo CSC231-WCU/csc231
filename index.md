@@ -276,27 +276,64 @@ permalink: index.html  # Is the only page that doesn't follow the pattern /:path
 > More information can be found at
 > the [OSSD website](http://www.wcupa.edu/ussss/ossd).
 >
-> ### Title IX Statement:
-> West Chester University and its faculty are committed to assuring a safe and
-> productive educational environment for all students. In order to meet this
-> commitment and to comply with Title IX of the Education Amendments of 1972
-> and guidance from the Office for Civil Rights, the University requires
-> faculty members to report incidents of sexual violence shared by students
-> to the University's Title IX Coordinator, Ms. Lynn Klingensmith. The only
-> exceptions to the faculty member's reporting obligation are when incidents
-> of sexual violence are communicated by a student during a classroom
-> discussion, in a writing assignment for a class, or as part of a
-> University-approved research project. Faculty members are obligated to
-> report sexual violence or any other abuse of a student who was, or is, a
-> child (a person under 18 years of age) when the abuse allegedly occurred to
-> the person designated in the University protection of minors policy.
-> Information regarding the reporting of sexual violence and the resources
-> that are available to victims of sexual violence is set forth at the
-> [Office of Social Equity website](http://www.wcupa.edu/_admin/social.equity).
+> In an effort to assist students who either receive or may believe they are 
+> entitled to receive accommodations under the Americans with Disabilities Act 
+> and Section 504 of the Rehabilitation Act of 1973, the University has appointed 
+> a student advocate to be a contact for students who have questions regarding the 
+> provision of their accommodations or their right to accommodations. The advocate 
+> will assist any student who may have questions regarding these rights. The Director 
+> for Equity and Compliance/Title IX Coordinator has been designated in this role. 
+> Students who need assistance with their rights to accommodations should contact 
+> them at 610-436-2433.
 >
-> ### Emergency Contact:
-> In the event of an emergency during class, the phone number for WCU’s
-> Department of Public Safety is 610-436-3311.
+> ### Reporting Incidents of Sexual Violence:
+> West Chester University and its faculty are committed to assuring a safe and 
+> productive educational environment for all students. In order to comply with the 
+> requirements of Title IX of the Education Amendments of 1972 and the University’s 
+> commitment to offering supportive measures in accordance with the new regulations 
+> issued under Title IX, the University requires faculty members to report incidents 
+> of sexual violence shared by students to the University's Title IX Coordinator. 
+> The only exceptions to the faculty member's reporting obligation are when incidents 
+> of sexual violence are communicated by a student during a classroom discussion, in a 
+> writing assignment for a class, or as part of a University-approved research project. 
+> Faculty members are obligated to report sexual violence or any other abuse of a student 
+> who was, or is, a child (a person under 18 years of age) when the abuse allegedly occurred 
+> to the person designated in the University Protection of Minors Policy. Information 
+> regarding the reporting of sexual violence and the resources that are available to victims 
+> of sexual violence is set forth at: https://www.wcupa.edu/_admin/diversityEquityInclusion/sexualMisconduct/default.aspx
+>
+>
+> ### Inclusive learning environment and anti-racist statement
+> Diversity, equity, and inclusion are central to West Chester University’s mission 
+> as reflected in our Mission Statement, Values Statement, Vision Statement and Strategic 
+> Plan: Pathways to Student Success. We disavow racism and all actions that silence, 
+> threaten, or degrade historically marginalized groups in the U.S. We acknowledge that all 
+> members of this learning community may experience harm stemming from forms of oppression 
+> including but not limited to classism, ableism, heterosexism, sexism, Islamophobia, anti-Semitism, 
+> and xenophobia, and recognize that these forms of oppression are compounded by racism. 
+>
+> Our core commitment as an institution of higher education shapes our expectation for behavior 
+> within this learning community, which represents diverse individual beliefs, backgrounds, 
+> and experiences. Courteous and respectful behavior, interactions, and responses are expected 
+> from all members of the University. We must work together to make this a safe and productive 
+> learning environment for everyone. Part of this work is recognizing how race and other aspects of 
+> who we are shape our beliefs and our experiences as individuals. It is not enough to condemn acts 
+> of racism. For real, sustainable change, we must stand together as a diverse coalition against racism 
+> and oppression of any form, anywhere, at any time. 
+>
+> Resources for education and action are available through WCU’s Office for Diversity, Equity, 
+> and Inclusion (ODEI), DEI committees within departments or colleges, the student ombudsperson, and 
+> centers on campus committed to doing this work (e.g., Dowdy Multicultural Center, Center for Women 
+> and Gender Equity, and the Center for Trans and Queer Advocacy). 
+>
+> Guidance on how to report incidents of discrimination and harassment is available at the University’s 
+> Office of Diversity, Equity and Inclusion.
+>
+> 
+> ### Emergency Preparedness:
+> All students are encouraged to sign up for the University’s free WCU ALERT service, which delivers 
+> official WCU emergency text messages directly to your cell phone.  For more information, visit www.wcupa.edu/wcualert. 
+> To report an emergency, call the Department of Public Safety at 610-436-3311.
 {: .keypoints}
 
 {% include links.md %}
