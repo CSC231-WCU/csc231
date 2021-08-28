@@ -15,7 +15,7 @@ permalink: index.html  # Is the only page that doesn't follow the pattern /:path
 > - **Phone**: 610-436-2595
 {: .prereq}
 
-> ## CWest Chester University’s COVID-19 Classroom Protection Requirements
+> ## West Chester University’s COVID-19 Classroom Protection Requirements
 >
 > We, as a community of educators and learners, should work together to create a culture that 
 > protects our most precious resource: each other. As such, it is the expectation of all members of 
