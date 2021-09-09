@@ -4,4 +4,4 @@ rm -Rf _site/*
 echo ${PWD}
 rm -Rf _site
 docker run -v ${PWD}:/srv/jekyll -it jekyll/jekyll:stable /srv/jekyll/site.sh --verbose
-scp -r _site/* $1:~/public_html/csc231/
+#scp -r _site/* $1:~/public_html/csc231/

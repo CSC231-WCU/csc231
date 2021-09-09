@@ -23,8 +23,8 @@ previously known languages."
 
 > ## 2. How to learn C (now that you already know Java)?     
 >  
-> - [C for Java programmers][c4java]
-> - [C programming vs. Java programming][c_vs_java]
+> - [C for Java programmers](https://www.cs.rochester.edu/u/ferguson/csc/c/c-for-java-programmers.pdf)
+> - [C programming vs. Java programming](https://introcs.cs.princeton.edu/java/faq/c2java.html)
 {: .slide}
 
 > ## 3. Scary stuff ahead ...     
