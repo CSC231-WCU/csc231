@@ -46,6 +46,7 @@ the bit-size limitations."
 > | --- | --- | --- | --- |  --- | --- | --- | --- |  --- | --- | --- | --- |  --- | --- | --- | --- | 
 > | Binary	| 0000 | 0001 | 0010 | 0011 | 0100 | 0101 | 0110 | 0111 | 1000 | 1001 |1010 | 1011 | 1100 | 1101 | 1110 | 1111 |
 >
+> - [Google Spreadsheet demonstrating conversion process](https://docs.google.com/spreadsheets/d/16yW8yDfDTxBiH-PkIddm1Cg4kYE4k-56GLTa6xDD_WU/edit?usp=sharing)
 {: .slide}
 
 > ## 3. Example data representations
@@ -109,29 +110,6 @@ the bit-size limitations."
 {: .slide}
 
 > ## 7. Hands-on: bit-level operations in C
->
-> - Open a terminal (Windows Terminal or Mac Terminal).  
-> - Reminder: It is `podman` on Windows and `docker` on Mac. Everything else 
-> is the same!. 
-> - Launch the container: 
->
-> > ## Windows:
-> >
-> > ~~~
-> > $ podman run --rm --userns keep-id --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it -v /mnt/c/csc231:/home/$USER/csc231:Z localhost/csc-container /bin/bash
-> > ~~~
-> > {: .language-bash}
-> >
-> {:.slide}
->
-> > ## Mac:
-> >
-> > ~~~
-> > $ docker run --rm --userns=host --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -it -v /Users/$USER/csc231:/home/$USER/csc231:Z csc-container /bin/bash
-> > ~~~
-> > {: .language-bash}
-> >
-> {: .slide}
 >
 > - Inside your `csc231`, create another directory called `03-data` and change 
 > into this directory.
@@ -481,7 +459,7 @@ the bit-size limitations."
 >   - Variable x has 4-byte value of 0x01234567
 >   - Address given by `&x` is 0x100
 > 
-> <img src="../fig/03-data-representation/data_09.png" alt="Byte ordering example" style="height:500px">
+> <img src="../fig/03-data-representation/data_09.png" alt="Byte ordering example" style="height:300px">
 {: .slide}
 
 > ## 31. Hands on: byte ordering in memory
