@@ -554,10 +554,20 @@ previously known languages."
 >
 {: .slide}
 
-
-> ## 37. Hands-on: Array of strings
+> ## 37. Question
 >
-> - Inside the terminal, make suse that you are still inside
+> - How many characters were printed out on the second line in the terminal?
+> - Hint: Can you see all of them?
+> 
+> > ## Answer     
+> > - 24 
+> >
+> {: .solution}
+{: .challenge}
+
+> ## 38. Hands-on: Array of strings
+>
+> - Inside the terminal, make sure that you are still inside
 > `intro-c`, then use `nano` to create `string-2.c`with the source code below. 
 >
 > <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=string-2.c"></script>
@@ -569,14 +579,14 @@ previously known languages."
 {: .slide}
 
 
-> ## 38. Object in C
+> ## 39. Object in C
 >
 > - C has no classes or objects. 
 > - Instead, it has `struct` type (think ancestor of objects) .
 {: .slide}
 
 
-> ## 39. Hands-on: Struct in C
+> ## 40. Hands-on: Struct in C
 >
 > - Inside the terminal, make suse that you are still inside
 > `intro-c`, then use `nano` to create `struct-1.c`with the source code below. 
@@ -589,8 +599,20 @@ previously known languages."
 >
 {: .slide}
 
+> ## 41. Question
+>
+> - Modify `struct-1.c` so that it prints out the address of `origin` variable. 
+> - What do you learn from the printed out addresses?
+>
+> > ## Answer     
+> > Insert `printf("The address of the origin is: %p\n", &origin);` between the existing
+> > `printf` calls.  
+> >
+> {: .solution}
+{: .challenge}
 
-> ## 40. Hands-on: Struct of structs in C
+
+> ## 42. Hands-on: Struct of structs in C
 >
 > - Inside the terminal, make suse that you are still inside
 > `intro-c`, then use `nano` to create `struct-2.c`with the source code below. 
@@ -605,7 +627,7 @@ previously known languages."
 
 
 
-> ## 41. Function in C
+> ## 43. Function in C
 >
 > - Almost the same as methods in Java, except for one small difference. 
 > - They need to either be declared, or must be defined prior to being
@@ -613,7 +635,7 @@ previously known languages."
 {: .slide}
 
 
-> ## 42. Hands-on: Functions in C - definition and declaration
+> ## 44. Hands-on: Functions in C - definition and declaration
 >
 > - Create three C files, `function-1.c`, `function-2.c`, and `function-3.c`,
 > with the source codes below:

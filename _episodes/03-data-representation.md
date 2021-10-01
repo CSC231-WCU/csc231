@@ -280,11 +280,13 @@ the bit-size limitations."
 > ## 15. Challenge
 > 
 > - What is wrong with the following program? 
+>
+><script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=for_loop.c"></script>
 > - How can this program be corrected?
 >
 > > ## Solution
-> > <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=for_loop.c"></script>
-> >
+> > - change the range to 11-1
+> > - Why don't we change the type of i?
 > {: .solution}
 {: .challenge}
 
