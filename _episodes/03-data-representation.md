@@ -310,7 +310,9 @@ the bit-size limitations."
 {: .slide}
 
 > ## 17. Misunderstanding integers can lead to the end of the world!
-> 
+>
+> <iframe width="560" height="315" src="https://www.youtube.com/embed/m7bv_YcZzn0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+>
 > - [Thule Site J](https://en.wikipedia.org/wiki/Thule_Site_J): USAF radar station for
 > missile warning and spacecraft tracking. 
 > - "There are many examples of errors arising from incorrect or incomplete specifications. 
@@ -323,7 +325,7 @@ the bit-size limitations."
 > - Moon's large size: 1000s of objects reported. 
 > - Moon's distance: .25 million miles
 >   - Thule's BMEWS max distance: 3000 miles. 
->   - Truncated distance to the moon: % sizeof(distance) = 2200 miles. 
+>   - Truncated distance to the moon: `% sizeof(distance)` = 2200 miles. 
 > - Remember assignment 1: The computer does not "see", it only interprets.
 >   - **Thousands of objects on the sky within missile detection range!**. 
 > - Human control:
