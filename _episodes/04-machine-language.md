@@ -37,8 +37,8 @@ keypoints:
 > | Pentium III     | 1999 | 8.2M              |  
 > | Pentium 4       | 2000 | 42M               |  
 > | Core 2 Duo      | 2006 | 291M              |  
-> | Core i7         | 2000 | 42M               |  
-> | Core i7 Skylake | 2006 | 291M              |  
+> | Core i7         | 2008 | 731M              |  
+> | Core i7 Skylake | 2015 | 1.75B             |  
 >
 >
 > - Added features
