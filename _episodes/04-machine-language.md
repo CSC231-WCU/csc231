@@ -253,7 +253,7 @@ keypoints:
 >
 > - Monday October 25, 2021
 > - 12-hour windows range: 9:00AM - 9:00PM October 25, 2021.
-> - 75 minutes duration.
+> - 50 minutes duration.
 > - 20-25 questions (similar in format to the quizzes).
 > - Everything (including source codes) up to and including the episode on **Representing and manipulating information**.
 > - No class on Monday October 25, 2021. 
