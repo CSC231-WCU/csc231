@@ -248,6 +248,19 @@ keypoints:
 >   - `movq 8(%rbp),%rdx`
 {: .slide}
 
+
+> ## Midterm
+>
+> - Monday October 25, 2021
+> - 12-hour windows range: 9:00AM - 9:00PM October 25, 2021.
+> - 75 minutes duration.
+> - 20-25 questions (similar in format to the quizzes).
+> - Everything (including source codes) up to and including the episode on **Representing and manipulating information**.
+> - No class on Monday October 25, 2021. 
+>
+{: .slide}
+
+
 > ## 13. x86_64 Cheatsheet
 >
 > [Brown University - Dr. Doeppner](https://cs.brown.edu/courses/cs033/docs/guides/x64_cheatsheet.pdf)
@@ -409,18 +422,6 @@ keypoints:
 > > - `%rax` contains the final return value. 
 > {: .solution}
 {: .challenge}
-
-
-> ## Midterm
->
-> - Friday April 2, 2021
-> - 24-hour windows range: 12:00AM - 11:59PM April 2, 2021.
-> - 75 minutes duration.
-> - 20 questions (similar in format to the quizzes).
-> - Everything (including source codes) up to **slide 20 of Machine language and debugging**.
-> - No class on Friday April 2. 
->
-{: .slide}
 
 
 > ## 21. Hands on: long arithmetic
