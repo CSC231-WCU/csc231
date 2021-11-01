@@ -1,6 +1,7 @@
 #!/bin/bash
 set -x
 
+bunble install
 bundle exec jekyll build
 
 if [ $? -ne 0 ]; then
