@@ -155,6 +155,9 @@ title: "GDB Debugger"
 > - Run the following command in the `gdb` session.
 >
 > ~~~
+> $ cd 
+> $ git clone https://github.com/longld/peda.git
+> $ echo "source $HOME/peda/peda.py" > $HOME/.gdbinit
 > $ gdb
 > ~~~
 > {: .language-bash}
