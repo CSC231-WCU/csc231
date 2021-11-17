@@ -640,15 +640,18 @@ keypoints:
 > {: .language-bash}
 >
 > - Setup gdb with a breakpoint at `main` and start running. 
-> - A new GDB command is `s` or `step`: executing the next instruction (machine or code instruction). 
+> - A new GDB command is `si`: executing the next instruction (machine or code instruction). 
 >   - It will execute the highlighted (greened and arrowed) instruction in the `code` section.
+>   - If the Assembly instruction is *calling* another function, we need to use `ni` if we don't want to step into that instruction. 
 > - **Be careful, Intel notation in the code segment of GDB**
-> - Run `s` once to execute `sub rsp,0x8`
+> - `endbr64` is a new instruction to help enforce [Control Flow Technology](https://www.intel.com/content/www/us/en/developer/articles/technical/technical-look-control-flow-enforcement-technology.html) to prevent potential *stitching* of malicious Assembly codes. 
+> - Run `si` to execute `endbr64`
+> - Run `si` sito execute `sub rsp,0x8`
 > 
-> <img src="../fig/04-machine/18.png" alt="function" style="height:700px">
+> <img src="../fig/04-machine/18.png" alt="function" style="height:1200px">
 >
-> - Use `n` to execute the instruction: `mov edi,0x8` and step over the next instruction, 
-> `call 0x0400410 <malloc@plt>`, which is a function call that we don't want to step into 
+> - Use `si` to execute the instruction: `mov edi,0x8` 
+> - Use `ni` to execute the instruction, `call ..... <malloc@plt>`, which is a function call that we don't want to step into 
 > this call. 
 > - These are the instructions for the `malloc` call. 
 >
@@ -658,7 +661,9 @@ keypoints:
 > ~~~
 > {: .language-assembly}
 >
-> - Pay attention to the next three instructions after `call 0x0400410 <malloc@plt`. 
+> <img src="../fig/04-machine/19.png" alt="function" style="height:1200px">
+>
+> - Pay attention to the next three instructions after `call ...... <malloc@plt`. 
 >   - Recall that the return value of malloc is placed into `%rax`.
 > - These instructions setup the parameters for the upcoming `multstore(1,2,p)` call. 
 >   - `mov rdx,rax`. 
@@ -673,42 +678,42 @@ keypoints:
 > {: .language-bash}
 >
 > - This is the value of the memory block allocated via `malloc` to contain one `long` element. 
-> - Run `s` to step into `multstore(1,2,p)`
+> - Run `si` three times to complete the above three `mov` instructions.
+> - Run `si` again to step into `multstore(1,2,p)`
+> - Answer the following questions:
+>   - What is the value of`RSP` after stepping into `multstore`? What is special about that value?
+>   - Open a new terminal, create `mult.o` and check where you are now in term of Assembly instruction lines. 
 >
-> <img src="../fig/04-machine/19.png" alt="malloc" style="height:720px">
+> <img src="../fig/04-machine/20.png" alt="function" style="height:1200px">
 > 
-> - Inside `mulstore`, we immediately prepare to launch `mult2`. 
-> - Run `s` once. This will store the value in `rdx` into `rbx`. This is to save the 
+> - Inside `mulstore`, after running `si`, you will see the meaning of `push`:
+>   - Recall instruction of Stack push on slide 31. 
+>   - Previously, `RSP` points to address `e3b8` which contains `<main+36> ...
+>   - After pushing, `RSP` first decrements its value by 8 (`e3b8` to `e3b0`), then write the operand
+>   (the value `<__libc_csu_init>: ...`) which was stored in `RBX` to this address `e3b0`. 
+> - Now we prepare to launch `mult2`. 
+> - Run `si` once. This will store the value in `rdx` into `rbx`. This is to save the 
 > value in `rdx` because we need to use it later. 
-> parameters for the `mult2` call. 
-> - Procedure Data Flow:
+> - Procedure Data Flow for parameters for the `mult2` call:
 >   - First six parameters will be placed into `rdi`, `rsi`, `rdx`, `rcx`, `r8`, `r9`. 
 >   - The remaining parameters will be pushed on to the stack of the calling function (
 >   in this case `mulstore`).
->   - Note that `rsp` (stack pointer of `multstore`) is currently at `0x7ffffffe320`.
-> - Run `s` to step into `mult2`. 
->
-> <img src="../fig/04-machine/20.png" alt="multstore" style="height:700px">
->
-> - The 7<sup>th</sup> parameter of `mult2` is pushed on to the stack frame of 
-> `multstore` and is stored at address `0x7ffffffe318`. 
+>   - Note that `rsp` (stack pointer of `multstore`) is currently at `e3a8`.
+> - Run `si` to step into `mult2`. 
 > - Function/procedure `mult2` has no local variable, hence the stack frame is 
-> almost empty. The stack pointer, `rsp`, of `mult2`, is actually pointing toward 
-> the address of the 7<sup>th</sup> parameter. 
-> - Run `s`. 
-> - The subsequence instructions (`<mult2>` through `<mult2+23>`) are for the multiplication. 
+> almost empty.
+> - Run `si`. 
+> - The subsequence instructions (`<mult2+4>` through `<mult2+27>`) are for the multiplication. 
 > - The final value will be stored in `rax` to be returned to `multstore`. 
 > - Examine the two screenshots below to see how specific registers contain certain values?
 >   - `rcx`?
 >   - `r8`?
 >   - `r9`?
->   - What is value of `rax` after `<mult2+20>`?
->   - What is value of `rax` after `<mult2+23>`?
+>   - What is stored at `[rsp+0x8]`?
 >
-> <img src="../fig/04-machine/21.png" alt="mult2" style="height:700px">
-> <img src="../fig/04-machine/22.png" alt="mult2" style="height:700px">
+> <img src="../fig/04-machine/21.png" alt="function" style="height:1200px">
 >
-> - Continue running `s` to finish the program. 
+> - Continue running `si` to finish the program. 
 {: .slide}
 
 
