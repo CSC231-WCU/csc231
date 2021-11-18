@@ -522,7 +522,7 @@ keypoints:
 >
 > - Understand how the Assembly code enables jump across instructions to support conditional workflow. 
 >
-> <img src="../fig/04-machine/13.png" alt="jump.c" style="height:700px">
+><iframe width="560" height="315" src="https://www.youtube.com/embed/OSZggdT9hgY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 > 
 > - Rerun the above commands but ommit `-Og` flag. Think about the differences in the resulting Assembly code. 
 {: .slide}
