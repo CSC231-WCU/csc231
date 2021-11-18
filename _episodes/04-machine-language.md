@@ -554,25 +554,7 @@ keypoints:
 {: .slide}
 
 
-> ## 28. Hands on: switch
->
-> - Create a file named `switch.c` in `04-machine` with the following contents:
->
-> <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=switch.c"></script>
->
-> - View `switch.c` and the resulting `switch.s` in a two-column tmux terminal. 
->
-> ~~~
-> $ gcc -Og -S switch.c
-> ~~~
-> {: .language-bash}
->
-> <img src="../fig/04-machine/15.png" alt="switch.c" style="height:700px">
-> 
-{: .slide}
-
-
-> ## 29. Mechanisms in procedures
+> ## 28. Mechanisms in procedures
 >
 > - Function = procedure (book terminology)
 > - Support procedure `P` calls procedure `Q`. 
@@ -597,7 +579,7 @@ keypoints:
 {: .slide}
 
 
-> ## 30. x86-64 stack
+> ## 29. x86-64 stack
 >
 > - Region of memory managed with stack discipline
 >   - Memory viewed as array of bytes.
@@ -611,7 +593,7 @@ keypoints:
 {: .slide}
 
 
-> ## 31. Stack push and pop
+> ## 30. Stack push and pop
 > 
 > - `pushq Src`
 >   - Fetch operand at `Src`
@@ -625,7 +607,7 @@ keypoints:
 {: .slide}
 
 
-> ## 32. Hands on: function calls
+> ## 31. Hands on: function calls
 >
 > - Create a file named `mult.c` in `04-machine` with the following contents:
 >
@@ -687,7 +669,7 @@ keypoints:
 > <img src="../fig/04-machine/20.png" alt="function" style="height:1200px">
 > 
 > - Inside `mulstore`, after running `si`, you will see the meaning of `push`:
->   - Recall instruction of Stack push on slide 31. 
+>   - Recall instruction of Stack push on slide 30. 
 >   - Previously, `RSP` points to address `e3b8` which contains `<main+36> ...
 >   - After pushing, `RSP` first decrements its value by 8 (`e3b8` to `e3b0`), then write the operand
 >   (the value `<__libc_csu_init>: ...`) which was stored in `RBX` to this address `e3b0`. 
@@ -717,7 +699,7 @@ keypoints:
 {: .slide}
 
 
-> ## 33. Hands on: array and multi-dimensional arrays
+> ## 32. Hands on: array and multi-dimensional arrays
 >
 > - Given array of data type `T` and length `L`: `T A[L]`
 >   - Contiguous allocated region of `L` * `sizeof(T)` bytes in memory. 
@@ -745,7 +727,7 @@ keypoints:
 {: .slide}
 
 
-> ## 34. Hands on: struct
+> ## 33. Hands on: struct
 >
 > - Create a new data type (non-primitive) that groups objects of possibly different
 > types into a single object. 
@@ -772,7 +754,7 @@ keypoints:
 {: .slide}
 
 
-> ## 35. Data alignment
+> ## 34. Data alignment
 >
 > - Intel recommends data to be aligned to improve memory system performance. 
 >   - K-alignment rule: Any primitive object of `K` bytes must have an address that is multiple of `K`: 1 for `char`, 2 for `short`, 4 for `int` and `float`, and 8 for `long`, `double`, and `char *`. 
