@@ -535,7 +535,7 @@ keypoints:
 >
 > - Create a file named `factorial.c` in `04-machine` with the following contents:
 >
-> <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=fact_loop.c"></script>
+> <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=factorial.c"></script>
 >
 > - Run the following commands 
 >
