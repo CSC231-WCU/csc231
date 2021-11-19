@@ -523,8 +523,11 @@ keypoints:
 > - Understand how the Assembly code enables jump across instructions to support conditional workflow. 
 >
 ><iframe width="560" height="315" src="https://www.youtube.com/embed/OSZggdT9hgY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+>
+> - In the next video, we will look at how `cmp` and `jle` of `absdiff` really behave in an actual execution. 
 > 
-> - Rerun the above commands but ommit `-Og` flag. Think about the differences in the resulting Assembly code. 
+> <iframe width="560" height="315" src="https://www.youtube.com/embed/mOwufRcZS8M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+> 
 {: .slide}
 
 
