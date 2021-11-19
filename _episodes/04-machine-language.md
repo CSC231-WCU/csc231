@@ -540,16 +540,16 @@ keypoints:
 > - Run the following commands 
 >
 > ~~~
-> $ gcc -Og -c fact_loop.c
-> $ objdump -d fact_loop.o
+> $ gcc -Og -c factorial.c
+> $ objdump -d factorial.o
 > ~~~
 > {: .language-bash}
 >
 > - Understand how the Assembly code enables jump across instructions to support loop. 
 >
-> <img src="../fig/04-machine/14.png" alt="fact_loop.c" style="height:700px">
+> <iframe width="560" height="315" src="https://www.youtube.com/embed/0N2srmuKcVs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 > 
-> - Create `factorial_2.c` and `factorial_3.c` from `fact_loop`.c. 
+> - Create `factorial_2.c` and `factorial_3.c` from `factorial.c`. 
 > - Modify `factorial_2.c` so that the factorial is implemented with a `while` loop. Study the 
 > resulting Assembly code. 
 > - Modify `factorial_3.c` so that the factorial is implemented with a `for` loop. Study the 
