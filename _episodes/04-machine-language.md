@@ -533,7 +533,7 @@ keypoints:
 
 > ## 27. Hands on: loop
 >
-> - Create a file named `fact_loop.c` in `04-machine` with the following contents:
+> - Create a file named `factorial.c` in `04-machine` with the following contents:
 >
 > <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=fact_loop.c"></script>
 >
@@ -549,10 +549,10 @@ keypoints:
 >
 > <img src="../fig/04-machine/14.png" alt="fact_loop.c" style="height:700px">
 > 
-> - Create `fact_loop_2.c` and `fact_loop_3.c` from `fact_loop`.c. 
-> - Modify `fact_loop_2.c` so that the factorial is implemented with a `while` loop. Study the 
+> - Create `factorial_2.c` and `factorial_3.c` from `fact_loop`.c. 
+> - Modify `factorial_2.c` so that the factorial is implemented with a `while` loop. Study the 
 > resulting Assembly code. 
-> - Modify `fact_loop_3.c` so that the factorial is implemented with a `for` loop. Study the 
+> - Modify `factorial_3.c` so that the factorial is implemented with a `for` loop. Study the 
 > resulting Assembly code. 
 {: .slide}
 
