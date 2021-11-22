@@ -554,6 +554,10 @@ keypoints:
 > resulting Assembly code. 
 > - Modify `factorial_3.c` so that the factorial is implemented with a `for` loop. Study the 
 > resulting Assembly code. 
+> - Behavior of `factorial` Assembly instructions inside GDB
+>
+> <iframe width="560" height="315" src="https://www.youtube.com/embed/2VdCt8hhiRY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+>
 {: .slide}
 
 
