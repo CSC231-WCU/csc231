@@ -614,13 +614,43 @@ keypoints:
 {: .slide}
 
 
-> ## 31. Hands on: function calls
+> ## 31. What really happens in memory/registers at the beginning and the end of a function
+> 
+> - The `-Og` flag often combines/reduces these steps. 
+> - The memory stack architecture for a function has a base pointer (`$rbp`) and a 
+> stack pointer (`$rsp`).
+>   - Base pointer: the bottom of the stack (higher memory address)
+>   - Stack pointer: the top of the stack (lower memory address)
+> - Function prologue
+>   - Push the current  base pointer onto the memory stack (to be restored later). 
+>   - Assign the value of the base pointer (set the `$rbp` to that value) to the current
+>   address pointed to by the stack pointer. 
+>   - Move the stack pointer down further (*push* new memory in) a distance that would 
+>   accommodate local variables of the function. 
+> - Function prologue (Assembly), ATT notation, assume rbp/ebp and rsp/esp
+>   - `push $rbp`
+>   - `mov $rsp, $rbp`
+>   - `sub  N, $rsp`
+> - Function epilogue
+>   - Drop the stack pointer to the current base pointer, so room reserved in the prologue for 
+>   local variables is freed.
+>   - Pops the base pointer off the stack, so it is restored to its value before the prologue.
+>   - Returns to the calling function, by popping the previous frame's program counter off the 
+>   stack and jumping to it.
+>  - Function prologue (Assembly), ATT notation, assume rbp/ebp and rsp/esp
+>   - `mov $rbp, $rsp`
+>   - `pop $rbp`
+>   - `ret`
+{: .slide}
+
+
+> ## 32. Hands on: function calls
 >
 > - Create a file named `mult.c` in `04-machine` with the following contents:
 >
 > <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=mult.c"></script>
 >
-> - Compile with `-g` and `-Og` flags and run `gdb` on the resulting executable.  
+> - Compile with `-g` flag and run `gdb` on the resulting executable.  
 >
 > ~~~
 > $ gcc -g -o mult mult.c
@@ -634,11 +664,10 @@ keypoints:
 >   - If the Assembly instruction is *calling* another function, we need to use `ni` if we don't want to step into that instruction. 
 > - **Be careful, Intel notation in the code segment of GDB**
 > - `endbr64` is a new instruction to help enforce [Control Flow Technology](https://www.intel.com/content/www/us/en/developer/articles/technical/technical-look-control-flow-enforcement-technology.html) to prevent potential *stitching* of malicious Assembly codes. 
- 
 {: .slide}
 
 
-> ## 32. Data alignment
+> ## 33. Data alignment
 >
 > - Intel recommends data to be aligned to improve memory system performance. 
 >   - K-alignment rule: Any primitive object of `K` bytes must have an address that is multiple of `K`: 1 for `char`, 2 for `short`, 4 for `int` and `float`, and 8 for `long`, `double`, and `char *`. 
