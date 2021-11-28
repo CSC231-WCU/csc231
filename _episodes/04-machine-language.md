@@ -623,7 +623,7 @@ keypoints:
 > - Compile with `-g` and `-Og` flags and run `gdb` on the resulting executable.  
 >
 > ~~~
-> $ gcc -g -Og -o mult mult.c
+> $ gcc -g -o mult mult.c
 > $ gdb mult
 > ~~~
 > {: .language-bash}
@@ -634,160 +634,14 @@ keypoints:
 >   - If the Assembly instruction is *calling* another function, we need to use `ni` if we don't want to step into that instruction. 
 > - **Be careful, Intel notation in the code segment of GDB**
 > - `endbr64` is a new instruction to help enforce [Control Flow Technology](https://www.intel.com/content/www/us/en/developer/articles/technical/technical-look-control-flow-enforcement-technology.html) to prevent potential *stitching* of malicious Assembly codes. 
-> - Run `si` to execute `endbr64`
-> - Run `si` sito execute `sub rsp,0x8`
-> 
-> <img src="../fig/04-machine/18.png" alt="function" style="height:1200px">
->
-> - Use `si` to execute the instruction: `mov edi,0x8` 
-> - Use `ni` to execute the instruction, `call ..... <malloc@plt>`, which is a function call that we don't want to step into 
-> this call. 
-> - These are the instructions for the `malloc` call. 
->
-> ~~~
-> mov edi,0x8
-> call 0x0400410 <malloc@plt>
-> ~~~
-> {: .language-assembly}
->
-> <img src="../fig/04-machine/19.png" alt="function" style="height:1200px">
->
-> - Pay attention to the next three instructions after `call ...... <malloc@plt`. 
->   - Recall that the return value of malloc is placed into `%rax`.
-> - These instructions setup the parameters for the upcoming `multstore(1,2,p)` call. 
->   - `mov rdx,rax`. 
->   - `mov esi,0x2`
->   - `mov edi,0x1`
-> - Also, check the values of `rax` and `p`
->
-> ~~~
-> gdb-peda$ p $rax
-> gdb-peda$ p p
-> ~~~
-> {: .language-bash}
->
-> - This is the value of the memory block allocated via `malloc` to contain one `long` element. 
-> - Run `si` three times to complete the above three `mov` instructions.
-> - Run `si` again to step into `multstore(1,2,p)`
-> - Answer the following questions:
->   - What is the value of`RSP` after stepping into `multstore`? What is special about that value?
->   - Open a new terminal, create `mult.o` and check where you are now in term of Assembly instruction lines. 
->
-> <img src="../fig/04-machine/20.png" alt="function" style="height:1200px">
-> 
-> - Inside `mulstore`, after running `si`, you will see the meaning of `push`:
->   - Recall instruction of Stack push on slide 30. 
->   - Previously, `RSP` points to address `e3b8` which contains `<main+36> ...
->   - After pushing, `RSP` first decrements its value by 8 (`e3b8` to `e3b0`), then write the operand
->   (the value `<__libc_csu_init>: ...`) which was stored in `RBX` to this address `e3b0`. 
-> - Now we prepare to launch `mult2`. 
-> - Run `si` once. This will store the value in `rdx` into `rbx`. This is to save the 
-> value in `rdx` because we need to use it later. 
-> - Procedure Data Flow for parameters for the `mult2` call:
->   - First six parameters will be placed into `rdi`, `rsi`, `rdx`, `rcx`, `r8`, `r9`. 
->   - The remaining parameters will be pushed on to the stack of the calling function (
->   in this case `mulstore`).
->   - Note that `rsp` (stack pointer of `multstore`) is currently at `e3a8`.
-> - Run `si` to step into `mult2`. 
-> - Function/procedure `mult2` has no local variable, hence the stack frame is 
-> almost empty.
-> - Run `si`. 
-> - The subsequence instructions (`<mult2+4>` through `<mult2+27>`) are for the multiplication. 
-> - The final value will be stored in `rax` to be returned to `multstore`. 
-> - Examine the two screenshots below to see how specific registers contain certain values?
->   - `rcx`?
->   - `r8`?
->   - `r9`?
->   - What is stored at `[rsp+0x8]`?
->
-> <img src="../fig/04-machine/21.png" alt="function" style="height:1200px">
->
-> - Continue running `si` to finish the program. 
+ 
 {: .slide}
 
 
-> ## 32. Hands on: array and multi-dimensional arrays
->
-> - Given array of data type `T` and length `L`: `T A[L]`
->   - Contiguous allocated region of `L` * `sizeof(T)` bytes in memory. 
->   - Identifier `A` can be used as a pointer to array element 0. 
-> - Create a file named `array.c` in `04-machine` with the following contents:
->
-> <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=array.c"></script>
->
-> - Run `cat -n array.c` and remember the line number of the `printf` statement. 
-> - Compile with `-g` flag and run `gdb` on the resulting executable.  
->
-> ~~~
-> $ cat -n array.c
-> $ gcc -g -o array array.c
-> $ gdb array
-> ~~~
-> {: .language-bash}
->
-> - Setup gdb with a breakpoint at the line number for the `printf` statement and start running. 
-> - Run `i locals` to view all local variables. 
-> - Use `p` and variety of pointer/array syntax to view their values and addresses: `*`, `[]`, `&`. 
-> 
-> <img src="../fig/04-machine/23.png" alt="array" style="height:400px">
->
-{: .slide}
-
-
-> ## 33. Hands on: struct
->
-> - Create a new data type (non-primitive) that groups objects of possibly different
-> types into a single object. 
->   - Think classes in object-oriented programming minus the methods. 
-> - Create a file named `struct.c` in `04-machine` with the following contents:
->
-> <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=struct.c"></script>
->
-> - Compile with `-g` flag and run `gdb` on the resulting executable.  
->
-> ~~~
-> $ gcc -g -o struct struct.c
-> $ gdb struct
-> ~~~
-> {: .language-bash}
->
-> - Setup gdb with a breakpoint at `main`` and start running. 
-> - Use `n` to walk through the program and answer the following questions:
->   - How many bytes are there in the memory block allocated for variable `p`? 
->   - How are the addresses of `x`, `y`, and `c` relative to `p`?
->
-> <img src="../fig/04-machine/24.png" alt="struct" style="height:700px">
->
-{: .slide}
-
-
-> ## 34. Data alignment
+> ## 32. Data alignment
 >
 > - Intel recommends data to be aligned to improve memory system performance. 
 >   - K-alignment rule: Any primitive object of `K` bytes must have an address that is multiple of `K`: 1 for `char`, 2 for `short`, 4 for `int` and `float`, and 8 for `long`, `double`, and `char *`. 
-> - Create a file named `alignment.c` in `04-machine` with the following contents:
->
-> <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=alignment.c"></script>
->
-> - Run `cat -n alignment.c` and remember the line number of the `return` statement. 
-> - Compile with `-g` flag and run `gdb` on the resulting executable.  
->
-> ~~~
-> $ cat -n array.c
-> $ gcc -g -o array array.c
-> $ gdb array
-> gdb-peda$ b 17
-> gdb-peda$ run
-> ~~~
-> {: .language-bash}
->
-> - Run `i locals` to view all local variables. 
-> - Use `p` and `&` to view addresses of the three `char` array
-> variables and the `i` variable. 
-> - Why does address displacement is not an exact match between the `i` variable
-> and the next array variable versus between the array variables?
->
-> <img src="../fig/04-machine/25.png" alt="alignment" style="height:1000px">
 >
 {: .slide}
 
