@@ -144,41 +144,7 @@ keypoints:
 {: .slide}
 
 
-> ## 8. Code optimization: Rear Admiral Grace Hopper
->
-> - Invented first compiler in 1951 (technically it was a linker)
-> - Coined `compiler` (and `bug`)
-> - Compiled for Harvard Mark I
-> - Eventually led to COBOL (which ran the world for years)
-> - "I decided data processors ought to be able to write their programs in English, and the computers 
-> would translate them into machine code".
->  
-{: .slide}
-
-
-> ## 9. Code optimization: John Backus
->
-> - Led team at IBM invented the first commercially available compiler in 1957
-> - Compiled FORTRAN code for the IBM 704 computer
-> - FORTRAN still in use today for high performance code
-> - "Much of my work has come from being lazy. I didn't like writing programs, and so, when I was working 
-> on the IBM 701, I started work on a programming system to make it easier to write programs".
->  
-{: .slide}
-
-
-> ## 10. Code optimization: Fran Allen
->
-> - Pioneer of many optimizing compilation techniques
-> - Wrote a paper simply called `Program Optimization` in 1966
-> - "This paper introduced the use of graph-theoretic structures to encode program content in order 
-> to automatically and efficiently derive relationships and identify opportunities for optimization".
-> - First woman to win the ACM Turing Award (the **Nobel Prize of Computer Science**).
->  
-{: .slide}
-
-
-> ## 11. Performance realities
+> ## 9. Performance realities
 >
 > - There’s more to performance than asymptotic complexity.
 > - Constant factors matter too!
@@ -193,7 +159,7 @@ keypoints:
 {: .slide}
 
 
-> ## 12. Leveraging cache blocks
+> ## 10. Leveraging cache blocks
 >
 > - Check the size of cache blocks 
 >
@@ -221,7 +187,7 @@ keypoints:
 {: .slide}
 
 
-> ## 13. Hands-on: matrix multiplications
+> ## 11. Hands-on: matrix multiplications
 >
 > - Check the size of cache blocks 
 >
@@ -272,7 +238,7 @@ keypoints:
 {: .slide}
 
 
-> ## 14. General optimization: you or your compiler should do it. 
+> ## 12. General optimization: you or your compiler should do it. 
 >
 > - Reduce code motion: reduce frequency with which computation performed
 >   - Need to produce same results
@@ -301,7 +267,7 @@ keypoints:
 {: .slide}
 
 
-> ## 15. General optimization: when your compiler can't. 
+> ## 13. General optimization: when your compiler can't. 
 >
 > - Operate under fundamental constraint
 >  - Must not cause any change in program behavior
@@ -310,7 +276,7 @@ keypoints:
 >   - e.g., Data range may be more limited than types suggest (short vs. int)
 > - Most analysis is only within a procedure
 >   - Whole-program analysis is usually too expensive
->   - Sometimes compiler does interprocedural analysis within a file (new GCC)
+>   - Sometimes compiler does inter-procedural analysis within a file (new GCC)
 > - Most analysis is based only on static information
 >   - Compiler has difficulty anticipating run-time inputs
 > - When in doubt, the compiler must be conservative

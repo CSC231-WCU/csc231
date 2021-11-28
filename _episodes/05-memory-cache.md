@@ -76,8 +76,8 @@ keypoints:
 > - The key to bridging this gap is a fundamental property of computer programs known as **locality**:
 >   - Principle of Locality: Programs tend to use data and instructions with addresses near or equal 
 >   to those they have used recently
->   - `Temporal locality`:  Recently referenced items are likely to be referenced again in the near future
->   - `Spatial locality`:  Items with nearby addresses tend to be referenced close together in time
+>   - `Temporal locality`:  Recently referenced items are likely to be referenced again in the near future
+>   - `Spatial locality`:  Items with nearby addresses tend to be referenced close together in time
 > 
 > ~~~
 > sum = 0;
@@ -257,56 +257,7 @@ keypoints:
 {: .slide}
 
 
-> ## 11. General cache organization
-> 
-> - Assume a computer system with `m-bit` addresses. 
-> - Three values, `S`, `E`, and `B` represent the cache organization:
->   - A cache for this system is organized as an array of `S` = 2<sup>`s`</sup> cache sets.
->   - Each set consists of `E` cache lines. 
->   - Each cache line has a data block of size `B` = 2<sup>`b`</sup> bytes, a valid bit that indicates
->   whether this line contains meaningful data, and a tag of size `t` bits: `t = m - (b + s)`.  
-> - Actual data address (`m` bits) are mapped to `t`, `b`, `s` to help determine whether the data 
-> is stored in cache. 
-> 
-> <img src="../fig/05-memory/11.png" alt="cache organization" style="height:400px">
-{: .slide}
-
-
-> ## 12. Example: direct mapped cache (E=1)
-> 
-> <img src="../fig/05-memory/12.png" alt="direct mapped cache" style="height:400px">
-{: .slide}
-
-
-> ## 13. Example: two-way associative cache (E=2)
-> 
-> <img src="../fig/05-memory/13.png" alt="two-way associative cache" style="height:400px">
-{: .slide}
-
-
-> ## 14. What about writes?
->
-> - Multiple copies of data exist:: L1, L2, L3, Main Memory, Disk
-> - What to do on a write-hit?
->   - `Write-through` (write immediately to memory)
->   - `Write-back` (defer write to memory until replacement of line)
->     - Each cache line needs a dirty bit (set if data differs from memory)
-> - What to do on a write-miss?
->   - Write-allocate (load into cache, update line in cache): Good if more writes to the location will follow
->   - No-write-allocate (writes straight to memory, does not load into cache)
-> - Typical
->   - Write-through + No-write-allocate
->   - Write-back + Write-allocate
-{: .slide}
-
-
-> ## 15. Example: Core i7 L1 Data Cache
->
-> <img src="../fig/05-memory/14.png" alt="Intel i7 L1" style="height:400px">
-{: .slide}
-
-
-> ## 16. Cache performance metrics
+> ## 11. Cache performance metrics
 >
 > - Miss Rate
 >   - Fraction of memory references not found in cache `(misses / accesses) = 1 – hit rate`
@@ -325,7 +276,7 @@ keypoints:
 {: .slide}
 
 
-> ## 17. What those numbers mean?
+> ## 12. What those numbers mean?
 >
 > - Huge difference between a hit and a miss
 >   - Could be 100x, if just L1 and main memory
@@ -340,7 +291,7 @@ keypoints:
 {: .slide}
 
 
-> ## 18. Write cache friendly code
+> ## 13. Write cache friendly code
 >
 > - Make the common case go fast
 >   - Focus on the inner loops of the core functions
@@ -352,7 +303,7 @@ keypoints:
 {: .slide}
 
 
-> ## 19. Matrix multiplication example
+> ## 14. Matrix multiplication example
 >
 > - Multiply N x N matrices
 > - Matrix elements are doubles (8 bytes)
@@ -365,7 +316,7 @@ keypoints:
 {: .slide}
 
 
-> ## 20. Miss rate analysis for matrix multiply
+> ## 15. Miss rate analysis for matrix multiply
 >
 > - Assume:
 >   - Block size = 32B (big enough for four doubles)
@@ -391,7 +342,7 @@ keypoints:
 {: .slide}
 
 
-> ## 21. Layout of C arrays in memory
+> ## 16. Layout of C arrays in memory
 >
 > - C arrays allocated in row-major order
 >   - each row in contiguous memory locations
@@ -411,7 +362,7 @@ keypoints:
 {: .slide}
 
 
-> ## 22. Matrix multiplication
+> ## 17. Matrix multiplication
 >
 > - C arrays allocated in row-major order
 >
@@ -482,7 +433,7 @@ keypoints:
 {: .slide}
 
 
-> ## 23. The memory mountain
+> ## 18. The memory mountain
 >
 > - This is the cover of the book. 
 > - Y-axis: Read throughput (read bandwidth)
