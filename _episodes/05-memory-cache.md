@@ -37,7 +37,7 @@ keypoints:
 >   - DRAM (Dynamic RAM): transistor and capacitor
 >   - Both are volatile: memory goes away without power. 
 > 
->      | Transistor per bit | Access time | Need refresh  | Needs EDC  | Cost | Applications                  |
+> Type | Transistor per bit | Access time | Need refresh  | Needs EDC  | Cost | Applications                  |
 > -----| ------------------ | ----------- | ------------- | ---------- | ---- | ----------------------------- | 
 > SRAM | 6 or 8             | 1x          | No            | Maybe      | 100x | Cache memories                |
 > DRAM | 1                  | 10x         | Yes           | Yes        | 1x   | Main memories, frame buffers  |
