@@ -641,6 +641,8 @@ keypoints:
 >   - `mov $rbp, $rsp`
 >   - `pop $rbp`
 >   - `ret`
+> - Video lecture on the slide
+> <iframe width="560" height="315" src="https://www.youtube.com/embed/DwGreRQzvzI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 {: .slide}
 
 
@@ -650,6 +652,10 @@ keypoints:
 >
 > <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=mult.c"></script>
 >
+> - Description of C code:
+>
+> <iframe width="560" height="315" src="https://www.youtube.com/embed/R999iekcaUg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+> 
 > - Compile with `-g` flag and run `gdb` on the resulting executable.  
 >
 > ~~~
