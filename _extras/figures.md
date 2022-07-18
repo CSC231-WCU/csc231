@@ -33,7 +33,7 @@ title: Figures
           var article_here = document.getElementById(this.episode);
           var images = htmlDocArticle.getElementsByTagName("img");
 
-          if (images.length > 0) {
+          if (images.length 0) {
             var h1text = htmlDocArticle.getElementsByTagName("h1")[0].innerHTML;
 
             var htitle = document.createElement('h2');
@@ -45,7 +45,7 @@ title: Figures
               image_num++;
 
               var title = document.createElement('p');
-              title.innerHTML = "<strong>Figure " + image_num + ".</strong> " + image.alt;
+              title.innerHTML = "<strong>Figure " + image_num + ".</strong" + image.alt;
               article_here.appendChild(title);
 
               article_here.appendChild(image.cloneNode(false));
