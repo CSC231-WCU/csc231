@@ -1,6 +1,4 @@
----
-title: Working with GitHub
----
+# Working with GitHub
 
 Knowing version control systems is a critical skill for computer 
 scientists. There are several version control systems, and 

@@ -1,16 +1,4 @@
----
-title: "Memory hierarchy and cache memories"
-teaching: 0
-exercises: 0
-questions:
-- "What else is there besides RAM?"
-- "How different levels of the memory hierarchy can affect performance?"
-objectives:
-- "Know the different levels of the memory hierarchy."
-- "Understand performance differences in accessing different memory levels."
-keypoints:
-- "First key point. Brief Answer to questions. (FIXME)"
----
+# Memory hierarchy and cache memories
 
 ## 1. Memory abstraction: writing and reading memory
 >

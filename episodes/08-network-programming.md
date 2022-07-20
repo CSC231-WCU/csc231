@@ -1,14 +1,5 @@
----
-title: "Concurrent and parallel programming"
-teaching: 0
-exercises: 0
-questions:
-- "How do you get multiple computing cores to work together to improve performance and efficiency?"
-objectives:
-- "First learning objective. (FIXME)"
-keypoints:
-- "First key point. Brief Answer to questions. (FIXME)"
----
+# Network programming
+
 
 
 ## 1. In the beginning

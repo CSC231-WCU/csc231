@@ -1,6 +1,4 @@
----
-title: Setup
----
+# Setup
 
 - This semester, we will utilize the department server, `molly`, for all our in-class hands-on, 
 assignments, and lab activities. To connect to `molly`, we will use a mechanism called `Secure Shell`,

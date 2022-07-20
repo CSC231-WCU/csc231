@@ -1,17 +1,4 @@
----
-title: "Representing and manipulating information"
-teaching: 0
-exercises: 0
-questions:
-- "How do modern computers store and represent information?"
-objectives:
-- "Understand different basic bit representation, including two's complement and floating point 
-representation."
-- "Understand how bit representations are implemented programmatically in C."
-keypoints:
-- "Various information representation schemes are utilized to represent different data types given 
-the bit-size limitations."
----
+# Representing and manipulating information
 
 **Read chapter 2 of textbook.**
 

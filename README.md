@@ -1,12 +1,9 @@
 # FIXME Lesson title
 
-This repository generates the corresponding course website based on the original templates
-from [The Carpentries](https://carpentries.org/).
+This repository generates the corresponding course website based on [Jupyter Book](https://jupyterbook.org/en/stable/intro.html)
 
 ## Maintainer(s)
 
 * Linh B. Ngo
 
-## Authors
 
-A list of contributors to the lesson can be found in [AUTHORS](AUTHORS)

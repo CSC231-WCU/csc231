@@ -1,17 +1,6 @@
----
-title: "Introduction"
-teaching: 0
-exercises: 0
-questions:
-- "What is the big picture?"
-objectives:
-- "Know how hardware and software interact through (programming) interfaces."
-- "Know different types of systems programs."
-keypoints:
-- "Computer systems influence the performance and correctness of programs."
----
+# Introduction
 
-## 1. Overview     
+```{dropdown} 1. Overview     
  
  - **Systems** knowledge is power!
    - How hardware (processors, memories, disk drives, network infrastructure) plus
@@ -19,10 +8,9 @@ keypoints:
    to support the execution of application programs. 
    - How general-purpose software developers can best use these resources. 
    - A new specialization: systems programming. 
+```
 
-
-
-## 2. Understand how things work
+```{dropdown} 2. Understand how things work
 >
 - Why do I need to know this stuff?
   - Abstraction is good, but don’t forget reality
@@ -34,10 +22,10 @@ keypoints:
   - Need to understand details of underlying implementations
   - Sometimes the abstract interfaces don’t provide the level 
   of control or performance you need
+```
 
+```{dropdown}  3. Hands-on: Getting started
 
-## 3. Hands-on: Getting started
->
 Log into `molly` and run the following commands:
 
 - Create a directory called `csc231` in your home directory using
@@ -50,7 +38,6 @@ $ mkdir csc231
 $ cd csc231
 ~~~
 
->
 - Check that you are inside `csc231` using the `pwd` command.
 - Clone the Git repository for the class' examples. 
 
@@ -59,7 +46,7 @@ $ pwd
 $ git clone https://github.com/CSC231-WCU/examples.git
 ~~~
 
->
+
 - The `git clone` command will download the repository into a directory called 
 `examples` inside your current directory, which is `csc231`. 
 - Run the command `ls -l` to confirm that `examples` exists. 
@@ -72,7 +59,7 @@ $ cd examples
 $ ls -l
 ~~~
 
->
+
 - Change into the directory `01-intro`. 
 - Compile and run the example code `nums.c`. 
 
@@ -84,12 +71,11 @@ $ ./a.out
 
 
 <img src="../fig/01-intro/01.png" alt="Compile and run nums.c" style="height:500px">
+```
 
 
+```{dropdown} 4. Computer arithmetic
 
-
-## 4. Computer arithmetic
->
 - Does not generate random values
   - Arithmetic operations have important mathematical properties. 
 - Cannot assume all **usual** mathematical properties.
@@ -99,11 +85,11 @@ $ ./a.out
 - Observation
   - Need to understand which abstractions apply in which contexts. 
   - Important issues for compiler writers and application programmers. 
+```
 
 
+```{dropdown} 5. Assembly
 
-## 5. Assembly
->
 - You are more likely than not to never write programs in assembly. 
   - Compilers take care of this for you. 
 - Understand assembly is key to machine-level execution model. 
@@ -117,11 +103,11 @@ $ ./a.out
     - Operating systems must manage process state
   - Creating / fighting malware
     - x86 assembly is the language of choice!
+```
 
 
+```{dropdown} 6. Memory Matters
 
-## 6. Memory Matters
->
 - Random Access Memory is an unphysical abstraction.
 - Memory is not unbounded. 
   - It must be allocated and managed.
@@ -132,12 +118,12 @@ $ ./a.out
 - Memory performance is not uniform.
   - Cache and virtual memory effects can greatly affect program performance. 
   - Adapting program to characteristics of memory system can lead to major speed improvements
+```
 
 
 
+```{dropdown} 7. Hands-on: Memory referencing bug
 
-## 7. Hands-on: Memory referencing bug
->
 - We are still inside `examples\intro-01` directory from Hands-on 1.   
 >
 ~~~
@@ -147,12 +133,12 @@ $ ./a.out
 
 
 <img src="../fig/01-intro/02.png" alt="Compile and run mem1.c" style="height:250px">
+```
 
 
 
+```{dropdown} 8. Memory referencing errors
 
-## 8. Memory referencing errors
->
 - C and C++ do not provide any memory protection
   - Out of bounds array references
   - Invalid pointer values
@@ -166,11 +152,11 @@ $ ./a.out
   - Program in Java, Ruby, Python, ML, …
   - Understand what possible interactions may occur
   - Use or develop tools to detect referencing errors (e.g. Valgrind)
+```
 
 
+```{dropdown} 9. Beyond asymptotic complexity
 
-## 9. Beyond asymptotic complexity
->
 - Constant factors matter!
 - Exact op count does not predict performance.
   - Possible 10:1 performance range depending on how code written (given same op count).
@@ -179,13 +165,13 @@ $ ./a.out
   - How programs compiled and executed.
   - How to measure program performance and identify bottlenecks. 
   - How to improve performance without destroying code modularity and generality. 
+```
 
 
+```{dropdown} 10. Hands-on: Memory system performance
 
-## 10. Hands-on: Memory system performance
->
 - We are still inside `examples\intro-01` directory from Hands-on 1.  
->
+
 ~~~
 $ gcc mem2.c
 $ ./a.out
@@ -193,12 +179,12 @@ $ ./a.out
 
 
 <img src="../fig/01-intro/03.png" alt="Compile and run mem2.c" style="height:150px">
+```
 
 
 
+```{dropdown} 11. Does computer just execute arithmetic and control flow operations?
 
-## 11. Does computer just execute arithmetic and control flow operations?
->
 - They need to get data in and out
   - I/O system critical to program reliability and performance
 - They communicate with each other over networks
@@ -207,11 +193,11 @@ $ ./a.out
   - Coping with unreliable media
   - Cross platform compatibility
   - Complex performance issues
+```
 
 
+```{dropdown} 12. Layered Services
 
-## 12. Layered Services
->
 - Direct communication between applications and hardware components are impractical due
 to complexity. 
 - Operating systems provide much-needed interfaces between applications and hardware 
@@ -222,10 +208,7 @@ through:
   - are composed of multiple modules
   - are complex
   - meets specific requirements in aspects such as performance, security, or fault tolerance.
->
+
 <img src="../fig/01-intro/04.png" alt="Layered Service Design" style="height:300px">
->
-
-
-{% include links.md %}
+```
 

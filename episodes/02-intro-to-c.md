@@ -1,17 +1,4 @@
----
-title: "Introduction to C"
-teaching: 0
-exercises: 0
-questions:
-- "How to learn C, once you already not Java?"
-objectives:
-- "Know how to write and compile programs in C to a level similar to Java 
-(think at least CSC 142)?"
-keypoints:
-- "To learn a new language most efficiently, you are to rely on knowledge from 
-previously known languages."
----
-
+# Introduction to C
 
 ## 1. What is C?     
  

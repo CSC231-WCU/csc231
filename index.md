@@ -1,38 +1,29 @@
----
-layout: course
-root: .  # Is the only page that doesn't follow the pattern /:path/index.html
-permalink: index.html  # Is the only page that doesn't follow the pattern /:path/index.html
----
+# Syllabus
 
-## Instructor
 - **Instructor**: Linh B. Ngo
 - **Office**: UNA 138
-- **Office Hours**: 
-  - MWF 11:00AM - 12:00PM: Office/Zoom
-  - TR 11:00AM - 12:00PM: Zoom
-  - Office Zoom information will be posted in D2L course content. 
+- **Office Hours**: By appointment
 - **Email**: lngo AT wcupa DOT edu
 - **Phone**: 610-436-2595
-eq}
 
 ## West Chester University’s COVID-19 Classroom Protection Requirements
->
+
 We, as a community of educators and learners, should work together to create a culture that 
 protects our most precious resource: each other. As such, it is the expectation of all members of 
 the University community to continue to do their part to protect the health and safety of others. 
-In our classrooms where the university’s primary function is carried out, the following protocols are being implemented:
->
+In our classrooms where the university’s primary function is carried out, the following protocols 
+are being implemented:
+
 - Unless otherwise directed by the faculty member, students must wear a cloth or disposable face mask that 
 covers both the nose and mouth the entire time they are in class. 
   - Face shields and gaiters do not meet the university’s mask requirement.
 - Eating and drinking in the classroom are only permitted if they are medically necessary.
   - Please work with the Office of Services for Students with Disabilities to notify the 
   university and your professors of this necessity.
->
+
 We want you to succeed in this class, but we will have to ask you to leave if you do not follow 
 these guidelines, so please – make the most of this opportunity and help keep our campus safe.
->
-eq}
+
 
 ## Course Description
 In this course, we will learn fundamental concepts of modern computer systems. Unlike courses
@@ -43,54 +34,67 @@ networking, work. Throughout the course, we will learn to use assembler language
 to explore and observe specifically how computer systems interpret and execute programs. With
 the knowledge learned from this course, you will be able to build programs that are more efficient
 and have better performance.
->
-eq}
+
 
 ## Learning Objectives
-<table>
+
+```{dropdown} Grade Distributions
+
+| Course Level Student Learning Outcomes (SLO) | CS/ABET Program Outcomes | CS Program Objectives | Assessment |
+| -------------------------------------------- | ------------------------ | ----------------------| ---------- |
+| 35% | 5 Homework Sets |
+| 25% | 5 Labs |
+| 20% | 5 Quizzes |
+| 5%  | Midterm Exam |
+| 10% | Final Exam |
+|  5% | Participation |
+
+```
+
+<table border-spacing="0" border="1px solid black">
   <thead>
     <tr>
-      <thCourse Level Student Learning Outcomes (SLO) </th>
-      <thCS/ABET Program Outcomes </th>
-      <thCS Program Objectives </th>
-      <thAssessment </th   
+      <th> Course Level Student Learning Outcomes (SLO) </th>
+      <th> CS/ABET Program Outcomes </th>
+      <th> CS Program Objectives </th>
+      <th> Assessment </th>   
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td1. Be able to understand and manipulate the byte-representation of different data types (int, float, char …) </td>
-      <td rowspan="4"1. Analyze a complex computing problem and to apply principles of computing and other relevant disciplines to identify solutions (ABET 1). </td>
-      <td rowspan="7"1. Be able to apply theory, techniques, and methodologies to create and/or maintain high quality computing systems that function effectively and reliably in the emerging and future information infrastructure.</td>
-      <tdAssignment </td    
+      <td> 1. Be able to understand and manipulate the byte-representation of different data types (int, float, char …) </td>
+      <td rowspan="4">1. Analyze a complex computing problem and to apply principles of computing and other relevant disciplines to identify solutions (ABET 1). </td>
+      <td rowspan="7"> 1. Be able to apply theory, techniques, and methodologies to create and/or maintain high quality computing systems that function effectively and reliably in the emerging and future information infrastructure.</td>
+      <td> Assignment </td>    
     </tr>
     <tr>
-      <td2. Be able to understand simple segment of Assembler codes </td>
-      <tdAssignment, Quiz, Exam </td    
+      <td> 2. Be able to understand simple segment of Assembler codes </td>
+      <td> Assignment, Quiz, Exam </td>    
     </tr>
     <tr>
-      <td3. Be able to understand how processes are loaded into memory and memory placements of stack, heap, and code within the virtual memory </td>
-      <tdLab, Quiz, Exam </td>
+      <td> 3. Be able to understand how processes are loaded into memory and memory placements of stack, heap, and code within the virtual memory </td>
+      <td> Lab, Quiz, Exam </td>
     </tr>
     <tr>
-      <td4. Be able to understand the tradeoff in accessing data stored in various memory hierarchical levels </td>
-      <tdLab, Quiz, Exam </td>
+      <td> 4. Be able to understand the tradeoff in accessing data stored in various memory hierarchical levels </td>
+      <td> Lab, Quiz, Exam </td>
     </tr>
     <tr>
-      <td5. Be able to understand how simple network communication works within the Linux operating system </td>
-      <td rowspan="3"2. Design, implement, and evaluate a computing-based solution to meet a given set of computing requirements in the context of the program’s discipline (ABET 2).  </td>
-      <tdLab, Quiz, Exam </td>
+      <td> 5. Be able to understand how simple network communication works within the Linux operating system </td>
+      <td rowspan="3"> 2. Design, implement, and evaluate a computing-based solution to meet a given set of computing requirements in the context of the program’s discipline (ABET 2).  </td>
+      <td> Lab, Quiz, Exam </td>
     </tr>
     <tr>
-      <td6. Be able to understand how to perform various debugging and optimization techniques </td>
-      <tdLab, Exam </td>
+      <td> 6. Be able to understand how to perform various debugging and optimization techniques </td>
+      <td> Lab, Exam </td>
     </tr>
     <tr>
-      <td7. Be able to understand how layered service designs and API works from a systems programming perspective </td>
-      <tdLab, Exam </td>
+      <td> 7. Be able to understand how layered service designs and API works from a systems programming perspective </td>
+      <td> Lab, Exam </td>
     </tr>
   </tbody>
 </table>
->
+
 ### Certificate in Computer Security Program Outcomes
 1. Analyze and resolve security issues in network and computer systems to secure 
  an IT infrastructure
@@ -111,7 +115,7 @@ eq}
   - Networking Functions
   - Development environments
 - Security concerns in systems software
->
+
 ### Artifacts used to demonstrate Student Learning Outcomes:
 - Assignments: In writing and running programs and measuring execution performances, students will be assessed on SLO1.
   - Writing introductory C codes that demonstrate understanding of the language. 
@@ -128,20 +132,20 @@ in the Linux operating systems for their programs. In completing the labs, stude
 be assessed on SLO2.
 - Quiz and Exams: Multiple choice, code reading, and code correction. 
 
-
 ## Prerequisites
 - CSC 142: Computer Science II
-eq}
+- MAT 151: Discrete Mathematics
 
 ## Required Text (either print or e-book):
+
 **Computer Systems, A programmer's perspective** by Randal E. Bryant and David R. O'Hallaron (3rd Ed.). 
 This textbook is available via VitalSource/Integrated option on D2L. 
-eq}
+
 
 ## Evaluation Policy:
->
-### Grade Distributions
->
+
+```{dropdown} Grade Distributions
+
 | Percentage | Tasks |
 | ---------- | ----- |
 | 35% | 5 Homework Sets |
@@ -150,9 +154,11 @@ eq}
 | 5%  | Midterm Exam |
 | 10% | Final Exam |
 |  5% | Participation |
->
-### Grade Scale:
->
+
+```
+
+```{dropdown} Grade Scale
+
 | Numeric | Letter |
 | ---------- | ----- |
 | 100-93 |	A |
@@ -167,16 +173,19 @@ eq}
 | 66-63	| D |
 | 62-60	| D- |
 | <= 59	| F |
->
-### Lateness Policy:
+
+```
+
+
+```{dropdown} Lateness Policy:
 Assignments that are late are assessed a 10% per day late penalty.
 Saturday and Sunday are each days.
+```
 
 
+## General Policy
 
-## Policy
->
-### University Sanctioned Events Policy:
+```{dropdown} University Sanctioned Events Policy
 Students participating in participating in University sanctioned events such
 as, but not limited to, the Marching Band, musical ensembles, theatre group,
 athletic events, forensics competition, etc., will be granted an excused
@@ -188,7 +197,7 @@ examination or quiz that will be missed. Students must submit original
 documentation on University letterhead signed by the activity director, coach,
 or adviser detailing the specifics of the event in advance. Specific
 requirements include:
->
+
 1. Responsibility for meeting academic requirements rests with the student.
 2. Students are expected to notify their professors as soon as they know they
 will be missing class due to a University sanctioned event.
@@ -198,21 +207,23 @@ other arrangements are made with myself.
 4. If a scheduled event is postponed or canceled, the student is expected to
 go to class.
 5. Students are not excused from classes for practice on nonevent days.
->
+
 The following are specifics for the student athlete:
 1. The student athlete is expected, where possible, to schedule classes on
 days and at hours that do not conflict with athletic schedules.
 2. Athletes are not excused from classes for practice or training-room
 treatment on nongame days.
->
-### Email Policy:
+```
+
+```{dropdown} Email Policy
+
 It is expected that faculty, staff, and students activate and maintain regular
 access to University provided e-mail accounts. Official university
 communications, including those from your instructor, will be sent through your
 university e-mail account. You are responsible for accessing that mail to be
 sure to obtain official University communications. Failure to access will not
 exempt individuals from the responsibilities associated with this course.
->
+
 Please abide by the following email etiquette policies to ensure clear
 communication:
 - **Subject Line**:	Please include a descriptive and specific subject heading for
@@ -232,8 +243,9 @@ please be advised to appropriately link the email that you wish to use with
 myWCU and D2L; I will be using those services to send out emails to the
 entire class. It is your responsibility to make sure this is configured
 correctly so that you receive my emails.
->
-### Computer Science Department Dishonesty Policy:
+```
+
+```{dropdown} Computer Science Department Dishonesty Policy:
 The Computer Science Committee has adopted the following policies in regard
 to academic dishonesty in Computer Science classes:
 1. A student found to be academically dishonest in an assignment will receive
@@ -264,16 +276,20 @@ information, written, electronic, or oral; or of altering or falsifying
 official institutional records. Plagiarism is defined as copying another's
 work or portion thereof and/or using ideas and concepts of another and
 presenting them as one's own without giving proper credit to the source.”**
->
-### No-Grade, Violation of Academic Integrity, and Violation of Student Code of Conduct Policy:
+```
+
+
+```{dropdown} No-Grade, Violation of Academic Integrity, and Violation of Student Code of Conduct Policy:
 For questions regarding Academic Dishonesty, the No-Grade policy, Sexual
 Harassment, or the Student Code of Conduct, students are encouraged to refer
 to their major department’s handbook, the Undergraduate Course Catalogue, the
 Rams Eye View, or the University Web Site. Please understand that improper
 conduct in any of these areas will not be tolerated and may result in
 immediate ejections from the class.
->
-### ADA Policy:
+```
+
+
+```{dropdown} ADA Policy:
 If you have a disability that requires accommodations under the Americans
 with Disabilities Act (ADA), please present your letter of accommodations
 and meet with me as soon as possible so that I can support your success in
@@ -282,10 +298,10 @@ would like to know more about West Chester University’s Services for Students
 with Disabilities (OSSD), please contact the OSSD which is located at 223
 Lawrence Center. The OSSD hours of Operation are
 Monday – Friday 8:30 a.m. – 4:30 p.m. Their phone number is 610-436-2564,
-fax number is 610-436-2600, and their email address is [ossd@wcupa.edu](ossd@wcupa.edu).
+fax number is 610-436-2600, and their email address is [ossd@wcupa.edu](mailto:ossd@wcupa.edu).
 More information can be found at
 the [OSSD website](http://www.wcupa.edu/ussss/ossd).
->
+
 In an effort to assist students who either receive or may believe they are 
 entitled to receive accommodations under the Americans with Disabilities Act 
 and Section 504 of the Rehabilitation Act of 1973, the University has appointed 
@@ -295,8 +311,9 @@ will assist any student who may have questions regarding these rights. The Direc
 for Equity and Compliance/Title IX Coordinator has been designated in this role. 
 Students who need assistance with their rights to accommodations should contact 
 them at 610-436-2433.
->
-### Reporting Incidents of Sexual Violence:
+```
+
+```{dropdown} Reporting Incidents of Sexual Violence:
 West Chester University and its faculty are committed to assuring a safe and 
 productive educational environment for all students. In order to comply with the 
 requirements of Title IX of the Education Amendments of 1972 and the University’s 
@@ -311,9 +328,10 @@ who was, or is, a child (a person under 18 years of age) when the abuse allegedl
 to the person designated in the University Protection of Minors Policy. Information 
 regarding the reporting of sexual violence and the resources that are available to victims 
 of sexual violence is set forth at: https://www.wcupa.edu/_admin/diversityEquityInclusion/sexualMisconduct/default.aspx
->
->
-### Inclusive learning environment and anti-racist statement
+```
+
+
+```{dropdown} Inclusive learning environment and anti-racist statement
 Diversity, equity, and inclusion are central to West Chester University’s mission 
 as reflected in our [Mission Statement, Values Statement, Vision Statement](https://www.wcupa.edu/president/missionStatement.aspx), and [Strategic 
 Plan: Pathways to Student Success](https://www.wcupa.edu/president/strategicPlan/default.aspx). 
@@ -322,7 +340,7 @@ threaten, or degrade historically marginalized groups in the U.S. We acknowledge
 members of this learning community may experience harm stemming from forms of oppression 
 including but not limited to classism, ableism, heterosexism, sexism, Islamophobia, anti-Semitism, 
 and xenophobia, and recognize that these forms of oppression are compounded by racism. 
->
+
 Our core commitment as an institution of higher education shapes our expectation for behavior 
 within this learning community, which represents diverse individual beliefs, backgrounds, 
 and experiences. Courteous and respectful behavior, interactions, and responses are expected 
@@ -331,23 +349,24 @@ learning environment for everyone. Part of this work is recognizing how race and
 who we are shape our beliefs and our experiences as individuals. It is not enough to condemn acts 
 of racism. For real, sustainable change, we must stand together as a diverse coalition against racism 
 and oppression of any form, anywhere, at any time. 
->
+
 Resources for education and action are available through WCU’s [Office for Diversity, Equity, 
 and Inclusion (ODEI)](https://www.wcupa.edu/_admin/diversityEquityInclusion/changeBeginsHere.aspx), 
 DEI committees within departments or colleges, the student [ombudsperson](https://www.wcupa.edu/_services/STU/studentOmbuds/), and 
 centers on campus committed to doing this work (e.g., [Dowdy Multicultural Center](https://www.wcupa.edu/_services/multicultural/), 
 [Center for Women and Gender Equity](https://www.wcupa.edu/_services/stu.wce/), 
 and the [Center for Trans and Queer Advocacy](https://www.wcupa.edu/_services/transAndQueer/)). 
->
+
 Guidance on how to report incidents of discrimination and harassment is available at the University’s 
 [Office of Diversity, Equity and Inclusion](https://www.wcupa.edu/_admin/diversityEquityInclusion/).
->
+```
 
-### Emergency Preparedness:
+
+```{dropdown} Emergency Preparedness:
 All students are encouraged to sign up for the University’s free WCU ALERT service, which delivers 
 official WCU emergency text messages directly to your cell phone.  For more information, visit www.wcupa.edu/wcualert. 
 To report an emergency, call the Department of Public Safety at 610-436-3311.
-
+```
 
 ```{tableofcontents}
 ```

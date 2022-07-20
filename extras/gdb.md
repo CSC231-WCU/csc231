@@ -1,6 +1,4 @@
----
-title: "GDB Debugger"
----
+# GDB Debugger
 
 ## 1. In a nutshell
 
