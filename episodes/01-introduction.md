@@ -11,7 +11,7 @@
 ```
 
 ```{dropdown} 2. Understand how things work
->
+
 - Why do I need to know this stuff?
   - Abstraction is good, but don’t forget reality
 - Most CS courses emphasize abstraction
@@ -69,8 +69,13 @@ $ gcc -Wno-overflow nums.c
 $ ./a.out
 ~~~
 
+:::{image} ../fig/01-intro/01.png
+:alt: Compile and run nums.c
+:class: bg-primary mb-1
+:height: 500px
+:align: center
+:::
 
-<img src="../fig/01-intro/01.png" alt="Compile and run nums.c" style="height:500px">
 ```
 
 
@@ -108,7 +113,7 @@ $ ./a.out
 
 ```{dropdown} 6. Memory Matters
 
-- Random Access Memory is an unphysical abstraction.
+- Random Access Memory is an un-physical abstraction.
 - Memory is not unbounded. 
   - It must be allocated and managed.
   - Many applications are memory dominated. 
@@ -131,8 +136,13 @@ $ gcc mem1.c
 $ ./a.out
 ~~~
 
+:::{image} ../fig/01-intro/02.png
+:alt: Compile and run mem1.c
+:class: bg-primary mb-1
+:height: 250px
+:align: center
+:::
 
-<img src="../fig/01-intro/02.png" alt="Compile and run mem1.c" style="height:250px">
 ```
 
 
@@ -142,7 +152,7 @@ $ ./a.out
 - C and C++ do not provide any memory protection
   - Out of bounds array references
   - Invalid pointer values
-  - Abuses of `malloc`/`free`
+  - Abuses of `malloc` and `free`
 - Can lead to nasty bugs
   - Whether or not bug has any effect depends on system and compiler
   - Action at a distance
@@ -177,8 +187,13 @@ $ gcc mem2.c
 $ ./a.out
 ~~~
 
+:::{image} ../fig/01-intro/03.png
+:alt: Compile and run mem2.c
+:class: bg-primary mb-1
+:height: 100px
+:align: center
+:::
 
-<img src="../fig/01-intro/03.png" alt="Compile and run mem2.c" style="height:150px">
 ```
 
 
@@ -209,6 +224,12 @@ through:
   - are complex
   - meets specific requirements in aspects such as performance, security, or fault tolerance.
 
-<img src="../fig/01-intro/04.png" alt="Layered Service Design" style="height:300px">
+:::{image} ../fig/01-intro/04.png
+:alt: Layered service design.c
+:class: bg-primary mb-1
+:height: 300px
+:align: center
+:::
+
 ```
 

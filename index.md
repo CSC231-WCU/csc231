@@ -38,62 +38,9 @@ and have better performance.
 
 ## Learning Objectives
 
-```{dropdown} Grade Distributions
+<div class="mxgraph" style="max-width:100%;border:1px solid transparent;" data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;resize&quot;:true,&quot;toolbar&quot;:&quot;zoom layers tags lightbox&quot;,&quot;edit&quot;:&quot;_blank&quot;,&quot;xml&quot;:&quot;&lt;mxfile host=\&quot;app.diagrams.net\&quot; modified=\&quot;2022-07-28T14:08:05.476Z\&quot; agent=\&quot;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36\&quot; etag=\&quot;TUXR7PPjeGorSSO3kaNW\&quot; version=\&quot;17.4.0\&quot; type=\&quot;google\&quot;&gt;&lt;diagram id=\&quot;tF2_7snelHO0TNMzFAr5\&quot; name=\&quot;Page-1\&quot;&gt;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&lt;/diagram&gt;&lt;/mxfile&gt;&quot;}"></div>
+<script type="text/javascript" src="https://viewer.diagrams.net/js/viewer-static.min.js"></script>
 
-| Course Level Student Learning Outcomes (SLO) | CS/ABET Program Outcomes | CS Program Objectives | Assessment |
-| -------------------------------------------- | ------------------------ | ----------------------| ---------- |
-| 35% | 5 Homework Sets |
-| 25% | 5 Labs |
-| 20% | 5 Quizzes |
-| 5%  | Midterm Exam |
-| 10% | Final Exam |
-|  5% | Participation |
-
-```
-
-<table border-spacing="0" border="1px solid black">
-  <thead>
-    <tr>
-      <th> Course Level Student Learning Outcomes (SLO) </th>
-      <th> CS/ABET Program Outcomes </th>
-      <th> CS Program Objectives </th>
-      <th> Assessment </th>   
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td> 1. Be able to understand and manipulate the byte-representation of different data types (int, float, char …) </td>
-      <td rowspan="4">1. Analyze a complex computing problem and to apply principles of computing and other relevant disciplines to identify solutions (ABET 1). </td>
-      <td rowspan="7"> 1. Be able to apply theory, techniques, and methodologies to create and/or maintain high quality computing systems that function effectively and reliably in the emerging and future information infrastructure.</td>
-      <td> Assignment </td>    
-    </tr>
-    <tr>
-      <td> 2. Be able to understand simple segment of Assembler codes </td>
-      <td> Assignment, Quiz, Exam </td>    
-    </tr>
-    <tr>
-      <td> 3. Be able to understand how processes are loaded into memory and memory placements of stack, heap, and code within the virtual memory </td>
-      <td> Lab, Quiz, Exam </td>
-    </tr>
-    <tr>
-      <td> 4. Be able to understand the tradeoff in accessing data stored in various memory hierarchical levels </td>
-      <td> Lab, Quiz, Exam </td>
-    </tr>
-    <tr>
-      <td> 5. Be able to understand how simple network communication works within the Linux operating system </td>
-      <td rowspan="3"> 2. Design, implement, and evaluate a computing-based solution to meet a given set of computing requirements in the context of the program’s discipline (ABET 2).  </td>
-      <td> Lab, Quiz, Exam </td>
-    </tr>
-    <tr>
-      <td> 6. Be able to understand how to perform various debugging and optimization techniques </td>
-      <td> Lab, Exam </td>
-    </tr>
-    <tr>
-      <td> 7. Be able to understand how layered service designs and API works from a systems programming perspective </td>
-      <td> Lab, Exam </td>
-    </tr>
-  </tbody>
-</table>
 
 ### Certificate in Computer Security Program Outcomes
 1. Analyze and resolve security issues in network and computer systems to secure 
