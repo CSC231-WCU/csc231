@@ -1,5 +1,4 @@
 # Table of contents
-# Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
 root: index
@@ -13,10 +12,10 @@ parts:
     - file: episodes/04-machine-language.md
     - file: episodes/05-memory-cache.md
     - file: episodes/06-optimizing-program-performance.md
-    - file: episodes/07-concurrent-parallel.md
-    - file: episodes/08-network-programming.md
+    - file: episodes/07-network-programming.md
 - caption: Appendix
   chapters:
     - file: extras/setup.md
+    - file: extras/intro-linux.md
     - file: extras/gdb.md
     - file: extras/github.md
