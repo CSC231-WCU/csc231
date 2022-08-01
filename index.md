@@ -2,7 +2,10 @@
 
 - **Instructor**: Linh B. Ngo
 - **Office**: UNA 138
-- **Office Hours**: By appointment
+- **Office Hours**:
+  - MWF 8:00AM-9:00AM (in-person and online)
+  - TR 11:00AM-12:00PM (online)
+  - Online Zoom link is posted in D2L's announcement page
 - **Email**: lngo AT wcupa DOT edu
 - **Phone**: 610-436-2595
 
