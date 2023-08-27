@@ -1,0 +1,1103 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Memory hierarchy and cache memories &#8212; Computer Systems</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Code optimization" href="09-code-optimization.html" />
+    <link rel="prev" title="Machine language" href="07-machine-language.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-C91ED1K883"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-C91ED1K883');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Computer Systems</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    CSC 231: Computer Systems
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lectures
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-introduction.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-intro-to-c.html">
+   Introduction to C
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-gate-circuit.html">
+   Computer architecture
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-data-representation.html">
+   Representing and manipulating information
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-more-c.html">
+   Even more C
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-architecture.html">
+   Computer architecture
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-machine-language.html">
+   Machine language
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Memory hierarchy and cache memories
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-code-optimization.html">
+   Code optimization
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/episodes/08-memory-cache.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#memory-abstraction-writing-and-reading-memory">
+   1. Memory abstraction: writing and reading memory
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-cpu-memory-gap">
+   2. The CPU-Memory gap
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#memory-hierarchies">
+   3. Memory hierarchies
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#caching">
+   4. Caching
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#write-cache-friendly-code">
+   5. Write cache friendly code
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Memory hierarchy and cache memories</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#memory-abstraction-writing-and-reading-memory">
+   1. Memory abstraction: writing and reading memory
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-cpu-memory-gap">
+   2. The CPU-Memory gap
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#memory-hierarchies">
+   3. Memory hierarchies
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#caching">
+   4. Caching
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#write-cache-friendly-code">
+   5. Write cache friendly code
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="memory-hierarchy-and-cache-memories">
+<h1>Memory hierarchy and cache memories<a class="headerlink" href="#memory-hierarchy-and-cache-memories" title="Permalink to this headline">#</a></h1>
+<div class="tip admonition">
+<p class="admonition-title">Relevant Reading</p>
+<p>This lecture will cover contents from <a class="reference external" href="https://diveintosystems.org/book/C11-MemHierarchy/index.html">Chapter 11</a> of the book.</p>
+</div>
+<section id="memory-abstraction-writing-and-reading-memory">
+<h2>1. Memory abstraction: writing and reading memory<a class="headerlink" href="#memory-abstraction-writing-and-reading-memory" title="Permalink to this headline">#</a></h2>
+<div class="dropdown admonition">
+<p class="admonition-title">Overview</p>
+<ul class="simple">
+<li><p>Write:</p>
+<ul>
+<li><p>Transfer data from CPU to memory: <code class="docutils literal notranslate"><span class="pre">movq</span> <span class="pre">8(%rsp),</span> <span class="pre">%rax</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Store</span></code> operation</p></li>
+</ul>
+</li>
+<li><p>Read:</p>
+<ul>
+<li><p>Trasnfer data from memory to CPU: <code class="docutils literal notranslate"><span class="pre">movq</span> <span class="pre">%rax,</span> <span class="pre">8(%rbp)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Load</span></code> operation</p></li>
+</ul>
+</li>
+<li><p>Physical representation of this abstraction:</p></li>
+</ul>
+<p><img alt="" src="../fig/05-memory/01.png" /></p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Random-Access Memory (RAM)</p>
+<ul class="simple">
+<li><p>Key features:</p>
+<ul>
+<li><p>RAM is traditionally packaged as a chip, or embedded as part of processor chip</p></li>
+<li><p>Basic storage unit is normally a cell (one bit per cell).</p></li>
+<li><p>Multiple RAM chips form a memory.</p></li>
+</ul>
+</li>
+<li><p>RAM comes in two varieties:</p>
+<ul>
+<li><p>SRAM (Static RAM): transistors only</p></li>
+<li><p>DRAM (Dynamic RAM): transistor and capacitor</p></li>
+<li><p>Both are volatile: memory goes away without power.</p></li>
+</ul>
+</li>
+</ul>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="fb75d1c0-e46f-4185-ada6-02af41af8e16" name="12bd92b0-0446-479d-ac63-03f5d2f98bf9" type="radio">
+</input><label class="sd-tab-label" for="fb75d1c0-e46f-4185-ada6-02af41af8e16">
+SRAM/DRAM</label><div class="sd-tab-content docutils">
+<table class="table">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p>SRAM</p></th>
+<th class="head"><p>DRAM</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Transitor per bit</p></td>
+<td><p>6 or 8</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Access time</p></td>
+<td><p>1x</p></td>
+<td><p>10x</p></td>
+</tr>
+<tr class="row-even"><td><p>Need refressh</p></td>
+<td><p>No</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Need EDC</p></td>
+<td><p>Maybe</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-even"><td><p>Cost</p></td>
+<td><p>100x</p></td>
+<td><p>1x</p></td>
+</tr>
+<tr class="row-odd"><td><p>Applications</p></td>
+<td><p>Cache memories</p></td>
+<td><p>Main memories, frame buffers</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><em>EDC: Error Detection and Correction</em></p>
+<ul class="simple">
+<li><p>Trends:</p>
+<ul>
+<li><p>SRAM scales with semiconductor technology</p>
+<ul>
+<li><p>Reaching its limits</p></li>
+</ul>
+</li>
+<li><p>DRAM scaling limited by need for minimum capacitance</p>
+<ul>
+<li><p>Aspect ratio limits how deep can make capacitor</p></li>
+<li><p>Also reaching its limits</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Enhanced DRAMs</p>
+<ul class="simple">
+<li><p>Operation of DRAM cell has not changed since its invention</p>
+<ul>
+<li><p>Commercialized by Intel in 1970.</p></li>
+</ul>
+</li>
+<li><p>DRAM cores with better interface logic and faster I/O :</p>
+<ul>
+<li><p>Synchronous DRAM (SDRAM)</p>
+<ul>
+<li><p>Uses a conventional clock signal instead of asynchronous control</p></li>
+</ul>
+</li>
+<li><p>Double data-rate synchronous DRAM (DDR SDRAM)</p>
+<ul>
+<li><p>Double edge clocking sends two bits per cycle per pin</p></li>
+<li><p>Different types distinguished by size of small prefetch buffer:</p>
+<ul>
+<li><p>DDR (2 bits), DDR2 (4 bits), DDR3 (8 bits), DDR4 (16 bits)</p></li>
+</ul>
+</li>
+<li><p>By 2010, standard for most server and desktop systems</p></li>
+</ul>
+</li>
+<li><p>Intel Core i7 supports DDR3 and DDR4 SDRAM</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="the-cpu-memory-gap">
+<h2>2. The CPU-Memory gap<a class="headerlink" href="#the-cpu-memory-gap" title="Permalink to this headline">#</a></h2>
+<div class="dropdown admonition">
+<p class="admonition-title">Locality</p>
+<p><img alt="CPU memory gap" src="../fig/05-memory/02.png" /></p>
+<ul class="simple">
+<li><p>The key to bridging this gap is a fundamental property of computer programs known as <strong>locality</strong>:</p>
+<ul>
+<li><p>Principle of Locality: Programs tend to use data and instructions with addresses near or equal
+to those they have used recently</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Temporal</span> <span class="pre">locality</span></code>:  Recently referenced items are likely to be referenced again in the near future</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Spatial</span> <span class="pre">locality</span></code>:  Items with nearby addresses tend to be referenced close together in time</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"></span>
+<span class="k">return</span><span class="w"> </span><span class="n">sum</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Data references</p>
+<ul>
+<li><p>Reference array elements in succession (stride-1 reference pattern): <code class="docutils literal notranslate"><span class="pre">spatial</span></code></p></li>
+<li><p>Reference variable <code class="docutils literal notranslate"><span class="pre">sum</span></code> each iteration: <code class="docutils literal notranslate"><span class="pre">temporal</span></code></p></li>
+</ul>
+</li>
+<li><p>Instruction references</p>
+<ul>
+<li><p>Reference instructions in sequence: <code class="docutils literal notranslate"><span class="pre">spatial</span></code></p></li>
+<li><p>Cycle through loop repeatedly: <code class="docutils literal notranslate"><span class="pre">temporal</span></code></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Qualitative estimates of locality</p>
+<ul class="simple">
+<li><p>Being able to look at code and get a qualitative sense of its locality is among the
+key skills for a professional programmer.</p></li>
+<li><p>Example: array layout in memory is row-major order</p></li>
+</ul>
+<p><img alt="Array layout in memory" src="../fig/05-memory/03.png" /></p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="c2fa2480-70dc-4903-b7b5-b6dc67514ad7" name="db21186e-84fc-4dd8-a18a-77d35a53eba0" type="radio">
+</input><label class="sd-tab-label" for="c2fa2480-70dc-4903-b7b5-b6dc67514ad7">
+Exercise 1</label><div class="sd-tab-content docutils">
+<p>Does this function have good locality with respect to array <code class="docutils literal notranslate"><span class="pre">a</span></code>?</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">sum_array_rows</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">M</span><span class="p">][</span><span class="n">N</span><span class="p">])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">M</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">sum</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Answer</p>
+<p>Yes</p>
+</div>
+</div>
+<input id="9b762acb-7edd-4c11-a900-c3ae59118404" name="db21186e-84fc-4dd8-a18a-77d35a53eba0" type="radio">
+</input><label class="sd-tab-label" for="9b762acb-7edd-4c11-a900-c3ae59118404">
+Exercise 2</label><div class="sd-tab-content docutils">
+<p>Does this function have good locality with respect to array <code class="docutils literal notranslate"><span class="pre">a</span></code>?</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">sum_array_rows</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">M</span><span class="p">][</span><span class="n">N</span><span class="p">])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">M</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">sum</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Answer</p>
+<p>Yes</p>
+</div>
+</div>
+</div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Hands-on: performance measurement of locality</p>
+<ul class="simple">
+<li><p>In your home directory, create a directory called <code class="docutils literal notranslate"><span class="pre">05-memory</span></code> and change into this
+directory.</p></li>
+<li><p>Create a file named <code class="docutils literal notranslate"><span class="pre">sum.c</span></code> with the following contents:</p></li>
+</ul>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=sum.c"></script>
+<ul class="simple">
+<li><p>Compile and run several times.</p></li>
+<li><p>Observe the performance difference.</p></li>
+</ul>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="439bb4e8-0ad9-4a00-9498-e5715b8b72b8" name="35bfe84b-142f-46c0-a4ae-ff71c2261fda" type="radio">
+</input><label class="sd-tab-label" for="439bb4e8-0ad9-4a00-9498-e5715b8b72b8">
+Compile and run</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ gcc -Og -o sum sum.c
+$ ./sum
+$ ./sum
+$ ./sum
+$ ./sum
+</pre></div>
+</div>
+</div>
+<input id="3738f470-3f65-4c83-88bb-f658535877a4" name="35bfe84b-142f-46c0-a4ae-ff71c2261fda" type="radio">
+</input><label class="sd-tab-label" for="3738f470-3f65-4c83-88bb-f658535877a4">
+Result</label><div class="sd-tab-content docutils">
+<p><img alt="Differences in performance due to access pattern" src="../fig/05-memory/04.png" /></p>
+</div>
+</div>
+</div>
+</section>
+<section id="memory-hierarchies">
+<h2>3. Memory hierarchies<a class="headerlink" href="#memory-hierarchies" title="Permalink to this headline">#</a></h2>
+<div class="dropdown admonition">
+<p class="admonition-title">Overview</p>
+<ul class="simple">
+<li><p>Some fundamental and enduring properties of hardware and software:</p>
+<ul>
+<li><p>Fast storage technologies cost more per byte, have less capacity,
+and require more power (heat!).</p></li>
+<li><p>The gap between CPU and main memory speed is widening.</p></li>
+<li><p>Well-written programs tend to exhibit good locality.</p></li>
+</ul>
+</li>
+<li><p>These fundamental properties complement each other beautifully.</p></li>
+<li><p>They suggest an approach for organizing memory and storage systems
+known as a memory hierarchy.</p></li>
+</ul>
+<p><img alt="Memory hierarchy" src="../fig/05-memory/05.png" /></p>
+</div>
+</section>
+<section id="caching">
+<h2>4. Caching<a class="headerlink" href="#caching" title="Permalink to this headline">#</a></h2>
+<div class="dropdown admonition">
+<p class="admonition-title">Overview</p>
+<ul class="simple">
+<li><p>Cache: A smaller, faster storage device that acts as a staging area for a subset of the data in a larger,
+slower device.</p></li>
+<li><p>Fundamental idea of a memory hierarchy:</p>
+<ul>
+<li><p>For each <code class="docutils literal notranslate"><span class="pre">k</span></code>, the faster, smaller device at level <code class="docutils literal notranslate"><span class="pre">k</span></code> serves as a cache for the larger,
+slower device at level <code class="docutils literal notranslate"><span class="pre">k+1</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Why do memory hierarchies work?</p>
+<ul>
+<li><p>Because of locality, programs tend to access the data at level <code class="docutils literal notranslate"><span class="pre">k</span></code> more often than they access the
+data at level <code class="docutils literal notranslate"><span class="pre">k+1</span></code>.</p></li>
+<li><p>Thus, the storage at level k+1 can be slower, and thus larger and cheaper per bit.</p></li>
+</ul>
+</li>
+<li><p>Big Idea (Ideal):  The memory hierarchy creates a large pool
+of storage that costs as much as the cheap
+storage near the bottom, but that serves data to programs at the rate of the fast storage near the top.</p></li>
+</ul>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">General concepts</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="b1db6be8-4b00-4802-b103-70c68502d866" name="a3de9706-d746-4232-88ce-f0e1dc3e8f22" type="radio">
+</input><label class="sd-tab-label" for="b1db6be8-4b00-4802-b103-70c68502d866">
+Cache</label><div class="sd-tab-content docutils">
+<p><img alt="Cache concepts" src="../fig/05-memory/06.png" /></p>
+</div>
+<input id="32ae90b0-83bc-4404-838c-e8d8235af06e" name="a3de9706-d746-4232-88ce-f0e1dc3e8f22" type="radio">
+</input><label class="sd-tab-label" for="32ae90b0-83bc-4404-838c-e8d8235af06e">
+Cache hits</label><div class="sd-tab-content docutils">
+<p><img alt="Cache hits" src="../fig/05-memory/07.png" /></p>
+</div>
+<input id="f509d228-9833-43be-9b3f-e7d4cb82105e" name="a3de9706-d746-4232-88ce-f0e1dc3e8f22" type="radio">
+</input><label class="sd-tab-label" for="f509d228-9833-43be-9b3f-e7d4cb82105e">
+Cache misses</label><div class="sd-tab-content docutils">
+<p><img alt="Cache misses" src="../fig/05-memory/08.png" /></p>
+<ul class="simple">
+<li><p>Cold (compulsory) miss</p>
+<ul>
+<li><p>Cold misses occur because the cache starts empty and this is the first reference to the block.</p></li>
+</ul>
+</li>
+<li><p>Capacity miss</p>
+<ul>
+<li><p>Occurs when the set of active cache blocks (working set) is larger than the cache.</p></li>
+</ul>
+</li>
+<li><p>Conflict miss</p>
+<ul>
+<li><p>Most caches limit blocks at level <code class="docutils literal notranslate"><span class="pre">k+1</span></code> to a small subset (sometimes a singleton) of the
+block positions at level <code class="docutils literal notranslate"><span class="pre">k</span></code>.</p>
+<ul>
+<li><p>E.g. Block i at level <code class="docutils literal notranslate"><span class="pre">k+1</span></code> must be placed in block (<code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">mod</span> <span class="pre">4</span></code>) at level <code class="docutils literal notranslate"><span class="pre">k</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Conflict misses occur when the level <code class="docutils literal notranslate"><span class="pre">k</span></code> cache is large enough, but multiple data objects all map
+to the same level <code class="docutils literal notranslate"><span class="pre">k</span></code> block.</p>
+<ul>
+<li><p>E.g. Referencing blocks 0, 8, 0, 8, 0, 8, … would miss every time.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<input id="fb369cff-6424-49eb-a673-94ce71fb3708" name="a3de9706-d746-4232-88ce-f0e1dc3e8f22" type="radio">
+</input><label class="sd-tab-label" for="fb369cff-6424-49eb-a673-94ce71fb3708">
+Cache types</label><div class="sd-tab-content docutils">
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Cache Type</p></th>
+<th class="head"><p>What is cached</p></th>
+<th class="head"><p>Where is it cached</p></th>
+<th class="head"><p>Latency (cycles)</p></th>
+<th class="head"><p>Managed By</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Register</p></td>
+<td><p>4-6 byte words</p></td>
+<td><p>CPU core</p></td>
+<td><p>0</p></td>
+<td><p>Compiler</p></td>
+</tr>
+<tr class="row-odd"><td><p>TLB</p></td>
+<td><p>Address translations</p></td>
+<td><p>On-chip TLB</p></td>
+<td><p>0</p></td>
+<td><p>Hardware MMU</p></td>
+</tr>
+<tr class="row-even"><td><p>L1 cache</p></td>
+<td><p>64-byte blocks</p></td>
+<td><p>On-chip L1</p></td>
+<td><p>4</p></td>
+<td><p>Hardware</p></td>
+</tr>
+<tr class="row-odd"><td><p>L2 cache</p></td>
+<td><p>64-byte blocks</p></td>
+<td><p>On-chip L2</p></td>
+<td><p>10</p></td>
+<td><p>Hardware</p></td>
+</tr>
+<tr class="row-even"><td><p>Virtual memory</p></td>
+<td><p>4-KB pages</p></td>
+<td><p>Main memory</p></td>
+<td><p>100</p></td>
+<td><p>Hardware + OS</p></td>
+</tr>
+<tr class="row-odd"><td><p>Buffer cache</p></td>
+<td><p>Part of files</p></td>
+<td><p>Main memory</p></td>
+<td><p>100</p></td>
+<td><p>OS</p></td>
+</tr>
+<tr class="row-even"><td><p>Disk cache</p></td>
+<td><p>Disk sectors</p></td>
+<td><p>Disk controller</p></td>
+<td><p>100,000</p></td>
+<td><p>Disk firmware</p></td>
+</tr>
+<tr class="row-odd"><td><p>Network buffer cache</p></td>
+<td><p>Part of files</p></td>
+<td><p>Local disk</p></td>
+<td><p>10,000,000</p></td>
+<td><p>NFS client</p></td>
+</tr>
+<tr class="row-even"><td><p>Browser cache</p></td>
+<td><p>Web pages</p></td>
+<td><p>Local disk</p></td>
+<td><p>10,000,000</p></td>
+<td><p>Web browser</p></td>
+</tr>
+<tr class="row-odd"><td><p>Web cache</p></td>
+<td><p>Web pages</p></td>
+<td><p>Remote server disks</p></td>
+<td><p>1,000,000,000</p></td>
+<td><p>Web proxy server</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Cache memories</p>
+<ul class="simple">
+<li><p>Small, fast SRAM-based memories managed automatically in hardware.</p></li>
+<li><p>Hold frequently accessed blocks of main memory.</p></li>
+<li><p>CPU looks first for data in cache.</p></li>
+</ul>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="f153ba5c-6057-4d65-8ce4-6e92443b464b" name="2f2ef990-d5ce-4782-b3c3-51ae329bc187" type="radio">
+</input><label class="sd-tab-label" for="f153ba5c-6057-4d65-8ce4-6e92443b464b">
+L2/L3</label><div class="sd-tab-content docutils">
+<p><img alt="Example of L2 and L3 cache" src="../fig/05-memory/09.png" /></p>
+</div>
+<input id="a8b71dda-e3ed-4db9-a394-27f6ba210222" name="2f2ef990-d5ce-4782-b3c3-51ae329bc187" type="radio">
+</input><label class="sd-tab-label" for="a8b71dda-e3ed-4db9-a394-27f6ba210222">
+L1/L2/L3</label><div class="sd-tab-content docutils">
+<p><img alt="Example of L1, L2, and L3 cache" src="../fig/05-memory/10.png" /></p>
+</div>
+</div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Cache performance metrics</p>
+<ul class="simple">
+<li><p>Miss Rate</p>
+<ul>
+<li><p>Fraction of memory references not found in cache <code class="docutils literal notranslate"><span class="pre">(misses</span> <span class="pre">/</span> <span class="pre">accesses)</span> <span class="pre">=</span> <span class="pre">1</span> <span class="pre">–</span> <span class="pre">hit</span> <span class="pre">rate</span></code></p></li>
+<li><p>Typical numbers (in percentages):</p>
+<ul>
+<li><p>3-10% for L1</p></li>
+<li><p>can be quite small (e.g., &lt; 1%) for L2, depending on size, etc.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Hit Time</p>
+<ul>
+<li><p>Time to deliver a line in the cache to the processor</p>
+<ul>
+<li><p>includes time to determine whether the line is in the cache</p></li>
+</ul>
+</li>
+<li><p>Typical numbers:</p>
+<ul>
+<li><p>4 clock cycle for L1</p></li>
+<li><p>10 clock cycles for L2</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Miss Penalty</p>
+<ul>
+<li><p>Additional time required because of a miss</p>
+<ul>
+<li><p>typically 50-200 cycles for main memory (Trend: increasing!)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">What those numbers mean?</p>
+<ul class="simple">
+<li><p>Huge difference between a hit and a miss</p>
+<ul>
+<li><p>Could be 100x, if just L1 and main memory</p></li>
+</ul>
+</li>
+<li><p>Would you believe 99% hits is twice as good as 97%?</p>
+<ul>
+<li><p>Consider this simplified example:</p>
+<ul>
+<li><p>cache hit time of 1 cycle</p></li>
+<li><p>miss penalty of 100 cycles</p></li>
+</ul>
+</li>
+<li><p>Average access time:</p>
+<ul>
+<li><p>97% hits:  1 cycle + 0.03 x 100 cycles = 4 cycles</p></li>
+<li><p>99% hits:  1 cycle + 0.01 x 100 cycles = 2 cycles</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>This is why <code class="docutils literal notranslate"><span class="pre">miss</span> <span class="pre">rate</span></code> is used instead of <code class="docutils literal notranslate"><span class="pre">hit</span> <span class="pre">rate</span></code>.</p></li>
+</ul>
+</div>
+</section>
+<section id="write-cache-friendly-code">
+<h2>5. Write cache friendly code<a class="headerlink" href="#write-cache-friendly-code" title="Permalink to this headline">#</a></h2>
+<div class="dropdown admonition">
+<p class="admonition-title">Overview</p>
+<ul class="simple">
+<li><p>Make the common case go fast</p>
+<ul>
+<li><p>Focus on the inner loops of the core functions</p></li>
+</ul>
+</li>
+<li><p>Minimize the misses in the inner loops</p>
+<ul>
+<li><p>Repeated references to variables are good (temporal locality)</p></li>
+<li><p>Stride-1 reference patterns are good (spatial locality)</p></li>
+</ul>
+</li>
+<li><p>Key idea: our qualitative notion of locality is quantified through
+our understanding of cache memories.</p></li>
+</ul>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Matrix multiplication example</p>
+<ul class="simple">
+<li><p>Multiply N x N matrices</p></li>
+<li><p>Matrix elements are doubles (8 bytes)</p></li>
+<li><p><span class="math notranslate nohighlight">\(O(N^{3})\)</span> total operations</p></li>
+<li><p>N reads per source element</p></li>
+<li><p>N values summed per destination but may be able to hold in register</p></li>
+</ul>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=mm.c"></script>
+<p><img alt="Index increment directions in matrix multiplication" src="../fig/05-memory/15.png" /></p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Various matrix multiplication performance analysis</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="c7551037-f64f-4d0c-a385-c70598ffd3da" name="f0ced53e-b731-49b5-adc9-7bcac78b6a0d" type="radio">
+</input><label class="sd-tab-label" for="c7551037-f64f-4d0c-a385-c70598ffd3da">
+Case 1</label><div class="sd-tab-content docutils">
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* ijk */</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="o">++</span><span class="p">)</span><span class="w"> </span>
+<span class="w">      </span><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sum</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Miss rate for inner loop iterations:</p></li>
+<li><p>Block size = 32 bytes (4 doubles)</p>
+<ul>
+<li><p>A = 8 / 32 = 0.25</p></li>
+<li><p>B = 1</p></li>
+<li><p>C = 0</p></li>
+<li><p>Average miss per iteration = 1.25</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="Miss rate 1" src="../fig/05-memory/16.png" /></p>
+</div>
+<input id="dce26590-fc2d-41a5-ad31-c46bf99e9750" name="f0ced53e-b731-49b5-adc9-7bcac78b6a0d" type="radio">
+</input><label class="sd-tab-label" for="dce26590-fc2d-41a5-ad31-c46bf99e9750">
+Case 2</label><div class="sd-tab-content docutils">
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* kij */</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="o">++</span><span class="p">)</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span>
+<span class="w">      </span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">];</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Miss rate for inner loop iterations:</p></li>
+<li><p>Block size = 32 bytes (4 doubles)</p>
+<ul>
+<li><p>A = 0</p></li>
+<li><p>B = 8 / 32 = 0.25</p></li>
+<li><p>C = 8 / 32 = 0.25</p></li>
+<li><p>Average miss per iteration = 0.5</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="Miss rate 2" src="../fig/05-memory/17.png" /></p>
+</div>
+<input id="8ca92821-562d-4014-92bb-7a35ce3f3a1c" name="f0ced53e-b731-49b5-adc9-7bcac78b6a0d" type="radio">
+</input><label class="sd-tab-label" for="8ca92821-562d-4014-92bb-7a35ce3f3a1c">
+Case 3</label><div class="sd-tab-content docutils">
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* jki */</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span>
+<span class="w">      </span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">r</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"> </span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Miss rate for inner loop iterations:</p></li>
+<li><p>Block size = 32 bytes (4 doubles)</p>
+<ul>
+<li><p>A = 1</p></li>
+<li><p>B = 0</p></li>
+<li><p>C = 1</p></li>
+<li><p>Average miss per iteration = 2</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="Miss rate 3" src="../fig/05-memory/18.png" /></p>
+</div>
+</div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">The memory mountain</p>
+<ul class="simple">
+<li><p>This is the cover of the book.</p></li>
+<li><p>Y-axis: Read throughput (read bandwidth)</p>
+<ul>
+<li><p>Number of bytes read from memory per second (MB/s)</p></li>
+</ul>
+</li>
+<li><p>Memory mountain: Measured read throughput as a function of spatial and temporal locality.</p></li>
+<li><p>Compact way to characterize memory system performance.</p></li>
+</ul>
+<p><img alt="memory mountain" src="../fig/05-memory/19.png" /></p>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./episodes"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="07-machine-language.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Machine language</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="09-code-optimization.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Code optimization</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Linh Ngo<br/>
+  
+      &copy; Copyright 2022.<br/>
+    <div class="extra_footer">
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"></a> <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Computer Systems</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

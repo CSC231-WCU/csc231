@@ -1,0 +1,960 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Introduction to C &#8212; Computer Systems</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Computer architecture" href="03-gate-circuit.html" />
+    <link rel="prev" title="Introduction" href="01-introduction.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-C91ED1K883"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-C91ED1K883');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Computer Systems</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    CSC 231: Computer Systems
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lectures
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-introduction.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Introduction to C
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-gate-circuit.html">
+   Computer architecture
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-data-representation.html">
+   Representing and manipulating information
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-more-c.html">
+   Even more C
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-architecture.html">
+   Computer architecture
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-machine-language.html">
+   Machine language
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-memory-cache.html">
+   Memory hierarchy and cache memories
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-code-optimization.html">
+   Code optimization
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/episodes/02-intro-to-c.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-c">
+   1. What is C?
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#overview">
+     Overview
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#scary-stuff-ahead">
+     Scary stuff ahead …
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#but-it-is-exciting">
+     But it is exciting …
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#c-and-java">
+   2. C and Java
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#similarities">
+     Similarities
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#differences">
+     Differences
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hands-on-getting-started">
+   3. Hands-on: Getting started
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-hello-c">
+     Create hello.c
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-s-in-the-code">
+     What’s in the code?
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#hands-on-simple-compile-and-run">
+       Hands-on: Simple compile and run
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hands-on-compile-and-show-everything">
+     Hands-on: Compile and show everything
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-are-those">
+     What are those?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hands-on-view-files">
+     Hands-on: View files
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-output">
+   4. Challenge: output
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#input-scanf">
+   5. Input: scanf
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge">
+   6. Challenge
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Introduction to C</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-c">
+   1. What is C?
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#overview">
+     Overview
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#scary-stuff-ahead">
+     Scary stuff ahead …
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#but-it-is-exciting">
+     But it is exciting …
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#c-and-java">
+   2. C and Java
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#similarities">
+     Similarities
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#differences">
+     Differences
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hands-on-getting-started">
+   3. Hands-on: Getting started
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-hello-c">
+     Create hello.c
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-s-in-the-code">
+     What’s in the code?
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#hands-on-simple-compile-and-run">
+       Hands-on: Simple compile and run
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hands-on-compile-and-show-everything">
+     Hands-on: Compile and show everything
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-are-those">
+     What are those?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hands-on-view-files">
+     Hands-on: View files
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge-output">
+   4. Challenge: output
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#input-scanf">
+   5. Input: scanf
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#challenge">
+   6. Challenge
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-c">
+<h1>Introduction to C<a class="headerlink" href="#introduction-to-c" title="Permalink to this headline">#</a></h1>
+<div class="tip admonition">
+<p class="admonition-title">Relevant Reading</p>
+<p>This lecture will cover contents from <a class="reference external" href="https://diveintosystems.org/book/Appendix1/index.html">Chapter 1 - Appendix version</a> of the book.</p>
+</div>
+<section id="what-is-c">
+<h2>1. What is C?<a class="headerlink" href="#what-is-c" title="Permalink to this headline">#</a></h2>
+<section id="overview">
+<h3>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Developed by Dennis Ritchie at Bell Labs</p></li>
+<li><p>First public released in 1972.</p></li>
+<li><p><strong>The</strong> book: *The C programming languange” by Dennis M. Ritchie and Brian W. Kernighan.
+Prentice Hall 1988.</p></li>
+</ul>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+How to learn C (now that you already know Java)? <div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text"><a class="reference external" href="https://www.cs.rochester.edu/u/ferguson/csc/c/c-for-java-programmers.pdf">C for Java programmers</a></p></li>
+<li><p class="sd-card-text"><a class="reference external" href="https://introcs.cs.princeton.edu/java/faq/c2java.html">C programming vs. Java programming</a></p></li>
+</ul>
+</div>
+</details></section>
+<section id="scary-stuff-ahead">
+<h3>Scary stuff ahead …<a class="headerlink" href="#scary-stuff-ahead" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>C is much less supportive for programmers than Java.</p></li>
+<li><p>(Much) easier to make mistake, and (much) harder to fix.</p></li>
+</ul>
+</section>
+<section id="but-it-is-exciting">
+<h3>But it is exciting …<a class="headerlink" href="#but-it-is-exciting" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>C requires less memory resources than Java.</p></li>
+<li><p>C, in many instances, runs faster than Java.</p></li>
+<li><p>Knowing C will make you a better programmer overall.</p></li>
+</ul>
+</section>
+</section>
+<section id="c-and-java">
+<h2>2. C and Java<a class="headerlink" href="#c-and-java" title="Permalink to this headline">#</a></h2>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="2d0ac809-6d99-408b-9b3a-ed31c6e180c9" name="b6b9da68-ace2-48bb-ad78-195582bcdb67" type="radio">
+</input><label class="sd-tab-label" for="2d0ac809-6d99-408b-9b3a-ed31c6e180c9">
+hello.c</label><div class="sd-tab-content docutils">
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;math.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+
+<span class="cm">/* main function definition: */</span><span class="w"></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello World</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;sqrt(4) is %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="mi">4</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">  </span><span class="c1">// main returns value 0</span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<input id="b563302c-b628-4d1b-9619-d03f0235dbf2" name="b6b9da68-ace2-48bb-ad78-195582bcdb67" type="radio">
+</input><label class="sd-tab-label" for="b563302c-b628-4d1b-9619-d03f0235dbf2">
+hello.java</label><div class="sd-tab-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.lang.Math</span><span class="p">;</span><span class="w"></span>
+
+<span class="cm">/* define a HelloWorld class */</span><span class="w"></span>
+<span class="kd">class</span> <span class="nc">Hello</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">  </span><span class="cm">/* main method definition: */</span><span class="w"></span>
+<span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">){</span><span class="w"></span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Hello World&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;sqrt(4) is &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Math</span><span class="p">.</span><span class="na">sqrt</span><span class="p">(</span><span class="mi">4</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="similarities">
+<h3>Similarities<a class="headerlink" href="#similarities" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Values, types, literals, expressions</p></li>
+<li><p>Variables</p></li>
+<li><p>Control flow (if, switch, while, for, do-while)</p></li>
+<li><p>Call-return: parameters, arguments, return values</p></li>
+<li><p>Arrays (mostly)</p></li>
+<li><p>Primitive and reference types</p></li>
+<li><p>Type casting.</p></li>
+<li><p>Library usage.</p></li>
+</ul>
+</section>
+<section id="differences">
+<h3>Differences<a class="headerlink" href="#differences" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>C has no classes or objects (but something similar)</p></li>
+<li><p>C is not object-oriented.</p></li>
+<li><p>C arrays are simpler:</p>
+<ul>
+<li><p>No boundary checking.</p></li>
+<li><p>No knowledge of array’s own size.</p></li>
+</ul>
+</li>
+<li><p>String operations are limited.</p></li>
+<li><p>No collections, exceptions, or generics.</p></li>
+<li><p>No automatic memory management.</p></li>
+<li><p><strong>Pointers!!!</strong></p></li>
+</ul>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="50a7854f-a4d1-4173-aca9-60222d784e07" name="d3ecb7cd-e1c9-4797-a657-9c1ad42d7c27" type="radio">
+</input><label class="sd-tab-label" for="50a7854f-a4d1-4173-aca9-60222d784e07">
+Running Java</label><div class="sd-tab-content docutils">
+<img alt="Java compilation and execution" class="bg-primary mb-1 align-center" src="../_images/java.png" />
+</div>
+<input id="166314a8-a316-4770-bf3a-b95dd5f6c112" name="d3ecb7cd-e1c9-4797-a657-9c1ad42d7c27" type="radio">
+</input><label class="sd-tab-label" for="166314a8-a316-4770-bf3a-b95dd5f6c112">
+Running C</label><div class="sd-tab-content docutils">
+<img alt="C compilation and execution" class="bg-primary mb-1 align-center" src="../_images/c.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="hands-on-getting-started">
+<h2>3. Hands-on: Getting started<a class="headerlink" href="#hands-on-getting-started" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>SSH to <code class="docutils literal notranslate"><span class="pre">molly</span></code>. Refer to the Setup page if you need a refresher on how to
+do so.</p></li>
+<li><p>Change into <code class="docutils literal notranslate"><span class="pre">csc231</span></code> from inside your home directory.</p>
+<ul>
+<li><p>Your home directory is represented by the <code class="docutils literal notranslate"><span class="pre">~</span></code> sign.</p></li>
+</ul>
+</li>
+<li><p>Create a directory named <code class="docutils literal notranslate"><span class="pre">intro-c</span></code> inside <code class="docutils literal notranslate"><span class="pre">csc231</span></code>,
+then change into that directory.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">csc231</span>
+<span class="n">pwd</span>
+<span class="n">mkdir</span> <span class="n">intro</span><span class="o">-</span><span class="n">c</span>
+<span class="n">ls</span>
+<span class="n">cd</span> <span class="n">intro</span><span class="o">-</span><span class="n">c</span>
+<span class="n">pwd</span>
+</pre></div>
+</div>
+<img alt="create intro-c directory" class="bg-primary mb-1 align-center" src="../_images/021.png" />
+<section id="create-hello-c">
+<h3>Create hello.c<a class="headerlink" href="#create-hello-c" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Inside the terminal, make sure that you are still inside
+<code class="docutils literal notranslate"><span class="pre">intro-c</span></code>, then use <code class="docutils literal notranslate"><span class="pre">nano</span></code> to create <code class="docutils literal notranslate"><span class="pre">hello.c</span></code>with the source code below.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pwd</span>
+<span class="n">nano</span> <span class="o">-</span><span class="n">l</span> <span class="n">hello</span><span class="o">.</span><span class="n">c</span>
+</pre></div>
+</div>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=hello.c"></script>
+<ul class="simple">
+<li><p>Once finished editing in <code class="docutils literal notranslate"><span class="pre">nano</span></code>:</p>
+<ul>
+<li><p>first hit <code class="docutils literal notranslate"><span class="pre">Ctrl-X</span></code> (same for both Windows and Mac).</p></li>
+<li><p>Next hit <code class="docutils literal notranslate"><span class="pre">Y</span></code> to save modified buffer (new contents).</p></li>
+<li><p>Hit <code class="docutils literal notranslate"><span class="pre">Enter</span></code> to save to the same file name as what you opened with.</p></li>
+</ul>
+</li>
+<li><p><strong>Memorize your key-combos!</strong>.</p></li>
+</ul>
+<img alt="Create hello.c using nano" class="bg-primary mb-1 align-center" src="../_images/031.png" />
+</section>
+<section id="what-s-in-the-code">
+<h3>What’s in the code?<a class="headerlink" href="#what-s-in-the-code" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Line 1: Standard C library for I/O, similar to Java’s <code class="docutils literal notranslate"><span class="pre">import</span></code>.</p></li>
+<li><p>Line 2-4: Function declaration/definition for <code class="docutils literal notranslate"><span class="pre">main</span></code>:</p>
+<ul>
+<li><p>Line 2:</p>
+<ul>
+<li><p>return type: <code class="docutils literal notranslate"><span class="pre">int</span></code></p></li>
+<li><p>function name: <code class="docutils literal notranslate"><span class="pre">main</span></code></p></li>
+<li><p>parameter list:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">argc</span></code>: number of command line arguments.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">*argv[]</span></code>: pointers to array of command line argument strings.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Line 3: Invoke builtin function <code class="docutils literal notranslate"><span class="pre">printf</span></code> to print out  string <code class="docutils literal notranslate"><span class="pre">Hello</span> <span class="pre">world!</span></code>
+with an end-of-line character <code class="docutils literal notranslate"><span class="pre">\n</span></code>. This is similar to <code class="docutils literal notranslate"><span class="pre">System.out.printf</span></code>.</p></li>
+<li><p>Line 4: Exit a successfully executed program with a return value of 0.</p></li>
+</ul>
+</li>
+</ul>
+<section id="hands-on-simple-compile-and-run">
+<h4>Hands-on: Simple compile and run<a class="headerlink" href="#hands-on-simple-compile-and-run" title="Permalink to this headline">#</a></h4>
+<ul class="simple">
+<li><p>Similar to <code class="docutils literal notranslate"><span class="pre">javac</span></code>, we use <code class="docutils literal notranslate"><span class="pre">gcc</span></code> to compile C code.</p></li>
+<li><p>Before compile, make sure that you are still inside <code class="docutils literal notranslate"><span class="pre">intro-c</span></code> in the terminal.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span>
+<span class="n">pwd</span>
+<span class="n">gcc</span> <span class="o">-</span><span class="n">o</span> <span class="n">hello</span> <span class="n">hello</span><span class="o">.</span><span class="n">c</span>
+<span class="n">ls</span>
+<span class="o">./</span><span class="n">hello</span>
+</pre></div>
+</div>
+<img alt="Creating hello.c using nano" class="bg-primary mb-1 align-center" src="../_images/041.png" />
+</section>
+</section>
+<section id="hands-on-compile-and-show-everything">
+<h3>Hands-on: Compile and show everything<a class="headerlink" href="#hands-on-compile-and-show-everything" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>There are a number of steps from C codes to executable binaries.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span> <span class="o">-</span><span class="n">l</span>
+<span class="n">gcc</span> <span class="o">-</span><span class="n">save</span><span class="o">-</span><span class="n">temps</span> <span class="o">-</span><span class="n">o</span> <span class="n">hello2</span> <span class="n">hello</span><span class="o">.</span><span class="n">c</span>
+<span class="n">ls</span> <span class="o">-</span><span class="n">l</span>
+<span class="o">./</span><span class="n">hello2</span>
+</pre></div>
+</div>
+<img alt="compile and run hello.c, keeping intermediate files" class="bg-primary mb-1 align-center" src="../_images/05.png" />
+</section>
+<section id="what-are-those">
+<h3>What are those?<a class="headerlink" href="#what-are-those" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">hello.i</span></code>: generated by pre-processor</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hello.s</span></code>: generated by compiler.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hello.o</span></code>: generated by assembler.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hello</span></code> (or <code class="docutils literal notranslate"><span class="pre">hello2</span></code>): executable, generated by linker.</p></li>
+</ul>
+<img alt="hello.c compilation process" class="bg-primary mb-1 align-center" src="../_images/06.png" />
+</section>
+<section id="hands-on-view-files">
+<h3>Hands-on: View files<a class="headerlink" href="#hands-on-view-files" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>For <code class="docutils literal notranslate"><span class="pre">hello.i</span></code> and <code class="docutils literal notranslate"><span class="pre">hello.s</span></code>, they can be view on the editor.</p></li>
+<li><p>Run the following command to view <code class="docutils literal notranslate"><span class="pre">hello.i</span></code></p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="o">-</span><span class="n">n</span> <span class="n">hello</span><span class="o">.</span><span class="n">i</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Run the following command to view <code class="docutils literal notranslate"><span class="pre">hello.s</span></code></p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="o">-</span><span class="n">n</span> <span class="n">hello</span><span class="o">.</span><span class="n">s</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>For <code class="docutils literal notranslate"><span class="pre">hello.o</span></code> and <code class="docutils literal notranslate"><span class="pre">hello</span></code>, we need to dump the binary contents first.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xxd</span> <span class="o">-</span><span class="n">b</span> <span class="n">hello</span><span class="o">.</span><span class="n">o</span> <span class="n">hello</span><span class="o">.</span><span class="n">o</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">xxd</span> <span class="o">-</span><span class="n">b</span> <span class="n">hello</span> <span class="n">hello</span><span class="o">.</span><span class="n">txt</span>
+<span class="n">ls</span> <span class="o">-</span><span class="n">l</span>
+</pre></div>
+</div>
+<img alt="hexdumping hello.c and hello" class="bg-primary mb-1 align-center" src="../_images/07.png" />
+<ul class="simple">
+<li><p>Run the following command to view <code class="docutils literal notranslate"><span class="pre">hello.o.txt</span></code></p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="o">-</span><span class="n">n</span> <span class="n">hello</span><span class="o">.</span><span class="n">o</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Run the following command to view <code class="docutils literal notranslate"><span class="pre">hello.txt</span></code></p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cat</span> <span class="o">-</span><span class="n">n</span> <span class="n">hello</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="challenge-output">
+<h2>4. Challenge: output<a class="headerlink" href="#challenge-output" title="Permalink to this headline">#</a></h2>
+<p>The usage of C’s <code class="docutils literal notranslate"><span class="pre">printf</span></code> is similar to Java’s <code class="docutils literal notranslate"><span class="pre">System.out.printf</span></code>. Find out how to
+modify <code class="docutils literal notranslate"><span class="pre">hello.c</span></code> so that the program prints out <code class="docutils literal notranslate"><span class="pre">Hello</span> <span class="pre">Golden</span> <span class="pre">Rams!</span></code> with each word
+on a single line. The program should use exactly one <code class="docutils literal notranslate"><span class="pre">printf</span></code> statement.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Answer<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=hello-3.c"></script>
+</div>
+</details></section>
+<section id="input-scanf">
+<h2>5. Input: scanf<a class="headerlink" href="#input-scanf" title="Permalink to this headline">#</a></h2>
+<p>C formatting placeholders: (similar to Java)</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">%g</span></code>:  placeholder for a float (or double) value</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%d</span></code>:  placeholder for a decimal value (int, short, char)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%s</span></code>:  placeholder for a string value</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%c</span></code>:  placeholder for a char value</p></li>
+</ul>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="bceacb35-6a67-49cb-a4d3-a7b9ebe5e50c" name="fbbcb800-9e2b-4961-aafa-1967263f67d4" type="radio">
+</input><label class="sd-tab-label" for="bceacb35-6a67-49cb-a4d3-a7b9ebe5e50c">
+readInput.c</label><div class="sd-tab-content docutils">
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">num1</span><span class="p">,</span><span class="w"> </span><span class="n">num2</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Enter a number: &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">num1</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Enter another: &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">num2</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d + %d = %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">num1</span><span class="p">,</span><span class="w"> </span><span class="n">num2</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">num1</span><span class="o">+</span><span class="n">num2</span><span class="p">)</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<input id="3ba13fdf-d3a9-4d15-91a7-e8e33ccaed6e" name="fbbcb800-9e2b-4961-aafa-1967263f67d4" type="radio">
+</input><label class="sd-tab-label" for="3ba13fdf-d3a9-4d15-91a7-e8e33ccaed6e">
+InputReader.java</label><div class="sd-tab-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Scanner</span><span class="p">;</span><span class="w"></span>
+
+<span class="kd">class</span> <span class="nc">InputReader</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">num1</span><span class="p">,</span><span class="w"> </span><span class="n">num2</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">Scanner</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Scanner</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">in</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;Enter a number: &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">num1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">in</span><span class="p">.</span><span class="na">nextInt</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;Enter another: &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">num2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">in</span><span class="p">.</span><span class="na">nextInt</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="w"> </span><span class="s">&quot;%d + %d = %d\n&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="n">num1</span><span class="p">,</span><span class="w"> </span><span class="n">num2</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">num1</span><span class="o">+</span><span class="n">num2</span><span class="p">)</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="challenge">
+<h2>6. Challenge<a class="headerlink" href="#challenge" title="Permalink to this headline">#</a></h2>
+<p>Create a file called <strong>mixedInput.c</strong> that is modified from
+<strong>readInput.c</strong>. The file should do the followings:</p>
+<ul class="simple">
+<li><p>Ask user to provide three input of type <strong>double</strong></p></li>
+<li><p>Print out the multiplication statement with all the multiplicants
+and results as done in <strong>readInput.c</strong>.</p></li>
+</ul>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Answer<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">num1</span><span class="p">,</span><span class="w"> </span><span class="n">num2</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Enter a number: &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%g&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">num1</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Enter another: &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%g&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">num2</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Enter another: &quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%g&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">num3</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%g * %g * %g = %g</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">num1</span><span class="p">,</span><span class="w"> </span><span class="n">num2</span><span class="p">,</span><span class="w"> </span><span class="n">num3</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">num1</span><span class="o">*</span><span class="n">num2</span><span class="o">*</span><span class="n">num3</span><span class="p">)</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</details></section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./episodes"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="01-introduction.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Introduction</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="03-gate-circuit.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Computer architecture</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Linh Ngo<br/>
+  
+      &copy; Copyright 2022.<br/>
+    <div class="extra_footer">
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"></a> <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Computer Systems</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

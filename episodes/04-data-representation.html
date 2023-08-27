@@ -1,0 +1,2357 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Representing and manipulating information &#8212; Computer Systems</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Even more C" href="05-more-c.html" />
+    <link rel="prev" title="Computer architecture" href="03-gate-circuit.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-C91ED1K883"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-C91ED1K883');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Computer Systems</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    CSC 231: Computer Systems
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lectures
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-introduction.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-intro-to-c.html">
+   Introduction to C
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-gate-circuit.html">
+   Computer architecture
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Representing and manipulating information
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-more-c.html">
+   Even more C
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-architecture.html">
+   Computer architecture
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-machine-language.html">
+   Machine language
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-memory-cache.html">
+   Memory hierarchy and cache memories
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-code-optimization.html">
+   Code optimization
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/episodes/04-data-representation.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-do-we-see-things">
+   1. How do we “see” things?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bit-level-operations-in-c">
+   2. Bit-level operations in  C
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#encoding-integers">
+   3. Encoding integers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conversions-casting">
+   4. Conversions (casting)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#addition-multiplication-and-negation-of-integers">
+   5. Addition, multiplication, and negation (of integers)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#byte-oriented-memory-organization">
+   6. Byte-oriented memory organization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fractional-binary-numbers-float-and-double">
+   7. Fractional binary numbers (float and double)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#floating-operations">
+   8. Floating operations
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Representing and manipulating information</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-do-we-see-things">
+   1. How do we “see” things?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bit-level-operations-in-c">
+   2. Bit-level operations in  C
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#encoding-integers">
+   3. Encoding integers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conversions-casting">
+   4. Conversions (casting)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#addition-multiplication-and-negation-of-integers">
+   5. Addition, multiplication, and negation (of integers)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#byte-oriented-memory-organization">
+   6. Byte-oriented memory organization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fractional-binary-numbers-float-and-double">
+   7. Fractional binary numbers (float and double)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#floating-operations">
+   8. Floating operations
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="representing-and-manipulating-information">
+<h1>Representing and manipulating information<a class="headerlink" href="#representing-and-manipulating-information" title="Permalink to this headline">#</a></h1>
+<div class="tip admonition">
+<p class="admonition-title">Relevant Reading</p>
+<p>This lecture will cover contents from <a class="reference external" href="https://diveintosystems.org/book/C4-Binary/index.html">Chapter 4</a> of the book.</p>
+</div>
+<section id="how-do-we-see-things">
+<h2>1. How do we “see” things?<a class="headerlink" href="#how-do-we-see-things" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Everything is a bit<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Each bit is <code class="docutils literal notranslate"><span class="pre">0</span></code> or <code class="docutils literal notranslate"><span class="pre">1</span></code></p></li>
+<li><p class="sd-card-text">By encoding/interpreting sets of bits in various ways</p>
+<ul>
+<li><p class="sd-card-text">Computers determine what to do (instructions)</p></li>
+<li><p class="sd-card-text">… and represent and manipulate numbers, sets, strings, etc…</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Why bits?  Electronic Implementation</p>
+<ul>
+<li><p class="sd-card-text">Easy to store with bistable elements.</p></li>
+<li><p class="sd-card-text">Reliably transmitted on noisy and inaccurate wires.</p></li>
+</ul>
+</li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/data_01.png"><img alt="electronic representations of bits" class="bg-primary mb-1 align-center" src="../_images/data_01.png" style="height: 200px;" /></a>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Encoding byte values <div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Byte = 8 bits</p></li>
+<li><p class="sd-card-text">Binary: <code class="docutils literal notranslate"><span class="pre">0000</span> <span class="pre">0000</span></code> to <code class="docutils literal notranslate"><span class="pre">1111</span> <span class="pre">1111</span></code>.</p></li>
+<li><p class="sd-card-text">Decimal: <code class="docutils literal notranslate"><span class="pre">0</span></code> to <code class="docutils literal notranslate"><span class="pre">255</span></code>.</p></li>
+<li><p class="sd-card-text">Hexadecimal: <code class="docutils literal notranslate"><span class="pre">00</span></code> to <code class="docutils literal notranslate"><span class="pre">FF</span></code>.</p>
+<ul>
+<li><p class="sd-card-text">Base 16 number representation</p></li>
+<li><p class="sd-card-text">Use character <code class="docutils literal notranslate"><span class="pre">0</span></code> to <code class="docutils literal notranslate"><span class="pre">9</span></code> and <code class="docutils literal notranslate"><span class="pre">A</span></code> to <code class="docutils literal notranslate"><span class="pre">F</span></code>.</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Example: 15213 (decimal) = 0011 1011 0110 1101 (binary) = 3B6D (hex)</p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p class="sd-card-text">Hex</p></th>
+<th class="head"><p class="sd-card-text">Decimal</p></th>
+<th class="head"><p class="sd-card-text">Binary</p></th>
+<th class="head"><p class="sd-card-text">Binary to Decimal Calculation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">0000</p></td>
+<td><p class="sd-card-text">0 * <span class="math notranslate nohighlight">\(2^3\)</span> + 0 * <span class="math notranslate nohighlight">\(2^2\)</span> + 0 * <span class="math notranslate nohighlight">\(2^1\)</span> + 0 * <span class="math notranslate nohighlight">\(2^0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">0001</p></td>
+<td><p class="sd-card-text">0 * <span class="math notranslate nohighlight">\(2^3\)</span> + 0 * <span class="math notranslate nohighlight">\(2^2\)</span> + 0 * <span class="math notranslate nohighlight">\(2^1\)</span> + 1 * <span class="math notranslate nohighlight">\(2^0\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text">2</p></td>
+<td><p class="sd-card-text">2</p></td>
+<td><p class="sd-card-text">0010</p></td>
+<td><p class="sd-card-text">0 * <span class="math notranslate nohighlight">\(2^3\)</span> + 0 * <span class="math notranslate nohighlight">\(2^2\)</span> + 1 * <span class="math notranslate nohighlight">\(2^1\)</span> + 0 * <span class="math notranslate nohighlight">\(2^0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">3</p></td>
+<td><p class="sd-card-text">3</p></td>
+<td><p class="sd-card-text">0011</p></td>
+<td><p class="sd-card-text">0 * <span class="math notranslate nohighlight">\(2^3\)</span> + 0 * <span class="math notranslate nohighlight">\(2^2\)</span> + 1 * <span class="math notranslate nohighlight">\(2^1\)</span> + 1 * <span class="math notranslate nohighlight">\(2^0\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text">4</p></td>
+<td><p class="sd-card-text">4</p></td>
+<td><p class="sd-card-text">0100</p></td>
+<td><p class="sd-card-text">0 * <span class="math notranslate nohighlight">\(2^3\)</span> + 1 * <span class="math notranslate nohighlight">\(2^2\)</span> + 0 * <span class="math notranslate nohighlight">\(2^1\)</span> + 0 * <span class="math notranslate nohighlight">\(2^0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">5</p></td>
+<td><p class="sd-card-text">5</p></td>
+<td><p class="sd-card-text">0101</p></td>
+<td><p class="sd-card-text">0 * <span class="math notranslate nohighlight">\(2^3\)</span> + 1 * <span class="math notranslate nohighlight">\(2^2\)</span> + 0 * <span class="math notranslate nohighlight">\(2^1\)</span> + 1 * <span class="math notranslate nohighlight">\(2^0\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text">6</p></td>
+<td><p class="sd-card-text">6</p></td>
+<td><p class="sd-card-text">0110</p></td>
+<td><p class="sd-card-text">0 * <span class="math notranslate nohighlight">\(2^3\)</span> + 1 * <span class="math notranslate nohighlight">\(2^2\)</span> + 1 * <span class="math notranslate nohighlight">\(2^1\)</span> + 0 * <span class="math notranslate nohighlight">\(2^0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">7</p></td>
+<td><p class="sd-card-text">7</p></td>
+<td><p class="sd-card-text">0111</p></td>
+<td><p class="sd-card-text">0 * <span class="math notranslate nohighlight">\(2^3\)</span> + 1 * <span class="math notranslate nohighlight">\(2^2\)</span> + 1 * <span class="math notranslate nohighlight">\(2^1\)</span> + 1 * <span class="math notranslate nohighlight">\(2^0\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text">8</p></td>
+<td><p class="sd-card-text">8</p></td>
+<td><p class="sd-card-text">1000</p></td>
+<td><p class="sd-card-text">1 * <span class="math notranslate nohighlight">\(2^3\)</span> + 0 * <span class="math notranslate nohighlight">\(2^2\)</span> + 0 * <span class="math notranslate nohighlight">\(2^1\)</span> + 0 * <span class="math notranslate nohighlight">\(2^0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">9</p></td>
+<td><p class="sd-card-text">9</p></td>
+<td><p class="sd-card-text">1001</p></td>
+<td><p class="sd-card-text">1 * <span class="math notranslate nohighlight">\(2^3\)</span> + 0 * <span class="math notranslate nohighlight">\(2^2\)</span> + 0 * <span class="math notranslate nohighlight">\(2^1\)</span> + 1 * <span class="math notranslate nohighlight">\(2^0\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text">A</p></td>
+<td><p class="sd-card-text">10</p></td>
+<td><p class="sd-card-text">1010</p></td>
+<td><p class="sd-card-text">1 * <span class="math notranslate nohighlight">\(2^3\)</span> + 0 * <span class="math notranslate nohighlight">\(2^2\)</span> + 1 * <span class="math notranslate nohighlight">\(2^1\)</span> + 0 * <span class="math notranslate nohighlight">\(2^0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">B</p></td>
+<td><p class="sd-card-text">11</p></td>
+<td><p class="sd-card-text">1011</p></td>
+<td><p class="sd-card-text">1 * <span class="math notranslate nohighlight">\(2^3\)</span> + 0 * <span class="math notranslate nohighlight">\(2^2\)</span> + 1 * <span class="math notranslate nohighlight">\(2^1\)</span> + 1 * <span class="math notranslate nohighlight">\(2^0\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text">C</p></td>
+<td><p class="sd-card-text">12</p></td>
+<td><p class="sd-card-text">1100</p></td>
+<td><p class="sd-card-text">1 * <span class="math notranslate nohighlight">\(2^3\)</span> + 1 * <span class="math notranslate nohighlight">\(2^2\)</span> + 0 * <span class="math notranslate nohighlight">\(2^1\)</span> + 0 * <span class="math notranslate nohighlight">\(2^0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">D</p></td>
+<td><p class="sd-card-text">13</p></td>
+<td><p class="sd-card-text">1101</p></td>
+<td><p class="sd-card-text">1 * <span class="math notranslate nohighlight">\(2^3\)</span> + 1 * <span class="math notranslate nohighlight">\(2^2\)</span> + 0 * <span class="math notranslate nohighlight">\(2^1\)</span> + 1 * <span class="math notranslate nohighlight">\(2^0\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text">E</p></td>
+<td><p class="sd-card-text">14</p></td>
+<td><p class="sd-card-text">1110</p></td>
+<td><p class="sd-card-text">1 * <span class="math notranslate nohighlight">\(2^3\)</span> + 1 * <span class="math notranslate nohighlight">\(2^2\)</span> + 1 * <span class="math notranslate nohighlight">\(2^1\)</span> + 0 * <span class="math notranslate nohighlight">\(2^0\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">F</p></td>
+<td><p class="sd-card-text">15</p></td>
+<td><p class="sd-card-text">1111</p></td>
+<td><p class="sd-card-text">1 * <span class="math notranslate nohighlight">\(2^3\)</span> + 1 * <span class="math notranslate nohighlight">\(2^2\)</span> + 1 * <span class="math notranslate nohighlight">\(2^1\)</span> + 1 * <span class="math notranslate nohighlight">\(2^0\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p class="sd-card-text"><a class="reference external" href="https://docs.google.com/spreadsheets/d/16yW8yDfDTxBiH-PkIddm1Cg4kYE4k-56GLTa6xDD_WU/edit?usp=sharing">Google Spreadsheet demonstrating conversion process</a></p></li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+How are data represented? <div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p class="sd-card-text">C data type</p></th>
+<th class="head"><p class="sd-card-text">typical 32-bit</p></th>
+<th class="head"><p class="sd-card-text">typical 64-bit</p></th>
+<th class="head"><p class="sd-card-text">x86_64</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p class="sd-card-text">char</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">1</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">short</p></td>
+<td><p class="sd-card-text">2</p></td>
+<td><p class="sd-card-text">2</p></td>
+<td><p class="sd-card-text">2</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text">int</p></td>
+<td><p class="sd-card-text">4</p></td>
+<td><p class="sd-card-text">4</p></td>
+<td><p class="sd-card-text">4</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">long</p></td>
+<td><p class="sd-card-text">4</p></td>
+<td><p class="sd-card-text">8</p></td>
+<td><p class="sd-card-text">8</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text">float</p></td>
+<td><p class="sd-card-text">4</p></td>
+<td><p class="sd-card-text">4</p></td>
+<td><p class="sd-card-text">4</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">double</p></td>
+<td><p class="sd-card-text">8</p></td>
+<td><p class="sd-card-text">8</p></td>
+<td><p class="sd-card-text">8</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text">pointer</p></td>
+<td><p class="sd-card-text">4</p></td>
+<td><p class="sd-card-text">8</p></td>
+<td><p class="sd-card-text">8</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</details></section>
+<section id="bit-level-operations-in-c">
+<h2>2. Bit-level operations in  C<a class="headerlink" href="#bit-level-operations-in-c" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Boolean algebra (recall MAT 151) <div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Developed by George Boole in 19th century</p></li>
+<li><p class="sd-card-text">Algebraic representation of logic: encode <code class="docutils literal notranslate"><span class="pre">True</span></code> as <code class="docutils literal notranslate"><span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">False</span></code> as <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p></li>
+<li><p class="sd-card-text">Operations: <code class="docutils literal notranslate"><span class="pre">AND</span></code> (<code class="docutils literal notranslate"><span class="pre">&amp;</span></code>), <code class="docutils literal notranslate"><span class="pre">OR</span></code> (<code class="docutils literal notranslate"><span class="pre">|</span></code>), <code class="docutils literal notranslate"><span class="pre">XOR</span></code> (<code class="docutils literal notranslate"><span class="pre">^</span></code>), <code class="docutils literal notranslate"><span class="pre">NOT</span></code> (<code class="docutils literal notranslate"><span class="pre">~</span></code>).</p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p class="sd-card-text">A</p></th>
+<th class="head"><p class="sd-card-text">B</p></th>
+<th class="head"><p class="sd-card-text">A&amp;B</p></th>
+<th class="head"><p class="sd-card-text">A|B</p></th>
+<th class="head"><p class="sd-card-text">A^B</p></th>
+<th class="head"><p class="sd-card-text">~A</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">1</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">1</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">0</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+General Boolean algebra<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Operate on bit vectors</p></li>
+<li><p class="sd-card-text">Operation applied bitwise.</p></li>
+<li><p class="sd-card-text">All properties of boolean algebra apply.</p></li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/data_02.png"><img alt="bitwise boolean operations" class="bg-primary mb-1 align-center" src="../_images/data_02.png" style="height: 200px;" /></a>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Operation and notation  <div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Boolean operations: <code class="docutils literal notranslate"><span class="pre">&amp;</span></code>, <code class="docutils literal notranslate"><span class="pre">|</span></code>, <code class="docutils literal notranslate"><span class="pre">^</span></code>, <code class="docutils literal notranslate"><span class="pre">~</span></code>.</p></li>
+<li><p class="sd-card-text">Shift operations:</p>
+<ul>
+<li><p class="sd-card-text">Left Shift: 	x &lt;&lt; y</p>
+<ul>
+<li><p class="sd-card-text">Shift bit-vector x left y positions</p></li>
+<li><p class="sd-card-text">Throw away extra bits on left</p></li>
+<li><p class="sd-card-text">Fill with 0’s on right</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Right Shift: 	x &gt;y</p>
+<ul>
+<li><p class="sd-card-text">Shift bit-vector x right y positions</p></li>
+<li><p class="sd-card-text">Throw away extra bits on right</p></li>
+<li><p class="sd-card-text">Logical shift (for unsigned values)</p>
+<ul>
+<li><p class="sd-card-text">Fill with 0’s on left</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Arithmetic shift (for signed values)</p>
+<ul>
+<li><p class="sd-card-text">Replicate most significant bit on left</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p class="sd-card-text">Undefined Behavior</p>
+<ul>
+<li><p class="sd-card-text">Shift amount &lt; 0 or ≥ word size</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p class="sd-card-text">Apply to any “integral” data type: long, int, short, char, unsigned</p></li>
+<li><p class="sd-card-text">View arguments as bit vectors.</p></li>
+<li><p class="sd-card-text">Arguments applied bit-wise.</p></li>
+<li><p class="sd-card-text">Mathematical operations:</p>
+<ul>
+<li><p class="sd-card-text">Bit-wise with carry</p></li>
+<li><p class="sd-card-text"><span class="math notranslate nohighlight">\(0 + 0 = 0\)</span></p></li>
+<li><p class="sd-card-text"><span class="math notranslate nohighlight">\(0 + 1 = 1\)</span></p></li>
+<li><p class="sd-card-text"><span class="math notranslate nohighlight">\(1 + 0 = 1\)</span></p></li>
+<li><p class="sd-card-text"><span class="math notranslate nohighlight">\(1 + 1 = 0\)</span> and carry <span class="math notranslate nohighlight">\(1\)</span> to the next bit operation (or add 1 to left of the most significant bit position)</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Hands-on: bit-level operations in C<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Inside your <code class="docutils literal notranslate"><span class="pre">csc231</span></code>, create another directory called <code class="docutils literal notranslate"><span class="pre">03-data</span></code> and change
+into this directory.</p></li>
+<li><p class="sd-card-text">Create a file named <code class="docutils literal notranslate"><span class="pre">bitwise_demo.c</span></code> with the following contents:</p></li>
+</ul>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=bitwise_demo.c"></script>
+<ul class="simple">
+<li><p class="sd-card-text">Compile and run <code class="docutils literal notranslate"><span class="pre">bitwise_demo.c</span></code>.</p></li>
+<li><p class="sd-card-text">Confirm that the binary printouts match the corresponding decimal printouts and the expected bitwise
+operations.</p></li>
+</ul>
+</div>
+</details></section>
+<section id="encoding-integers">
+<h2>3. Encoding integers<a class="headerlink" href="#encoding-integers" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Mathematical equation<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Assumption:</p>
+<ul>
+<li><p class="sd-card-text"><span class="math notranslate nohighlight">\(X\)</span> is a decimal number</p></li>
+<li><p class="sd-card-text"><span class="math notranslate nohighlight">\(X\)</span> can be represented using <span class="math notranslate nohighlight">\(w\)</span> bits under the form <span class="math notranslate nohighlight">\(x_{w-1}x_{w-2}...x_{i}...x_{1}x_{0}\)</span>.</p></li>
+<li><p class="sd-card-text"><span class="math notranslate nohighlight">\(x_i\)</span> is a binary value at bit position <span class="math notranslate nohighlight">\(i\)</span> with <span class="math notranslate nohighlight">\(0\leq i \leq (w - 1)\)</span></p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">The mathematical equation governing the encoding from an unsigned value of <span class="math notranslate nohighlight">\(X\)</span> into a
+sequence of binary values <span class="math notranslate nohighlight">\(x_{w-1}x_{w-2}...x_{i}...x_{1}x_{0}\)</span> is:</p></li>
+</ul>
+<p class="sd-card-text"><span class="math notranslate nohighlight">\(X=\sum_{i=0}^{w-1}x_{i}*2^{i}\)</span></p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+What about negative numbers?<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Approaches:</p>
+<ul>
+<li><p class="sd-card-text">Reserve first bit as sign bit</p></li>
+<li><p class="sd-card-text">One’s complement: The addition of a negative number
+and its corresponding positive value (<code class="docutils literal notranslate"><span class="pre">complement</span></code>) in
+an <code class="docutils literal notranslate"><span class="pre">N-bit</span></code> binary representation will result in
+a binary representation that has <code class="docutils literal notranslate"><span class="pre">N</span> <span class="pre">ones</span></code>.</p>
+<ul>
+<li><p class="sd-card-text">For example: in a 3-bit representation, <span class="math notranslate nohighlight">\(2\)</span> is represented as
+<code class="docutils literal notranslate"><span class="pre">010</span></code>, and <span class="math notranslate nohighlight">\(-2\)</span> is represented as <code class="docutils literal notranslate"><span class="pre">101</span></code>. Then, <span class="math notranslate nohighlight">\(2+(-2)\)</span> becomes
+<span class="math notranslate nohighlight">\(010+101=111\)</span>.</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Two’s complement: The addition of a negative number
+and its corresponding positive value (‘complement<code class="docutils literal notranslate"><span class="pre">)</span> <span class="pre">in</span>&#160; <span class="pre">an</span> </code>N-bit` binary representation will a binary representation
+of to <span class="math notranslate nohighlight">\(2^N\)</span>.</p>
+<ul>
+<li><p class="sd-card-text">For example: in a 3-bit representation, <span class="math notranslate nohighlight">\(3\)</span> is represented as
+<code class="docutils literal notranslate"><span class="pre">011</span></code> and <span class="math notranslate nohighlight">\(-3\)</span> is represented as <code class="docutils literal notranslate"><span class="pre">101</span></code>. The sum of these two
+binary representations is <code class="docutils literal notranslate"><span class="pre">1000</span></code>, which is the binary
+representation of <span class="math notranslate nohighlight">\(2^3\)</span>.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p class="sd-card-text">Two’s complement is preferred in modern computing design
+as it supports fundamental arithmetic operations of addition,
+subtraction, and multiplication of integer numbers as if these
+numbers were positive.</p></li>
+<li><p class="sd-card-text">The mathematical equation governing the encoding from a signed
+value of <span class="math notranslate nohighlight">\(X\)</span> into a 2’s complement sequence of binary values
+<span class="math notranslate nohighlight">\(x_{w-1}x_{w-2}...x_{i}...x_{1}x_{0}\)</span> is:</p></li>
+</ul>
+<p class="sd-card-text"><span class="math notranslate nohighlight">\(X=-x_{w-1} * 2^{w-1} + \sum_{i=0}^{w-2}x_{i}*2^{i}\)</span></p>
+<ul class="simple">
+<li><p class="sd-card-text">For 2’s complement, most significant bit indicates sign.</p>
+<ul>
+<li><p class="sd-card-text">0 for nonnegative</p></li>
+<li><p class="sd-card-text">1 for negative</p></li>
+</ul>
+</li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p class="sd-card-text">Unsigned</p></th>
+<th class="head"><p class="sd-card-text">Binary</p></th>
+<th class="head"><p class="sd-card-text">2’s complement</p></th>
+<th class="head"><p class="sd-card-text">1’s complement</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">0000</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">0</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">0001</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">1</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text">2</p></td>
+<td><p class="sd-card-text">0010</p></td>
+<td><p class="sd-card-text">2</p></td>
+<td><p class="sd-card-text">2</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">3</p></td>
+<td><p class="sd-card-text">0011</p></td>
+<td><p class="sd-card-text">3</p></td>
+<td><p class="sd-card-text">3</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text">4</p></td>
+<td><p class="sd-card-text">0100</p></td>
+<td><p class="sd-card-text">4</p></td>
+<td><p class="sd-card-text">4</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">5</p></td>
+<td><p class="sd-card-text">0101</p></td>
+<td><p class="sd-card-text">5</p></td>
+<td><p class="sd-card-text">5</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text">6</p></td>
+<td><p class="sd-card-text">0110</p></td>
+<td><p class="sd-card-text">6</p></td>
+<td><p class="sd-card-text">6</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">7</p></td>
+<td><p class="sd-card-text">0111</p></td>
+<td><p class="sd-card-text">7</p></td>
+<td><p class="sd-card-text">7</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text">8</p></td>
+<td><p class="sd-card-text">1000</p></td>
+<td><p class="sd-card-text">8</p></td>
+<td><p class="sd-card-text">-7</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">9</p></td>
+<td><p class="sd-card-text">1001</p></td>
+<td><p class="sd-card-text">-7</p></td>
+<td><p class="sd-card-text">-6</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text">10</p></td>
+<td><p class="sd-card-text">1010</p></td>
+<td><p class="sd-card-text">-6</p></td>
+<td><p class="sd-card-text">-5</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">11</p></td>
+<td><p class="sd-card-text">1011</p></td>
+<td><p class="sd-card-text">-5</p></td>
+<td><p class="sd-card-text">-4</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text">12</p></td>
+<td><p class="sd-card-text">1100</p></td>
+<td><p class="sd-card-text">-4</p></td>
+<td><p class="sd-card-text">-3</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">13</p></td>
+<td><p class="sd-card-text">1101</p></td>
+<td><p class="sd-card-text">-3</p></td>
+<td><p class="sd-card-text">-2</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text">14</p></td>
+<td><p class="sd-card-text">1110</p></td>
+<td><p class="sd-card-text">-2</p></td>
+<td><p class="sd-card-text">-1</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">15</p></td>
+<td><p class="sd-card-text">1111</p></td>
+<td><p class="sd-card-text">-1</p></td>
+<td><p class="sd-card-text">0</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p class="sd-card-text">C does not mandate using 2’s complement.</p>
+<ul>
+<li><p class="sd-card-text">But, most machines do, and we will assume so.</p></li>
+</ul>
+</li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p class="sd-card-text"></p></th>
+<th class="head"><p class="sd-card-text">Decimal</p></th>
+<th class="head"><p class="sd-card-text">Hex</p></th>
+<th class="head"><p class="sd-card-text">Binary</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p class="sd-card-text">short int x</p></td>
+<td><p class="sd-card-text">15213</p></td>
+<td><p class="sd-card-text">3B 6D</p></td>
+<td><p class="sd-card-text">00111011 01101101</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">short int y</p></td>
+<td><p class="sd-card-text">-15213</p></td>
+<td><p class="sd-card-text">C4 93</p></td>
+<td><p class="sd-card-text">11000100 10010011</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+2’s complement examples<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text"><strong>2’s complement representation depends on the number of bits.</strong></p></li>
+<li><p class="sd-card-text">Technical trick: A binary representation of the absolute value of
+negative 2 to the power of the number of bits minus the absolute value of the
+negative number.</p></li>
+<li><p class="sd-card-text">Simple example for 5-bit representation</p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p class="sd-card-text"></p></th>
+<th class="head"><p class="sd-card-text">-16</p></th>
+<th class="head"><p class="sd-card-text">8</p></th>
+<th class="head"><p class="sd-card-text">4</p></th>
+<th class="head"><p class="sd-card-text">2</p></th>
+<th class="head"><p class="sd-card-text">1</p></th>
+<th class="head"><p class="sd-card-text"></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p class="sd-card-text">10</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">8 + 2 = 10</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">-10</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">-16 + 4 + 2 = -10</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p class="sd-card-text">Simple example for 6-bit representation</p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p class="sd-card-text"></p></th>
+<th class="head"><p class="sd-card-text">-32</p></th>
+<th class="head"><p class="sd-card-text">16</p></th>
+<th class="head"><p class="sd-card-text">8</p></th>
+<th class="head"><p class="sd-card-text">4</p></th>
+<th class="head"><p class="sd-card-text">2</p></th>
+<th class="head"><p class="sd-card-text">1</p></th>
+<th class="head"><p class="sd-card-text"></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p class="sd-card-text">10</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">8 + 2 = 10</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">-10</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">-32 + 16 + 4 + 2 = -10</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p class="sd-card-text">Complex example</p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p class="sd-card-text"></p></th>
+<th class="head"><p class="sd-card-text">Decimal</p></th>
+<th class="head"><p class="sd-card-text">Hex</p></th>
+<th class="head"><p class="sd-card-text">Binary</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p class="sd-card-text">short int x</p></td>
+<td><p class="sd-card-text">15213</p></td>
+<td><p class="sd-card-text">3B 6D</p></td>
+<td><p class="sd-card-text">00111011 01101101</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">short int y</p></td>
+<td><p class="sd-card-text">-15213</p></td>
+<td><p class="sd-card-text">C4 93</p></td>
+<td><p class="sd-card-text">11000100 10010011</p></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p class="sd-card-text">Weight</p></th>
+<th class="head"><p class="sd-card-text">15213</p></th>
+<th class="head"><p class="sd-card-text"></p></th>
+<th class="head"><p class="sd-card-text">-15213</p></th>
+<th class="head"><p class="sd-card-text"></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">1</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">2</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">2</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text">4</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">4</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">0</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">8</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">8</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">0</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text">16</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">16</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">32</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">32</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">0</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text">64</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">64</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">0</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">128</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">128</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text">256</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">256</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">0</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">512</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">512</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">0</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text">1024</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">1024</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">2048</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">2048</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">0</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text">4096</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">4096</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">0</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">8192</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">8192</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">0</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text">16384</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">16384</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">-32768</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">0</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">-32768</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text">——</p></td>
+<td><p class="sd-card-text">—–</p></td>
+<td><p class="sd-card-text">—–</p></td>
+<td><p class="sd-card-text">——</p></td>
+<td><p class="sd-card-text">——</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">Sum</p></td>
+<td><p class="sd-card-text"></p></td>
+<td><p class="sd-card-text">15213</p></td>
+<td><p class="sd-card-text"></p></td>
+<td><p class="sd-card-text">-15213</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Numeric ranges<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Unsigned values for <code class="docutils literal notranslate"><span class="pre">w-bit</span></code> word</p>
+<ul>
+<li><p class="sd-card-text">UMin = 0</p></li>
+<li><p class="sd-card-text">UMax = <span class="math notranslate nohighlight">\(2^{w} - 1\)</span></p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">2’s complement values for <code class="docutils literal notranslate"><span class="pre">w-bit</span></code> word</p>
+<ul>
+<li><p class="sd-card-text">TMin = <span class="math notranslate nohighlight">\(-2^{w-1}\)</span></p></li>
+<li><p class="sd-card-text">TMax = <span class="math notranslate nohighlight">\(2^{w-1} - 1\)</span></p></li>
+<li><p class="sd-card-text">-1: 111..1</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Values for different word sizes:</p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p class="sd-card-text"></p></th>
+<th class="head"><p class="sd-card-text">8 (1 byte)</p></th>
+<th class="head"><p class="sd-card-text">16 (2 bytes)</p></th>
+<th class="head"><p class="sd-card-text">32 (4 bytes)</p></th>
+<th class="head"><p class="sd-card-text">64 (8 bytes)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p class="sd-card-text">UMax</p></td>
+<td><p class="sd-card-text">255</p></td>
+<td><p class="sd-card-text">65,535</p></td>
+<td><p class="sd-card-text">4,294,967,295</p></td>
+<td><p class="sd-card-text">18,446,744,073,709,551,615</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">TMax</p></td>
+<td><p class="sd-card-text">127</p></td>
+<td><p class="sd-card-text">32,767</p></td>
+<td><p class="sd-card-text">2,147,483,647</p></td>
+<td><p class="sd-card-text">9,223,372,036,854,775,807</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text">TMin</p></td>
+<td><p class="sd-card-text">-128</p></td>
+<td><p class="sd-card-text">-32,768</p></td>
+<td><p class="sd-card-text">-2,147,483,648</p></td>
+<td><p class="sd-card-text">-9,223,372,036,854,775,808</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p class="sd-card-text">Observations</p>
+<ul>
+<li><p class="sd-card-text">abs(TMin) = TMax + 1</p>
+<ul>
+<li><p class="sd-card-text">Asymetric range</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">UMax = 2 * TMax + 1</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">C programming</p>
+<ul>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;limits.h&gt;</span></code></p></li>
+<li><p class="sd-card-text">Declares constants: <code class="docutils literal notranslate"><span class="pre">ULONG_MAX</span></code>, <code class="docutils literal notranslate"><span class="pre">LONG_MAX</span></code>, <code class="docutils literal notranslate"><span class="pre">LONG_MIN</span></code></p></li>
+<li><p class="sd-card-text">Platform specific</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Challenge<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Write a C program called <code class="docutils literal notranslate"><span class="pre">numeric_ranges.c</span></code> that prints out the
+value of <code class="docutils literal notranslate"><span class="pre">ULONG_MAX</span></code>, <code class="docutils literal notranslate"><span class="pre">LONG_MAX</span></code>, <code class="docutils literal notranslate"><span class="pre">LONG_MIN</span></code>. Also answer the following
+question: If we multiply <code class="docutils literal notranslate"><span class="pre">LONG_MIN</span></code> by -1, what do we get?</p></li>
+<li><p class="sd-card-text">Note: You need to search for the correct format string specifiers.</p></li>
+</ul>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">-p</span></code> allows the creation of all directories
+on the specified path, regardless whether any directory on
+that path exists.</p>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=numeric_ranges.c"></script>
+</div>
+</details></div>
+</details></section>
+<section id="conversions-casting">
+<h2>4. Conversions (casting)<a class="headerlink" href="#conversions-casting" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+What does it really mean by casting<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">C allows casting between different numeric data types.</p></li>
+<li><p class="sd-card-text">What should be the effect/impact?</p></li>
+<li><p class="sd-card-text">Notations:</p>
+<ul>
+<li><p class="sd-card-text">B2T: Binary to 2’s complement</p></li>
+<li><p class="sd-card-text">B2U: Binary to unsigned</p></li>
+<li><p class="sd-card-text">U2B: Unsigned to binary</p></li>
+<li><p class="sd-card-text">U2T: Unsigned to 2’s complement</p></li>
+<li><p class="sd-card-text">T2B: 2’s complement to binary</p></li>
+<li><p class="sd-card-text">T2U: 2’s complement to unsigned</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Visualization of conversions<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/data_04.png"><img alt="2's complement to unsigned" class="bg-primary mb-1 align-center" src="../_images/data_04.png" style="height: 200px;" /></a>
+<ul class="simple">
+<li><p class="sd-card-text"><span class="math notranslate nohighlight">\(T2U_{w}(x) = x + 2^{w} \ if \ x &lt; 0\)</span></p></li>
+<li><p class="sd-card-text"><span class="math notranslate nohighlight">\(T2U_{w}(x) = x \ if \  x \geq 0\)</span></p></li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/data_05.png"><img alt="unsigned to 2's" class="bg-primary mb-1 align-center" src="../_images/data_05.png" style="height: 200px;" /></a>
+<ul class="simple">
+<li><p class="sd-card-text"><span class="math notranslate nohighlight">\(U2T_{w}(x) = x - 2^{w} \ if x &gt; TMax_{w}\)</span></p></li>
+<li><p class="sd-card-text"><span class="math notranslate nohighlight">\(U2T_{w}(x) = x \ if \  x \leq TMax_{w}\)</span></p></li>
+<li><p class="sd-card-text">Summary</p>
+<ul>
+<li><p class="sd-card-text">Bit pattern is maintained but reinterpreted</p></li>
+<li><p class="sd-card-text">Can have unexpected effects: adding or subtracting 2<sup>w</sup></p></li>
+<li><p class="sd-card-text">When expressions contain both signed and unsigned int values, int values will be casted to unsigned.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Hands on: casting<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Create a file named <code class="docutils literal notranslate"><span class="pre">casting.c</span></code> with the following contents:</p></li>
+</ul>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=casting.c"></script>
+<ul class="simple">
+<li><p class="sd-card-text">Compile and run <code class="docutils literal notranslate"><span class="pre">casting.c</span></code>.</p></li>
+<li><p class="sd-card-text">Confirm that converted values are correct.</p></li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Challenge<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">What is wrong with the following program?</p></li>
+</ul>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=for_loop.c"></script>
+<ul class="simple">
+<li><p class="sd-card-text">How can this program be corrected?</p></li>
+</ul>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Change the range to 11-1</p></li>
+<li><p class="sd-card-text">Why don’t we change the type of i?
+that path exists.</p></li>
+</ul>
+</div>
+</details></div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Expanding and truncation<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Expanding (e.g., short int to int)</p>
+<ul>
+<li><p class="sd-card-text">Unsigned: zeros added</p></li>
+<li><p class="sd-card-text">Signed: sign extension</p></li>
+<li><p class="sd-card-text">Both yield expected result</p></li>
+</ul>
+</li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/data_06.png"><img alt="expanding" class="bg-primary mb-1 align-center" src="../_images/data_06.png" style="height: 200px;" /></a>
+<ul class="simple">
+<li><p class="sd-card-text">Truncating (e.g., unsigned to unsigned short)</p>
+<ul>
+<li><p class="sd-card-text">Unsigned/signed: bits are truncated</p></li>
+<li><p class="sd-card-text">Result reinterpreted</p></li>
+<li><p class="sd-card-text">Unsigned: mod operation</p></li>
+<li><p class="sd-card-text">Signed: similar to mod</p></li>
+<li><p class="sd-card-text">For small (in magnitude) numbers yields expected behavior</p></li>
+</ul>
+</li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/data_07.png"><img alt="truncating" class="bg-primary mb-1 align-center" src="../_images/data_07.png" style="height: 200px;" /></a>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Misunderstanding integers can lead to the end of the world!<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/m7bv_YcZzn0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<ul class="simple">
+<li><p class="sd-card-text"><a class="reference external" href="https://en.wikipedia.org/wiki/Thule_Site_J">Thule Site J</a>: USAF radar station for
+missile warning and spacecraft tracking.</p></li>
+<li><p class="sd-card-text">“There are many examples of errors arising from incorrect or incomplete specifications.
+One such example is a false alert in the early days of the nuclear age, when on
+October 5, 1960, the warning system at NORAD indicated that the United States was
+under massive attack by Soviet missiles with a certainty of 99.9 percent. It turned
+out that the Ballistic Missile Early Warning System (BMEWS) radar in Thule,
+Greenland, had spotted the rising moon. Nobody had thought about the moon when specifying
+how the system should act.” (Computer System Reliability and Nuclear War, CACM 1987).</p></li>
+<li><p class="sd-card-text">Moon’s large size: 1000s of objects reported.</p></li>
+<li><p class="sd-card-text">Moon’s distance: .25 million miles</p>
+<ul>
+<li><p class="sd-card-text">Thule’s BMEWS max distance: 3000 miles.</p></li>
+<li><p class="sd-card-text">Truncated distance to the moon: <code class="docutils literal notranslate"><span class="pre">%</span> <span class="pre">sizeof(distance)</span></code> = 2200 miles.</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Remember assignment 1: The computer does not “see”, it only interprets.</p>
+<ul>
+<li><p class="sd-card-text"><strong>Thousands of objects on the sky within missile detection range!</strong>.</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Human control:</p>
+<ul>
+<li><p class="sd-card-text">Kruschev was in New York on October 5, 1960.</p></li>
+<li><p class="sd-card-text">Someone at Thule said, “why not go check outside?”</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</details></section>
+<section id="addition-multiplication-and-negation-of-integers">
+<h2>5. Addition, multiplication, and negation (of integers)<a class="headerlink" href="#addition-multiplication-and-negation-of-integers" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Binary addition<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Mathematical operations:</p>
+<ul>
+<li><p class="sd-card-text">Bit-wise with carry</p></li>
+<li><p class="sd-card-text"><span class="math notranslate nohighlight">\(0 + 0 = 0\)</span></p></li>
+<li><p class="sd-card-text"><span class="math notranslate nohighlight">\(0 + 1 = 1\)</span></p></li>
+<li><p class="sd-card-text"><span class="math notranslate nohighlight">\(1 + 0 = 1\)</span></p></li>
+<li><p class="sd-card-text"><span class="math notranslate nohighlight">\(1 + 1 = 0\)</span> and carry <span class="math notranslate nohighlight">\(1\)</span> to the next bit operation (or add 1 to left of the most significant bit position)</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">This works for both unsigned and 2’s complement notation</p></li>
+<li><p class="sd-card-text">Example 1: 4-bit unsigned <span class="math notranslate nohighlight">\(2+6=8\)</span></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\ 0010 \\
++\ 0110 \\
+\hline
+\ 1000
+\end{split}\]</div>
+<ul class="simple">
+<li><p class="sd-card-text">Example 2: 4-bit unsigned <span class="math notranslate nohighlight">\(11+12=23\)</span></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\ 1011 \\
++\ 1100 \\
+\hline
+\ 10111
+\end{split}\]</div>
+<ul class="simple">
+<li><p class="sd-card-text">Example 3: 4-bit signed <span class="math notranslate nohighlight">\(5-7=5+(-7)=(-2)\)</span></p>
+<ul>
+<li><p class="sd-card-text">Positive to negative conversion in 2’s complement: flipped bit and add 1.</p></li>
+<li><p class="sd-card-text"><span class="math notranslate nohighlight">\(7\)</span>: <span class="math notranslate nohighlight">\(0111\)</span></p></li>
+<li><p class="sd-card-text"><span class="math notranslate nohighlight">\(-7\)</span>: <span class="math notranslate nohighlight">\(1000 + 1=1001\)</span></p></li>
+</ul>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\ 0101 \\
++\ 1001 \\
+\hline
+\ 1110
+\end{split}\]</div>
+<p class="sd-card-text"><span class="math notranslate nohighlight">\(1110=(-1)*(1)*(8)+(1)*(4)+(1)*(2)+(0)*1)=(-8)+4+2=(-2)\)</span></p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Unsigned addition<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Given <code class="docutils literal notranslate"><span class="pre">w</span></code> bits operands</p></li>
+<li><p class="sd-card-text">True sum can have <code class="docutils literal notranslate"><span class="pre">w</span> <span class="pre">+</span> <span class="pre">1</span></code> bits (carry bit).</p></li>
+<li><p class="sd-card-text">Carry bit is discarded.</p></li>
+<li><p class="sd-card-text">Implementation:</p></li>
+<li><p class="sd-card-text">s = (u + v) mod 2<sup>w</sup></p></li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Hands on: unsigned addition<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Create a file named <code class="docutils literal notranslate"><span class="pre">unsigned_addition.c</span></code> with the following contents:</p></li>
+</ul>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=unsigned_addition.c"></script>
+<ul class="simple">
+<li><p class="sd-card-text">Compile and run <code class="docutils literal notranslate"><span class="pre">unsigned_addition.c</span></code>.</p></li>
+<li><p class="sd-card-text">Confirm that calculated values are correct.</p></li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+2’s complement addition<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Almost similar bit-level behavior as unsigned addition</p>
+<ul>
+<li><p class="sd-card-text">True sum of <code class="docutils literal notranslate"><span class="pre">w</span></code>-bit operands will have <code class="docutils literal notranslate"><span class="pre">w+1</span></code>-bit, but</p></li>
+<li><p class="sd-card-text">Carry bit is discarded.</p></li>
+<li><p class="sd-card-text">Remainding bits are treated as 2’s complement integers.</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Overflow behavior is different</p></li>
+<li><p class="sd-card-text"><span class="math notranslate nohighlight">\(TAdd_{w}(u, v) = u + v + 2^{w}\)</span> if <span class="math notranslate nohighlight">\(u + v &lt; TMin_{w}\)</span> (<strong>Negative Overflow</strong>)</p></li>
+<li><p class="sd-card-text"><span class="math notranslate nohighlight">\(TAdd_{w}(u, v) = u + v\)</span> if <span class="math notranslate nohighlight">\(TMin_{w} \leq u + v \leq TMax_{w}\)</span></p></li>
+<li><p class="sd-card-text"><span class="math notranslate nohighlight">\(TAdd_{w}(u, v) = u + v - 2^{w}\)</span> if <span class="math notranslate nohighlight">\(u + v TMax_{w}\)</span> (<strong>Positive Overflow</strong>)</p></li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Hands on: signed addition<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Create a file named <code class="docutils literal notranslate"><span class="pre">signed_addition.c</span></code> with the following contents:</p></li>
+</ul>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=signed_addition.c"></script>
+<ul class="simple">
+<li><p class="sd-card-text">Compile and run <code class="docutils literal notranslate"><span class="pre">signed_addition.c</span></code>.</p></li>
+<li><p class="sd-card-text">Confirm that calculated values are correct.</p></li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Multiplication<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Compute product of <code class="docutils literal notranslate"><span class="pre">w</span></code>-bit numbers x and y.</p></li>
+<li><p class="sd-card-text">Exact results can be bigger than <code class="docutils literal notranslate"><span class="pre">w</span></code> bits.</p>
+<ul>
+<li><p class="sd-card-text">Unsigned: up to <code class="docutils literal notranslate"><span class="pre">2w</span></code> bits: <span class="math notranslate nohighlight">\(0 \leq x * y \leq (2^{w} - 1)^{2}\)</span></p></li>
+<li><p class="sd-card-text">2’s complement (negative): up to <code class="docutils literal notranslate"><span class="pre">2w</span> <span class="pre">-</span> <span class="pre">1</span></code> bits: <span class="math notranslate nohighlight">\(x * y \geq (-2)^{2w-2} + 2^{2w-1}\)</span></p></li>
+<li><p class="sd-card-text">2’s complement (positive): up to <code class="docutils literal notranslate"><span class="pre">2w</span></code> bits: <span class="math notranslate nohighlight">\(x * y \leq 2^{2w-2}\)</span></p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">To maintain exact results:</p>
+<ul>
+<li><p class="sd-card-text">Need to keep expanding word size with each product computed.</p></li>
+<li><p class="sd-card-text">Is done by software if needed (<a class="reference external" href="https://en.wikipedia.org/wiki/List_of_arbitrary-precision_arithmetic_software">arbitrary precision arithmetic packages</a>).</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text"><strong>Trust your compiler</strong>: Modern CPUs and OSes will most likely know to select the optimal method
+to multiply.</p></li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Multiplication and Division by power-of-2<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Power-of-2 multiply with left shift</p>
+<ul>
+<li><p class="sd-card-text"><span class="math notranslate nohighlight">\(u &lt;&lt; k\)</span> gives <span class="math notranslate nohighlight">\(u * 2^{k}\)</span></p></li>
+<li><p class="sd-card-text">True product has <code class="docutils literal notranslate"><span class="pre">w</span> <span class="pre">+</span> <span class="pre">k</span></code> bits: discard <code class="docutils literal notranslate"><span class="pre">k</span></code> bits.</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Unsigned power-of-2 divide with right shift</p>
+<ul>
+<li><p class="sd-card-text"><span class="math notranslate nohighlight">\(u &gt;&gt; k\)</span> gives <span class="math notranslate nohighlight">\(floor(u / 2^{k})\)</span></p></li>
+<li><p class="sd-card-text">Use logical shift.</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Signed power-of-2 divide with shift</p>
+<ul>
+<li><p class="sd-card-text">x &gt; 0: <span class="math notranslate nohighlight">\(x &gt;&gt; k\)</span> gives <span class="math notranslate nohighlight">\(floor(u / 2^{k})\)</span></p></li>
+<li><p class="sd-card-text">x &lt; 0: <span class="math notranslate nohighlight">\((x + (1 &lt;&lt; k) - 1) &gt;&gt; k\)</span> gives ceiling <span class="math notranslate nohighlight">\(u / 2^{k}\)</span></p></li>
+<li><p class="sd-card-text">C statement: <code class="docutils literal notranslate"><span class="pre">(x</span> <span class="pre">&lt;</span> <span class="pre">0</span> <span class="pre">?</span> <span class="pre">x</span> <span class="pre">+</span> <span class="pre">(1</span> <span class="pre">&lt;&lt;</span> <span class="pre">k)</span> <span class="pre">-</span> <span class="pre">1:</span> <span class="pre">x)</span> <span class="pre">&gt;k</span></code></p></li>
+</ul>
+</li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Negation: complement and increase<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Negate through complement and increment:</p>
+<ul>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">~x</span> <span class="pre">+</span> <span class="pre">1</span> <span class="pre">==</span> <span class="pre">-x</span></code></p></li>
+</ul>
+</li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Challenge<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Implement a C program called <code class="docutils literal notranslate"><span class="pre">negation.c</span></code> that implements and validates
+the equation in slide 24. The program should take in a command line argument
+that takes in a number of type <code class="docutils literal notranslate"><span class="pre">short</span></code> to be negated.</p></li>
+<li><p class="sd-card-text">What happens if you try to negate <code class="docutils literal notranslate"><span class="pre">-32768</span></code>?</p></li>
+</ul>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=negation.c"></script>
+</div>
+</details></div>
+</details></section>
+<section id="byte-oriented-memory-organization">
+<h2>6. Byte-oriented memory organization<a class="headerlink" href="#byte-oriented-memory-organization" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Overview<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Programs refer to data by address</p>
+<ul>
+<li><p class="sd-card-text">Conceptually, envision it as a very large array of bytes</p>
+<ul>
+<li><p class="sd-card-text">In reality, it’s not, but can think of it that way</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">An address is like an index into that array</p>
+<ul>
+<li><p class="sd-card-text">and, a pointer variable stores an address</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p class="sd-card-text">Note: system provides private address spaces to each “process”</p>
+<ul>
+<li><p class="sd-card-text">Think of a process as a program being executed</p></li>
+<li><p class="sd-card-text">So, a program can clobber its own data, but not that of others</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Machine words<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Any given computer has a “Word Size”</p></li>
+<li><p class="sd-card-text">`word size”: Nominal size of integer-valued data and of addresses</p></li>
+<li><p class="sd-card-text">Until recently, most machines used 32 bits (4 bytes) as word size</p>
+<ul>
+<li><p class="sd-card-text">Limits addresses to 4GB (232 bytes)</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Increasingly, machines have 64-bit word size</p>
+<ul>
+<li><p class="sd-card-text">Potentially, could have 18 EB (exabytes) of addressable memory</p></li>
+<li><p class="sd-card-text">That’s 18.4 X 1018</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Machines still support multiple data formats</p>
+<ul>
+<li><p class="sd-card-text">Fractions or multiples of word size</p></li>
+<li><p class="sd-card-text">Always integral number of bytes</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Word-oriented memory organization<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Addresses specific byte locations</p>
+<ul>
+<li><p class="sd-card-text">Address of first byte in word.</p></li>
+<li><p class="sd-card-text">Address of successive words differ by 4 (32-bit) or 8 (64-bit).</p></li>
+</ul>
+</li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/data_08.png"><img alt="word-oriented memory organization" class="bg-primary mb-1 align-center" src="../_images/data_08.png" style="height: 400px;" /></a>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Byte ordering in memory<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Machine-dependent</p></li>
+<li><p class="sd-card-text">Big Endian:  Sun (Oracle SPARC), PPC Mac, Internet (network data transfer)</p>
+<ul>
+<li><p class="sd-card-text">Least significant byte has the highest address.</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Little Endian: x86, ARM processors running Android, iOS, and Linux</p>
+<ul>
+<li><p class="sd-card-text">Least significant byte has lowest address.</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Example</p>
+<ul>
+<li><p class="sd-card-text">Variable x has 4-byte value of 0x01234567</p></li>
+<li><p class="sd-card-text">Address given by <code class="docutils literal notranslate"><span class="pre">&amp;x</span></code> is 0x100</p></li>
+</ul>
+</li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/data_09.png"><img alt="byte ordering example" class="bg-primary mb-1 align-center" src="../_images/data_09.png" style="height: 100px;" /></a>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Hands on: byte ordering in memory<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Make sure that you are inside <code class="docutils literal notranslate"><span class="pre">03-data</span></code> directory.</p></li>
+<li><p class="sd-card-text">Create a file named <code class="docutils literal notranslate"><span class="pre">byte_ordering.c</span></code> with the following contents:</p></li>
+</ul>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=byte_ordering.c"></script>
+<ul class="simple">
+<li><p class="sd-card-text">Compile and run <code class="docutils literal notranslate"><span class="pre">byte_ordering.c</span></code>.</p></li>
+<li><p class="sd-card-text">Confirm that calculated values are correct.</p></li>
+</ul>
+</div>
+</details></section>
+<section id="fractional-binary-numbers-float-and-double">
+<h2>7. Fractional binary numbers (float and double)<a class="headerlink" href="#fractional-binary-numbers-float-and-double" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Naive representation<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">What is 1011.101<sub>2</sub>?</p>
+<ul>
+<li><p class="sd-card-text">8 + 0 + 2 + 1 + 1/2 + 0 + 1/4</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Can only exactly represent numbers of the form x/2<sup>k</sup></p></li>
+<li><p class="sd-card-text">Limited range of numbers within the <code class="docutils literal notranslate"><span class="pre">w</span></code>-bit word size.</p></li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+IEEE Floating point<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text"><a class="reference external" href="https://standards.ieee.org/standard/754-2019.html">IEEE Standard 754</a></p>
+<ul>
+<li><p class="sd-card-text">Established in 1985 as uniform standard for floating point arithmetic</p></li>
+<li><p class="sd-card-text">Supported by all major CPUs</p></li>
+<li><p class="sd-card-text">Some CPUs don’t implement IEEE 754 in full, for example, early GPUs, Cell BE processor</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Driven by numerical concerns</p>
+<ul>
+<li><p class="sd-card-text">Nice standards for rounding, overflow, underflow</p></li>
+<li><p class="sd-card-text">Hard to make fast in hardware (Numerical analysts predominated over hardware
+designers in defining standard).</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Importance of floating-point arithmetic accuracy<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/5tJPXYA0Nec" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<ul class="simple">
+<li><p class="sd-card-text">Ariane 5 explordes on maiden voyage: $500 million dollars lost.</p>
+<ul>
+<li><p class="sd-card-text"><a class="reference external" href="http://sunnyday.mit.edu/nasa-class/Ariane5-report.html">64-bit floating point number assigned to 16-bit integer</a></p></li>
+<li><p class="sd-card-text">Cause rocket to get incorrect value of horizontal velocity and crash.</p></li>
+</ul>
+</li>
+</ul>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_Dbd3z8t9qc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<ul class="simple">
+<li><p class="sd-card-text">Patriot Missle defense system misses Scud: 28 dead</p>
+<ul>
+<li><p class="sd-card-text"><a class="reference external" href="https://www.gao.gov/assets/220/215614.pdf">Velocity is a real number that can be expressed as a whole number and a decimal
+(e.g., 3750.2563…miles per hour). Time is kept continuously by the system’s internal clock
+in tenths of seconds but is expressed as an integer or whole number (e.g., 32,33, 34…).
+The longer the system has been running, the larger the number representing time. To predict
+where the Scud will next appear, both time and velocity must be expressed as real numbers.
+Because of the way the Patriot computer performs its calculations and the fact that its
+registers are only 24 bits long, the conversion of time from an integer to a real number
+cannot be any more precise than 24 bits. This conversion results in a loss of precision
+causing a less accurate time calculation. The effect of this inaccuracy on the range gate’s
+calculation is directly proportional to the target’s velocity and the length of time
+the system has been running. Consequently, performing the conversion after the Patriot has
+been running continuously for extended periods causes the range gate to shift away from
+the center of the target, making it less likely that the target, in this case a Scud,
+will be successfully intercepted.</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+IEEE Floating point representation<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Numerical form: (-1)<sup>s</sup>M2<sup>E</sup></p>
+<ul>
+<li><p class="sd-card-text">Sign bit <code class="docutils literal notranslate"><span class="pre">s</span></code> determins whether the number is negative or positive.</p></li>
+<li><p class="sd-card-text">Significant <code class="docutils literal notranslate"><span class="pre">M</span></code> normalizes a fractional value in range [1.0, 2.0).</p></li>
+<li><p class="sd-card-text">Exponent <code class="docutils literal notranslate"><span class="pre">E</span></code> weights value by power of two.</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Encoding</p>
+<ul>
+<li><p class="sd-card-text">Most significant bit is sign bit <code class="docutils literal notranslate"><span class="pre">s</span></code>.</p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">exp</span></code> field encodes <code class="docutils literal notranslate"><span class="pre">E</span></code> (but is not equal to <code class="docutils literal notranslate"><span class="pre">E</span></code>)</p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">frac</span></code> field encodes <code class="docutils literal notranslate"><span class="pre">M</span></code> (but is not equalt to <code class="docutils literal notranslate"><span class="pre">M</span></code>)</p></li>
+</ul>
+</li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/data_10.png"><img alt="floating encoding" class="bg-primary mb-1 align-center" src="../_images/data_10.png" style="height: 100px;" /></a>
+<ul class="simple">
+<li><p class="sd-card-text">Single precision: 32 bits</p></li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/data_11.png"><img alt="32-bit encoding" class="bg-primary mb-1 align-center" src="../_images/data_11.png" style="height: 100px;" /></a>
+<ul class="simple">
+<li><p class="sd-card-text">Double precision: 64 bits</p></li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/data_12.png"><img alt="64-bit encoding" class="bg-primary mb-1 align-center" src="../_images/data_12.png" style="height: 100px;" /></a>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Three “kinds” of floating point numbers<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Depends on the <code class="docutils literal notranslate"><span class="pre">exp</span></code> field (<code class="docutils literal notranslate"><span class="pre">E</span></code>).</p></li>
+<li><p class="sd-card-text">Denormalized: <code class="docutils literal notranslate"><span class="pre">exp</span></code> contains all 0s.</p></li>
+<li><p class="sd-card-text">Special: <code class="docutils literal notranslate"><span class="pre">exp</span></code> contains all 1s.</p></li>
+<li><p class="sd-card-text">Normalized: <code class="docutils literal notranslate"><span class="pre">exp</span></code> contains a mix of 0s and 1s.</p></li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Normalized floating point numbers<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">When: exp != 000…0 and exp != 111…1</p></li>
+<li><p class="sd-card-text">Exponent coded as a biased value: E  =  exp – Bias</p>
+<ul>
+<li><p class="sd-card-text">exp: unsigned value of <code class="docutils literal notranslate"><span class="pre">exp</span></code> field</p></li>
+<li><p class="sd-card-text"><span class="math notranslate nohighlight">\(Bias = 2^{k-1} - 1\)</span>, where <code class="docutils literal notranslate"><span class="pre">k</span></code> is number of exponent bits</p>
+<ul>
+<li><p class="sd-card-text">Single precision: 127 (exp: 1…254, E: -126…127)</p></li>
+<li><p class="sd-card-text">Double precision: 1023 (exp: 1…2046, E: -1022…1023)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p class="sd-card-text">Significand coded with implied leading 1: M  =  <a class="reference external" href="http://1.xxx">1.xxx</a>…x<sub>2</sub></p>
+<ul>
+<li><p class="sd-card-text">xxx…x: bits of <code class="docutils literal notranslate"><span class="pre">frac</span></code> field</p></li>
+<li><p class="sd-card-text">Minimum when frac=000…0 (M = 1.0)</p></li>
+<li><p class="sd-card-text">Maximum when frac=111…1 (M = 2.0 – ε)</p></li>
+<li><p class="sd-card-text">Get extra leading bit for “free” (hence the range: <code class="docutils literal notranslate"><span class="pre">[1.0,</span> <span class="pre">2.0)</span></code>)</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Example: normalized floating point numbers<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Value: float F = 15213.0;</p>
+<ul>
+<li><p class="sd-card-text">15213<sub>10</sub>= 11101101101101<sub>2</sub>= 1.1101101101101<sub>2</sub>* 2<sup>13</sup></p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Significand:</p>
+<ul>
+<li><p class="sd-card-text">M = 1.1101101101101<sub>2</sub></p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">frac</span></code> = 11011011011010000000000<sub>2</sub></p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Exponent:</p>
+<ul>
+<li><p class="sd-card-text">E = 13</p></li>
+<li><p class="sd-card-text">Bias = 127</p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">exp</span></code> = 140 = 10001100<sub>2</sub></p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Result: <code class="docutils literal notranslate"><span class="pre">0</span></code>|<code class="docutils literal notranslate"><span class="pre">10001100</span></code>|<code class="docutils literal notranslate"><span class="pre">11011011011010000000000</span></code></p></li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Hands on: check floating point representation<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Make sure that you are inside <code class="docutils literal notranslate"><span class="pre">03-data</span></code> directory.</p></li>
+<li><p class="sd-card-text">Create a file named <code class="docutils literal notranslate"><span class="pre">show_fp.c</span></code> with the following contents:</p></li>
+</ul>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=show_fp.c"></script>
+<ul class="simple">
+<li><p class="sd-card-text">Compile and run <code class="docutils literal notranslate"><span class="pre">show_fp.c</span></code>.</p></li>
+<li><p class="sd-card-text">Confirm that calculated values in the previous example are correct.</p></li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Denormalized floating point<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Condition: exp = 000…0</p></li>
+<li><p class="sd-card-text">Exponent value: E = 1 – Bias</p></li>
+<li><p class="sd-card-text">Significand coded with implied leading 0: M = <a class="reference external" href="http://0.xxx">0.xxx</a>…x<sub>2</sub></p>
+<ul>
+<li><p class="sd-card-text">xxx…x: bits of frac</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Cases</p>
+<ul>
+<li><p class="sd-card-text">exp = 000…0, frac = 000…0</p>
+<ul>
+<li><p class="sd-card-text">Represents zero value</p></li>
+<li><p class="sd-card-text">Note distinct values: +0 and –0</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">exp = 000…0, frac ≠ 000…0</p>
+<ul>
+<li><p class="sd-card-text">Numbers closest to 0.0</p></li>
+<li><p class="sd-card-text">Equispaced</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Special cases<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Condition: exp = 111…1</p></li>
+<li><p class="sd-card-text">Case: exp = 111…1, frac = 000…0</p>
+<ul>
+<li><p class="sd-card-text">Represents value infinity</p></li>
+<li><p class="sd-card-text">Operation that overflows</p></li>
+<li><p class="sd-card-text">Both positive and negative</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Case: exp = 111…1, frac != 000…0</p>
+<ul>
+<li><p class="sd-card-text">Not-a-Number (NaN)</p></li>
+<li><p class="sd-card-text">Represents case when no numeric value can be determined</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</details></section>
+<section id="floating-operations">
+<h2>8. Floating operations<a class="headerlink" href="#floating-operations" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Basic idea<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Compute exact result.</p></li>
+<li><p class="sd-card-text">Make it fit into desired precision.</p>
+<ul>
+<li><p class="sd-card-text">Possible overflow if exponent too large</p></li>
+<li><p class="sd-card-text">Possible round to fit into <code class="docutils literal notranslate"><span class="pre">frac</span></code></p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Rounding modes</p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p class="sd-card-text"></p></th>
+<th class="head"><p class="sd-card-text">1.40</p></th>
+<th class="head"><p class="sd-card-text">1.60</p></th>
+<th class="head"><p class="sd-card-text">1.50</p></th>
+<th class="head"><p class="sd-card-text">2.50</p></th>
+<th class="head"><p class="sd-card-text">-1.50</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p class="sd-card-text">Towards zero</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">2</p></td>
+<td><p class="sd-card-text">-1</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">Round down</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">2</p></td>
+<td><p class="sd-card-text">-2</p></td>
+</tr>
+<tr class="row-even"><td><p class="sd-card-text">Round up</p></td>
+<td><p class="sd-card-text">2</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">3</p></td>
+<td><p class="sd-card-text">-1</p></td>
+</tr>
+<tr class="row-odd"><td><p class="sd-card-text">Nearest even (default)</p></td>
+<td><p class="sd-card-text">1</p></td>
+<td><p class="sd-card-text">2</p></td>
+<td><p class="sd-card-text">2</p></td>
+<td><p class="sd-card-text">2</p></td>
+<td><p class="sd-card-text">-2</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p class="sd-card-text">Nearest even</p>
+<ul>
+<li><p class="sd-card-text">Hard to get any other mode without dropping into assembly.</p></li>
+<li><p class="sd-card-text">C99 has support for rounding mode management</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">All others are statistically based</p>
+<ul>
+<li><p class="sd-card-text">Sum of set of positive numbers will consistently be over- or under-estimated.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Floating point multiplication<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text"><span class="math notranslate nohighlight">\((-1)^{s_1}M_{1}2^{E_1} * (-1)^{s_2}M_{2}2^{E_2}\)</span></p></li>
+<li><p class="sd-card-text">Exact result: <span class="math notranslate nohighlight">\((-1)^{s}M2^{E}\)</span></p>
+<ul>
+<li><p class="sd-card-text"><span class="math notranslate nohighlight">\(s = s_{1} XOR s_{2}\)</span></p></li>
+<li><p class="sd-card-text"><span class="math notranslate nohighlight">\(M = M_{1}*M_{2}\)</span></p></li>
+<li><p class="sd-card-text"><span class="math notranslate nohighlight">\(E = E_{1}+E_{2}\)</span></p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Correction</p>
+<ul>
+<li><p class="sd-card-text">If M &gt;= 2, shift M right, increment E.</p></li>
+<li><p class="sd-card-text">If E out of range, overflow.</p></li>
+<li><p class="sd-card-text">Round M to fit <code class="docutils literal notranslate"><span class="pre">frac</span></code> precision</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Implementation: Biggest chore is multiplying significands.</p></li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Floating point addition<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text"><span class="math notranslate nohighlight">\((-1)^{s_1}M_{1}2^{E_1} + (-1)^{s_2}M_{2}2^{E_2}\)</span></p></li>
+<li><p class="sd-card-text">Exact result: <span class="math notranslate nohighlight">\((-1)^{s}M2^E\)</span>1</p>
+<ul>
+<li><p class="sd-card-text">Sign s, significand M: result of signed align and add</p></li>
+<li><p class="sd-card-text">E = E<sub>1</sub></p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Correction</p>
+<ul>
+<li><p class="sd-card-text">If M &gt;= 2, shift M right, increment E.</p></li>
+<li><p class="sd-card-text">If M &lt; 1, shift M left k positions, decrement E by k.</p></li>
+<li><p class="sd-card-text">Overflow if E out of range</p></li>
+<li><p class="sd-card-text">Round M to fit <code class="docutils literal notranslate"><span class="pre">frac</span></code> precision</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Implementation: Biggest chore is multiplying significands.</p></li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Mathematical properties of floating point addition<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Compare to those of <a class="reference external" href="https://en.wikipedia.org/wiki/Abelian_group">Abelian group</a>
+(a group in which the result of applying the group operation to two group elements
+does not depend on the order in which they are written):</p>
+<ul>
+<li><p class="sd-card-text">Closed under addition? <strong>Yes</strong> (but may generate infinity or NaN)</p></li>
+<li><p class="sd-card-text">Communicative? <strong>Yes</strong></p></li>
+<li><p class="sd-card-text">Associative? <strong>No</strong></p>
+<ul>
+<li><p class="sd-card-text">Overflow and inexactness of rounding</p></li>
+<li><p class="sd-card-text">(3.14+1e10)-1e10 = 0, 3.14+(1e10-1e10) = 3.14</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">0 is additive identity? <strong>Yes</strong></p></li>
+<li><p class="sd-card-text">Every element has additive inverse? <strong>Almost</strong></p>
+<ul>
+<li><p class="sd-card-text">Except for infinities and NaN</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p class="sd-card-text">Monotonicity?</p>
+<ul>
+<li><p class="sd-card-text"><strong>Almost</strong></p></li>
+<li><p class="sd-card-text">Except for infinities and NaN</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Mathematical properties of floating point multiplication<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Compare to those of <a class="reference external" href="https://en.wikipedia.org/wiki/Abelian_group">Abelian group</a>
+(a group in which the result of applying the group operation to two group elements
+does not depend on the order in which they are written):</p>
+<ul>
+<li><p class="sd-card-text">Closed under addition? <strong>Yes</strong> (but may generate infinity or NaN)</p></li>
+<li><p class="sd-card-text">Communicative? <strong>Yes</strong></p></li>
+<li><p class="sd-card-text">Associative? <strong>No</strong></p>
+<ul>
+<li><p class="sd-card-text">Overflow and inexactness of rounding</p></li>
+<li><p class="sd-card-text">(1e20 * 1e20) * 1e-20= inf, 1e20 * (1e20 * 1e-20)= 1e20</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">1 is multiplicative identity? <strong>Yes</strong></p></li>
+<li><p class="sd-card-text">Multiplication distributes over addition? <strong>No</strong></p>
+<ul>
+<li><p class="sd-card-text">Overflow and inexactness of rounding</p></li>
+<li><p class="sd-card-text">1e20 * (1e20-1e20)= 0.0,  1e20 * 1e20 – 1e20 * 1e20 = NaN</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p class="sd-card-text">Monotonicity?</p>
+<ul>
+<li><p class="sd-card-text"><strong>Almost</strong></p></li>
+<li><p class="sd-card-text">Except for infinities and NaN</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Floating point in C<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">C guarantees two levels</p>
+<ul>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">float</span></code>: single precision</p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">double</span></code>: double precision</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Conversion/casting</p>
+<ul>
+<li><p class="sd-card-text">Casting between int, float, and double changes bit representation</p></li>
+<li><p class="sd-card-text">double/float to int</p>
+<ul>
+<li><p class="sd-card-text">Truncates fractional part</p></li>
+<li><p class="sd-card-text">Like rounding toward zero</p></li>
+<li><p class="sd-card-text">Not defined when out of range or NaN: Generally sets to TMin</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">int to double</p>
+<ul>
+<li><p class="sd-card-text">Exact conversion, as long as int has ≤ 53 bit word size</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">int to float</p>
+<ul>
+<li><p class="sd-card-text">Will round according to rounding mode</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</details></section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./episodes"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="03-gate-circuit.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Computer architecture</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="05-more-c.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Even more C</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Linh Ngo<br/>
+  
+      &copy; Copyright 2022.<br/>
+    <div class="extra_footer">
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"></a> <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Computer Systems</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

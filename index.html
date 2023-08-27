@@ -1,0 +1,1301 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>CSC 231: Computer Systems &#8212; Computer Systems</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Introduction" href="episodes/01-introduction.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-C91ED1K883"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-C91ED1K883');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="#">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Computer Systems</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1 current active">
+                <a class="reference internal" href="#">
+                    CSC 231: Computer Systems
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lectures
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="episodes/01-introduction.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="episodes/02-intro-to-c.html">
+   Introduction to C
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="episodes/03-gate-circuit.html">
+   Computer architecture
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="episodes/04-data-representation.html">
+   Representing and manipulating information
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="episodes/05-more-c.html">
+   Even more C
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="episodes/06-architecture.html">
+   Computer architecture
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="episodes/07-machine-language.html">
+   Machine language
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="episodes/08-memory-cache.html">
+   Memory hierarchy and cache memories
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="episodes/09-code-optimization.html">
+   Code optimization
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/index.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#course-information">
+   Course Information
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#required-materials">
+   Required Materials
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#resources-and-accessibility">
+   Resources and Accessibility
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#course-description">
+   Course Description
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prerequisites">
+   Prerequisites
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learning-objectives">
+   Learning Objectives
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#course-student-learning-outcomes-cslo">
+     Course Student Learning Outcomes (CSLO)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cs-program-objectives-cspo">
+     CS Program Objectives (CSPO)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cs-abet-program-outcomes-abet">
+     CS/ABET Program Outcomes (ABET)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#certificate-in-computer-security-program-outcomes">
+     Certificate in Computer Security Program Outcomes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assessments-and-grading">
+   Assessments and Grading
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#method-of-evaluation">
+     Method of Evaluation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grade-scale">
+     Grade Scale
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#assessments">
+     Assessments
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#midterm-and-final-exam">
+     Midterm and Final Exam
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lateness-policy">
+     Lateness Policy:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#university-policies">
+   University Policies
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#academic-personal-integrity">
+     Academic &amp; Personal Integrity
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#students-with-disabilities">
+     Students with Disabilities
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#excused-absences-policy">
+     Excused Absences Policy
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reporting-incidents-of-sexual-violence">
+     Reporting Incidents of Sexual Violence
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#inclusive-learning-environment-and-anti-racist-statement">
+     Inclusive Learning Environment and Anti-Racist Statement
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#emergency-preparedness">
+     Emergency Preparedness
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#electronic-mail-policy">
+     Electronic Mail Policy
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#resources-for-student-success">
+   Resources for Student Success
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#expectations-for-student-success-in-distance-education">
+     Expectations for Student Success in Distance Education
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#minimum-student-technical-skills">
+     Minimum Student Technical Skills
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#accessibility-policies-privacy-policies-and-support-site-information">
+     Accessibility Policies, Privacy Policies, and Support Site Information:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#student-academic-and-support-services">
+     Student Academic and Support Services
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#library-resources-for-distance-education-students">
+     Library Resources for Distance Education Students
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#course-topics-and-schedules">
+   Course Topics and Schedules
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bibliography">
+   Bibliography
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>CSC 231: Computer Systems</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#course-information">
+   Course Information
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#required-materials">
+   Required Materials
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#resources-and-accessibility">
+   Resources and Accessibility
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#course-description">
+   Course Description
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#prerequisites">
+   Prerequisites
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learning-objectives">
+   Learning Objectives
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#course-student-learning-outcomes-cslo">
+     Course Student Learning Outcomes (CSLO)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cs-program-objectives-cspo">
+     CS Program Objectives (CSPO)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cs-abet-program-outcomes-abet">
+     CS/ABET Program Outcomes (ABET)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#certificate-in-computer-security-program-outcomes">
+     Certificate in Computer Security Program Outcomes
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assessments-and-grading">
+   Assessments and Grading
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#method-of-evaluation">
+     Method of Evaluation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grade-scale">
+     Grade Scale
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#assessments">
+     Assessments
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#midterm-and-final-exam">
+     Midterm and Final Exam
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lateness-policy">
+     Lateness Policy:
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#university-policies">
+   University Policies
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#academic-personal-integrity">
+     Academic &amp; Personal Integrity
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#students-with-disabilities">
+     Students with Disabilities
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#excused-absences-policy">
+     Excused Absences Policy
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reporting-incidents-of-sexual-violence">
+     Reporting Incidents of Sexual Violence
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#inclusive-learning-environment-and-anti-racist-statement">
+     Inclusive Learning Environment and Anti-Racist Statement
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#emergency-preparedness">
+     Emergency Preparedness
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#electronic-mail-policy">
+     Electronic Mail Policy
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#resources-for-student-success">
+   Resources for Student Success
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#expectations-for-student-success-in-distance-education">
+     Expectations for Student Success in Distance Education
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#minimum-student-technical-skills">
+     Minimum Student Technical Skills
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#accessibility-policies-privacy-policies-and-support-site-information">
+     Accessibility Policies, Privacy Policies, and Support Site Information:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#student-academic-and-support-services">
+     Student Academic and Support Services
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#library-resources-for-distance-education-students">
+     Library Resources for Distance Education Students
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#course-topics-and-schedules">
+   Course Topics and Schedules
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bibliography">
+   Bibliography
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="csc-231-computer-systems">
+<h1>CSC 231: Computer Systems<a class="headerlink" href="#csc-231-computer-systems" title="Permalink to this headline">#</a></h1>
+<p><strong>Syllabus</strong></p>
+<ul class="simple">
+<li><p><strong>Instructor</strong>: Linh B. Ngo</p></li>
+<li><p><strong>Office</strong>: UNA 138</p></li>
+<li><p><strong>Office Hours Fall 2023</strong>:</p>
+<ul>
+<li><p>MWF : 11:00AM-12:00PM (in-person and online)</p></li>
+<li><p>TR  : 11:00AM-12:00PM (online)</p></li>
+<li><p>Online Zoom link is posted in D2L’s announcement page</p></li>
+</ul>
+</li>
+<li><p><strong>Email</strong>: lngo AT wcupa DOT edu</p>
+<ul>
+<li><p>I will respond to emails within 24 hours during the work week.</p></li>
+</ul>
+</li>
+<li><p><strong>Phone</strong>: 610-436-2595</p></li>
+</ul>
+<section id="course-information">
+<h2>Course Information<a class="headerlink" href="#course-information" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>The course runs from August 28, 2023 until December 11, 2023.</p></li>
+<li><p>There are two sections for the courses:</p>
+<ul>
+<li><p>CSC 231-02: In-person, MWF 12:00PM - 12:50PM Anderson Hall 315</p></li>
+<li><p>CSC 231-03: Online asynchronous. For this section, students are
+not expected to attend the online Zoom session.</p></li>
+</ul>
+</li>
+<li><p>Recordings for topics will be embedded in the class’ website.</p></li>
+<li><p>An introductory recording for the class will be made available in
+the course’s D2L page.</p></li>
+</ul>
+</section>
+<section id="required-materials">
+<h2>Required Materials<a class="headerlink" href="#required-materials" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><strong>Dive into Systems</strong> by Suzanna J. Matthews, Tia Newhall, and Kevin C. Webb.</p>
+<ul>
+<li><p>A free open-source online version of this book is available
+at <a class="reference external" href="https://diveintosystems.org/">https://diveintosystems.org</a></p></li>
+</ul>
+</li>
+<li><p>You are expected to have a computer system that meets the minimum
+expectations as outlined by West Chester University Information
+Services on the <a class="reference external" href="https://www.wcupa.edu/distanceEd/techRequirements.aspx">Recommended Student Computer Con../figuration</a>. You need a working web-camera and microphone.</p></li>
+</ul>
+</section>
+<section id="resources-and-accessibility">
+<h2>Resources and Accessibility<a class="headerlink" href="#resources-and-accessibility" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>For general technical support, students can contact WCU IT
+HelpDesk at 610-436-3350 or via email: <a class="reference external" href="mailto:helpdesk&#37;&#52;&#48;wcupa&#46;edu">helpdesk<span>&#64;</span>wcupa<span>&#46;</span>edu</a>.</p></li>
+<li><p>For distance education support, students can contact WCU Distance
+Education Services at 610-436-3373 or via email: <a class="reference external" href="mailto:distanceed&#37;&#52;&#48;wcupa&#46;edu">distanceed<span>&#64;</span>wcupa<span>&#46;</span>edu</a>.</p></li>
+<li><p>A Discord server will be created and invitation link made available
+inside D2L. Technical questions specific to online competition platforms
+used in the course can be sent via email to the instructor or posted on
+the Discord server.</p></li>
+</ul>
+</section>
+<section id="course-description">
+<h2>Course Description<a class="headerlink" href="#course-description" title="Permalink to this headline">#</a></h2>
+<p>In this course, we will learn fundamental concepts of modern computer systems.
+Unlike courses in Computer Organizations, Operating Systems, and Computer Architecture,
+we will be approaching these concepts from the perspective of system users rather than
+system builders. This will help us to understand how various computer system components,
+including CPU, memory, storage, and networking, work. Throughout the course, we will learn
+to use assembler language and C language to explore and observe specifically how computer
+systems interpret and execute programs. With the knowledge learned from this course, you
+will be able to build programs that are more efficient and have better performance.</p>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>CSC 142: Computer Science II</p></li>
+<li><p>MAT 151: Discrete Mathematics</p></li>
+</ul>
+</section>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Permalink to this headline">#</a></h2>
+<section id="course-student-learning-outcomes-cslo">
+<h3>Course Student Learning Outcomes (CSLO)<a class="headerlink" href="#course-student-learning-outcomes-cslo" title="Permalink to this headline">#</a></h3>
+<ol class="simple">
+<li><p>Be able to understand and manipulate the byte-representation of
+different data types (int, float, char …)</p></li>
+<li><p>Be able to understand simple segment of Assembler codes.</p></li>
+<li><p>Be able to understand how processes are loaded into memory and
+memory placements of stack, heap, and code within the virtual memory.</p></li>
+<li><p>Be able to understand the tradeoff in accessing data stored
+in various memory hierarchical levels.</p></li>
+<li><p>Be able to understand how simple network communication works
+within the Linux operating system.</p></li>
+<li><p>Be able to understand how to perform various debugging and
+optimization techniques.</p></li>
+<li><p>Be able to understand how layered service designs and API
+works from a systems programming perspective.</p></li>
+</ol>
+</section>
+<section id="cs-program-objectives-cspo">
+<h3>CS Program Objectives (CSPO)<a class="headerlink" href="#cs-program-objectives-cspo" title="Permalink to this headline">#</a></h3>
+<ol class="simple">
+<li><p>Be able to apply theory, techniques, and methodologies to create and/or
+maintain high quality computing systems that function effectively and reliably
+in the emerging and future information infrastructure (CSLO 1, 2, 3, 4, 5, 6, 7).</p></li>
+</ol>
+</section>
+<section id="cs-abet-program-outcomes-abet">
+<h3>CS/ABET Program Outcomes (ABET)<a class="headerlink" href="#cs-abet-program-outcomes-abet" title="Permalink to this headline">#</a></h3>
+<ol class="simple">
+<li><p>ABET 1: Analyze a complex computing problem and to apply principles of
+computing and other relevant disciplines to identify solutions (CSLO 1, 2, 3, 4).</p></li>
+<li><p>ABET 2: Design, implement, and evaluate a computing-based solution to meet
+a given set of computing requirements in the context of the program’s
+discipline (CSLO 5, 6, 7).</p></li>
+</ol>
+</section>
+<section id="certificate-in-computer-security-program-outcomes">
+<h3>Certificate in Computer Security Program Outcomes<a class="headerlink" href="#certificate-in-computer-security-program-outcomes" title="Permalink to this headline">#</a></h3>
+<ol class="simple">
+<li><p>Analyze and resolve security issues in network and computer
+systems to secure an IT infrastructure</p></li>
+</ol>
+</section>
+</section>
+<section id="assessments-and-grading">
+<h2>Assessments and Grading<a class="headerlink" href="#assessments-and-grading" title="Permalink to this headline">#</a></h2>
+<section id="method-of-evaluation">
+<h3>Method of Evaluation<a class="headerlink" href="#method-of-evaluation" title="Permalink to this headline">#</a></h3>
+<table class="table" id="id1">
+<caption><span class="caption-number">Table 1 </span><span class="caption-text">Method of Evaluation</span><a class="headerlink" href="#id1" title="Permalink to this table">#</a></caption>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Assessment</p></th>
+<th class="head"><p>% of Final Grade</p></th>
+<th class="head"><p>Course Objectives Assessed</p></th>
+<th class="head"><p>Program Objectives Assessed</p></th>
+<th class="head"><p>ABET Objectives Assessed</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Programming Assignment Sets</p></td>
+<td><p>35%</p></td>
+<td><p>SLO 1, 2</p></td>
+<td><p>CSPO 1</p></td>
+<td><p>ABET 1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Labs</p></td>
+<td><p>25%</p></td>
+<td><p>SLO 3, 4, 5, 6, 7</p></td>
+<td><p>CSPO 1</p></td>
+<td><p>ABET 1, 2</p></td>
+</tr>
+<tr class="row-even"><td><p>Quizzes</p></td>
+<td><p>20%</p></td>
+<td><p>SLO 1, 5</p></td>
+<td><p>CSPO 1</p></td>
+<td><p>ABET 1, 2</p></td>
+</tr>
+<tr class="row-odd"><td><p>Participation</p></td>
+<td><p>5%</p></td>
+<td><p>SLO 1, 2, 3, 4</p></td>
+<td><p>CSPO 1</p></td>
+<td><p>ABET 1</p></td>
+</tr>
+<tr class="row-even"><td><p>Exams</p></td>
+<td><p>15%</p></td>
+<td><p>SLO 2, 3, 4, 5, 6, 7</p></td>
+<td><p>CSPO 1</p></td>
+<td><p>ABET 1, 2</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="grade-scale">
+<h3>Grade Scale<a class="headerlink" href="#grade-scale" title="Permalink to this headline">#</a></h3>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Numeric</p></th>
+<th class="head"><p>Letter</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>100-93</p></td>
+<td><p>A</p></td>
+</tr>
+<tr class="row-odd"><td><p>92-90</p></td>
+<td><p>A-</p></td>
+</tr>
+<tr class="row-even"><td><p>89-87</p></td>
+<td><p>B+</p></td>
+</tr>
+<tr class="row-odd"><td><p>86-83</p></td>
+<td><p>B</p></td>
+</tr>
+<tr class="row-even"><td><p>82-80</p></td>
+<td><p>B-</p></td>
+</tr>
+<tr class="row-odd"><td><p>79-77</p></td>
+<td><p>C+</p></td>
+</tr>
+<tr class="row-even"><td><p>76-73</p></td>
+<td><p>C</p></td>
+</tr>
+<tr class="row-odd"><td><p>72-70</p></td>
+<td><p>C-</p></td>
+</tr>
+<tr class="row-even"><td><p>69-67</p></td>
+<td><p>D+</p></td>
+</tr>
+<tr class="row-odd"><td><p>66-63</p></td>
+<td><p>D</p></td>
+</tr>
+<tr class="row-even"><td><p>62-60</p></td>
+<td><p>D-</p></td>
+</tr>
+<tr class="row-odd"><td><p>&lt;= 59</p></td>
+<td><p>F</p></td>
+</tr>
+</tbody>
+</table>
+<p>Refer to the <a class="reference external" href="https://catalog.wcupa.edu/undergraduate/academic-policies-procedures/grading-information/">Grading Information section</a>
+section of the Undergraduate Catalog for description  of NG (No Grade),
+W, Z, and other grades.</p>
+</section>
+<section id="assessments">
+<h3>Assessments<a class="headerlink" href="#assessments" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Assignments: Writing and running programs written in C programming language,
+and demonstrating ability to read, understand, and modify Assembly/binary code.</p>
+<ul>
+<li><p>Writing introductory C codes that demonstrate understanding of the language.</p></li>
+<li><p>Writing C codes that demonstrate understanding and the ability to manipulate
+the byte-representation of different data types (int, float, char …).</p></li>
+<li><p>Demonstrate understanding by writing corresponding C codes that would translate
+to segment of Assembler codes given by the assignment.</p></li>
+<li><p>Perform calculations to demonstrate understanding the tradeoff in accessing
+data stored in various memory levels.</p></li>
+<li><p>Write a program that performs asynchronous communication tasks across a computer
+network.</p></li>
+</ul>
+</li>
+<li><p>Labs: In the labs, students will learn to use command line tools and programs common
+in the Linux operating systems for their programs.</p></li>
+<li><p>Quiz and Exams: Multiple choice, code reading, and code correction are used to
+assess understanding of theoretical concepts necessary to support the tasks
+described in the assignments and labs.</p></li>
+</ul>
+</section>
+<section id="midterm-and-final-exam">
+<h3>Midterm and Final Exam<a class="headerlink" href="#midterm-and-final-exam" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>The Midterm Exam will be disseminated in the last week of October.</p></li>
+<li><p>Final Exam date will be scheduled according to the University’s Final
+Exam Schedule for Fall 2023.</p></li>
+</ul>
+</section>
+<section id="lateness-policy">
+<h3>Lateness Policy:<a class="headerlink" href="#lateness-policy" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>For lab submission, each late day (including weekends) will incur a 5% penalty
+on the lab grade, up to a maximum of 50% penalty. No late submission will be accepted
+after two weeks past the due date.</p></li>
+<li><p>There is no late submission accept for assignment. Instead, the instructor will
+follow an mastery grading scheme approach as follows:</p>
+<ul>
+<li><p>Each assignment has three versions</p>
+<ul>
+<li><p>The assignment’s score is the highest score out of the three attempts.</p></li>
+<li><p>The versions contain additional work of the same difficulty level (just slightly!).</p></li>
+<li><p>If you can’t make it for the first version, keep going and try again.</p></li>
+<li><p>The final versions for all assignments are due on the last day of class.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="university-policies">
+<h2>University Policies<a class="headerlink" href="#university-policies" title="Permalink to this headline">#</a></h2>
+<section id="academic-personal-integrity">
+<h3>Academic &amp; Personal Integrity<a class="headerlink" href="#academic-personal-integrity" title="Permalink to this headline">#</a></h3>
+<p>It is the responsibility of each student to adhere to the university’s standards
+for academic integrity. Violations of academic integrity include any act that
+violates the rights of another student in academic work, that involves misrepresentation
+of your own work, or that disrupts the instruction of the course. Other violations include
+(but are not limited to): cheating on assignments or examinations; plagiarizing, which
+means copying any part of another’s work and/or using ideas of another and presenting
+them as one’s own without giving proper credit to the source; selling, purchasing, or
+exchanging of term papers; falsifying of information; and using your own work from one
+class to fulfill the assignment for another class without significant modification.
+Proof of academic misconduct can result in the automatic failure and removal from this
+course. For questions regarding Academic Integrity, the No-Grade Policy, Sexual Harassment,
+or the Student Code of Conduct, students are encouraged to refer to the
+<a class="reference external" href="https://www.wcupa.edu/sciences-mathematics/computerScience/undergrad.aspx">Department Undergraduate Handbook</a>,
+the <a class="reference external" href="https://catalog.wcupa.edu/undergraduate/">Undergraduate Course Catalog</a>,
+the <a class="reference external" href="https://www.wcupa.edu/_services/STU/ramsEyeView/">Ram’s Eye View</a>, or
+the <a class="reference external" href="https://www.wcupa.edu">University Website</a>.</p>
+</section>
+<section id="students-with-disabilities">
+<h3>Students with Disabilities<a class="headerlink" href="#students-with-disabilities" title="Permalink to this headline">#</a></h3>
+<p>If you have a disability that requires accommodations under the Americans with
+Disabilities Act (ADA), please present your letter of accommodations and meet with me as
+soon as possible so that I can support your success in an informed manner. Accommodations
+cannot be granted retroactively. If you would like to know more about West Chester
+University’s Services for Students with Disabilities (OSSD), please visit them at 223
+Lawrence Center. Their phone number is 610-436-2564, their fax number is 610-436-2600,
+their email address is <a class="reference external" href="mailto:ossd&#37;&#52;&#48;wcupa&#46;edu">ossd<span>&#64;</span>wcupa<span>&#46;</span>edu</a>, or visit the <a class="reference external" href="https://www.wcupa.edu/universitycollege/ossd/">OSSD website</a>.
+In an effort to assist students who either receive or may believe they are entitled
+to receive accommodations under the Americans with Disabilities Act and Section 504 of
+the Rehabilitation Act of 1973, the University has appointed a student advocate to be
+a contact for students who have questions regarding the provision of their
+accommodations or their right to accommodations. The advocate will assist any student
+who may have questions regarding these rights. The Director for Equity and Compliance/Title
+IX Coordinator has been designated in this role. Students who need assistance with
+their rights to accommodations should contact them at 610-436-2433.</p>
+<p>The <a class="reference external" href="https://www.wcupa.edu/_admin/diversityEquityInclusion/adaPolicy.aspx">University’s Americans with Disabilities policy</a>
+is available on the website.  If you encounter an area of this course that is not accessible to
+you, please contact me.</p>
+</section>
+<section id="excused-absences-policy">
+<h3>Excused Absences Policy<a class="headerlink" href="#excused-absences-policy" title="Permalink to this headline">#</a></h3>
+<p>Students are advised to carefully read and comply with the excused absences policy, including
+absences for university-sanctioned events, contained in the WCU Undergraduate Catalog.
+In particular, please note that the <strong>responsibility for meeting academic requirements rests
+with the student</strong>, that this policy does not excuse students from completing required academic
+work, and that professors can require a <strong>fair alternative</strong> to attendance on those days
+that students must be absent from class in order to participate in a University-Sanctioned Event.</p>
+</section>
+<section id="reporting-incidents-of-sexual-violence">
+<h3>Reporting Incidents of Sexual Violence<a class="headerlink" href="#reporting-incidents-of-sexual-violence" title="Permalink to this headline">#</a></h3>
+<p>West Chester University and its faculty are committed to assuring a safe and productive
+educational environment for all students. In order to comply with the requirements of
+Title IX of the Education Amendments of 1972 and the University’s commitment to offering
+supportive measures in accordance with the new regulations issued under Title IX, the
+University requires faculty members to report incidents of sexual violence shared by
+students to the University’s Title IX Coordinator. The only exceptions to the faculty
+member’s reporting obligation are when incidents of sexual violence are communicated
+by a student during a classroom discussion, in a writing assignment for a class, or
+as part of a University-approved research project. Faculty members are obligated to
+report sexual violence or any other abuse of a student who was, or is, a child (a
+person under 18 years of age) when the abuse allegedly occurred to the person designated
+in the University Protection of Minors Policy. Information regarding the reporting of
+sexual violence and the resources that are available to victims of sexual violence is
+set forth at the <a class="reference external" href="https://www.wcupa.edu/_admin/diversityEquityInclusion/sexualMisconduct/default.aspx">webpage for the Office of Diversity, Equity, and Inclusion</a>.</p>
+</section>
+<section id="inclusive-learning-environment-and-anti-racist-statement">
+<h3>Inclusive Learning Environment and Anti-Racist Statement<a class="headerlink" href="#inclusive-learning-environment-and-anti-racist-statement" title="Permalink to this headline">#</a></h3>
+<p>Diversity, equity, and inclusion are central to West Chester University’s mission as
+reflected in our <a class="reference external" href="https://www.wcupa.edu/president/valuesAndVision.aspx">Mission Statement, Values Statement, Vision Statement</a>
+and <a class="reference external" href="https://www.wcupa.edu/president/strategicPlan/default.aspx">Strategic Plan: Pathways to Student Success</a>.
+We disavow racism and all actions that silence, threaten, or degrade historically
+marginalized groups in the U.S. We acknowledge that all members of this learning
+community may experience harm stemming from forms of oppression including but not
+limited to classism, ableism, heterosexism, sexism, Islamophobia, anti-Semitism,
+and xenophobia, and recognize that these forms of oppression are compounded by racism.</p>
+<p>Our core commitment as an institution of higher education shapes our expectation
+for behavior within this learning community, which represents diverse individual
+beliefs, backgrounds, and experiences. Courteous and respectful behavior,
+interactions, and responses are expected from all members of the University.
+We must work together to make this a safe and productive learning environment
+for everyone. Part of this work is recognizing how race and other aspects of
+who we are shape our beliefs and our experiences as individuals. It is not
+enough to condemn acts of racism. For real, sustainable change, we must stand
+together as a diverse coalition against racism and oppression of any form,
+anywhere, at any time.</p>
+<p>Resources for education and action are available through WCU’s
+<a class="reference external" href="https://www.wcupa.edu/_admin/diversityEquityInclusion/changeBeginsHere.aspx">Office for Diversity, Equity, and Inclusion</a>
+(ODEI), DEI committees within departments or colleges, the student <a class="reference external" href="https://www.wcupa.edu/_services/STU/studentOmbuds/">ombudsperson</a>,
+and centers on campus committed to doing this work (e.g., <a class="reference external" href="https://www.wcupa.edu/_services/multicultural/">Dowdy Multicultural Center</a>,
+<a class="reference external" href="https://www.wcupa.edu/_services/women-gender-equity/">Center for Women and Gender Equity</a>, and the
+<a class="reference external" href="https://www.wcupa.edu/_services/transAndQueer/">Center for Trans and Queer Advocacy</a>).</p>
+<p>Guidance on how to report incidents of discrimination and harassment is available at the University’s
+<a class="reference external" href="https://www.wcupa.edu/_admin/diversityEquityInclusion/">Office of Diversity, Equity and Inclusion</a>.</p>
+</section>
+<section id="emergency-preparedness">
+<h3>Emergency Preparedness<a class="headerlink" href="#emergency-preparedness" title="Permalink to this headline">#</a></h3>
+<p>All students are encouraged to sign up for the University’s free WCU ALERT service,
+which delivers official WCU emergency text messages directly to your cell phone.
+For more information, visit <a class="reference external" href="http://www.wcupa.edu/wcualert">www.wcupa.edu/wcualert</a>. To report an emergency,
+call the Department of Public Safety at 610-436-3311.</p>
+</section>
+<section id="electronic-mail-policy">
+<h3>Electronic Mail Policy<a class="headerlink" href="#electronic-mail-policy" title="Permalink to this headline">#</a></h3>
+<p>It is expected that faculty, staff, and students activate and maintain regular
+access to University provided e-mail accounts. Official university communications,
+including those from your instructor, will be sent through your university e-mail
+account. You are responsible for accessing that mail to be sure to obtain official
+University communications. Failure to access will not exempt individuals from
+the responsibilities associated with this course.</p>
+</section>
+</section>
+<section id="resources-for-student-success">
+<h2>Resources for Student Success<a class="headerlink" href="#resources-for-student-success" title="Permalink to this headline">#</a></h2>
+<section id="expectations-for-student-success-in-distance-education">
+<h3>Expectations for Student Success in Distance Education<a class="headerlink" href="#expectations-for-student-success-in-distance-education" title="Permalink to this headline">#</a></h3>
+<p>An online course uses technology to provide you, the student, with greater flexibility
+regarding when and where you learn.  To be a successful online learner you must
+capitalize on this increased flexibility by doing the following.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Self-Motivation</span> <span class="pre">and</span> <span class="pre">Self-Discipline</span></code>: Active participation in online activities is expected.
+This means that you login to the course frequently, engage with the provided materials, and read
+and respond to communications in a timely and thoughtful manner.  Online courses require you to
+take more responsibility for your learning.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Planning</span> <span class="pre">and</span> <span class="pre">Organization</span></code>: You will need disciplined work habits, effective time management
+skills, and the ability to work both alone and collaboratively if you wish to be successful
+in an online course.  You should expect to devote 9 to 12 hours per week to this course.<br />
+You may find that you need to work harder than you would in a traditional lecture class.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Communication</span> <span class="pre">Skills</span></code>: In an online course communication takes place primarily through
+the written word.  You need strong English reading and writing skills to express your
+thoughts.  Online courses also expect you to proactively reach out to your instructor
+for assistance when you need it.  Finally, pay attention to communication guidelines
+and be respectful of your fellow students when you communicate.</p></li>
+</ul>
+</section>
+<section id="minimum-student-technical-skills">
+<h3>Minimum Student Technical Skills<a class="headerlink" href="#minimum-student-technical-skills" title="Permalink to this headline">#</a></h3>
+<p>You are expected to be competent in the use of computers, the World Wide Web, and commonly
+used software programs such as the Microsoft Office Suite of applications and Adobe PDF readers.
+In addition, you should be able to utilize a web-camera and microphone.  You should have a basic
+understanding of how to use the common elements of the university learning management system.</p>
+<p>Students without experience using the university’s learning management system (Desire2Learn)
+can contact the Student Help Desk to arrange instruction, can contact Distance Education
+Support, or can complete tutorials in <a class="reference external" href="https://d2l.wcupa.edu/d2l/home/2513024">Navigating Digital Learning</a>.</p>
+<p>Hours for support services may vary.  Check their websites for times of operation.</p>
+<ul class="simple">
+<li><p>General Technical Support: Contact the WCU IT Helpdesk at 610-436-3350 or email <a class="reference external" href="mailto:helpdesk&#37;&#52;&#48;wcupa&#46;edu">helpdesk<span>&#64;</span>wcupa<span>&#46;</span>edu</a></p></li>
+<li><p>Distance Education Support: Contact The Office of Digital Learning &amp; Innovation at 610-436-3373 or email <a class="reference external" href="mailto:distanceed&#37;&#52;&#48;wcupa&#46;edu">distanceed<span>&#64;</span>wcupa<span>&#46;</span>edu</a></p></li>
+<li><p>Additional technical support information will be provided for tools as needed throughout the course.</p></li>
+</ul>
+</section>
+<section id="accessibility-policies-privacy-policies-and-support-site-information">
+<h3>Accessibility Policies, Privacy Policies, and Support Site Information:<a class="headerlink" href="#accessibility-policies-privacy-policies-and-support-site-information" title="Permalink to this headline">#</a></h3>
+<p>This course uses a variety of tools.  To access a tool’s accessibility and privacy policy,
+navigate to the <a class="reference external" href="https://www.wcupa.edu/DistanceEd/resourcesandpolicies.aspx">Distance Education Accessibility and Privacy Policies website</a>.</p>
+</section>
+<section id="student-academic-and-support-services">
+<h3>Student Academic and Support Services<a class="headerlink" href="#student-academic-and-support-services" title="Permalink to this headline">#</a></h3>
+<p>Student academic and support services provided by the university can be found on the
+<a class="reference external" href="https://www.wcupa.edu/_services/STU/ramsEyeView/services.aspx">Ram’s Eye View Services website</a>.</p>
+</section>
+<section id="library-resources-for-distance-education-students">
+<h3>Library Resources for Distance Education Students<a class="headerlink" href="#library-resources-for-distance-education-students" title="Permalink to this headline">#</a></h3>
+<p>The West Chester University Library makes resources available to distance education students.
+Please review their <a class="reference external" href="https://library.wcupa.edu/distance">Library Services for Distance Students website</a>
+for specific information.</p>
+</section>
+</section>
+<section id="course-topics-and-schedules">
+<h2>Course Topics and Schedules<a class="headerlink" href="#course-topics-and-schedules" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Quizzes are typically disseminated once evere two week.</p>
+<ul>
+<li><p>Assignments and Labs are due via D2L submission pages.</p></li>
+</ul>
+</li>
+</ul>
+<table class="table" id="topic-schedule">
+<caption><span class="caption-number">Table 2 </span><span class="caption-text">Topics and Tentative Schedule</span><a class="headerlink" href="#topic-schedule" title="Permalink to this table">#</a></caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Week</p></th>
+<th class="head"><p>Topic</p></th>
+<th class="head"><p>Assessments</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Introduction to Computer Systems</p></td>
+<td><p>Lab 1: Introduction to Linux (Due on Sep 24)</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Introduction to C programming language</p></td>
+<td><p>Assignment 1 (Due on Sep 16)</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>Introduction to C (cont.)</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>Representing and manipulating information</p></td>
+<td><p>Assignment 2 (Due on Oct 17)</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>Representing and manipulating information (cont.)</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>Representing and manipulating information (cont.)</p></td>
+<td><p>Assignment 3 (Due on Oct 30)</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>Advanced C</p></td>
+<td><p>Lab 2 (Due on Nov 6)</p></td>
+</tr>
+<tr class="row-odd"><td><p>7</p></td>
+<td><p>Computer Architecture</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>8</p></td>
+<td><p>Midterm</p></td>
+<td><p>Assignment 4 (Due on Nov 20)</p></td>
+</tr>
+<tr class="row-odd"><td><p>9</p></td>
+<td><p>Machine Language</p></td>
+<td><p>Lab 3 (Due on Nov 20)</p></td>
+</tr>
+<tr class="row-even"><td><p>10</p></td>
+<td><p>Machine Language (cont.)</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>11</p></td>
+<td><p>Memory hierarchy and cache memories</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>12</p></td>
+<td><p>Memory hierarchy and cache memories (cont.)</p></td>
+<td><p>Lab 4 (Due on Dec 9)</p></td>
+</tr>
+<tr class="row-odd"><td><p>13</p></td>
+<td><p>Memory hierarchy and cache memories (cont.)</p></td>
+<td><p>Assignment 5 (Due on Dec 11)</p></td>
+</tr>
+<tr class="row-even"><td><p>14</p></td>
+<td><p>Performance optimization (cont.)</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>15</p></td>
+<td><p>Performance optimization</p></td>
+<td><p>Lab 5 (Due on Dec 12)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bibliography">
+<h2>Bibliography<a class="headerlink" href="#bibliography" title="Permalink to this headline">#</a></h2>
+<ol class="simple">
+<li><p>Computer Systems, Warford, J., Fifth Edition, ISBN: 1284079635</p></li>
+<li><p>Computer Systems: Digital Design, Fundamental of Computer Architecture
+and Assembly Language, Elahi, A., ISBN: 9783319667744</p></li>
+<li><p>Computer Organization and Design, Patterson, D. and Hennessy, J.,
+Fifth Edition, ISBN: 0124077269</p></li>
+<li><p>The Elements of Computing Systems: Building a Modern Computer from First
+Principles, Nisan, N. and Schocken, S., ISBN: 0262640686</p></li>
+<li><p>Computer System Architecture, Mano, M., Third Edition, ISBN 0131755633</p></li>
+<li><p>Introduction to Computing Systems: From Bits and Gates to C and Beyond,
+Patt, Y. and Patel, S., Second Edition, ISBN: 0072467509</p></li>
+<li><p>Computer Systems: An Integrated Approach to Architecture and Operating
+Systems, Ramachandran, U. and Leahy Jr., W., ISBN 0312486137</p></li>
+</ol>
+</section>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='right-next' id="next-link" href="episodes/01-introduction.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Introduction</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Linh Ngo<br/>
+  
+      &copy; Copyright 2022.<br/>
+    <div class="extra_footer">
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"></a> <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Computer Systems</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

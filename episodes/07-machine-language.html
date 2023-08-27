@@ -1,0 +1,1586 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Machine language &#8212; Computer Systems</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Memory hierarchy and cache memories" href="08-memory-cache.html" />
+    <link rel="prev" title="Computer architecture" href="06-architecture.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-C91ED1K883"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-C91ED1K883');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Computer Systems</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    CSC 231: Computer Systems
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lectures
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-introduction.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-intro-to-c.html">
+   Introduction to C
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-gate-circuit.html">
+   Computer architecture
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-data-representation.html">
+   Representing and manipulating information
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-more-c.html">
+   Even more C
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-architecture.html">
+   Computer architecture
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Machine language
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-memory-cache.html">
+   Memory hierarchy and cache memories
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-code-optimization.html">
+   Code optimization
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/episodes/07-machine-language.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#intel-x86-processors">
+   1. Intel x86 processors
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#machine-programming-levels-of-abstraction">
+   2. Machine programming: levels of abstraction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assembly-language">
+   3. Assembly language
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#midterm">
+   Midterm
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-movement">
+   4. Data movement
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#arithmetic-operations">
+   5. Arithmetic operations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#logical-operations">
+   6. Logical operations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mechanisms-in-procedures-functions">
+   7. Mechanisms in procedures (functions)
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Machine language</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#intel-x86-processors">
+   1. Intel x86 processors
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#machine-programming-levels-of-abstraction">
+   2. Machine programming: levels of abstraction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assembly-language">
+   3. Assembly language
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#midterm">
+   Midterm
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-movement">
+   4. Data movement
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#arithmetic-operations">
+   5. Arithmetic operations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#logical-operations">
+   6. Logical operations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mechanisms-in-procedures-functions">
+   7. Mechanisms in procedures (functions)
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="machine-language">
+<h1>Machine language<a class="headerlink" href="#machine-language" title="Permalink to this headline">#</a></h1>
+<div class="tip admonition">
+<p class="admonition-title">Relevant Reading</p>
+<p>This lecture will cover contents from <a class="reference external" href="https://diveintosystems.org/book/C6-asm_intro/index.html">Chapter 6</a> and <a class="reference external" href="https://diveintosystems.org/book/C7-x86_64/index.html">Chapter 7</a> of the book.</p>
+</div>
+<section id="intel-x86-processors">
+<h2>1. Intel x86 processors<a class="headerlink" href="#intel-x86-processors" title="Permalink to this headline">#</a></h2>
+<div class="dropdown admonition">
+<p class="admonition-title">Overview</p>
+<ul class="simple">
+<li><p>Dominate laptop/desktop/server market</p></li>
+<li><p>Evolutionary design</p>
+<ul>
+<li><p>Backwards compatible up until 8086, introduced in 1978</p></li>
+<li><p>Added more features as time goes on</p></li>
+</ul>
+</li>
+<li><p>x86 is a Complex Instruction Set Computer (CISC)</p>
+<ul>
+<li><p>Many different instructions with many different formats</p></li>
+<li><p>But, only small subset encountered with Linux programs</p></li>
+</ul>
+</li>
+<li><p>Compare: Reduced Instruction Set Computer (RISC)</p>
+<ul>
+<li><p>RISC: <em>very few</em> instructions, with <em>very few</em> modes for each</p></li>
+<li><p>RISC can be quite fast (but Intel still wins on speed!)</p></li>
+<li><p>Current RISC renaissance (e.g., ARM, RISC V), especially for low-power</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Transistor</p>
+<ul class="simple">
+<li><p>Building blocks modern electronics</p></li>
+<li><p>Two transistors used to design an AND gate:</p></li>
+</ul>
+<p><img alt="AND gate created using transistors" src="../_images/TransistorANDgate.png" /></p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Intel and AMD</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="2ad1943b-0f29-43fe-bf13-682715695b1d" name="e42e18aa-1fc4-49ec-891f-32bfcdc5603e" type="radio">
+</input><label class="sd-tab-label" for="2ad1943b-0f29-43fe-bf13-682715695b1d">
+Intel</label><div class="sd-tab-content docutils">
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Date</p></th>
+<th class="head"><p>Transistor Counts</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>386</p></td>
+<td><p>1985</p></td>
+<td><p>0.3M</p></td>
+</tr>
+<tr class="row-odd"><td><p>Pentium</p></td>
+<td><p>1993</p></td>
+<td><p>3.1M</p></td>
+</tr>
+<tr class="row-even"><td><p>Pentium/MMX</p></td>
+<td><p>1997</p></td>
+<td><p>4.5M</p></td>
+</tr>
+<tr class="row-odd"><td><p>Pentium Pro</p></td>
+<td><p>1995</p></td>
+<td><p>6.5M</p></td>
+</tr>
+<tr class="row-even"><td><p>Pentium III</p></td>
+<td><p>1999</p></td>
+<td><p>8.2M</p></td>
+</tr>
+<tr class="row-odd"><td><p>Pentium 4</p></td>
+<td><p>2000</p></td>
+<td><p>42M</p></td>
+</tr>
+<tr class="row-even"><td><p>Core 2 Duo</p></td>
+<td><p>2006</p></td>
+<td><p>291M</p></td>
+</tr>
+<tr class="row-odd"><td><p>Core i7</p></td>
+<td><p>2008</p></td>
+<td><p>731M</p></td>
+</tr>
+<tr class="row-even"><td><p>Core i7 Skylake</p></td>
+<td><p>2015</p></td>
+<td><p>1.75B</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>Added features</p>
+<ul>
+<li><p>Instructions to support multimedia operations</p></li>
+<li><p>Instructions to enable more efficient conditional operations (<strong>!</strong>)</p></li>
+<li><p>Transition from 32 bits to 64 bits</p></li>
+<li><p>More cores</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<input id="9758c634-f114-47d1-9a49-87fb7c4e0e95" name="e42e18aa-1fc4-49ec-891f-32bfcdc5603e" type="radio">
+</input><label class="sd-tab-label" for="9758c634-f114-47d1-9a49-87fb7c4e0e95">
+AMD</label><div class="sd-tab-content docutils">
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Date</p></th>
+<th class="head"><p>Transistor Counts</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>AMD K5</p></td>
+<td><p>1996</p></td>
+<td><p>4.3M</p></td>
+</tr>
+<tr class="row-odd"><td><p>AMD K6</p></td>
+<td><p>1997</p></td>
+<td><p>8.8M</p></td>
+</tr>
+<tr class="row-even"><td><p>AMD K6/III</p></td>
+<td><p>1998</p></td>
+<td><p>21.3M</p></td>
+</tr>
+<tr class="row-odd"><td><p>AMD K7</p></td>
+<td><p>1999</p></td>
+<td><p>22.0M</p></td>
+</tr>
+<tr class="row-even"><td><p>AMD K8</p></td>
+<td><p>2003</p></td>
+<td><p>105.9M</p></td>
+</tr>
+<tr class="row-odd"><td><p>AMD Opteron</p></td>
+<td><p>2009</p></td>
+<td><p>904M</p></td>
+</tr>
+<tr class="row-even"><td><p>AMD Bulldozer</p></td>
+<td><p>2012</p></td>
+<td><p>1.2B</p></td>
+</tr>
+<tr class="row-odd"><td><p>AMD Ryzen 5</p></td>
+<td><p>2017</p></td>
+<td><p>4.8B</p></td>
+</tr>
+<tr class="row-even"><td><p>AMD Epyc</p></td>
+<td><p>2017</p></td>
+<td><p>19.2B</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>x86 clones: Advanced Micro Devices (AMD)</p></li>
+<li><p>Historically</p>
+<ul>
+<li><p>AMD has followed just behind Intel</p></li>
+<li><p>A little bit slower, a lot cheaper</p></li>
+</ul>
+</li>
+<li><p>Then</p>
+<ul>
+<li><p>Recruited top circuit designers from Digital Equipment Corp.
+and other downward trending companies</p></li>
+<li><p>Built Opteron: tough competitor to Pentium 4</p></li>
+<li><p>Developed x86-64, their own extension to 64 bits</p></li>
+</ul>
+</li>
+<li><p>Recent Years</p>
+<ul>
+<li><p>Intel got its act together</p>
+<ul>
+<li><p>1995-2011: Lead semiconductor “fab” in world</p></li>
+<li><p>2018: #2 largest by $$ (#1 is Samsung)</p></li>
+<li><p>2019: reclaimed #1</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>AMD fell behind</p>
+<ul>
+<li><p>Relies on external semiconductor manufacturer GlobalFoundaries</p></li>
+<li><p>ca. 2019 CPUs (e.g., Ryzen) are competitive again</p></li>
+<li><p>2020 Epyc</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="machine-programming-levels-of-abstraction">
+<h2>2. Machine programming: levels of abstraction<a class="headerlink" href="#machine-programming-levels-of-abstraction" title="Permalink to this headline">#</a></h2>
+<div class="dropdown admonition">
+<p class="admonition-title">Overview</p>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/032.png"><img alt="levels of abstraction" class="bg-primary mb-1 align-center" src="../_images/032.png" style="height: 300px;" /></a>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Architecture</span></code>: (also <code class="docutils literal notranslate"><span class="pre">ISA</span></code>: instruction set architecture) The parts of a processor
+design that one needs to understand for writing correct machine/assembly code</p>
+<ul>
+<li><p>Examples:  instruction set specification, registers</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Machine</span> <span class="pre">Code</span></code>: The byte-level programs that a processor executes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Assembly</span> <span class="pre">Code</span></code>: A text representation of machine code</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Microarchitecture</span></code>: Implementation of the architecture</p>
+<ul>
+<li><p>Examples: cache sizes and core frequency</p></li>
+</ul>
+</li>
+<li><p>Example ISAs:</p>
+<ul>
+<li><p>Intel: x86, IA32, Itanium, x86-64</p></li>
+<li><p>ARM: Used in almost all mobile phones</p></li>
+<li><p>RISC V: New open-source ISA</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Assembly/Machine code view</p>
+<ul class="simple">
+<li><p>Machine code (Assembly code) differs greatly from the original C code.</p></li>
+<li><p>Parts of processor state that are not visible/accessible from C programs
+are now visible.</p>
+<ul>
+<li><p>PC: Program counter</p>
+<ul>
+<li><p>Contains address of next instruction</p></li>
+<li><p>Called <code class="docutils literal notranslate"><span class="pre">%rip</span></code> (instruction pointer register)</p></li>
+</ul>
+</li>
+<li><p>Register file</p>
+<ul>
+<li><p>contains 16 named locations (registers), each can store 64-bit values.</p></li>
+<li><p>These registers can hold addresses (~ C pointers) or integer data.</p></li>
+</ul>
+</li>
+<li><p>Condition codes</p>
+<ul>
+<li><p>Store status information about most recent arithmetic or
+logical operation</p></li>
+<li><p>Used for conditional branching (<code class="docutils literal notranslate"><span class="pre">if</span></code>/<code class="docutils literal notranslate"><span class="pre">while</span></code>)</p></li>
+</ul>
+</li>
+<li><p>Vector registers to hold one or more integers or floating-point values.</p></li>
+<li><p>Memory</p>
+<ul>
+<li><p>Is seen  as a byte-addressable array</p></li>
+<li><p>Contains code and user data</p></li>
+<li><p>Stack to support procedures</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/042.png"><img alt="Assembly programmer" class="bg-primary mb-1 align-center" src="../_images/042.png" style="height: 300px;" /></a>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Hands on: assembly/machine code example</p>
+<ul class="simple">
+<li><p>Inside your <code class="docutils literal notranslate"><span class="pre">csc231</span></code>, create another directory called <code class="docutils literal notranslate"><span class="pre">04-machine</span></code> and change
+into this directory.</p></li>
+<li><p>Create a file named <code class="docutils literal notranslate"><span class="pre">mstore.c</span></code> with the following contents:</p></li>
+</ul>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=mstore.c"></script>
+<ul class="simple">
+<li><p>Run the following commands
+<em>It is capital o, not number 0</em></p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ gcc -Og -S mstore.c
+$ cat mstore.s
+$ gcc -Og -c mstore.c
+$ objdump -d mstore.o
+</pre></div>
+</div>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/051.png"><img alt="Assembly code" class="bg-primary mb-1 align-center" src="../_images/051.png" style="height: 700px;" /></a>
+<ul class="simple">
+<li><p>x86_64 instructions range in length from 1 to 15 bytes</p></li>
+<li><p>The disassembler determines the assembly code based purely on the
+byte-sequence in the machine-code file.</p></li>
+<li><p>All lines begin with <code class="docutils literal notranslate"><span class="pre">.</span></code>  are directirves to the assembler and linker.</p></li>
+</ul>
+</div>
+</section>
+<section id="assembly-language">
+<h2>3. Assembly language<a class="headerlink" href="#assembly-language" title="Permalink to this headline">#</a></h2>
+<div class="dropdown admonition">
+<p class="admonition-title">Overview</p>
+<ul class="simple">
+<li><p>Symbolic coding</p></li>
+<li><p>Very strong correspondence between the language syntax and the
+microarchitecture’s machine code instructions</p></li>
+<li><p>../figure from <strong>Programming the IBM 1401 Manual</strong> (1962)</p></li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/assembly-01.png"><img alt="Programming the IBM 1401" class="bg-primary mb-1 align-center" src="../_images/assembly-01.png" style="height: 300px;" /></a>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Data format</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>C data type</p></th>
+<th class="head"><p>Intel data type</p></th>
+<th class="head"><p>Assembly-code suffix</p></th>
+<th class="head"><p>Size</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>char</p></td>
+<td><p>Byte</p></td>
+<td><p>b</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>short</p></td>
+<td><p>Word</p></td>
+<td><p>w</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p>int</p></td>
+<td><p>Double word</p></td>
+<td><p>l</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p>long</p></td>
+<td><p>Quad word</p></td>
+<td><p>q</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-even"><td><p>char *</p></td>
+<td><p>Quad word</p></td>
+<td><p>q</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-odd"><td><p>float</p></td>
+<td><p>Single precision</p></td>
+<td><p>s</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p>double</p></td>
+<td><p>Double precision</p></td>
+<td><p>l</p></td>
+<td><p>8</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Integer registers</p>
+<ul class="simple">
+<li><p>x86_64 CPU contains a set of 16 <code class="docutils literal notranslate"><span class="pre">general</span> <span class="pre">purpose</span> <span class="pre">registers</span></code> storing 64-bit values.</p></li>
+<li><p>Original 8086 design has eight 16-bit registers, <code class="docutils literal notranslate"><span class="pre">%ax</span></code> through <code class="docutils literal notranslate"><span class="pre">%sp</span></code>.</p>
+<ul>
+<li><p>Origin (mostly obsolete)</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">%ax</span></code>: accumulate</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%cx</span></code>: counter</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%dx</span></code>: data</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%bx</span></code>: base</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%si</span></code>: source index</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%di</span></code>: destination index</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%sp</span></code>: stack pointer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%bp</span></code>: base pointer</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>After IA32 extension, these registers grew to 32 bits, labeled <code class="docutils literal notranslate"><span class="pre">%eax</span></code> through <code class="docutils literal notranslate"><span class="pre">%esp</span></code>.</p></li>
+<li><p>After x86_64 extension, these registers were expanded to 64 bits, labeled <code class="docutils literal notranslate"><span class="pre">%rax</span></code>
+through <code class="docutils literal notranslate"><span class="pre">%rsp</span></code>. Eight new registered were added: <code class="docutils literal notranslate"><span class="pre">%r8</span></code> through <code class="docutils literal notranslate"><span class="pre">%r15</span></code>.</p></li>
+<li><p>Instructions can operate on data of different sizes stored in low-order bytes of the
+16 registers.</p></li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/061.png"><img alt="General purpose registers" class="bg-primary mb-1 align-center" src="../_images/061.png" style="height: 800px;" /></a>
+<p><em>Bryant and O’ Hallaron, Computer Systems: A Programmer’s Perspective, Third Edition</em></p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Axsembly characteristics: Operations</p>
+<ul class="simple">
+<li><p>Transfer data between memory and register</p>
+<ul>
+<li><p>Load data from memory into register</p></li>
+<li><p>Store register data into memory</p></li>
+</ul>
+</li>
+<li><p>Perform arithmetic function on register or memory data</p></li>
+<li><p>Transfer control</p>
+<ul>
+<li><p>Unconditional jumps to/from procedures</p></li>
+<li><p>Conditional branches</p></li>
+<li><p>Indirect branches</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="midterm">
+<h2>Midterm<a class="headerlink" href="#midterm" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Monday October 24, 2022</p></li>
+<li><p>20-25 questions (similar in format to the quizzes).</p></li>
+<li><p>50 minutes</p></li>
+<li><p>Everything (including source codes) up to and including the episode on <strong>Representing and manipulating information</strong>.</p></li>
+</ul>
+</section>
+<section id="data-movement">
+<h2>4. Data movement<a class="headerlink" href="#data-movement" title="Permalink to this headline">#</a></h2>
+<div class="dropdown admonition">
+<p class="admonition-title">Definition</p>
+<ul class="simple">
+<li><p>Example: <code class="docutils literal notranslate"><span class="pre">movq</span> <span class="pre">Source,</span> <span class="pre">Dest</span></code></p></li>
+<li><p>Note: This is ATT notation. Intel uses <code class="docutils literal notranslate"><span class="pre">mov</span> <span class="pre">Dest,</span> <span class="pre">Source</span></code></p></li>
+<li><p>Operand Types for <code class="docutils literal notranslate"><span class="pre">Source</span></code> and <code class="docutils literal notranslate"><span class="pre">Dest</span></code>:</p>
+<ul>
+<li><p>Immediate (Imm): Constant integer data.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">$0x400</span></code>, <code class="docutils literal notranslate"><span class="pre">$-533</span></code>.</p></li>
+<li><p>Like C constant, but prefixed with <code class="docutils literal notranslate"><span class="pre">$</span></code>.</p></li>
+<li><p>Encoded with 1, 2, or 4 bytes.</p></li>
+</ul>
+</li>
+<li><p>Register (Reg): One of 16 integer registers</p>
+<ul>
+<li><p>Example: <code class="docutils literal notranslate"><span class="pre">%rax</span></code>, <code class="docutils literal notranslate"><span class="pre">%r13</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%rsp</span></code> reserved for special use.</p></li>
+<li><p>Others have special uses in particular instructions.</p></li>
+</ul>
+</li>
+<li><p>Memory (Mem): 8 (<code class="docutils literal notranslate"><span class="pre">q</span></code> in <code class="docutils literal notranslate"><span class="pre">movq</span></code>) consecutive bytes of memory at
+address given by register.</p>
+<ul>
+<li><p>Example: <code class="docutils literal notranslate"><span class="pre">(%rax)</span></code></p></li>
+<li><p>Various other <strong>addressing mode</strong> (See textbook page 181, ../figure 3.3).</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Other <code class="docutils literal notranslate"><span class="pre">mov</span></code>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">movb</span></code>: move byte</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">movw</span></code>: move word</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">movl</span></code>: move double word</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">movq</span></code>: move quad word</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">moveabsq</span></code>: move absolute quad word</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">movq Operand Combinations</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p><code class="docutils literal notranslate"><span class="pre">movq</span></code></p></th>
+<th class="head"><p>Source</p></th>
+<th class="head"><p>Dest</p></th>
+<th class="head"><p>Src, Dest</p></th>
+<th class="head"><p>C Analog</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p></p></td>
+<td><p>Imm</p></td>
+<td><p>Reg</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">movq</span> <span class="pre">$0x4,</span> <span class="pre">%rax</span></code></p></td>
+<td><p>tmp = 0x4;</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Imm</p></td>
+<td><p>Mem</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">movq</span> <span class="pre">$-147,(%rax)</span></code></p></td>
+<td><p>*p = -147;</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Reg</p></td>
+<td><p>Reg</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">movq</span> <span class="pre">%rax,%rdx</span></code></p></td>
+<td><p>tmp2 = tmp1;</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>Reg</p></td>
+<td><p>Mem</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">movq</span> <span class="pre">%rax,(%rdx)</span></code></p></td>
+<td><p>*p = tmp;</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p>Mem</p></td>
+<td><p>Reg</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">movq</span> <span class="pre">(%rax),%rdx</span></code></p></td>
+<td><p>tmp = *p;</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Simple memory addressing mode</p>
+<ul class="simple">
+<li><p>Normal:	(R)	Mem[Reg[R]]</p>
+<ul>
+<li><p>Register R specifies memory address</p></li>
+<li><p>Aha! Pointer dereferencing in C</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">movq</span> <span class="pre">(%rcx),%rax</span></code></p></li>
+</ul>
+</li>
+<li><p>Displacement	D(R)	Mem[Reg[R]+D]</p>
+<ul>
+<li><p>Register R specifies start of memory region</p></li>
+<li><p>Constant displacement D specifies offset</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">movq</span> <span class="pre">8(%rbp),%rdx</span></code></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">x86_64 Assembly Cheatsheet</p>
+<p><a class="reference external" href="https://cs.brown.edu/courses/cs033/docs/guides/x64_cheatsheet.pdf">Brown University - Dr. Doeppner</a></p>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Hands on: swapping via single-valued pointers</p>
+<ul class="simple">
+<li><p>Create a file named <code class="docutils literal notranslate"><span class="pre">swap.c</span></code> in <code class="docutils literal notranslate"><span class="pre">04-machine</span></code> with the following contents:</p></li>
+</ul>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=swap.c"></script>
+<ul class="simple">
+<li><p>Run the following commands</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ gcc -Og -c swap.c
+$ objdump -d swap.o
+</pre></div>
+</div>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/071.png"><img alt="swapping via single-valued pointers" class="bg-primary mb-1 align-center" src="../_images/071.png" style="height: 500px;" /></a>
+<ul class="simple">
+<li><p><a class="reference external" href="http://6.s081.scripts.mit.edu/sp18/x86-64-architecture-guide.html">Why <code class="docutils literal notranslate"><span class="pre">%rsi</span></code> and <code class="docutils literal notranslate"><span class="pre">%rdi</span></code>?</a></p></li>
+<li><p>Procedure Data Flow:</p>
+<ul>
+<li><p>First six parameters of a function will be placed into
+<code class="docutils literal notranslate"><span class="pre">rdi</span></code>, <code class="docutils literal notranslate"><span class="pre">rsi</span></code>, <code class="docutils literal notranslate"><span class="pre">rdx</span></code>, <code class="docutils literal notranslate"><span class="pre">rcx</span></code>, <code class="docutils literal notranslate"><span class="pre">r8</span></code>, <code class="docutils literal notranslate"><span class="pre">r9</span></code>.</p></li>
+<li><p>The remaining parameters will be pushed on to the stack of the calling function.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Hands on: swapping positions in an array (via pointer)</p>
+<ul class="simple">
+<li><p>Create a file named <code class="docutils literal notranslate"><span class="pre">swap_dsp.c</span></code> in <code class="docutils literal notranslate"><span class="pre">04-machine</span></code> with the following contents:</p></li>
+</ul>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=swap_dsp.c"></script>
+<ul class="simple">
+<li><p>Run the following commands</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gcc -Og -c swap_dsp.c
+$ objdump -d swap_dsp.o
+</pre></div>
+</div>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/081.png"><img alt="swapping positions in an array (via pointer)" class="bg-primary mb-1 align-center" src="../_images/081.png" style="height: 500px;" /></a>
+<ul class="simple">
+<li><p>What is the meaning of <code class="docutils literal notranslate"><span class="pre">0x190</span></code>?</p></li>
+</ul>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Complete memory addressing mode</p>
+<ul class="simple">
+<li><p>Most General Form</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">D(Rb,Ri,S)</span></code>: <code class="docutils literal notranslate"><span class="pre">Mem[Reg[Rb]+S*Reg[Ri]+</span> <span class="pre">D]</span></code></p></li>
+<li><p>D: 	Constant <strong>displacement</strong> 1, 2, or 4 bytes</p></li>
+<li><p>Rb: Base register: Any of 16 integer registers</p></li>
+<li><p>Ri:	Index register: Any, except for <code class="docutils literal notranslate"><span class="pre">%rsp</span></code></p></li>
+<li><p>S: Scale: 1, 2, 4, or 8</p></li>
+</ul>
+</li>
+<li><p>Special Cases</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">(Rb,Ri)</span></code>:	<code class="docutils literal notranslate"><span class="pre">Mem[Reg[Rb]+Reg[Ri]]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">D(Rb,Ri)</span></code>: <code class="docutils literal notranslate"><span class="pre">Mem[Reg[Rb]+Reg[Ri]+D]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(Rb,Ri,S)</span></code>: <code class="docutils literal notranslate"><span class="pre">Mem[Reg[Rb]+S*Reg[Ri]]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(,Ri,S)</span></code>: <code class="docutils literal notranslate"><span class="pre">Mem[S*Reg[Ri]]</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">D(,Ri,S)</span></code>: <code class="docutils literal notranslate"><span class="pre">Mem[S*Reg[Ri]</span> <span class="pre">+</span> <span class="pre">D]</span></code></p></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="arithmetic-operations">
+<h2>5. Arithmetic operations<a class="headerlink" href="#arithmetic-operations" title="Permalink to this headline">#</a></h2>
+<div class="dropdown admonition">
+<p class="admonition-title">lea</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">lea</span></code>: load effective address</p></li>
+<li><p>A form of <code class="docutils literal notranslate"><span class="pre">movq</span></code> intsruction</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">lea</span> <span class="pre">S,</span> <span class="pre">D</span></code>: Write <code class="docutils literal notranslate"><span class="pre">&amp;S</span></code> to <code class="docutils literal notranslate"><span class="pre">D</span></code>.</p></li>
+<li><p>can be used to generate pointers</p></li>
+<li><p>can also be used to describe common arithmetic operations.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Hands on: lea</p>
+<ul class="simple">
+<li><p>Create a file named <code class="docutils literal notranslate"><span class="pre">m12.c</span></code> in <code class="docutils literal notranslate"><span class="pre">04-machine</span></code> with the following contents:</p></li>
+</ul>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=m12.c"></script>
+<ul class="simple">
+<li><p>Run the following commands</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gcc -Og -c m12.c
+$ objdump -d m12.o
+</pre></div>
+</div>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/091.png"><img alt="demonstrating load effective addresss" class="bg-primary mb-1 align-center" src="../_images/091.png" style="height: 800px;" /></a>
+<ul class="simple">
+<li><p>Assembly code explanation of <code class="docutils literal notranslate"><span class="pre">m12.c</span></code>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">%rdi</span></code>: x</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(%rdi,</span> <span class="pre">%rdi,2)</span></code> = x + 2 * x</p></li>
+<li><p>The above result is moved to <code class="docutils literal notranslate"><span class="pre">%rdx</span></code> with <code class="docutils literal notranslate"><span class="pre">lea</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">0x0(,%rdx,4)</span></code> = 4 * (x + 2 * x) = 12*x</p></li>
+<li><p>The above result is moved to <code class="docutils literal notranslate"><span class="pre">%rax</span></code> with <code class="docutils literal notranslate"><span class="pre">lea</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Other arithmetic operations</p>
+<ul class="simple">
+<li><p>Omitting suffixes comparing to the book.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Src</span></code>: <code class="docutils literal notranslate"><span class="pre">S</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Dest</span></code>: <code class="docutils literal notranslate"><span class="pre">D</span></code></p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Format</p></th>
+<th class="head"><p>Computation</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">add</span> <span class="pre">Src,Dest</span></code></p></td>
+<td><p>D &lt;- D + S</p></td>
+<td><p>add</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sub</span> <span class="pre">Src,Dest</span></code></p></td>
+<td><p>D &lt;- D - S</p></td>
+<td><p>subtract</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">imul</span> <span class="pre">Src,Dest</span></code></p></td>
+<td><p>D &lt;- D * S</p></td>
+<td><p>multiply</p></td>
+</tr>
+<tr class="row-odd"><td><p>—————</p></td>
+<td><p>———–</p></td>
+<td><p>——————</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">shl</span> <span class="pre">Src,Dest</span></code></p></td>
+<td><p>D &lt;- D &lt;&lt; S</p></td>
+<td><p>shift left</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sar</span> <span class="pre">Src,Dest</span></code></p></td>
+<td><p>D &lt;- D &gt;S</p></td>
+<td><p>arith. shift right</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">shr</span> <span class="pre">Src,Dest</span></code></p></td>
+<td><p>D &lt;- D &gt;S</p></td>
+<td><p>shift right</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sal</span> <span class="pre">Src,Dest</span></code></p></td>
+<td><p>D &lt;- D &lt;&lt; S</p></td>
+<td><p>arith. shift left</p></td>
+</tr>
+<tr class="row-even"><td><p>—————</p></td>
+<td><p>———–</p></td>
+<td><p>——————</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">xor</span> <span class="pre">Src,Dest</span></code></p></td>
+<td><p>D &lt;- D ^ S</p></td>
+<td><p>exclusive or</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">and</span> <span class="pre">Src,Dest</span></code></p></td>
+<td><p>D &lt;- D &amp; S</p></td>
+<td><p>and</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">or</span> <span class="pre">Src,Dest</span></code></p></td>
+<td><p>D &lt;- D | S</p></td>
+<td><p>or</p></td>
+</tr>
+<tr class="row-even"><td><p>—————</p></td>
+<td><p>———–</p></td>
+<td><p>——————</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">inc</span> <span class="pre">Src</span></code></p></td>
+<td><p>D &lt;- D + 1</p></td>
+<td><p>increment</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">dec</span> <span class="pre">Src</span></code></p></td>
+<td><p>D &lt;- D - 1</p></td>
+<td><p>decrement</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">neg</span> <span class="pre">Src</span></code></p></td>
+<td><p>D &lt;- -D</p></td>
+<td><p>negate</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">Src</span></code></p></td>
+<td><p>D &lt;- -D</p></td>
+<td><p>complement</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>Watch out for argument order (ATT versus Intel)</p></li>
+<li><p>No distinction between signed and unsigned int.</p>
+<ul>
+<li><p>Exception: arithmetic right shift (<code class="docutils literal notranslate"><span class="pre">sar</span></code>) where the
+significant bit is retained.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Challenge: lea</p>
+<ul class="simple">
+<li><p>Create a file named <code class="docutils literal notranslate"><span class="pre">scale.c</span></code> in <code class="docutils literal notranslate"><span class="pre">04-machine</span></code> with the following contents:</p></li>
+</ul>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=scale.c"></script>
+<ul class="simple">
+<li><p>Run the following commands</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ gcc -Og -c scale.c
+$ objdump -d scale.o
+</pre></div>
+</div>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/101.png"><img alt="scale.c" class="bg-primary mb-1 align-center" src="../_images/101.png" style="height: 500px;" /></a>
+<ul class="simple">
+<li><p>Identify the registers holding x, y, and z.</p></li>
+<li><p>Which register contains the final return value?</p></li>
+</ul>
+<div class="dropdown admonition">
+<p class="admonition-title">Solution</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">%rdi</span></code>: x</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%rsi</span></code>: y</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%rdx</span></code>: z</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">%rax</span></code> contains the final return value.</p></li>
+</ul>
+</div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Hands on: long arithmetic</p>
+<ul class="simple">
+<li><p>Create a file named <code class="docutils literal notranslate"><span class="pre">arith.c</span></code> in <code class="docutils literal notranslate"><span class="pre">04-machine</span></code> with the following contents:</p></li>
+</ul>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=arith.c"></script>
+<ul class="simple">
+<li><p>Run the following commands</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gcc -Og -c arith.c
+$ objdump -d arith.o
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Understand how the Assembly code represents the actual arithmetic operation in the C code.</p></li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/111.png"><img alt="arith.c" class="bg-primary mb-1 align-center" src="../_images/111.png" style="height: 500px;" /></a>
+</div>
+</section>
+<section id="logical-operations">
+<h2>6. Logical operations<a class="headerlink" href="#logical-operations" title="Permalink to this headline">#</a></h2>
+<div class="dropdown admonition">
+<p class="admonition-title">Quick review: processor state</p>
+<ul class="simple">
+<li><p>Information about currently executing program</p>
+<ul>
+<li><p>temporary data (<code class="docutils literal notranslate"><span class="pre">%rax</span></code>,…)</p></li>
+<li><p>location of runtime stack (<code class="docutils literal notranslate"><span class="pre">%rsp</span></code>)</p></li>
+<li><p>location of current code control point (<code class="docutils literal notranslate"><span class="pre">%rip</span></code>,…)</p></li>
+<li><p>status of recent tests (<code class="docutils literal notranslate"><span class="pre">CF</span></code>, <code class="docutils literal notranslate"><span class="pre">ZF</span></code>, <code class="docutils literal notranslate"><span class="pre">SF</span></code>, <code class="docutils literal notranslate"><span class="pre">OF</span></code> in <code class="docutils literal notranslate"><span class="pre">%EFLAGS</span></code>)</p></li>
+</ul>
+</li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/121.png"><img alt="processor state" class="bg-primary mb-1 align-center" src="../_images/121.png" style="height: 500px;" /></a>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Condition codes (implicit setting)</p>
+<ul class="simple">
+<li><p>Single-bit registers</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">CF</span></code>: the most recent operation generated a carry out of the most significant bit.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ZF</span></code>: the most recent operation yielded zero.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SF</span></code>: the most recent operation yielded negative.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OF</span></code>: the most recent operation caused a two’s-complement overflow.</p></li>
+</ul>
+</li>
+<li><p>Implicitly set (as side effect) of arithmetic operations.</p></li>
+</ul>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Condition codes (explicit setting)</p>
+<ul class="simple">
+<li><p>Exlicit setting by Compare instruction</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">cmpq</span> <span class="pre">Src2,</span> <span class="pre">Src1</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cmpq</span> <span class="pre">b,</span> <span class="pre">a</span></code> like computing <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">-</span> <span class="pre">b</span></code> without setting destination</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CF</span></code> set if carry/borrow out from most significant bit (unsigned comparisons)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ZF</span></code> set if <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">==</span> <span class="pre">b</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SF</span></code> set if <code class="docutils literal notranslate"><span class="pre">(a</span> <span class="pre">-</span> <span class="pre">b)</span> <span class="pre">&lt;</span> <span class="pre">0</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OF</span></code> set if two’s complement (signed) overflow</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">(a&gt;0</span> <span class="pre">&amp;&amp;</span> <span class="pre">b&lt;0</span> <span class="pre">&amp;&amp;</span> <span class="pre">(a-b)&lt;0)</span> <span class="pre">||</span> <span class="pre">(a&lt;0</span> <span class="pre">&amp;&amp;</span> <span class="pre">b&gt;0</span> <span class="pre">&amp;&amp;</span> <span class="pre">(a-b)&gt;0)</span></code></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Condition branches (jX)</p>
+<ul class="simple">
+<li><p>Jump to different part of code depending on condition codes</p></li>
+<li><p>Implicit reading of condition codes</p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>jX</p></th>
+<th class="head"><p>Condition</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">jmp</span></code></p></td>
+<td><p>1</p></td>
+<td><p>direct jump</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">je</span></code></p></td>
+<td><p>ZF</p></td>
+<td><p>equal/zero</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">jne</span></code></p></td>
+<td><p>~ZF</p></td>
+<td><p>not equal/not zero</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">js</span></code></p></td>
+<td><p>SF</p></td>
+<td><p>negative</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">jns</span></code></p></td>
+<td><p>~SF</p></td>
+<td><p>non-negative</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">jg</span></code></p></td>
+<td><p>~(SF^OF) &amp; ~ZF</p></td>
+<td><p>greater</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">jge</span></code></p></td>
+<td><p>~(SF^OF)</p></td>
+<td><p>greater or equal to</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">jl</span></code></p></td>
+<td><p>SF^OF</p></td>
+<td><p>lesser</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">jle</span></code></p></td>
+<td><p>SF^OF | ZF</p></td>
+<td><p>lesser or equal to</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ja</span></code></p></td>
+<td><p>~CF &amp; ~ZF</p></td>
+<td><p>above</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">jb</span></code></p></td>
+<td><p>CF</p></td>
+<td><p>below</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Hands on: a simple jump</p>
+<ul class="simple">
+<li><p>Create a file named <code class="docutils literal notranslate"><span class="pre">jump.c</span></code> in <code class="docutils literal notranslate"><span class="pre">04-machine</span></code> with the following contents:</p></li>
+</ul>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=jump.c"></script>
+<ul class="simple">
+<li><p>Run the following commands</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gcc -Og -c jump.c
+$ objdump -d jump.o
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Understand how the Assembly code enables jump across instructions to support conditional workflow.</p></li>
+</ul>
+<blockquote>
+<div><iframe width="560" height="315" src="https://www.youtube.com/embed/OSZggdT9hgY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div></blockquote>
+<ul class="simple">
+<li><p>In the next video, we will look at how <code class="docutils literal notranslate"><span class="pre">cmp</span></code> and <code class="docutils literal notranslate"><span class="pre">jle</span></code> of <code class="docutils literal notranslate"><span class="pre">absdiff</span></code> really behave in an actual execution.</p></li>
+</ul>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/mOwufRcZS8M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Hands on: loop</p>
+<ul class="simple">
+<li><p>Create a file named <code class="docutils literal notranslate"><span class="pre">factorial.c</span></code> in <code class="docutils literal notranslate"><span class="pre">04-machine</span></code> with the following contents:</p></li>
+</ul>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=factorial.c"></script>
+<ul class="simple">
+<li><p>Run the following commands</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gcc -Og -c factorial.c
+$ objdump -d factorial.o
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Understand how the Assembly code enables jump across instructions to support loop.</p></li>
+</ul>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/0N2srmuKcVs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<ul class="simple">
+<li><p>Create <code class="docutils literal notranslate"><span class="pre">factorial_2.c</span></code> and <code class="docutils literal notranslate"><span class="pre">factorial_3.c</span></code> from <code class="docutils literal notranslate"><span class="pre">factorial.c</span></code>.</p></li>
+<li><p>Modify <code class="docutils literal notranslate"><span class="pre">factorial_2.c</span></code> so that the factorial is implemented with a <code class="docutils literal notranslate"><span class="pre">while</span></code> loop. Study the
+resulting Assembly code.</p></li>
+<li><p>Modify <code class="docutils literal notranslate"><span class="pre">factorial_3.c</span></code> so that the factorial is implemented with a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop. Study the
+resulting Assembly code.</p></li>
+<li><p>Behavior of <code class="docutils literal notranslate"><span class="pre">factorial</span></code> Assembly instructions inside GDB</p></li>
+</ul>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/2VdCt8hhiRY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+</section>
+<section id="mechanisms-in-procedures-functions">
+<h2>7. Mechanisms in procedures (functions)<a class="headerlink" href="#mechanisms-in-procedures-functions" title="Permalink to this headline">#</a></h2>
+<div class="dropdown admonition">
+<p class="admonition-title">Overview</p>
+<ul class="simple">
+<li><p>Function = procedure (book terminology)</p></li>
+<li><p>Support procedure <code class="docutils literal notranslate"><span class="pre">P</span></code> calls procedure <code class="docutils literal notranslate"><span class="pre">Q</span></code>.</p></li>
+<li><p>Passing control</p>
+<ul>
+<li><p>To beginning of procedure code</p>
+<ul>
+<li><p>starting instruction of <code class="docutils literal notranslate"><span class="pre">Q</span></code></p></li>
+</ul>
+</li>
+<li><p>Back to return point</p>
+<ul>
+<li><p>next instruction in <code class="docutils literal notranslate"><span class="pre">P</span></code> after <code class="docutils literal notranslate"><span class="pre">Q</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Passing data</p>
+<ul>
+<li><p>Procedure arguments</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">P</span></code> passes one or more parameters to <code class="docutils literal notranslate"><span class="pre">Q</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Q</span></code> returns a value back to <code class="docutils literal notranslate"><span class="pre">P</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Return value</p></li>
+</ul>
+</li>
+<li><p>Memory management</p>
+<ul>
+<li><p>Allocate during procedure execution and de-allocate upon return</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Q</span></code> needs to allocate space for local variables and free that storage
+once finishes.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Mechanisms all implemented with machine instructions</p></li>
+<li><p>x86-64 implementation of a procedure uses only those mechanisms required</p></li>
+<li><p>Machine instructions implement the mechanisms, but the choices are determined by designers.
+These choices make up the <strong>Application Binary Interface (ABI).</strong></p></li>
+</ul>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">x86-64 stack</p>
+<ul class="simple">
+<li><p>Region of memory managed with stack discipline</p>
+<ul>
+<li><p>Memory viewed as array of bytes.</p></li>
+<li><p>Different regions have different purposes.</p></li>
+<li><p>(Like ABI, a policy decision)</p></li>
+</ul>
+</li>
+<li><p>Grows toward lower addresses</p>
+<ul>
+<li><p>Register <code class="docutils literal notranslate"><span class="pre">%rsp</span></code> contains <strong>lowest stack address</strong>.</p></li>
+<li><p>address of “top” element</p></li>
+</ul>
+</li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/161.png"><img alt="stack frames" class="bg-primary mb-1 align-center" src="../_images/161.png" style="height: 500px;" /></a>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Stack push and pop</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pushq</span> <span class="pre">Src</span></code></p>
+<ul>
+<li><p>Fetch operand at <code class="docutils literal notranslate"><span class="pre">Src</span></code></p></li>
+<li><p>Decrement <code class="docutils literal notranslate"><span class="pre">%rsp</span></code> by 8</p></li>
+<li><p>Write operand at address given by <code class="docutils literal notranslate"><span class="pre">%rsp</span></code></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">popq</span> <span class="pre">Dest</span></code></p>
+<ul>
+<li><p>Read value at address given by <code class="docutils literal notranslate"><span class="pre">%rsp</span></code></p></li>
+<li><p>Increment <code class="docutils literal notranslate"><span class="pre">%rsp</span></code> by 8</p></li>
+<li><p>Store value at Dest (usually a register)</p></li>
+</ul>
+</li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/171.png"><img alt="stack push and pop" class="bg-primary mb-1 align-center" src="../_images/171.png" style="height: 500px;" /></a>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">What really happens in memory/registers at the beginning and the end of a function</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">-Og</span></code> flag often combines/reduces these steps.</p></li>
+<li><p>The memory stack architecture for a function has a base pointer (<code class="docutils literal notranslate"><span class="pre">$rbp</span></code>) and a
+stack pointer (<code class="docutils literal notranslate"><span class="pre">$rsp</span></code>).</p>
+<ul>
+<li><p>Base pointer: the bottom of the stack (higher memory address)</p></li>
+<li><p>Stack pointer: the top of the stack (lower memory address)</p></li>
+</ul>
+</li>
+<li><p>Function prologue</p>
+<ul>
+<li><p>Push the current  base pointer onto the memory stack (to be restored later).</p></li>
+<li><p>Assign the value of the base pointer (set the <code class="docutils literal notranslate"><span class="pre">$rbp</span></code> to that value) to the current
+address pointed to by the stack pointer.</p></li>
+<li><p>Move the stack pointer down further (<em>push</em> new memory in) a distance that would
+accommodate local variables of the function.</p></li>
+</ul>
+</li>
+<li><p>Function prologue (Assembly), ATT notation, assume rbp/ebp and rsp/esp</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">push</span> <span class="pre">$rbp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mov</span> <span class="pre">$rsp,</span> <span class="pre">$rbp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sub</span>&#160; <span class="pre">N,</span> <span class="pre">$rsp</span></code></p></li>
+</ul>
+</li>
+<li><p>Function epilogue</p>
+<ul>
+<li><p>Drop the stack pointer to the current base pointer, so room reserved in the prologue for
+local variables is freed.</p></li>
+<li><p>Pops the base pointer off the stack, so it is restored to its value before the prologue.</p></li>
+<li><p>Returns to the calling function, by popping the previous frame’s program counter off the
+stack and jumping to it.</p></li>
+</ul>
+</li>
+<li><p>Function prologue (Assembly), ATT notation, assume rbp/ebp and rsp/esp</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mov</span> <span class="pre">$rbp,</span> <span class="pre">$rsp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pop</span> <span class="pre">$rbp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ret</span></code></p></li>
+<li><p>Video lecture on the slide</p></li>
+</ul>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/DwGreRQzvzI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Hands on: function calls</p>
+<ul class="simple">
+<li><p>Create a file named <code class="docutils literal notranslate"><span class="pre">mult.c</span></code> in <code class="docutils literal notranslate"><span class="pre">04-machine</span></code> with the following contents:</p></li>
+</ul>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=mult.c"></script>
+<ul class="simple">
+<li><p>Description of C code:</p></li>
+</ul>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/R999iekcaUg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<ul class="simple">
+<li><p>Compile with <code class="docutils literal notranslate"><span class="pre">-g</span></code> flag and run <code class="docutils literal notranslate"><span class="pre">gdb</span></code> on the resulting executable.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ gcc -g -o mult mult.c
+$ gdb mult
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Setup gdb with a breakpoint at <code class="docutils literal notranslate"><span class="pre">main</span></code> and start running.</p></li>
+<li><p>A new GDB command is <code class="docutils literal notranslate"><span class="pre">si</span></code>: executing the next instruction (machine or code instruction).</p>
+<ul>
+<li><p>It will execute the highlighted (greened and arrowed) instruction in the <code class="docutils literal notranslate"><span class="pre">code</span></code> section.</p></li>
+<li><p>If the Assembly instruction is <em>calling</em> another function, we need to use <code class="docutils literal notranslate"><span class="pre">ni</span></code> if we don’t want to step into that instruction.</p></li>
+</ul>
+</li>
+<li><p><strong>Be careful, Intel notation in the code segment of GDB</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">endbr64</span></code> is a new instruction to help enforce <a class="reference external" href="https://www.intel.com/content/www/us/en/developer/articles/technical/technical-look-control-flow-enforcement-technology.html">Control Flow Technology</a> to prevent potential <em>stitching</em> of malicious Assembly codes.</p></li>
+</ul>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Data alignment</p>
+<ul class="simple">
+<li><p>Intel recommends data to be aligned to improve memory system performance.</p>
+<ul>
+<li><p>K-alignment rule: Any primitive object of <code class="docutils literal notranslate"><span class="pre">K</span></code> bytes must have an address that is multiple of <code class="docutils literal notranslate"><span class="pre">K</span></code>: 1 for <code class="docutils literal notranslate"><span class="pre">char</span></code>, 2 for <code class="docutils literal notranslate"><span class="pre">short</span></code>, 4 for <code class="docutils literal notranslate"><span class="pre">int</span></code> and <code class="docutils literal notranslate"><span class="pre">float</span></code>, and 8 for <code class="docutils literal notranslate"><span class="pre">long</span></code>, <code class="docutils literal notranslate"><span class="pre">double</span></code>, and <code class="docutils literal notranslate"><span class="pre">char</span> <span class="pre">*</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./episodes"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="06-architecture.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Computer architecture</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="08-memory-cache.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Memory hierarchy and cache memories</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Linh Ngo<br/>
+  
+      &copy; Copyright 2022.<br/>
+    <div class="extra_footer">
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"></a> <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Computer Systems</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

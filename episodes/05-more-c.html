@@ -1,0 +1,993 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Even more C &#8212; Computer Systems</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Computer architecture" href="06-architecture.html" />
+    <link rel="prev" title="Representing and manipulating information" href="04-data-representation.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-C91ED1K883"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-C91ED1K883');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Computer Systems</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    CSC 231: Computer Systems
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lectures
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-introduction.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-intro-to-c.html">
+   Introduction to C
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-gate-circuit.html">
+   Computer architecture
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-data-representation.html">
+   Representing and manipulating information
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Even more C
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-architecture.html">
+   Computer architecture
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-machine-language.html">
+   Machine language
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-memory-cache.html">
+   Memory hierarchy and cache memories
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-code-optimization.html">
+   Code optimization
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/episodes/05-more-c.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#addresses-and-pointers">
+   1. Addresses and pointers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pointers-and-memory-allocation">
+   2. Pointers and memory allocation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#array-in-c">
+   7. Array in C
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#command-line-arguments">
+   8. Command line arguments.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#string">
+   9. String
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#object-in-c">
+   10. Object in C
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#function-in-c">
+   11. Function in C
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Even more C</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#addresses-and-pointers">
+   1. Addresses and pointers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pointers-and-memory-allocation">
+   2. Pointers and memory allocation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#array-in-c">
+   7. Array in C
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#command-line-arguments">
+   8. Command line arguments.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#string">
+   9. String
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#object-in-c">
+   10. Object in C
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#function-in-c">
+   11. Function in C
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="even-more-c">
+<h1>Even more C<a class="headerlink" href="#even-more-c" title="Permalink to this headline">#</a></h1>
+<div class="tip admonition">
+<p class="admonition-title">Relevant Reading</p>
+<p>This lecture will cover contents from <a class="reference external" href="https://diveintosystems.org/book/C2-C_depth/index.html">Chapter 2</a> and <a class="reference external" href="https://diveintosystems.org/book/C3-C_debug/index.html">Chapter 3</a> of the book.</p>
+</div>
+<section id="addresses-and-pointers">
+<h2>1. Addresses and pointers<a class="headerlink" href="#addresses-and-pointers" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>In Java, you can manipulate the value of a variable via the program but not directly
+in memory (inside the JVM).</p></li>
+<li><p>In C, you can retrieve the address of the location in memory where the variable is
+stored.</p></li>
+<li><p>The operator <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> (reference of) represents the memory address of a variable.</p></li>
+</ul>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Hands-on: Pointer<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Inside the terminal, make suse that you are still inside
+<code class="docutils literal notranslate"><span class="pre">intro-c</span></code>, then use <code class="docutils literal notranslate"><span class="pre">nano</span></code> to create <code class="docutils literal notranslate"><span class="pre">pointer-1.c</span></code>with the source code below.</p></li>
+</ul>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=pointer-1.c"></script>
+<ul class="simple">
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">%p</span></code> is an output conversion syntax (similar to Java specifiers) for displaying memory
+address in hex format. See <a class="reference external" href="https://www.gnu.org/software/libc/manual/html_node/Other-Output-Conversions.html#Other-Output-Conversions">Other Output Conversions</a> for more
+details.</p></li>
+<li><p class="sd-card-text">Compile and run <code class="docutils literal notranslate"><span class="pre">pointer-1.c</span></code></p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span>
+<span class="n">gcc</span> <span class="o">-</span><span class="n">o</span> <span class="n">pointer</span><span class="o">-</span><span class="mi">1</span> <span class="n">pointer</span><span class="o">-</span><span class="mf">1.</span><span class="n">c</span>
+<span class="o">./</span><span class="n">pointer</span><span class="o">-</span><span class="mi">1</span>
+</pre></div>
+</div>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/08.png"><img alt="Compile and run pointer-1.c" class="bg-primary mb-1 align-center" src="../_images/08.png" style="height: 400px;" /></a>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Pointer Definition<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Pointer is a variable that points to a memory location (contains a memory location).</p>
+<ul>
+<li><p class="sd-card-text">We call them <em>pointer variables</em>.</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">A pointer is denoted by a <code class="docutils literal notranslate"><span class="pre">*</span></code> character.</p></li>
+<li><p class="sd-card-text">The type of pointer must be the same as that of the value being stored in
+the memory location (that the pointer points to).</p></li>
+<li><p class="sd-card-text">If a pointer points to a memory location, how do we get these locations?</p>
+<ul>
+<li><p class="sd-card-text">An <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> character in front of a variable (includes pointer variables) denotes that
+variable’s address location.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Hands-on: Pointer and Variable’s Addresses<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Inside the terminal, make suse that you are still inside
+<code class="docutils literal notranslate"><span class="pre">intro-c</span></code>, then use <code class="docutils literal notranslate"><span class="pre">nano</span></code> to create <code class="docutils literal notranslate"><span class="pre">pointer-2.c</span></code>with the source code below.</p></li>
+</ul>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=pointer-2.c"></script>
+<ul class="simple">
+<li><p class="sd-card-text">Since <code class="docutils literal notranslate"><span class="pre">p_i</span></code> is a pointer variable, <code class="docutils literal notranslate"><span class="pre">p_i</span></code> contains a memory address (hence <code class="docutils literal notranslate"><span class="pre">%p</span></code>).</p></li>
+<li><p class="sd-card-text">Then, <code class="docutils literal notranslate"><span class="pre">*p_i</span></code> will point to <strong>the value in the memory address contained in p_i</strong>.</p>
+<ul>
+<li><p class="sd-card-text">This is referred to as <em>de-referencing</em>.</p></li>
+<li><p class="sd-card-text">This is also why the type of a pointer variable must match the type of data stored
+in the memory address the pointer variable contains.</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Compile and run <code class="docutils literal notranslate"><span class="pre">pointer-2.c</span></code></p></li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/09.png"><img alt="Compile and run pointer-2.c" class="bg-primary mb-1 align-center" src="../_images/09.png" style="height: 150px;" /></a>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Pass by Value and Pass by Reference<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Parameters are passed to functions.</p></li>
+<li><p class="sd-card-text">Parameters can be value variables or pointer variables.</p></li>
+<li><p class="sd-card-text">What is the difference?</p></li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Hands-on: Pass by value<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Inside the terminal, make suse that you are still inside
+<code class="docutils literal notranslate"><span class="pre">intro-c</span></code>, then use <code class="docutils literal notranslate"><span class="pre">nano</span></code> to create <code class="docutils literal notranslate"><span class="pre">pointer-3.c</span></code>with the source code below.</p></li>
+</ul>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=pointer-3.c"></script>
+<ul class="simple">
+<li><p class="sd-card-text">Compile and run <code class="docutils literal notranslate"><span class="pre">pointer-3.c</span></code></p></li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/10.png"><img alt="Compile and run pointer-3.c" class="bg-primary mb-1 align-center" src="../_images/10.png" style="height: 150px;" /></a>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Hands-on: Pass by reference<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Inside the terminal, make suse that you are still inside
+<code class="docutils literal notranslate"><span class="pre">intro-c</span></code>, then use <code class="docutils literal notranslate"><span class="pre">nano</span></code> to create <code class="docutils literal notranslate"><span class="pre">pointer-4.c</span></code>with the source code below.</p></li>
+</ul>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=pointer-4.c"></script>
+<ul class="simple">
+<li><p class="sd-card-text">Compile and run <code class="docutils literal notranslate"><span class="pre">pointer-4.c</span></code></p></li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/11.png"><img alt="Compile and run pointer-4.c" class="bg-primary mb-1 align-center" src="../_images/11.png" style="height: 450px;" /></a>
+</div>
+</details><ul class="simple">
+<li><p>In Java, do you pass by value or pass by reference?</p></li>
+</ul>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Answer<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Primitives are passed by value.</p></li>
+<li><p class="sd-card-text">Objects are passed by reference.</p></li>
+</ul>
+</div>
+</details></section>
+<section id="pointers-and-memory-allocation">
+<h2>2. Pointers and memory allocation<a class="headerlink" href="#pointers-and-memory-allocation" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>How does C request dynamic memory when you don’t know at
+compile-time exactly what you will need?</p></li>
+<li><p>How does C allocate memory?</p>
+<ul>
+<li><p>Automatic: compile arranges for memory to be allocated
+and initialized for local variables when it is in scope.</p></li>
+<li><p>Static: memory for static variables are allocated once
+when program starts.</p></li>
+<li><p>Dynamic: memory is allocated on the fly as needed.</p></li>
+</ul>
+</li>
+</ul>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Dynamic memory allocation<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Unlike Java, you have to do everything!</p>
+<ul>
+<li><p class="sd-card-text">Ask for memory.</p></li>
+<li><p class="sd-card-text">Return memory when you are done (garbage collection!).</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">C function: <a class="reference external" href="https://linux.die.net/man/3/malloc"><code class="docutils literal notranslate"><span class="pre">malloc</span></code></a></p>
+<ul>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">*malloc(size_t</span> <span class="pre">size);</span></code></p></li>
+<li><p class="sd-card-text">The <code class="docutils literal notranslate"><span class="pre">malloc()</span></code> function allocates <code class="docutils literal notranslate"><span class="pre">size</span></code> bytes and returns
+a pointer to the allocated memory. The memory is <strong>not initialized</strong>.
+If size is 0, then <code class="docutils literal notranslate"><span class="pre">malloc()</span></code> returns either <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, or a unique
+pointer value that can later be successfully passed to <code class="docutils literal notranslate"><span class="pre">free()</span></code>.</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">C function: <a class="reference external" href="https://linux.die.net/man/3/free"><code class="docutils literal notranslate"><span class="pre">free</span></code></a></p>
+<ul>
+<li><p class="sd-card-text">void free(void *ptr);</p></li>
+<li><p class="sd-card-text">The <code class="docutils literal notranslate"><span class="pre">free()</span></code> function frees the memory space pointed to by ptr,
+which must have been returned by a previous call to <code class="docutils literal notranslate"><span class="pre">malloc()</span></code>,
+<code class="docutils literal notranslate"><span class="pre">calloc()</span></code> or <code class="docutils literal notranslate"><span class="pre">realloc()</span></code>. Otherwise, or if <code class="docutils literal notranslate"><span class="pre">free(ptr)</span></code> has already
+been called before, undefined behavior occurs. If <code class="docutils literal notranslate"><span class="pre">ptr</span></code> is <code class="docutils literal notranslate"><span class="pre">NULL</span></code>,
+no operation is performed.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Void pointer<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">When <code class="docutils literal notranslate"><span class="pre">malloc</span></code> allocates memory, it returns a sequence of bytes, with
+no predefined types.</p></li>
+<li><p class="sd-card-text">A pointer that points to this sequence of bytes (the address of the
+starting byte), is called a <strong>void pointer</strong>.</p></li>
+<li><p class="sd-card-text">A void pointer will then be typecast to an appropriate type.</p></li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Hands-on: malloc and type cast<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Inside the terminal, make suse that you are still inside
+<code class="docutils literal notranslate"><span class="pre">intro-c</span></code>, then use <code class="docutils literal notranslate"><span class="pre">nano</span></code> to create <code class="docutils literal notranslate"><span class="pre">malloc-1.c</span></code>with the source code below.</p></li>
+</ul>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=malloc-1.c"></script>
+<ul class="simple">
+<li><p class="sd-card-text">What points to where:</p>
+<ul>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">*p</span> <span class="pre">=</span> <span class="pre">malloc(4);</span></code>: allocate 4 contiguous bytes. The address of the
+first byte is returned and assign to pointer variable <code class="docutils literal notranslate"><span class="pre">p</span></code>. <code class="docutils literal notranslate"><span class="pre">p</span></code> has no
+type, so it is a <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">pointer</span></code>.</p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">*ip</span> <span class="pre">=</span> <span class="pre">(int</span> <span class="pre">*)p;</span></code>: The address value <em>pointed to</em> by <code class="docutils literal notranslate"><span class="pre">p</span></code> is assigned
+to pointer variable <code class="docutils literal notranslate"><span class="pre">ip</span></code>. The bytes pointed to be <code class="docutils literal notranslate"><span class="pre">p</span></code> are now casted to
+type <code class="docutils literal notranslate"><span class="pre">int</span></code>.</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Compile and run <code class="docutils literal notranslate"><span class="pre">malloc-1.c</span></code></p></li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/12.png"><img alt="Compile and run malloc-1.c" class="bg-primary mb-1 align-center" src="../_images/12.png" style="height: 150px;" /></a>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Hands-on: malloc and type cast with calculation<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Inside the terminal, make suse that you are still inside
+<code class="docutils literal notranslate"><span class="pre">intro-c</span></code>, then use <code class="docutils literal notranslate"><span class="pre">nano</span></code> to create <code class="docutils literal notranslate"><span class="pre">malloc-2.c</span></code>with the source code below.</p></li>
+</ul>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=malloc-2.c"></script>
+<ul class="simple">
+<li><p class="sd-card-text">Only ask for exactly what you need!</p></li>
+<li><p class="sd-card-text">Compile and run <code class="docutils literal notranslate"><span class="pre">malloc-2.c</span></code></p></li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/13.png"><img alt="Compile and run malloc-2.c" class="bg-primary mb-1 align-center" src="../_images/13.png" style="height: 150px;" /></a>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Hands-on: Safety<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Inside the terminal, make suse that you are still inside
+<code class="docutils literal notranslate"><span class="pre">intro-c</span></code>, then use <code class="docutils literal notranslate"><span class="pre">nano</span></code> to create <code class="docutils literal notranslate"><span class="pre">malloc-3.c</span></code>with the source code below.</p></li>
+</ul>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=malloc-3.c"></script>
+<ul class="simple">
+<li><p class="sd-card-text">Return and free memory after you are done!</p></li>
+<li><p class="sd-card-text">Compile and run <code class="docutils literal notranslate"><span class="pre">malloc-3.c</span></code></p></li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/14.png"><img alt="Compile and run malloc-3.c" class="bg-primary mb-1 align-center" src="../_images/14.png" style="height: 150px;" /></a>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Dynamic memory allocation<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Critical to support complex data structures that grow as the
+program executes.</p></li>
+<li><p class="sd-card-text">In Java, custom classes such as ArrayList and Vector provide
+such support.</p></li>
+<li><p class="sd-card-text">In C, you have to do it manually: How?</p></li>
+<li><p class="sd-card-text">Let’s start with a simpler problem:</p>
+<ul>
+<li><p class="sd-card-text">How can we dynamically allocate memory to an array
+whose size is not known until during run time?</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</details></section>
+<section id="array-in-c">
+<h2>7. Array in C<a class="headerlink" href="#array-in-c" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Inside the terminal, make suse that you are still inside
+<code class="docutils literal notranslate"><span class="pre">intro-c</span></code>, then use <code class="docutils literal notranslate"><span class="pre">nano</span></code> to create <code class="docutils literal notranslate"><span class="pre">array-1.c</span></code>with the source code below.</p></li>
+</ul>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=array-1.c"></script>
+<ul class="simple">
+<li><p>What is the distance between addresses? Why?</p></li>
+<li><p>Compile and run <code class="docutils literal notranslate"><span class="pre">array-1.c</span></code></p></li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/15.png"><img alt="Compile and run array-1.c" class="bg-primary mb-1 align-center" src="../_images/15.png" style="height: 250px;" /></a>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Exercise<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Create a copy of <code class="docutils literal notranslate"><span class="pre">array-1.c</span></code> called <code class="docutils literal notranslate"><span class="pre">array-2.c</span></code>.</p></li>
+<li><p class="sd-card-text">Change the type of <code class="docutils literal notranslate"><span class="pre">numbers</span></code> to <code class="docutils literal notranslate"><span class="pre">double</span></code>.</p></li>
+<li><p class="sd-card-text">What is the address step now?</p></li>
+</ul>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Answer<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=array-2.c"></script>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/16.png"><img alt="Compile and run array-2.c" class="bg-primary mb-1 align-center" src="../_images/16.png" style="height: 250px;" /></a>
+</div>
+</details></div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+An array variable<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">… is in fact pointing to an address containing a value.</p></li>
+<li><p class="sd-card-text">… without the bracket notation and an index points to the
+corresponding address of the value at the index.</p></li>
+<li><p class="sd-card-text">… is quite similar to a pointer!</p></li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Hands-on: Array as pointer (or vice versa …)<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Inside the terminal, make suse that you are still inside
+<code class="docutils literal notranslate"><span class="pre">intro-c</span></code>, then use <code class="docutils literal notranslate"><span class="pre">nano</span></code> to create <code class="docutils literal notranslate"><span class="pre">array-3.c</span></code>with the source code below.</p></li>
+</ul>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=array-3.c"></script>
+<ul class="simple">
+<li><p class="sd-card-text">Compile and run <code class="docutils literal notranslate"><span class="pre">array-3.c</span></code></p></li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/17.png"><img alt="Compile and run array-3.c" class="bg-primary mb-1 align-center" src="../_images/17.png" style="height: 250px;" /></a>
+</div>
+</details></section>
+<section id="command-line-arguments">
+<h2>8. Command line arguments.<a class="headerlink" href="#command-line-arguments" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Inside the terminal, make suse that you are still inside
+<code class="docutils literal notranslate"><span class="pre">intro-c</span></code>, then use <code class="docutils literal notranslate"><span class="pre">nano</span></code> to create <code class="docutils literal notranslate"><span class="pre">array-4.c</span></code>with the source code below.</p></li>
+</ul>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=array-4.c"></script>
+<ul class="simple">
+<li><p>In C, the command line arguments <strong>include</strong> the program’s name. The
+actual arguments start at index position 1 (not 0 like Java).</p></li>
+<li><p>Compile and run <code class="docutils literal notranslate"><span class="pre">array-4.c</span></code></p></li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/18.png"><img alt="Compile and run array-4.c" class="bg-primary mb-1 align-center" src="../_images/18.png" style="height: 250px;" /></a>
+</section>
+<section id="string">
+<h2>9. String<a class="headerlink" href="#string" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Inside the terminal, make suse that you are still inside
+<code class="docutils literal notranslate"><span class="pre">intro-c</span></code>, then use <code class="docutils literal notranslate"><span class="pre">nano</span></code> to create <code class="docutils literal notranslate"><span class="pre">string-1.c</span></code>with the source code below.</p></li>
+</ul>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=string-1.c"></script>
+<ul class="simple">
+<li><p>Compile and run <code class="docutils literal notranslate"><span class="pre">string-1.c</span></code></p></li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/19.png"><img alt="Compile and run string-1.c" class="bg-primary mb-1 align-center" src="../_images/19.png" style="height: 150px;" /></a>
+<ul class="simple">
+<li><p>In C, string is considered an array of characters.</p></li>
+<li><p>How many characters were printed out on the second line in the terminal?</p></li>
+<li><p>Hint: Can you see all of them?</p></li>
+</ul>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Answer<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">24</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Hands-on: Array of strings<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Inside the terminal, make sure that you are still inside
+<code class="docutils literal notranslate"><span class="pre">intro-c</span></code>, then use <code class="docutils literal notranslate"><span class="pre">nano</span></code> to create <code class="docutils literal notranslate"><span class="pre">string-2.c</span></code>with the source code below.</p></li>
+</ul>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=string-2.c"></script>
+<ul class="simple">
+<li><p class="sd-card-text">Compile and run <code class="docutils literal notranslate"><span class="pre">string-2.c</span></code></p></li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/20.png"><img alt="Compile and run string-2.c" class="bg-primary mb-1 align-center" src="../_images/20.png" style="height: 150px;" /></a>
+</div>
+</details></section>
+<section id="object-in-c">
+<h2>10. Object in C<a class="headerlink" href="#object-in-c" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>C has no classes or objects.</p></li>
+<li><p>Instead, it has <code class="docutils literal notranslate"><span class="pre">struct</span></code> type (think ancestor of objects) .</p></li>
+</ul>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Hands-on: Struct in C<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Inside the terminal, make suse that you are still inside
+<code class="docutils literal notranslate"><span class="pre">intro-c</span></code>, then use <code class="docutils literal notranslate"><span class="pre">nano</span></code> to create <code class="docutils literal notranslate"><span class="pre">struct-1.c</span></code>with the source code below.</p></li>
+</ul>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=struct-1.c"></script>
+<ul class="simple">
+<li><p class="sd-card-text">Compile and run <code class="docutils literal notranslate"><span class="pre">struct-1.c</span></code></p></li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/21.png"><img alt="Compile and run struct-1.c" class="bg-primary mb-1 align-center" src="../_images/21.png" style="height: 150px;" /></a>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Challenge<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Modify <code class="docutils literal notranslate"><span class="pre">struct-1.c</span></code> so that it prints out the address of <code class="docutils literal notranslate"><span class="pre">origin</span></code> variable.</p></li>
+<li><p class="sd-card-text">What do you learn from the printed out addresses?</p></li>
+</ul>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Answer<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Insert <code class="docutils literal notranslate"><span class="pre">printf(&quot;The</span> <span class="pre">address</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">origin</span> <span class="pre">is:</span> <span class="pre">%p\n&quot;,</span> <span class="pre">&amp;origin);</span></code> between the existing
+<code class="docutils literal notranslate"><span class="pre">printf</span></code> calls.</p>
+</div>
+</details></div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Hands-on: Struct of structs in C<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Inside the terminal, make suse that you are still inside
+<code class="docutils literal notranslate"><span class="pre">intro-c</span></code>, then use <code class="docutils literal notranslate"><span class="pre">nano</span></code> to create <code class="docutils literal notranslate"><span class="pre">struct-2.c</span></code>with the source code below.</p></li>
+</ul>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=struct-2.c"></script>
+<ul class="simple">
+<li><p class="sd-card-text">Compile and run <code class="docutils literal notranslate"><span class="pre">struct-2.c</span></code></p></li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/22.png"><img alt="Compile and run struct-2.c" class="bg-primary mb-1 align-center" src="../_images/22.png" style="height: 150px;" /></a>
+</div>
+</details></section>
+<section id="function-in-c">
+<h2>11. Function in C<a class="headerlink" href="#function-in-c" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Almost the same as methods in Java, except for one small difference.</p></li>
+<li><p>They need to either be declared, or must be defined prior to being
+called (relative to written code position).</p></li>
+</ul>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Hands-on: Functions in C - definition and declaration<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Create three C files, <code class="docutils literal notranslate"><span class="pre">function-1.c</span></code>, <code class="docutils literal notranslate"><span class="pre">function-2.c</span></code>, and <code class="docutils literal notranslate"><span class="pre">function-3.c</span></code>,
+with the source codes below:</p></li>
+</ul>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=function-1.c"></script>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=function-2.c"></script>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=function-3.c"></script>
+<ul class="simple">
+<li><p class="sd-card-text">Compile and run these files.</p></li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/23.png"><img alt="Compile and run function-1.c, function-2.c, function-3.c" class="bg-primary mb-1 align-center" src="../_images/23.png" style="height: 250px;" /></a>
+</div>
+</details></section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./episodes"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="04-data-representation.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Representing and manipulating information</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="06-architecture.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Computer architecture</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Linh Ngo<br/>
+  
+      &copy; Copyright 2022.<br/>
+    <div class="extra_footer">
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"></a> <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Computer Systems</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
