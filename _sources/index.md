@@ -28,7 +28,7 @@ the course's D2L page.
   - A free open-source online version of this book is available 
   at [https://diveintosystems.org](https://diveintosystems.org/)
 
-- You are expected to have a computer system that meets the minimum 
+- **This is for DE section only:** You are expected to have a computer system that meets the minimum 
 expectations as outlined by West Chester University Information 
 Services on the [Recommended Student Computer Con../figuration](https://www.wcupa.edu/distanceEd/techRequirements.aspx). You need a working web-camera and microphone.
 
@@ -358,80 +358,3 @@ Student academic and support services provided by the university can be found on
 The West Chester University Library makes resources available to distance education students. 
 Please review their [Library Services for Distance Students website](https://library.wcupa.edu/distance) 
 for specific information.
-
-## Course Topics and Schedules
-
-- Quizzes are typically disseminated once evere two week. 
-  - Assignments and Labs are due via D2L submission pages. 
-
-```{list-table} Topics and Tentative Schedule
-:header-rows: 1
-:name: topic-schedule
-
-* - Week
-  - Topic
-  - Assessments
-* - 1
-  - Introduction to Computer Systems 
-  - Lab 1: Introduction to Linux (Due on Sep 24)
-* - 
-  - Introduction to C programming language
-  - Assignment 1 (Due on Sep 16)
-* - 2
-  - Introduction to C (cont.)
-  -
-* - 3
-  - Representing and manipulating information
-  - Assignment 2 (Due on Oct 17)
-* - 4
-  - Representing and manipulating information (cont.)
-  - 
-* - 5
-  - Representing and manipulating information (cont.)
-  - Assignment 3 (Due on Oct 30)
-* - 6
-  - Advanced C 
-  - Lab 2 (Due on Nov 6)
-* - 7
-  - Computer Architecture
-  - 
-* - 8 
-  - Midterm
-  - Assignment 4 (Due on Nov 20)
-* - 9
-  - Machine Language 
-  - Lab 3 (Due on Nov 20)
-* - 10
-  - Machine Language (cont.)
-  - 
-* - 11
-  - Memory hierarchy and cache memories
-  - 
-* - 12
-  - Memory hierarchy and cache memories (cont.)
-  - Lab 4 (Due on Dec 9)
-* - 13
-  - Memory hierarchy and cache memories (cont.)
-  - Assignment 5 (Due on Dec 11)
-* - 14 
-  - Performance optimization (cont.)
-  - 
-* - 15
-  - Performance optimization
-  - Lab 5 (Due on Dec 12)
-```
-
-## Bibliography
-
-1. Computer Systems, Warford, J., Fifth Edition, ISBN: 1284079635
-2. Computer Systems: Digital Design, Fundamental of Computer Architecture 
-and Assembly Language, Elahi, A., ISBN: 9783319667744
-3. Computer Organization and Design, Patterson, D. and Hennessy, J., 
-Fifth Edition, ISBN: 0124077269
-4. The Elements of Computing Systems: Building a Modern Computer from First 
-Principles, Nisan, N. and Schocken, S., ISBN: 0262640686
-5. Computer System Architecture, Mano, M., Third Edition, ISBN 0131755633
-6. Introduction to Computing Systems: From Bits and Gates to C and Beyond, 
-Patt, Y. and Patel, S., Second Edition, ISBN: 0072467509
-7. Computer Systems: An Integrated Approach to Architecture and Operating 
-Systems, Ramachandran, U. and Leahy Jr., W., ISBN 0312486137
