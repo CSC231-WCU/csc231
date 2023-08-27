@@ -1,7 +1,18 @@
 # Memory hierarchy and cache memories
 
+
+```{admonition} Relevant Reading
+:class: tip
+
+This lecture will cover contents from [Chapter 11](https://diveintosystems.org/book/C11-MemHierarchy/index.html) of the book. 
+
+```
+
 ## 1. Memory abstraction: writing and reading memory
->
+
+```{admonition} Overview
+:class: dropdown
+
 - Write:
   - Transfer data from CPU to memory: `movq 8(%rsp), %rax`
   - `Store` operation
@@ -10,12 +21,13 @@
   - `Load` operation
 - Physical representation of this abstraction:
 
-<img src="../fig/05-memory/01.png" alt="CPU, memory, and bus" style="height:200px">
+![](../../fig//05-memory/01.png)
+
+```
 
 
-
-## 2. Random-Access Memory (RAM)
->
+```{admonition} Random-Access Memory (RAM)
+:class: dropdown
 - Key features:
   - RAM is traditionally packaged as a chip, or embedded as part of processor chip
   - Basic storage unit is normally a cell (one bit per cell).
@@ -25,10 +37,34 @@
   - DRAM (Dynamic RAM): transistor and capacitor
   - Both are volatile: memory goes away without power. 
 
-Type | Transistor per bit | Access time | Need refresh  | Needs EDC  | Cost | Applications                  |
------| ------------------ | ----------- | ------------- | ---------- | ---- | ----------------------------- | 
-SRAM | 6 or 8             | 1x          | No            | Maybe      | 100x | Cache memories                |
-DRAM | 1                  | 10x         | Yes           | Yes        | 1x   | Main memories, frame buffers  |
+:::::{tab-set}
+::::{tab-item} SRAM/DRAM
+:::{list-table}
+:header-rows: 1
+* - 
+  - SRAM
+  - DRAM
+* - Transitor per bit
+  - 6 or 8
+  - 1
+* - Access time
+  - 1x
+  - 10x
+* - Need refressh
+  - No
+  - Yes
+* - Need EDC
+  - Maybe
+  - Yes
+* - Cost
+  - 100x
+  - 1x
+* - Applications
+  - Cache memories
+  - Main memories, frame buffers
+:::
+::::
+:::::
 
 *EDC: Error Detection and Correction*
 
@@ -39,10 +75,11 @@ DRAM | 1                  | 10x         | Yes           | Yes        | 1x   | Ma
     - Aspect ratio limits how deep can make capacitor
     - Also reaching its limits
 
+```
 
 
-## 3. Enhanced DRAMs
->
+```{admonition} Enhanced DRAMs
+:class: dropdown
 - Operation of DRAM cell has not changed since its invention
   - Commercialized by Intel in 1970. 
 - DRAM cores with better interface logic and faster I/O :
@@ -54,12 +91,15 @@ DRAM | 1                  | 10x         | Yes           | Yes        | 1x   | Ma
       - DDR (2 bits), DDR2 (4 bits), DDR3 (8 bits), DDR4 (16 bits)
     - By 2010, standard for most server and desktop systems
   - Intel Core i7 supports DDR3 and DDR4 SDRAM
+```
+
+## 2. The CPU-Memory gap
 
 
+```{admonition} Locality
+:class: dropdown
 
-## 4. The CPU-Memory gap
-
-<img src="../fig/05-memory/02.png" alt="CPU memory gap" style="height:200px">
+![CPU memory gap](../../fig//05-memory/02.png)
 
 - The key to bridging this gap is a fundamental property of computer programs known as **locality**:
   - Principle of Locality: Programs tend to use data and instructions with addresses near or equal 
@@ -67,13 +107,12 @@ DRAM | 1                  | 10x         | Yes           | Yes        | 1x   | Ma
   - `Temporal locality`:  Recently referenced items are likely to be referenced again in the near future
   - `Spatial locality`:  Items with nearby addresses tend to be referenced close together in time
 
-~~~
+~~~c
 sum = 0;
 for (i = 0; i < n; i++)
   sum += a[i];
 return sum;
 ~~~
-
 
 - Data references
   - Reference array elements in succession (stride-1 reference pattern): `spatial`
@@ -82,18 +121,24 @@ return sum;
   - Reference instructions in sequence: `spatial`
   - Cycle through loop repeatedly: `temporal`
 
+```
 
-
-## 5. Qualitative estimates of locality
+```{admonition} Qualitative estimates of locality
+:class: dropdown
 
 - Being able to look at code and get a qualitative sense of its locality is among the 
 key skills for a professional programmer.
+- Example: array layout in memory is row-major order
 
-## Exercise 1
->
+![Array layout in memory](../../fig//05-memory/03.png)
+
+:::::{tab-set}
+
+::::{tab-item} Exercise 1
+
 Does this function have good locality with respect to array `a`?
->
-~~~
+
+~~~c
 int sum_array_rows(int a[M][N]) {
   int i, j, sum = 0;
   for (i = 0; i < M; i++)
@@ -103,23 +148,19 @@ int sum_array_rows(int a[M][N]) {
 }
 ~~~
 
->
-*Hint: array layout is row-major order*
->
-## Answer     
+:::{admonition} Answer
+:class: dropdown
 
 Yes
 
-<img src="../fig/05-memory/03.png" alt="stride-1 array access pattern" style="height:100px">
->
-{: .solution}
-{: .challenge}
+:::
+::::
+ 
+::::{tab-item} Exercise 2
 
-## Exercise 2
->
 Does this function have good locality with respect to array `a`?
->
-~~~
+
+~~~c
 int sum_array_rows(int a[M][N]) {
   int i, j, sum = 0;
   for (j = 0; j < N; j++)
@@ -129,46 +170,51 @@ int sum_array_rows(int a[M][N]) {
 }
 ~~~
 
->
-*Hint: array layout is row-major order*
->
-## Answer     
+:::{admonition} Answer
+:class: dropdown
 
-No
+Yes
 
-<img src="../fig/05-memory/03.png" alt="stride-1 array access pattern" style="height:100px">
->
-{: .solution}
-{: .challenge}
+:::
 
+::::
+:::::
 
+```
 
-## 6. Hands on: performance measurement of locality
->
+```{admonition} Hands-on: performance measurement of locality
+:class: dropdown
+
 - In your home directory, create a directory called `05-memory` and change into this 
 directory.
 - Create a file named `sum.c` with the following contents:
->
+
 <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=sum.c"></script>
->
+
 - Compile and run several times. 
 - Observe the performance difference. 
->
-~~~
+
+:::::{tab-set}
+::::{tab-item} Compile and run
+~~~bash
 $ gcc -Og -o sum sum.c
 $ ./sum
 $ ./sum
 $ ./sum
 $ ./sum
 ~~~
+::::
+::::{tab-item} Result
+![Differences in performance due to access pattern](../../fig//05-memory/04.png)
+::::
 
->
-<img src="../fig/05-memory/04.png" alt="differences in performance due to access pattern" style="height:400px">
->
+```
 
 
+## 3. Memory hierarchies
 
-## 7. Memory hierarchies
+```{admonition} Overview
+:class: dropdown
 
 - Some fundamental and enduring properties of hardware and software:
   - Fast storage technologies cost more per byte, have less capacity, 
@@ -178,14 +224,14 @@ $ ./sum
 - These fundamental properties complement each other beautifully.
 - They suggest an approach for organizing memory and storage systems 
 known as a memory hierarchy.
->
-<img src="../fig/05-memory/05.png" alt="memory hierarchy" style="height:400px">
 
+![Memory hierarchy](../../fig//05-memory/05.png)
+```
 
+## 4. Caching
 
-
-## 8. Caching
-
+```{admonition} Overview
+:class: dropdown
 - Cache: A smaller, faster storage device that acts as a staging area for a subset of the data in a larger, 
 slower device.
 - Fundamental idea of a memory hierarchy:
@@ -197,15 +243,22 @@ slower device.
   - Thus, the storage at level k+1 can be slower, and thus larger and cheaper per bit.
 - Big Idea (Ideal):  The memory hierarchy creates a large poolof storage that costs as much as the cheap 
 storage near the bottom, but that serves data to programs at the rate of the fast storage near the top.
+```
 
 
+```{admonition} General concepts
+:class: dropdown
 
-## 9. Caching: general concepts
+:::::{tab-set}
+::::{tab-item} Cache
+![Cache concepts](../../fig//05-memory/06.png)
+::::
+::::{tab-item} Cache hits
+![Cache hits](../../fig//05-memory/07.png)
+::::
+::::{tab-item} Cache misses
+![Cache misses](../../fig//05-memory/08.png)
 
-<img src="../fig/05-memory/06.png" alt="cache concepts" style="height:350px">
-<img src="../fig/05-memory/07.png" alt="cache hits" style="height:350px">
-<img src="../fig/05-memory/08.png" alt="cache misses" style="height:350px">
->
 - Cold (compulsory) miss
   - Cold misses occur because the cache starts empty and this is the first reference to the block.
 - Capacity miss
@@ -217,7 +270,10 @@ storage near the bottom, but that serves data to programs at the rate of the fas
   - Conflict misses occur when the level `k` cache is large enough, but multiple data objects all map 
   to the same level `k` block.
     - E.g. Referencing blocks 0, 8, 0, 8, 0, 8, ... would miss every time.
->
+
+::::
+::::{tab-item} Cache types
+
 | Cache Type            | What is cached       | Where is it cached  | Latency (cycles) | Managed By       |
 | --------------------- | -------------------- | ------------------- | ---------------- | ---------------- | 
 | Register              | 4-6 byte words       | CPU core            | 0                | Compiler         |
@@ -231,22 +287,28 @@ storage near the bottom, but that serves data to programs at the rate of the fas
 | Browser cache         | Web pages            | Local disk          | 10,000,000       | Web browser      |
 | Web cache             | Web pages            | Remote server disks | 1,000,000,000    | Web proxy server |
 
+::::
+```
 
-
-
-## 10. Cache memories
+```{admonition} Cache memories
+:class: dropdown
 
 - Small, fast SRAM-based memories managed automatically in hardware.
 - Hold frequently accessed blocks of main memory.
 - CPU looks first for data in cache.
->
-<img src="../fig/05-memory/09.png" alt="cache" style="height:400px">
-<img src="../fig/05-memory/10.png" alt="cache" style="height:400px">
 
+:::::{tab-set}
+::::{tab-item} L2/L3
+![Example of L2 and L3 cache](../../fig//05-memory/09.png)
+::::
+::::{tab-item} L1/L2/L3
+![Example of L1, L2, and L3 cache](../../fig//05-memory/10.png)
+::::
+```
 
+```{admonition} Cache performance metrics
+:class: dropdown
 
-## 11. Cache performance metrics
->
 - Miss Rate
   - Fraction of memory references not found in cache `(misses / accesses) = 1 – hit rate`
   - Typical numbers (in percentages):
@@ -262,10 +324,12 @@ storage near the bottom, but that serves data to programs at the rate of the fas
   - Additional time required because of a miss
     - typically 50-200 cycles for main memory (Trend: increasing!)
 
+```
 
 
-## 12. What those numbers mean?
->
+```{admonition} What those numbers mean?
+:class: dropdown
+
 - Huge difference between a hit and a miss
   - Could be 100x, if just L1 and main memory
 - Would you believe 99% hits is twice as good as 97%?
@@ -277,10 +341,13 @@ storage near the bottom, but that serves data to programs at the rate of the fas
     - 99% hits:  1 cycle + 0.01 x 100 cycles = 2 cycles
 - This is why `miss rate` is used instead of `hit rate`.
 
+```
 
+## 5. Write cache friendly code
 
-## 13. Write cache friendly code
->
+```{admonition} Overview
+:class: dropdown
+
 - Make the common case go fast
   - Focus on the inner loops of the core functions
 - Minimize the misses in the inner loops
@@ -289,31 +356,29 @@ storage near the bottom, but that serves data to programs at the rate of the fas
 - Key idea: our qualitative notion of locality is quantified through
 our understanding of cache memories. 
 
+```
 
+```{admonition} Matrix multiplication example
+:class: dropdown
 
-## 14. Matrix multiplication example
->
 - Multiply N x N matrices
 - Matrix elements are doubles (8 bytes)
-- O(N<sup>3</sup>) total operations
+- $O(N^{3})$ total operations
 - N reads per source element
 - N values summed per destination but may be able to hold in register 
->
+
 <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=mm.c"></script>
->
 
+![Index increment directions in matrix multiplication](../../fig//05-memory/15.png)
 
+```
 
-## 15. Miss rate analysis for matrix multiply
->
-- Assume:
-  - Block size = 32B (big enough for four doubles)
-  - Matrix dimension (N) is very large: Approximate 1/N as 0.0
-  - Cache is not even big enough to hold multiple rows
-- Analysis Method:
-  - Look at access pattern of inner loop
->
-~~~
+```{admonition} Various matrix multiplication performance analysis
+:class: dropdown
+
+:::::{tab-set}
+::::{tab-item} Case 1
+~~~c
 /* ijk */
 for (i=0; i<n; i++)  {
   for (j=0; j<n; j++) {
@@ -325,58 +390,17 @@ for (i=0; i<n; i++)  {
 } 
 ~~~
 
->
-<img src="../fig/05-memory/15.png" alt="array directions" style="height:300px">
-
-
-
-## 16. Layout of C arrays in memory
->
-- C arrays allocated in row-major order
-  - each row in contiguous memory locations
-- Stepping through columns in one row:
-  - for (i = 0; i < N; i++)  
-      sum += a[0][i];
-  - accesses successive elements
-  - if block size (B) sizeof(a<sup>ij</sup>) bytes, exploit spatial locality
-    - miss rate = sizeof(a<sup>ij</sup>) / B
-- Stepping through rows in one column:
-  - for (i = 0; i < n; i++)  
-      sum += a[i][0];
-  - accesses distant elements
-  - no spatial locality!
-  - miss rate = 1 (i.e. 100%)
->
-
-
-
-## 17. Matrix multiplication
->
-- C arrays allocated in row-major order
->
-~~~
-/* ijk */
-for (i=0; i<n; i++)  {
-  for (j=0; j<n; j++) {
-    sum = 0.0;
-    for (k=0; k<n; k++) 
-      sum += a[i][k] * b[k][j];
-    c[i][j] = sum;
-  }
-} 
-~~~
-
->
 - Miss rate for inner loop iterations:
 - Block size = 32 bytes (4 doubles)
   - A = 8 / 32 = 0.25
   - B = 1
   - C = 0
   - Average miss per iteration = 1.25
->
-<img src="../fig/05-memory/16.png" alt="miss rate I" style="height:300px">
->
-~~~
+  
+![Miss rate 1](../../fig//05-memory/16.png)
+::::
+::::{tab-item} Case 2
+~~~c
 /* kij */
 for (k=0; k<n; k++)  {
   for (i=0; i<n; i++) {
@@ -387,17 +411,17 @@ for (k=0; k<n; k++)  {
 } 
 ~~~
 
->
 - Miss rate for inner loop iterations:
 - Block size = 32 bytes (4 doubles)
   - A = 0
   - B = 8 / 32 = 0.25
   - C = 8 / 32 = 0.25
   - Average miss per iteration = 0.5
->
-<img src="../fig/05-memory/17.png" alt="miss rate II" style="height:300px">
->
-~~~
+
+![Miss rate 2](../../fig//05-memory/17.png)
+::::
+::::{tab-item} Case 3
+~~~c
 /* jki */
 for (j=0; j<n; j++)  {
   for (k=0; k<n; k++) {
@@ -408,33 +432,27 @@ for (j=0; j<n; j++)  {
 } 
 ~~~
 
->
 - Miss rate for inner loop iterations:
 - Block size = 32 bytes (4 doubles)
   - A = 1
   - B = 0
   - C = 1
   - Average miss per iteration = 2
->
-<img src="../fig/05-memory/18.png" alt="miss rate III" style="height:300px">
->
 
+![Miss rate 3](../../fig//05-memory/18.png)
+::::
+```
 
+```{admonition} The memory mountain
+:class: dropdown
 
-## 18. The memory mountain
->
 - This is the cover of the book. 
 - Y-axis: Read throughput (read bandwidth)
   - Number of bytes read from memory per second (MB/s)
 - Memory mountain: Measured read throughput as a function of spatial and temporal locality.
 - Compact way to characterize memory system performance. 
->
-<img src="../fig/05-memory/19.png" alt="memory mountain" style="height:300px">
->
 
+![memory mountain](../../fig//05-memory/19.png)
+```
 
-
-
-
-{% include links.md %}
 
