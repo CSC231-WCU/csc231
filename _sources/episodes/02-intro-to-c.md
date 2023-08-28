@@ -368,3 +368,120 @@ int main() {
 
 :::
 
+
+## 7. Conditionals and Loops
+
+Similar to Java. 
+
+- Conditionals: **compare.c**
+
+~~~c
+#include <stdio.h>
+
+int main(void) {
+    int num1, num2;
+
+    printf("Enter the 1st number: ");
+    scanf("%d", &num1);
+    printf("Enter the 2nd number: ");
+    scanf("%d", &num2);
+
+    if (num1 > num2) {
+        printf("%d is biggest\n", num1);
+    } else if (num1 == num2) {
+        printf("%d and %d are the same\n", num1, num2);
+    } else {
+        printf("%d is biggest\n", num2);
+    }
+
+    return 0;
+}
+~~~
+
+- Loops
+
+:::::{tab-set} 
+::::{tab-item} forLoop.c
+
+~~~c
+#include <stdio.h>
+
+int main(void) {
+    int num, i;
+
+    printf("Enter a value: ");
+    scanf("%d", &num);
+    // make sure num is not negative
+    if (num < 0) {
+        num = -num;
+    }
+
+    for (i = 0; i < num; i++) {
+        printf("%d\n", i);
+    }
+
+    return 0;
+}
+~~~
+
+::::
+
+::::{tab-item} whileLoop.c
+
+~~~c
+#include <stdio.h>
+
+int main(void) {
+    int num, val;
+
+    printf("Enter a value: ");
+    scanf("%d", &num);
+    // make sure num is not negative
+    if (num < 0) {
+        num = -num;
+    }
+    val = 1;
+    while (val < num) {
+        printf("%d\n", val);
+        val = val * 2;
+    }
+
+    return 0;
+}
+~~~
+
+::::
+:::::
+
+
+## 8. Function in C
+
+
+- Almost the same as methods in Java, except for one small difference. 
+- They need to either be declared, or must be defined prior to being
+called (relative to written code position). 
+
+::::{dropdown} Hands-on: Functions in C - definition and declaration
+
+- Create three C files, `function-1.c`, `function-2.c`, and `function-3.c`,
+with the source codes below:
+
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=function-1.c"></script>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=function-2.c"></script>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=function-3.c"></script>
+
+- Compile and run these files. 
+
+:::{image} ../fig/02-c/23.png
+:alt: Compile and run function-1.c, function-2.c, function-3.c
+:class: bg-primary mb-1
+:height: 250px
+:align: center
+:::
+::::
+
+## 9. Arrays and Strings
+
+- Statically declared arrays
+- Multiple data values of the same types
+- Adjancent locations in memory (we will talk about this in the future)
