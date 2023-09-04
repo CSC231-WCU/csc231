@@ -54,6 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Introduction to the Linux Shell" href="10-intro-linux.html" />
     <link rel="prev" title="Memory hierarchy and cache memories" href="08-memory-cache.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -171,6 +172,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Code optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-intro-linux.html">
+   Introduction to the Linux Shell
   </a>
  </li>
 </ul>
@@ -397,8 +403,8 @@ It does not mean that your program is correct.</p></li>
 <div class="dropdown admonition">
 <p class="admonition-title">Scientific and brute force</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="74dee918-6e1a-40f8-87ff-de564900efb8" name="9fb43cc5-0d6d-470c-b9cf-4cd03c1bcf2b" type="radio">
-</input><label class="sd-tab-label" for="74dee918-6e1a-40f8-87ff-de564900efb8">
+<input checked="checked" id="e8bc4199-bf28-4047-b0bf-44e43f4619fa" name="c685d47d-8a4e-4a9b-bfaa-3c7504ba504f" type="radio">
+</input><label class="sd-tab-label" for="e8bc4199-bf28-4047-b0bf-44e43f4619fa">
 Bad Fib</label><div class="sd-tab-content docutils">
 <ul class="simple">
 <li><p>A bad implementation of Fibonacci sequence</p></li>
@@ -414,8 +420,8 @@ $ ./bad_fib
 </pre></div>
 </div>
 </div>
-<input id="5c954cc6-69e9-42f6-926b-024eb1c0d439" name="9fb43cc5-0d6d-470c-b9cf-4cd03c1bcf2b" type="radio">
-</input><label class="sd-tab-label" for="5c954cc6-69e9-42f6-926b-024eb1c0d439">
+<input id="2d65870a-dc16-47a2-b252-db4f80cc10d6" name="c685d47d-8a4e-4a9b-bfaa-3c7504ba504f" type="radio">
+</input><label class="sd-tab-label" for="2d65870a-dc16-47a2-b252-db4f80cc10d6">
 Scientific debugging</label><div class="sd-tab-content docutils">
 <ul class="simple">
 <li><p>Before debugging, you need to construct a hypothesis as to the defect.</p>
@@ -446,8 +452,8 @@ Scientific debugging</label><div class="sd-tab-content docutils">
 </li>
 </ul>
 </div>
-<input id="af0f64a1-a557-4a48-a050-1c4cae2ad5e4" name="9fb43cc5-0d6d-470c-b9cf-4cd03c1bcf2b" type="radio">
-</input><label class="sd-tab-label" for="af0f64a1-a557-4a48-a050-1c4cae2ad5e4">
+<input id="a04373e0-d319-4f48-8afd-459eec963c65" name="c685d47d-8a4e-4a9b-bfaa-3c7504ba504f" type="radio">
+</input><label class="sd-tab-label" for="a04373e0-d319-4f48-8afd-459eec963c65">
 SD: Bad Fib!</label><div class="sd-tab-content docutils">
 <ul class="simple">
 <li><p>Constructing a hypothesis:</p>
@@ -481,8 +487,8 @@ SD: Bad Fib!</label><div class="sd-tab-content docutils">
 </li>
 </ul>
 </div>
-<input id="bb99ebc7-9681-43ea-8a1a-7eac999c77b8" name="9fb43cc5-0d6d-470c-b9cf-4cd03c1bcf2b" type="radio">
-</input><label class="sd-tab-label" for="bb99ebc7-9681-43ea-8a1a-7eac999c77b8">
+<input id="615f202a-5041-4691-a6ec-3a868a3daf1b" name="c685d47d-8a4e-4a9b-bfaa-3c7504ba504f" type="radio">
+</input><label class="sd-tab-label" for="615f202a-5041-4691-a6ec-3a868a3daf1b">
 Brute force</label><div class="sd-tab-content docutils">
 <ul class="simple">
 <li><p>Strict compilation flags: <code class="docutils literal notranslate"><span class="pre">-Wall</span></code>, <code class="docutils literal notranslate"><span class="pre">-Werror</span></code>.</p></li>
@@ -499,8 +505,8 @@ $ valgrind ./bad_fib
 </pre></div>
 </div>
 </div>
-<input id="13809fa4-d606-4e74-bbb2-940183557ecb" name="9fb43cc5-0d6d-470c-b9cf-4cd03c1bcf2b" type="radio">
-</input><label class="sd-tab-label" for="13809fa4-d606-4e74-bbb2-940183557ecb">
+<input id="2ed81a4a-4720-4f33-a1c9-39ca34d31a17" name="c685d47d-8a4e-4a9b-bfaa-3c7504ba504f" type="radio">
+</input><label class="sd-tab-label" for="2ed81a4a-4720-4f33-a1c9-39ca34d31a17">
 Observation</label><div class="sd-tab-content docutils">
 <ul class="simple">
 <li><p>What is the observed result?</p>
@@ -590,13 +596,13 @@ Observation</label><div class="sd-tab-content docutils">
 <li><p>Create the following two files called <code class="docutils literal notranslate"><span class="pre">matrix_mult.c</span></code> and <code class="docutils literal notranslate"><span class="pre">block_matrix_mult.c</span></code></p></li>
 </ul>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="e147a649-cda9-4038-8f98-6d68b0925cb5" name="0b604937-ae95-4cf8-bd6e-74a2439c3846" type="radio">
-</input><label class="sd-tab-label" for="e147a649-cda9-4038-8f98-6d68b0925cb5">
+<input checked="checked" id="45b2f2db-a528-4c92-b6c0-f0040128ade1" name="0199baea-9447-4dd4-9ed3-e6402636d665" type="radio">
+</input><label class="sd-tab-label" for="45b2f2db-a528-4c92-b6c0-f0040128ade1">
 matrix_mult.c</label><div class="sd-tab-content docutils">
 <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=matrix_mult.c"></script>
 </div>
-<input id="f396b53b-a9c9-44de-8e63-1de7bb9b2a01" name="0b604937-ae95-4cf8-bd6e-74a2439c3846" type="radio">
-</input><label class="sd-tab-label" for="f396b53b-a9c9-44de-8e63-1de7bb9b2a01">
+<input id="979805eb-4a51-4b10-8955-7cbbc66aca04" name="0199baea-9447-4dd4-9ed3-e6402636d665" type="radio">
+</input><label class="sd-tab-label" for="979805eb-4a51-4b10-8955-7cbbc66aca04">
 block_matrix_mult.c</label><div class="sd-tab-content docutils">
 <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=block_matrix_mult.c"></script>
 </div>
@@ -606,8 +612,8 @@ block_matrix_mult.c</label><div class="sd-tab-content docutils">
 how the loops are broken up to align with cache size.</p></li>
 </ul>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="3ab1e771-042c-415a-89c6-03d8c4b0bb34" name="4a4c2ba7-2094-48b4-a2c6-0f1bd6a5bfca" type="radio">
-</input><label class="sd-tab-label" for="3ab1e771-042c-415a-89c6-03d8c4b0bb34">
+<input checked="checked" id="908c7e25-8783-4e18-b744-264a1463798f" name="4aa36335-c6c7-41e8-a0d4-87168599d17b" type="radio">
+</input><label class="sd-tab-label" for="908c7e25-8783-4e18-b744-264a1463798f">
 Cache blocks</label><div class="sd-tab-content docutils">
 <ul class="simple">
 <li><p>Check the size of cache blocks</p></li>
@@ -635,8 +641,8 @@ in cache line).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">*</span> <span class="pre">8</span> <span class="pre">*</span> <span class="pre">8</span> <span class="pre">&lt;</span> <span class="pre">32768</span></code>.</p></li>
 </ul>
 </div>
-<input id="0f2cdae4-678d-4553-8dbb-b0d95aae928f" name="4a4c2ba7-2094-48b4-a2c6-0f1bd6a5bfca" type="radio">
-</input><label class="sd-tab-label" for="0f2cdae4-678d-4553-8dbb-b0d95aae928f">
+<input id="b45e47e4-7a08-4276-b9f8-0e099ff516a0" name="4aa36335-c6c7-41e8-a0d4-87168599d17b" type="radio">
+</input><label class="sd-tab-label" for="b45e47e4-7a08-4276-b9f8-0e099ff516a0">
 Without cache</label><div class="sd-tab-content docutils">
 <ul class="simple">
 <li><p>Compile and run <code class="docutils literal notranslate"><span class="pre">matrix_mult.c</span></code>.</p></li>
@@ -649,8 +655,8 @@ $ ./mm <span class="m">2048</span>
 </div>
 <p><img alt="Matrix with block optimization" src="../_images/043.png" /></p>
 </div>
-<input id="d4b25d07-2cd6-48b7-b4ca-a5fbb195f524" name="4a4c2ba7-2094-48b4-a2c6-0f1bd6a5bfca" type="radio">
-</input><label class="sd-tab-label" for="d4b25d07-2cd6-48b7-b4ca-a5fbb195f524">
+<input id="3274365f-eb7d-403d-b492-ad83c1b81d8b" name="4aa36335-c6c7-41e8-a0d4-87168599d17b" type="radio">
+</input><label class="sd-tab-label" for="3274365f-eb7d-403d-b492-ad83c1b81d8b">
 With cache</label><div class="sd-tab-content docutils">
 <ul class="simple">
 <li><p>Compile and run <code class="docutils literal notranslate"><span class="pre">block_matrix_mult.c</span></code>.</p></li>
@@ -672,8 +678,8 @@ $ ./bmm <span class="m">2048</span>
 <li><p>Reduction in strength</p></li>
 </ul>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="350ecca7-7456-4cde-8a37-e9f3ab939d10" name="eac16b1c-29e7-472c-aede-d454d21478b6" type="radio">
-</input><label class="sd-tab-label" for="350ecca7-7456-4cde-8a37-e9f3ab939d10">
+<input checked="checked" id="eb45b683-2c66-4997-a8b2-23f1f581a93c" name="73a263c3-0ec0-4bf4-88d9-a0c0137c3305" type="radio">
+</input><label class="sd-tab-label" for="eb45b683-2c66-4997-a8b2-23f1f581a93c">
 Reduce code motion</label><div class="sd-tab-content docutils">
 <ul class="simple">
 <li><p>Reduce frequency with which computation performed</p>
@@ -685,8 +691,8 @@ Reduce code motion</label><div class="sd-tab-content docutils">
 </ul>
 <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=block_matrix_mult_2.c"></script>
 </div>
-<input id="85bc2a43-c15f-4f3c-8eeb-00f2ac53d4c2" name="eac16b1c-29e7-472c-aede-d454d21478b6" type="radio">
-</input><label class="sd-tab-label" for="85bc2a43-c15f-4f3c-8eeb-00f2ac53d4c2">
+<input id="d7338584-8ced-4270-ad47-978836ca40ca" name="73a263c3-0ec0-4bf4-88d9-a0c0137c3305" type="radio">
+</input><label class="sd-tab-label" for="d7338584-8ced-4270-ad47-978836ca40ca">
 Reduction in strength</label><div class="sd-tab-content docutils">
 <ul class="simple">
 <li><p>Replace costly operation with simpler ones (multiply to addition).</p></li>
@@ -694,8 +700,8 @@ Reduction in strength</label><div class="sd-tab-content docutils">
 </ul>
 <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=block_matrix_mult_3.c"></script>
 </div>
-<input id="ca80a6ce-6297-40e8-bf45-56bdcada8487" name="eac16b1c-29e7-472c-aede-d454d21478b6" type="radio">
-</input><label class="sd-tab-label" for="ca80a6ce-6297-40e8-bf45-56bdcada8487">
+<input id="ed306e38-eb6d-41a5-8190-7f2b1d09e908" name="73a263c3-0ec0-4bf4-88d9-a0c0137c3305" type="radio">
+</input><label class="sd-tab-label" for="ed306e38-eb6d-41a5-8190-7f2b1d09e908">
 Scripting</label><div class="sd-tab-content docutils">
 <ul class="simple">
 <li><p>Create the following file to automate the installations.</p></li>
@@ -708,8 +714,8 @@ $ ./eval.sh block_matrix_mult_3
 </pre></div>
 </div>
 </div>
-<input id="87d1ed36-2372-41fd-b9a6-f0a6f7d4145f" name="eac16b1c-29e7-472c-aede-d454d21478b6" type="radio">
-</input><label class="sd-tab-label" for="87d1ed36-2372-41fd-b9a6-f0a6f7d4145f">
+<input id="4267efb3-6f94-4215-b9de-0a174b68ab72" name="73a263c3-0ec0-4bf4-88d9-a0c0137c3305" type="radio">
+</input><label class="sd-tab-label" for="4267efb3-6f94-4215-b9de-0a174b68ab72">
 Outcome</label><div class="sd-tab-content docutils">
 <p><img alt="Other optimizations" src="../_images/062.png" /></p>
 </div>
@@ -733,8 +739,8 @@ x86_64’s single instructions, multiple data (SIMD) instructions.</p>
 </li>
 </ul>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="f4c11924-cfc4-4c28-a79b-53b88db8d9e4" name="c352b879-ae25-453e-9ae4-6c2240c25e05" type="radio">
-</input><label class="sd-tab-label" for="f4c11924-cfc4-4c28-a79b-53b88db8d9e4">
+<input checked="checked" id="7a747c55-4bb3-4e57-a787-3720f9e116ad" name="b338b4dd-26bb-4bbc-a805-aa3f4828285e" type="radio">
+</input><label class="sd-tab-label" for="7a747c55-4bb3-4e57-a787-3720f9e116ad">
 Example: AVX/AVX2</label><div class="sd-tab-content docutils">
 <ul class="simple">
 <li><p>Addition 16 YMM registers to perform a single instruction on multiple data elements
@@ -747,8 +753,8 @@ Example: AVX/AVX2</label><div class="sd-tab-content docutils">
 </li>
 </ul>
 </div>
-<input id="c59ef417-27f7-463e-980e-c1956bfd3b09" name="c352b879-ae25-453e-9ae4-6c2240c25e05" type="radio">
-</input><label class="sd-tab-label" for="c59ef417-27f7-463e-980e-c1956bfd3b09">
+<input id="00c96fb3-50e6-433c-a664-272c4638f3af" name="b338b4dd-26bb-4bbc-a805-aa3f4828285e" type="radio">
+</input><label class="sd-tab-label" for="00c96fb3-50e6-433c-a664-272c4638f3af">
 Intrinsic Code</label><div class="sd-tab-content docutils">
 <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=intrinsic_sum.c"></script>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ gcc -mavx2 -o imm intrinsic_sum.c 
@@ -762,8 +768,8 @@ $ ./imm <span class="m">33554432</span>
 </pre></div>
 </div>
 </div>
-<input id="665447af-861f-4663-a581-58a57980ca56" name="c352b879-ae25-453e-9ae4-6c2240c25e05" type="radio">
-</input><label class="sd-tab-label" for="665447af-861f-4663-a581-58a57980ca56">
+<input id="683c8b96-3cd3-47f5-b038-48e7a21330e4" name="b338b4dd-26bb-4bbc-a805-aa3f4828285e" type="radio">
+</input><label class="sd-tab-label" for="683c8b96-3cd3-47f5-b038-48e7a21330e4">
 Outcome</label><div class="sd-tab-content docutils">
 <p><img alt="Other optimizations" src="../_images/intrinsic_sum.png" /></p>
 </div>
@@ -830,6 +836,13 @@ Outcome</label><div class="sd-tab-content docutils">
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">Memory hierarchy and cache memories</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="10-intro-linux.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Introduction to the Linux Shell</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </footer>
