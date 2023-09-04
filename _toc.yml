@@ -15,3 +15,4 @@ parts:
     - file: episodes/07-machine-language.md
     - file: episodes/08-memory-cache.md
     - file: episodes/09-code-optimization.md
+    - file: episodes/10-intro-linux.md
