@@ -344,7 +344,7 @@ class InputReader {
 
 Create a file called **mixedInput.c** that is modified from 
 **readInput.c**. The file should do the followings:
-- Ask user to provide three input of type **double**
+- Ask user to provide three input of type **float**
 - Print out the multiplication statement with all the multiplicants 
 and results as done in **readInput.c**. 
 
@@ -354,7 +354,7 @@ and results as done in **readInput.c**.
 #include <stdio.h>
 
 int main() {
-  int num1, num2;
+  float num1, num2, num3;
   printf("Enter a number: ");
   scanf("%g", &num1);
   printf("Enter another: ");
