@@ -485,3 +485,31 @@ with the source codes below:
 - Statically declared arrays
 - Multiple data values of the same types
 - Adjancent locations in memory (we will talk about this in the future)
+- Inside the terminal, make suse that you are still inside
+`intro-c`, then use `nano` to create `array-1.c`with the source code below. 
+
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=array-1.c"></script>
+
+- What is the distance between addresses? Why?
+- Compile and run `array-1.c`
+
+:::::{dropdown} Exercise
+
+- Create a copy of `array-1.c` called `array-2.c`. 
+- Change the type of `numbers` to `double`. 
+- What is the address step now?
+
+::::{dropdown} Answer    
+
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=array-2.c"></script>
+
+::::
+:::::
+
+::::{dropdown} An array variable
+
+- ... is in fact pointing to an address containing a value. 
+- ... without the bracket notation and an index points to the 
+corresponding address of the value at the index. 
+- ... is quite similar to a pointer!
+::::
