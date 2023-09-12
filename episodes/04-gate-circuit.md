@@ -8,9 +8,9 @@ from [Chapter 5](https://diveintosystems.org/book/C5-Arch/index.html) of the boo
 
 ```
 
-## In the beginning ...
+## 1. In the beginning ...
 
-`computer` = `the one who computes`
+- `computer` = `the one who computes`
 
 ### Origin of modern computing architectures
 
@@ -37,8 +37,31 @@ from [Chapter 5](https://diveintosystems.org/book/C5-Arch/index.html) of the boo
   - A binary computer instead of a decimal computer
   - Stored-program
 
-## The von Neumann Architecture
+## 2. Logic Gates
+
+- Building blocks of the digital circuitry that implements arithmetic, 
+control, and storage functionality in a digital computer.
+- Logic gates are created from transistors that are etched into a 
+semiconductor material (e.g. silicon chips). 
+- Transistors act as switches that control electrical flow through the chip. 
+A transistor can switch its state between on or off (between a high or low 
+voltage output). Its output state depends on its current state plus its input 
+state (high or low voltage).
+
+### 2.1 Basic Logic Gates
+
+- AND, OR, and NOT form a set of basic logic gates from which 
+any circuit can be constructed. 
 
 
+```{admonition} Truth table for AND, OR, and NOT 
 
+| A | B | A AND B  | A OR B  | NOT A | NOT B |
+| - | - | -------- | ------- | ----- | ----- | 
+| 0 | 0 | 0        | 0       | 1     | 1     |
+| 0 | 1 | 0        | 1       | 1     | 0     |
+| 1 | 0 | 0        | 1       | 0     | 1     |
+| 1 | 1 | 1        | 1       | 0     | 0     |  
+
+```
 

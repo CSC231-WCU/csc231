@@ -9,9 +9,7 @@ This lecture will cover contents from [Chapter 4](https://diveintosystems.org/bo
 
 ## 1. How do we "see" things?
 
-
-
-```{dropdown}  Everything is a bit
+### 1.2 Everything is a bit
  
 - Each bit is `0` or `1`
 - By encoding/interpreting sets of bits in various ways
@@ -21,15 +19,9 @@ This lecture will cover contents from [Chapter 4](https://diveintosystems.org/bo
   - Easy to store with bistable elements.
   - Reliably transmitted on noisy and inaccurate wires. 
 
-:::{image} ../fig/03-data-representation/data_01.png
-:alt: electronic representations of bits
-:class: bg-primary mb-1
-:height: 200px
-:align: center
-:::
-```
+![Electronic representation of bits](../fig/03-data-representation/data_01.png)
 
-```{dropdown} Encoding byte values 
+### 1.3 Encoding byte values 
 
 - Byte = 8 bits
 - Binary: `0000 0000` to `1111 1111`. 
@@ -61,9 +53,7 @@ This lecture will cover contents from [Chapter 4](https://diveintosystems.org/bo
 
 - [Google Spreadsheet demonstrating conversion process](https://docs.google.com/spreadsheets/d/16yW8yDfDTxBiH-PkIddm1Cg4kYE4k-56GLTa6xDD_WU/edit?usp=sharing)
 
-```
-
-```{dropdown} How are data represented? 
+### 1.4 How are data represented? 
 
 | C data type | typical 32-bit | typical 64-bit | x86_64  |  
 | ----------- | -------------- | -------------- | ------- |  
@@ -74,13 +64,10 @@ This lecture will cover contents from [Chapter 4](https://diveintosystems.org/bo
 | float       | 4              | 4              | 4       |  
 | double      | 8              | 8              | 8       |  
 | pointer     | 4              | 8              | 8       |  
-```
 
 ## 2. Bit-level operations in  C
 
-```{dropdown} Boolean algebra (recall MAT 151) 
-
-- Developed by George Boole in 19th century
+- Boolean algebra developed by George Boole in 19th century
 - Algebraic representation of logic: encode `True` as `1` and `False` as `0`. 
 - Operations: `AND` (`&`), `OR` (`|`), `XOR` (`^`), `NOT` (`~`).
 
@@ -91,53 +78,42 @@ This lecture will cover contents from [Chapter 4](https://diveintosystems.org/bo
 | 1 | 0 | 0    | 1    | 1   | 0  |
 | 1 | 1 | 1    | 1    | 0   | 0  |  
 
-```
+- General Boolean algebra
+  - Operate on bit vectors
+  - Operation applied bitwise. 
+  - All properties of boolean algebra apply.  
 
-```{dropdown}  General Boolean algebra
+[bitwise boolean operations](../fig/03-data-representation/data_02.png)
 
-- Operate on bit vectors
-- Operation applied bitwise. 
-- All properties of boolean algebra apply.  
+- Operation and notation  
+  - Boolean operations: `&`, `|`, `^`, `~`.
+  - Shift operations:
+    - Left Shift: 	x << y
+      - Shift bit-vector x left y positions
+      - Throw away extra bits on left
+      - Fill with 0’s on right
+    - Right Shift: 	x >y
+      - Shift bit-vector x right y positions
+      - Throw away extra bits on right
+      - Logical shift (for unsigned values)
+        - Fill with 0’s on left
+      - Arithmetic shift (for signed values)
+        - Replicate most significant bit on left
+    - Undefined Behavior
+      - Shift amount < 0 or ≥ word size
+  - Apply to any "integral" data type: long, int, short, char, unsigned
+  - View arguments as bit vectors. 
+  - Arguments applied bit-wise. 
+  - Mathematical operations:
+    - Bit-wise with carry
+    - $0 + 0 = 0$
+    - $0 + 1 = 1$
+    - $1 + 0 = 1$
+    - $1 + 1 = 0$ and carry $1$ to the next bit operation 
+    (or add 1 to left of the most significant bit position)
 
-:::{image} ../fig/03-data-representation/data_02.png
-:alt: bitwise boolean operations
-:class: bg-primary mb-1
-:height: 200px
-:align: center
-:::
-
-```
-
-```{dropdown} Operation and notation  
-
-- Boolean operations: `&`, `|`, `^`, `~`.
-- Shift operations:
-  - Left Shift: 	x << y
-    - Shift bit-vector x left y positions
-    - Throw away extra bits on left
-    - Fill with 0’s on right
-  - Right Shift: 	x >y
-    - Shift bit-vector x right y positions
-    - Throw away extra bits on right
-    - Logical shift (for unsigned values)
-      - Fill with 0’s on left
-    - Arithmetic shift (for signed values)
-      - Replicate most significant bit on left
-  - Undefined Behavior
-    - Shift amount < 0 or ≥ word size
-- Apply to any "integral" data type: long, int, short, char, unsigned
-- View arguments as bit vectors. 
-- Arguments applied bit-wise. 
-- Mathematical operations:
-  - Bit-wise with carry
-  - $0 + 0 = 0$
-  - $0 + 1 = 1$
-  - $1 + 0 = 1$
-  - $1 + 1 = 0$ and carry $1$ to the next bit operation (or add 1 to left of the most significant bit position)
-
-```
-
-```{dropdown}  Hands-on: bit-level operations in C
+```{admonition}  Hands-on: bit-level operations in C
+:class: dropdown
 
 - Inside your `csc231`, create another directory called `03-data` and change 
 into this directory.
@@ -146,15 +122,14 @@ into this directory.
 <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=bitwise_demo.c"></script>
 
 - Compile and run `bitwise_demo.c`.
-- Confirm that the binary printouts match the corresponding decimal printouts and the expected bitwise
-operations. 
+- Confirm that the binary printouts match the corresponding decimal printouts and the expected bitwise operations. 
 
 ```
 
 
 ## 3. Encoding integers
 
-```{dropdown} Mathematical equation
+### 3.1 Mathematical equation
 
 - Assumption:
   - $X$ is a decimal number
@@ -166,9 +141,7 @@ sequence of binary values $x_{w-1}x_{w-2}...x_{i}...x_{1}x_{0}$ is:
 
 $X=\sum_{i=0}^{w-1}x_{i}*2^{i}$
 
-```
-
-```{dropdown} What about negative numbers?
+### 3.2 What about negative numbers?
 
 - Approaches:
   - Reserve first bit as sign bit
@@ -229,9 +202,8 @@ $X=-x_{w-1} * 2^{w-1} + \sum_{i=0}^{w-2}x_{i}*2^{i}$
 | short int x | 15213   | 3B 6D | 00111011 01101101 |  
 | short int y | -15213  | C4 93 | 11000100 10010011 | 
 
-```
-
-```{dropdown} 2's complement examples
+```{admonition} 2's complement examples
+:class: dropdown
 
 - **2's complement representation depends on the number of bits.**
 - Technical trick: A binary representation of the absolute value of 
@@ -281,7 +253,7 @@ negative number.
 
 ```
 
-```{dropdown} Numeric ranges
+### 3.3 Numeric ranges
 
 - Unsigned values for `w-bit` word
   - UMin = 0
@@ -309,9 +281,9 @@ negative number.
    - Declares constants: `ULONG_MAX`, `LONG_MAX`, `LONG_MIN`
    - Platform specific
 
-```
 
-```{dropdown} Challenge
+```{admonition} Challenge
+:class: dropdown
 
 - Write a C program called `numeric_ranges.c` that prints out the 
 value of `ULONG_MAX`, `LONG_MAX`, `LONG_MIN`. Also answer the following 

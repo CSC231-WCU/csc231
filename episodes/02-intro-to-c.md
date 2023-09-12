@@ -480,7 +480,7 @@ with the source codes below:
 :::
 ::::
 
-## 9. Arrays and Strings
+## 9. Arrays
 
 - Statically declared arrays
 - Multiple data values of the same types
