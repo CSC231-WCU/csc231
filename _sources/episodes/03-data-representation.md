@@ -203,7 +203,7 @@ $X=-x_{w-1} * 2^{w-1} + \sum_{i=0}^{w-2}x_{i}*2^{i}$
 | short int y | -15213  | C4 93 | 11000100 10010011 | 
 
 ```{admonition} 2's complement examples
-:class: dropdown
+:class: note
 
 - **2's complement representation depends on the number of bits.**
 - Technical trick: A binary representation of the absolute value of 
@@ -303,7 +303,7 @@ that path exists.
 
 ## 4. Conversions (casting)
 
-```{dropdown} What does it really mean by casting
+### 4.1 What does it really mean by casting
 
 - C allows casting between different numeric data types. 
 - What should be the effect/impact?
@@ -315,26 +315,14 @@ that path exists.
   - T2B: 2's complement to binary
   - T2U: 2's complement to unsigned
 
-```
+### 4.2 Visualization of conversions
 
-```{dropdown} Visualization of conversions
-
-:::{image} ../fig/03-data-representation/data_04.png
-:alt: 2's complement to unsigned
-:class: bg-primary mb-1
-:height: 200px
-:align: center
-:::
+![2's complement to unsigned](../fig/03-data-representation/data_04.png)
 
  - $T2U_{w}(x) = x + 2^{w} \ if \ x < 0$
  - $T2U_{w}(x) = x \ if \  x \geq 0$
 
-:::{image} ../fig/03-data-representation/data_05.png
-:alt: unsigned to 2's
-:class: bg-primary mb-1
-:height: 200px
-:align: center
-:::
+![unsigned to 2's](../fig/03-data-representation/data_05.png)
 
  - $U2T_{w}(x) = x - 2^{w} \ if x > TMax_{w}$
  - $U2T_{w}(x) = x \ if \  x \leq TMax_{w}$
@@ -343,8 +331,6 @@ that path exists.
   - Bit pattern is maintained but reinterpreted
   - Can have unexpected effects: adding or subtracting 2<sup>w</sup>
   - When expressions contain both signed and unsigned int values, int values will be casted to unsigned. 
-
-```
 
 ```{dropdown} Hands on: casting
 
@@ -372,19 +358,15 @@ that path exists.
 
 ```
 
-```{dropdown} Expanding and truncation
+### 4.3 Expanding and truncation
 
 - Expanding (e.g., short int to int)
   - Unsigned: zeros added
   - Signed: sign extension
   - Both yield expected result
 
-:::{image} ../fig/03-data-representation/data_06.png
-:alt: expanding
-:class: bg-primary mb-1
-:height: 200px
-:align: center
-:::
+![expanding](../fig/03-data-representation/data_06.png)
+
 
 - Truncating (e.g., unsigned to unsigned short)
   - Unsigned/signed: bits are truncated
@@ -393,16 +375,10 @@ that path exists.
   - Signed: similar to mod
   - For small (in magnitude) numbers yields expected behavior
 
-:::{image} ../fig/03-data-representation/data_07.png
-:alt: truncating
-:class: bg-primary mb-1
-:height: 200px
-:align: center
-:::
+[Truncating](../fig/03-data-representation/data_07.png)
 
-```
 
-```{dropdown} Misunderstanding integers can lead to the end of the world!
+### 4.4 Misunderstanding integers can lead to the end of the world!
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/m7bv_YcZzn0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -425,11 +401,9 @@ how the system should act." (Computer System Reliability and Nuclear War, CACM 1
   - Kruschev was in New York on October 5, 1960. 
   - Someone at Thule said, "why not go check outside?"
 
-```
-
 ## 5. Addition, multiplication, and negation (of integers)
 
-```{dropdown} Binary addition
+### 5.1 Binary addition
 
 - Mathematical operations:
   - Bit-wise with carry
@@ -468,10 +442,10 @@ $$
 \ 1110
 $$
 
-$1110=(-1)*(1)*(8)+(1)*(4)+(1)*(2)+(0)*1)=(-8)+4+2=(-2)$
-```
+$1110=(-1)*(1)*(8)+(1)*(4)+(1)*(2)+(0)*(1)=(-8)+4+2=(-2)$
 
-```{dropdown} Unsigned addition
+
+### 5.2 Unsigned addition
 
 - Given `w` bits operands
  - True sum can have `w + 1` bits (carry bit). 
@@ -479,7 +453,6 @@ $1110=(-1)*(1)*(8)+(1)*(4)+(1)*(2)+(0)*1)=(-8)+4+2=(-2)$
 - Implementation:
  - s = (u + v) mod 2<sup>w</sup>
 
-```
 
 ```{dropdown} Hands on: unsigned addition
 
@@ -492,7 +465,7 @@ $1110=(-1)*(1)*(8)+(1)*(4)+(1)*(2)+(0)*1)=(-8)+4+2=(-2)$
 
 ```
 
-```{dropdown} 2's complement addition
+### 5.3 2's complement addition
 
 - Almost similar bit-level behavior as unsigned addition
   - True sum of `w`-bit operands will have `w+1`-bit, but
@@ -502,8 +475,6 @@ $1110=(-1)*(1)*(8)+(1)*(4)+(1)*(2)+(0)*1)=(-8)+4+2=(-2)$
   - $TAdd_{w}(u, v) = u + v + 2^{w}$ if $u + v < TMin_{w}$ (**Negative Overflow**)
   - $TAdd_{w}(u, v) = u + v$ if $TMin_{w} \leq u + v \leq TMax_{w}$
   - $TAdd_{w}(u, v) = u + v - 2^{w}$ if $u + v TMax_{w}$ (**Positive Overflow**)
-
-```
 
 ```{dropdown} Hands on: signed addition
 
@@ -516,7 +487,7 @@ $1110=(-1)*(1)*(8)+(1)*(4)+(1)*(2)+(0)*1)=(-8)+4+2=(-2)$
 
 ```
 
-```{dropdown} Multiplication
+### 5.4 Multiplication
 
 - Compute product of `w`-bit numbers x and y. 
 - Exact results can be bigger than `w` bits. 
@@ -529,9 +500,8 @@ $1110=(-1)*(1)*(8)+(1)*(4)+(1)*(2)+(0)*1)=(-8)+4+2=(-2)$
 - **Trust your compiler**: Modern CPUs and OSes will most likely know to select the optimal method
 to multiply. 
 
-```
 
-```{dropdown} Multiplication and Division by power-of-2
+### 5.5 Multiplication and Division by power-of-2
 
 - Power-of-2 multiply with left shift
   - $u << k$ gives $u * 2^{k}$
@@ -544,14 +514,10 @@ to multiply.
   - x < 0: $(x + (1 << k) - 1) >> k$ gives ceiling $u / 2^{k}$
   - C statement: `(x < 0 ? x + (1 << k) - 1: x) >k`
 
-```
-
-```{dropdown} Negation: complement and increase
+### 5.6 Negation: complement and increase
 
 - Negate through complement and increment:
   - `~x + 1 == -x`
-
-```
 
 ```{dropdown} Challenge
 - Implement a C program called `negation.c` that implements and validates
@@ -566,7 +532,7 @@ that takes in a number of type `short` to be negated.
 
 ## 6. Byte-oriented memory organization
 
-```{dropdown} Overview
+### 6.1 Overview
 
 - Programs refer to data by address
   - Conceptually, envision it as a very large array of bytes
@@ -577,9 +543,7 @@ that takes in a number of type `short` to be negated.
   - Think of a process as a program being executed
   - So, a program can clobber its own data, but not that of others
 
-```
-
-```{dropdown} Machine words
+### 6.2 Machine words
 
 - Any given computer has a "Word Size"
 - `word size": Nominal size of integer-valued data and of addresses
@@ -592,24 +556,15 @@ that takes in a number of type `short` to be negated.
   - Fractions or multiples of word size
   - Always integral number of bytes
 
-```
-
-```{dropdown} Word-oriented memory organization
+### 6.3 Word-oriented memory organization
 
 - Addresses specific byte locations
   - Address of first byte in word.
   - Address of successive words differ by 4 (32-bit) or 8 (64-bit). 
 
-:::{image} ../fig/03-data-representation/data_08.png
-:alt: word-oriented memory organization
-:class: bg-primary mb-1
-:height: 400px
-:align: center
-:::
+![word-oriented memory organization](../fig/03-data-representation/data_08.png)
 
-```
-
-```{dropdown} Byte ordering in memory
+### 6.4 Byte ordering in memory
 
 - Machine-dependent
 - Big Endian:  Sun (Oracle SPARC), PPC Mac, Internet (network data transfer)
@@ -620,14 +575,7 @@ that takes in a number of type `short` to be negated.
   - Variable x has 4-byte value of 0x01234567
   - Address given by `&x` is 0x100
 
-:::{image} ../fig/03-data-representation/data_09.png
-:alt: byte ordering example
-:class: bg-primary mb-1
-:height: 100px
-:align: center
-:::
-
-```
+![byte ordering example](../fig/03-data-representation/data_09.png)
 
 ```{dropdown} Hands on: byte ordering in memory
 
@@ -643,16 +591,14 @@ that takes in a number of type `short` to be negated.
 
 ## 7. Fractional binary numbers (float and double)
 
-```{dropdown} Naive representation
+### 7.1 Naive representation
 
 - What is 1011.101<sub>2</sub>?
   - 8 + 0 + 2 + 1 + 1/2 + 0 + 1/4
 - Can only exactly represent numbers of the form x/2<sup>k</sup>
 - Limited range of numbers within the `w`-bit word size. 
 
-```
-
-```{dropdown} IEEE Floating point
+### 7.2 IEEE Floating point
 
 - [IEEE Standard 754](https://standards.ieee.org/standard/754-2019.html)
   - Established in 1985 as uniform standard for floating point arithmetic
@@ -663,9 +609,7 @@ that takes in a number of type `short` to be negated.
   - Hard to make fast in hardware (Numerical analysts predominated over hardware 
 designers in defining standard).
 
-```
-
-```{dropdown} Importance of floating-point arithmetic accuracy
+### 7.3 Importance of floating-point arithmetic accuracy
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/5tJPXYA0Nec" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -691,9 +635,7 @@ designers in defining standard).
   the center of the target, making it less likely that the target, in this case a Scud, 
   will be successfully intercepted.](https://www.gao.gov/assets/220/215614.pdf)
 
-```
-
-```{dropdown} IEEE Floating point representation
+### 7.4 IEEE Floating point representation
 
 - Numerical form: (-1)<sup>s</sup>M2<sup>E</sup>
   - Sign bit `s` determins whether the number is negative or positive. 
@@ -729,18 +671,14 @@ designers in defining standard).
 :align: center
 :::
 
-```
-
-```{dropdown} Three "kinds" of floating point numbers
+### 7.5 Three "kinds" of floating point numbers
 
 - Depends on the `exp` field (`E`).
 - Denormalized: `exp` contains all 0s.
 - Special: `exp` contains all 1s.
 - Normalized: `exp` contains a mix of 0s and 1s. 
 
-```
-
-```{dropdown} Normalized floating point numbers
+### 7.6 Normalized floating point numbers
 
 - When: exp != 000…0 and exp != 111…1
 - Exponent coded as a biased value: E  =  exp – Bias
@@ -754,9 +692,7 @@ designers in defining standard).
   - Maximum when frac=111…1 (M = 2.0 – ε)
   - Get extra leading bit for "free" (hence the range: `[1.0, 2.0)`)
 
-```
-
-```{dropdown} Example: normalized floating point numbers
+### 7.7 Example: normalized floating point numbers
 
 - Value: float F = 15213.0;
   - 15213<sub>10</sub>= 11101101101101<sub>2</sub>= 1.1101101101101<sub>2</sub>* 2<sup>13</sup>
@@ -768,8 +704,6 @@ designers in defining standard).
   - Bias = 127
   - `exp` = 140 = 10001100<sub>2</sub>
  - Result: `0`|`10001100`|`11011011011010000000000` 
-
-```
 
 ```{dropdown} Hands on: check floating point representation
 
@@ -783,7 +717,7 @@ designers in defining standard).
 
 ```
 
-```{dropdown} Denormalized floating point
+### 7.8 Denormalized floating point
 
 - Condition: exp = 000…0 
 - Exponent value: E = 1 – Bias
@@ -797,9 +731,7 @@ designers in defining standard).
     - Numbers closest to 0.0
     - Equispaced
 
-```
-
-```{dropdown} Special cases
+### 7.9 Special cases
 
 - Condition: exp = 111...1 
 - Case: exp = 111…1, frac = 000…0
@@ -810,11 +742,9 @@ designers in defining standard).
   - Not-a-Number (NaN)
   - Represents case when no numeric value can be determined
 
-```
-
 ## 8. Floating operations
 
-```{dropdown} Basic idea
+### 8.1 Basic idea
 
 - Compute exact result. 
 - Make it fit into desired precision. 
@@ -836,9 +766,7 @@ designers in defining standard).
 - All others are statistically based
   - Sum of set of positive numbers will consistently be over- or under-estimated. 
 
-```
-
-```{dropdown} Floating point multiplication
+### 8.2 Floating point multiplication
 
 - $(-1)^{s_1}M_{1}2^{E_1} * (-1)^{s_2}M_{2}2^{E_2}$  
 - Exact result: $(-1)^{s}M2^{E}$
@@ -851,9 +779,7 @@ designers in defining standard).
   - Round M to fit `frac` precision
 - Implementation: Biggest chore is multiplying significands.  
 
-```
-
-```{dropdown} Floating point addition
+### 8.3 Floating point addition
 
 - $(-1)^{s_1}M_{1}2^{E_1} + (-1)^{s_2}M_{2}2^{E_2}$ 
 - Exact result: $(-1)^{s}M2^E$1
@@ -866,9 +792,7 @@ designers in defining standard).
   - Round M to fit `frac` precision
 - Implementation: Biggest chore is multiplying significands.  
 
-```
-
-```{dropdown} Mathematical properties of floating point addition
+### 8.4 Mathematical properties of floating point addition
 
 - Compare to those of [Abelian group](https://en.wikipedia.org/wiki/Abelian_group) 
 (a group in which the result of applying the group operation to two group elements 
@@ -885,9 +809,7 @@ does not depend on the order in which they are written):
   - **Almost**
   - Except for infinities and NaN
 
-```
-
-```{dropdown} Mathematical properties of floating point multiplication
+### 8.5 Mathematical properties of floating point multiplication
 
 - Compare to those of [Abelian group](https://en.wikipedia.org/wiki/Abelian_group) 
 (a group in which the result of applying the group operation to two group elements 
@@ -905,9 +827,7 @@ does not depend on the order in which they are written):
   - **Almost**
   - Except for infinities and NaN
 
-```
-
-```{dropdown} Floating point in C
+### 8.6 Floating point in C
 
 - C guarantees two levels
   - `float`: single precision
@@ -922,5 +842,3 @@ does not depend on the order in which they are written):
     - Exact conversion, as long as int has ≤ 53 bit word size
   - int to float
     - Will round according to rounding mode
-
-```
