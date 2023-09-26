@@ -83,7 +83,7 @@ This lecture will cover contents from [Chapter 4](https://diveintosystems.org/bo
   - Operation applied bitwise. 
   - All properties of boolean algebra apply.  
 
-[bitwise boolean operations](../fig/03-data-representation/data_02.png)
+![bitwise boolean operations](../fig/03-data-representation/data_02.png)
 
 - Operation and notation  
   - Boolean operations: `&`, `|`, `^`, `~`.
@@ -600,12 +600,7 @@ that takes in a number of type `short` to be negated.
   - Address of first byte in word.
   - Address of successive words differ by 4 (32-bit) or 8 (64-bit). 
 
-:::{image} ../fig/03-data-representation/data_08.png
-:alt: word-oriented memory organization
-:class: bg-primary mb-1
-:height: 400px
-:align: center
-:::
+![word-oriented memory organization](../fig/03-data-representation/data_08.png)
 
 ```
 

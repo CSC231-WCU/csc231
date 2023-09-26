@@ -21,7 +21,7 @@ This lecture will cover contents from [Chapter 11](https://diveintosystems.org/b
   - `Load` operation
 - Physical representation of this abstraction:
 
-![](../../fig//05-memory/01.png)
+![](../fig//05-memory/01.png)
 
 ```
 
@@ -99,7 +99,7 @@ This lecture will cover contents from [Chapter 11](https://diveintosystems.org/b
 ```{admonition} Locality
 :class: dropdown
 
-![CPU memory gap](../../fig//05-memory/02.png)
+![CPU memory gap](../fig//05-memory/02.png)
 
 - The key to bridging this gap is a fundamental property of computer programs known as **locality**:
   - Principle of Locality: Programs tend to use data and instructions with addresses near or equal 
@@ -130,7 +130,7 @@ return sum;
 key skills for a professional programmer.
 - Example: array layout in memory is row-major order
 
-![Array layout in memory](../../fig//05-memory/03.png)
+![Array layout in memory](../fig//05-memory/03.png)
 
 :::::{tab-set}
 
@@ -205,7 +205,7 @@ $ ./sum
 ~~~
 ::::
 ::::{tab-item} Result
-![Differences in performance due to access pattern](../../fig//05-memory/04.png)
+![Differences in performance due to access pattern](../fig//05-memory/04.png)
 ::::
 
 ```
@@ -225,7 +225,7 @@ $ ./sum
 - They suggest an approach for organizing memory and storage systems 
 known as a memory hierarchy.
 
-![Memory hierarchy](../../fig//05-memory/05.png)
+![Memory hierarchy](../fig//05-memory/05.png)
 ```
 
 ## 4. Caching
@@ -251,13 +251,13 @@ storage near the bottom, but that serves data to programs at the rate of the fas
 
 :::::{tab-set}
 ::::{tab-item} Cache
-![Cache concepts](../../fig//05-memory/06.png)
+![Cache concepts](../fig//05-memory/06.png)
 ::::
 ::::{tab-item} Cache hits
-![Cache hits](../../fig//05-memory/07.png)
+![Cache hits](../fig//05-memory/07.png)
 ::::
 ::::{tab-item} Cache misses
-![Cache misses](../../fig//05-memory/08.png)
+![Cache misses](../fig//05-memory/08.png)
 
 - Cold (compulsory) miss
   - Cold misses occur because the cache starts empty and this is the first reference to the block.
@@ -299,10 +299,10 @@ storage near the bottom, but that serves data to programs at the rate of the fas
 
 :::::{tab-set}
 ::::{tab-item} L2/L3
-![Example of L2 and L3 cache](../../fig//05-memory/09.png)
+![Example of L2 and L3 cache](../fig//05-memory/09.png)
 ::::
 ::::{tab-item} L1/L2/L3
-![Example of L1, L2, and L3 cache](../../fig//05-memory/10.png)
+![Example of L1, L2, and L3 cache](../fig//05-memory/10.png)
 ::::
 ```
 
@@ -369,7 +369,7 @@ our understanding of cache memories.
 
 <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=mm.c"></script>
 
-![Index increment directions in matrix multiplication](../../fig//05-memory/15.png)
+![Index increment directions in matrix multiplication](../fig//05-memory/15.png)
 
 ```
 
@@ -397,7 +397,7 @@ for (i=0; i<n; i++)  {
   - C = 0
   - Average miss per iteration = 1.25
   
-![Miss rate 1](../../fig//05-memory/16.png)
+![Miss rate 1](../fig//05-memory/16.png)
 ::::
 ::::{tab-item} Case 2
 ~~~c
@@ -418,7 +418,7 @@ for (k=0; k<n; k++)  {
   - C = 8 / 32 = 0.25
   - Average miss per iteration = 0.5
 
-![Miss rate 2](../../fig//05-memory/17.png)
+![Miss rate 2](../fig//05-memory/17.png)
 ::::
 ::::{tab-item} Case 3
 ~~~c
@@ -439,7 +439,7 @@ for (j=0; j<n; j++)  {
   - C = 1
   - Average miss per iteration = 2
 
-![Miss rate 3](../../fig//05-memory/18.png)
+![Miss rate 3](../fig//05-memory/18.png)
 ::::
 ```
 
@@ -452,7 +452,7 @@ for (j=0; j<n; j++)  {
 - Memory mountain: Measured read throughput as a function of spatial and temporal locality.
 - Compact way to characterize memory system performance. 
 
-![memory mountain](../../fig//05-memory/19.png)
+![memory mountain](../fig//05-memory/19.png)
 ```
 
 

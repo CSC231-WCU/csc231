@@ -11,5 +11,8 @@ fi
 
 if [[ $1 == "pages" ]]
 then
+  git add .
+  git commit -m 'update'
+  git push
   ghp-import -n -p -f _build/html
 fi
