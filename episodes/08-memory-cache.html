@@ -415,7 +415,7 @@ title="Print to PDF"
 </li>
 <li><p>Physical representation of this abstraction:</p></li>
 </ul>
-<p><img alt="" src="../fig/05-memory/01.png" /></p>
+<p><img alt="" src="../_images/011.png" /></p>
 </div>
 <div class="dropdown admonition">
 <p class="admonition-title">Random-Access Memory (RAM)</p>
@@ -436,8 +436,8 @@ title="Print to PDF"
 </li>
 </ul>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="30caa685-59d8-4362-9d73-7448e6424f1e" name="60cbb477-271f-47a5-b4dc-d84c99039b6f" type="radio">
-</input><label class="sd-tab-label" for="30caa685-59d8-4362-9d73-7448e6424f1e">
+<input checked="checked" id="010e6674-3b10-4795-9fe6-28199bf8529f" name="4ef0fa67-f258-4c37-967b-7f4f99099387" type="radio">
+</input><label class="sd-tab-label" for="010e6674-3b10-4795-9fe6-28199bf8529f">
 SRAM/DRAM</label><div class="sd-tab-content docutils">
 <table class="table">
 <colgroup>
@@ -535,7 +535,7 @@ SRAM/DRAM</label><div class="sd-tab-content docutils">
 <h2>2. The CPU-Memory gap<a class="headerlink" href="#the-cpu-memory-gap" title="Permalink to this headline">#</a></h2>
 <div class="dropdown admonition">
 <p class="admonition-title">Locality</p>
-<p><img alt="CPU memory gap" src="../fig/05-memory/02.png" /></p>
+<p><img alt="CPU memory gap" src="../_images/022.png" /></p>
 <ul class="simple">
 <li><p>The key to bridging this gap is a fundamental property of computer programs known as <strong>locality</strong>:</p>
 <ul>
@@ -574,10 +574,10 @@ to those they have used recently</p></li>
 key skills for a professional programmer.</p></li>
 <li><p>Example: array layout in memory is row-major order</p></li>
 </ul>
-<p><img alt="Array layout in memory" src="../fig/05-memory/03.png" /></p>
+<p><img alt="Array layout in memory" src="../_images/033.png" /></p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="cf095436-48f2-4aaf-a029-a266ec0e6c78" name="ce4f639d-944f-42e8-ac5f-c9809ab02b94" type="radio">
-</input><label class="sd-tab-label" for="cf095436-48f2-4aaf-a029-a266ec0e6c78">
+<input checked="checked" id="743a2438-fa64-4a04-815f-cfa4993a8366" name="43aa8972-613b-4f6a-a63c-f1fa79bcf5fe" type="radio">
+</input><label class="sd-tab-label" for="743a2438-fa64-4a04-815f-cfa4993a8366">
 Exercise 1</label><div class="sd-tab-content docutils">
 <p>Does this function have good locality with respect to array <code class="docutils literal notranslate"><span class="pre">a</span></code>?</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">sum_array_rows</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">M</span><span class="p">][</span><span class="n">N</span><span class="p">])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -594,8 +594,8 @@ Exercise 1</label><div class="sd-tab-content docutils">
 <p>Yes</p>
 </div>
 </div>
-<input id="7d9af7e9-28fd-448e-8a5d-338de3e6c2f0" name="ce4f639d-944f-42e8-ac5f-c9809ab02b94" type="radio">
-</input><label class="sd-tab-label" for="7d9af7e9-28fd-448e-8a5d-338de3e6c2f0">
+<input id="b6bcd42e-43cb-438d-a942-314d5d98b5d5" name="43aa8972-613b-4f6a-a63c-f1fa79bcf5fe" type="radio">
+</input><label class="sd-tab-label" for="b6bcd42e-43cb-438d-a942-314d5d98b5d5">
 Exercise 2</label><div class="sd-tab-content docutils">
 <p>Does this function have good locality with respect to array <code class="docutils literal notranslate"><span class="pre">a</span></code>?</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">sum_array_rows</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">M</span><span class="p">][</span><span class="n">N</span><span class="p">])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -627,8 +627,8 @@ directory.</p></li>
 <li><p>Observe the performance difference.</p></li>
 </ul>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="735a2bbe-0f66-4b33-990d-0a9d466c1663" name="1567861f-81a1-4c63-b1a0-851c2b8e9cf3" type="radio">
-</input><label class="sd-tab-label" for="735a2bbe-0f66-4b33-990d-0a9d466c1663">
+<input checked="checked" id="a94334f6-67d3-45f4-b5ac-4a8b6a86a31c" name="d603e3bd-dd6d-44fd-ba8c-a28b35342ad0" type="radio">
+</input><label class="sd-tab-label" for="a94334f6-67d3-45f4-b5ac-4a8b6a86a31c">
 Compile and run</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ gcc -Og -o sum sum.c
 $ ./sum
@@ -638,10 +638,10 @@ $ ./sum
 </pre></div>
 </div>
 </div>
-<input id="9e205666-25a6-49c4-b3d2-4db812b15fe9" name="1567861f-81a1-4c63-b1a0-851c2b8e9cf3" type="radio">
-</input><label class="sd-tab-label" for="9e205666-25a6-49c4-b3d2-4db812b15fe9">
+<input id="8f9ec4eb-ade1-4792-8ae6-fd9e9d09ec99" name="d603e3bd-dd6d-44fd-ba8c-a28b35342ad0" type="radio">
+</input><label class="sd-tab-label" for="8f9ec4eb-ade1-4792-8ae6-fd9e9d09ec99">
 Result</label><div class="sd-tab-content docutils">
-<p><img alt="Differences in performance due to access pattern" src="../fig/05-memory/04.png" /></p>
+<p><img alt="Differences in performance due to access pattern" src="../_images/043.png" /></p>
 </div>
 </div>
 </div>
@@ -663,7 +663,7 @@ and require more power (heat!).</p></li>
 <li><p>They suggest an approach for organizing memory and storage systems
 known as a memory hierarchy.</p></li>
 </ul>
-<p><img alt="Memory hierarchy" src="../fig/05-memory/05.png" /></p>
+<p><img alt="Memory hierarchy" src="../_images/052.png" /></p>
 </div>
 </section>
 <section id="caching">
@@ -694,20 +694,20 @@ storage near the bottom, but that serves data to programs at the rate of the fas
 <div class="dropdown admonition">
 <p class="admonition-title">General concepts</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="f6cbcc3c-90ef-4d96-87f9-f240f2d0537b" name="acb49020-d3d8-44eb-9aac-90bfc0dbb1b8" type="radio">
-</input><label class="sd-tab-label" for="f6cbcc3c-90ef-4d96-87f9-f240f2d0537b">
+<input checked="checked" id="1e65fc02-d26e-4e77-9b14-3773fe596958" name="4105ba85-bafd-4967-adb4-8202553016e3" type="radio">
+</input><label class="sd-tab-label" for="1e65fc02-d26e-4e77-9b14-3773fe596958">
 Cache</label><div class="sd-tab-content docutils">
-<p><img alt="Cache concepts" src="../fig/05-memory/06.png" /></p>
+<p><img alt="Cache concepts" src="../_images/062.png" /></p>
 </div>
-<input id="06e830b7-a7aa-4fe1-9e00-cdfb081fdb5b" name="acb49020-d3d8-44eb-9aac-90bfc0dbb1b8" type="radio">
-</input><label class="sd-tab-label" for="06e830b7-a7aa-4fe1-9e00-cdfb081fdb5b">
+<input id="52fcb63b-3d1d-4f1a-80b4-ebd1bcb877ca" name="4105ba85-bafd-4967-adb4-8202553016e3" type="radio">
+</input><label class="sd-tab-label" for="52fcb63b-3d1d-4f1a-80b4-ebd1bcb877ca">
 Cache hits</label><div class="sd-tab-content docutils">
-<p><img alt="Cache hits" src="../fig/05-memory/07.png" /></p>
+<p><img alt="Cache hits" src="../_images/072.png" /></p>
 </div>
-<input id="fb49b828-b4be-4faa-89c1-f47dc17d2385" name="acb49020-d3d8-44eb-9aac-90bfc0dbb1b8" type="radio">
-</input><label class="sd-tab-label" for="fb49b828-b4be-4faa-89c1-f47dc17d2385">
+<input id="c3919f5e-a63b-4281-a6af-3f4accea741c" name="4105ba85-bafd-4967-adb4-8202553016e3" type="radio">
+</input><label class="sd-tab-label" for="c3919f5e-a63b-4281-a6af-3f4accea741c">
 Cache misses</label><div class="sd-tab-content docutils">
-<p><img alt="Cache misses" src="../fig/05-memory/08.png" /></p>
+<p><img alt="Cache misses" src="../_images/082.png" /></p>
 <ul class="simple">
 <li><p>Cold (compulsory) miss</p>
 <ul>
@@ -737,8 +737,8 @@ to the same level <code class="docutils literal notranslate"><span class="pre">k
 </li>
 </ul>
 </div>
-<input id="2cd1bd5c-ce8b-4104-9b76-c5fb4e9df22c" name="acb49020-d3d8-44eb-9aac-90bfc0dbb1b8" type="radio">
-</input><label class="sd-tab-label" for="2cd1bd5c-ce8b-4104-9b76-c5fb4e9df22c">
+<input id="56059962-a9be-485c-bac0-dbab46ede217" name="4105ba85-bafd-4967-adb4-8202553016e3" type="radio">
+</input><label class="sd-tab-label" for="56059962-a9be-485c-bac0-dbab46ede217">
 Cache types</label><div class="sd-tab-content docutils">
 <table class="colwidths-auto table">
 <thead>
@@ -823,15 +823,15 @@ Cache types</label><div class="sd-tab-content docutils">
 <li><p>CPU looks first for data in cache.</p></li>
 </ul>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="daec8052-4079-4639-b0f0-d4fddf7c8eae" name="ee0cda85-0c0c-46fd-8d56-1fda4a7b3a0d" type="radio">
-</input><label class="sd-tab-label" for="daec8052-4079-4639-b0f0-d4fddf7c8eae">
+<input checked="checked" id="66477563-b28b-4d86-82de-1a1ba1bfdb89" name="464ab70d-36cd-4f93-bb3b-cd1e0aac630c" type="radio">
+</input><label class="sd-tab-label" for="66477563-b28b-4d86-82de-1a1ba1bfdb89">
 L2/L3</label><div class="sd-tab-content docutils">
-<p><img alt="Example of L2 and L3 cache" src="../fig/05-memory/09.png" /></p>
+<p><img alt="Example of L2 and L3 cache" src="../_images/092.png" /></p>
 </div>
-<input id="9a7f00ec-f757-462c-88c2-1a9236e4ff2e" name="ee0cda85-0c0c-46fd-8d56-1fda4a7b3a0d" type="radio">
-</input><label class="sd-tab-label" for="9a7f00ec-f757-462c-88c2-1a9236e4ff2e">
+<input id="e0733e38-480e-47b5-a04f-f64c552c6769" name="464ab70d-36cd-4f93-bb3b-cd1e0aac630c" type="radio">
+</input><label class="sd-tab-label" for="e0733e38-480e-47b5-a04f-f64c552c6769">
 L1/L2/L3</label><div class="sd-tab-content docutils">
-<p><img alt="Example of L1, L2, and L3 cache" src="../fig/05-memory/10.png" /></p>
+<p><img alt="Example of L1, L2, and L3 cache" src="../_images/102.png" /></p>
 </div>
 </div>
 </div>
@@ -933,13 +933,13 @@ our understanding of cache memories.</p></li>
 <li><p>N values summed per destination but may be able to hold in register</p></li>
 </ul>
 <script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=mm.c"></script>
-<p><img alt="Index increment directions in matrix multiplication" src="../fig/05-memory/15.png" /></p>
+<p><img alt="Index increment directions in matrix multiplication" src="../_images/151.png" /></p>
 </div>
 <div class="dropdown admonition">
 <p class="admonition-title">Various matrix multiplication performance analysis</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="36c1e08b-d37c-48a6-b624-dfb9075b6d80" name="867ba730-d1ea-41d1-877d-3dfe9adc6197" type="radio">
-</input><label class="sd-tab-label" for="36c1e08b-d37c-48a6-b624-dfb9075b6d80">
+<input checked="checked" id="648b4036-6206-41e0-8b28-3f2bbb2a5778" name="b8491f1b-2b54-48cc-9849-dd1cd46e4aba" type="radio">
+</input><label class="sd-tab-label" for="648b4036-6206-41e0-8b28-3f2bbb2a5778">
 Case 1</label><div class="sd-tab-content docutils">
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* ijk */</span><span class="w"></span>
 <span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
@@ -963,10 +963,10 @@ Case 1</label><div class="sd-tab-content docutils">
 </ul>
 </li>
 </ul>
-<p><img alt="Miss rate 1" src="../fig/05-memory/16.png" /></p>
+<p><img alt="Miss rate 1" src="../_images/162.png" /></p>
 </div>
-<input id="5518bd58-b448-4aaf-a1a6-76ab2909e540" name="867ba730-d1ea-41d1-877d-3dfe9adc6197" type="radio">
-</input><label class="sd-tab-label" for="5518bd58-b448-4aaf-a1a6-76ab2909e540">
+<input id="18351ef3-83f8-494f-aa2e-33f7ed4a5d57" name="b8491f1b-2b54-48cc-9849-dd1cd46e4aba" type="radio">
+</input><label class="sd-tab-label" for="18351ef3-83f8-494f-aa2e-33f7ed4a5d57">
 Case 2</label><div class="sd-tab-content docutils">
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* kij */</span><span class="w"></span>
 <span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="o">++</span><span class="p">)</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
@@ -989,10 +989,10 @@ Case 2</label><div class="sd-tab-content docutils">
 </ul>
 </li>
 </ul>
-<p><img alt="Miss rate 2" src="../fig/05-memory/17.png" /></p>
+<p><img alt="Miss rate 2" src="../_images/172.png" /></p>
 </div>
-<input id="012608df-7f3b-4120-b393-59865202ee16" name="867ba730-d1ea-41d1-877d-3dfe9adc6197" type="radio">
-</input><label class="sd-tab-label" for="012608df-7f3b-4120-b393-59865202ee16">
+<input id="2f8377d3-bf96-406d-bcdd-398491e92099" name="b8491f1b-2b54-48cc-9849-dd1cd46e4aba" type="radio">
+</input><label class="sd-tab-label" for="2f8377d3-bf96-406d-bcdd-398491e92099">
 Case 3</label><div class="sd-tab-content docutils">
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* jki */</span><span class="w"></span>
 <span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
@@ -1015,7 +1015,7 @@ Case 3</label><div class="sd-tab-content docutils">
 </ul>
 </li>
 </ul>
-<p><img alt="Miss rate 3" src="../fig/05-memory/18.png" /></p>
+<p><img alt="Miss rate 3" src="../_images/181.png" /></p>
 </div>
 </div>
 </div>
@@ -1031,7 +1031,7 @@ Case 3</label><div class="sd-tab-content docutils">
 <li><p>Memory mountain: Measured read throughput as a function of spatial and temporal locality.</p></li>
 <li><p>Compact way to characterize memory system performance.</p></li>
 </ul>
-<p><img alt="memory mountain" src="../fig/05-memory/19.png" /></p>
+<p><img alt="memory mountain" src="../_images/191.png" /></p>
 </div>
 </section>
 </section>
