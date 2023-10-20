@@ -144,7 +144,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="04-gate-circuit.html">
-   Computer architecture
+   Gate and Circuit
   </a>
  </li>
  <li class="toctree-l1">
@@ -175,6 +175,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="10-intro-linux.html">
    Introduction to the Linux Shell
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="11-gdb.html">
+   GDB Debugger
   </a>
  </li>
 </ul>
@@ -602,8 +607,8 @@ How to learn C (now that you already know Java)? <div class="sd-summary-down doc
 <section id="c-and-java">
 <h2>2. C and Java<a class="headerlink" href="#c-and-java" title="Permalink to this headline">#</a></h2>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="1fd754ea-d8e9-486e-8382-c2e94b837a00" name="2955ca6a-91f8-4300-88a7-b7a70afdff01" type="radio">
-</input><label class="sd-tab-label" for="1fd754ea-d8e9-486e-8382-c2e94b837a00">
+<input checked="checked" id="7eeb9022-02c5-49a0-b176-2491d71a64f3" name="48bbb5c3-97d1-48bf-b589-2c3b61abc9cc" type="radio">
+</input><label class="sd-tab-label" for="7eeb9022-02c5-49a0-b176-2491d71a64f3">
 hello.c</label><div class="sd-tab-content docutils">
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;math.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
@@ -617,8 +622,8 @@ hello.c</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="4b62cf83-a501-48d9-85b1-dccff76071e1" name="2955ca6a-91f8-4300-88a7-b7a70afdff01" type="radio">
-</input><label class="sd-tab-label" for="4b62cf83-a501-48d9-85b1-dccff76071e1">
+<input id="2d580363-7993-4e9e-8f49-f1b9dac681b4" name="48bbb5c3-97d1-48bf-b589-2c3b61abc9cc" type="radio">
+</input><label class="sd-tab-label" for="2d580363-7993-4e9e-8f49-f1b9dac681b4">
 hello.java</label><div class="sd-tab-content docutils">
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.lang.Math</span><span class="p">;</span><span class="w"></span>
 
@@ -665,13 +670,13 @@ hello.java</label><div class="sd-tab-content docutils">
 <li><p><strong>Pointers!!!</strong></p></li>
 </ul>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="2555008a-db10-4f76-841e-c1f5cfb161c8" name="b69422f2-b04d-4e44-9e7f-6b7ff93c62b8" type="radio">
-</input><label class="sd-tab-label" for="2555008a-db10-4f76-841e-c1f5cfb161c8">
+<input checked="checked" id="f603d08f-be66-4d10-a129-4bfc972d7aff" name="1b267625-caa7-4285-bfd3-9caf95629b4b" type="radio">
+</input><label class="sd-tab-label" for="f603d08f-be66-4d10-a129-4bfc972d7aff">
 Running Java</label><div class="sd-tab-content docutils">
 <img alt="Java compilation and execution" class="bg-primary mb-1 align-center" src="../_images/java.png" />
 </div>
-<input id="215905c1-ca62-4e33-b440-0a3520545f79" name="b69422f2-b04d-4e44-9e7f-6b7ff93c62b8" type="radio">
-</input><label class="sd-tab-label" for="215905c1-ca62-4e33-b440-0a3520545f79">
+<input id="1d528f31-d4c5-456a-98d0-9c5845b90a54" name="1b267625-caa7-4285-bfd3-9caf95629b4b" type="radio">
+</input><label class="sd-tab-label" for="1d528f31-d4c5-456a-98d0-9c5845b90a54">
 Running C</label><div class="sd-tab-content docutils">
 <img alt="C compilation and execution" class="bg-primary mb-1 align-center" src="../_images/c.png" />
 </div>
@@ -849,8 +854,8 @@ Answer<div class="sd-summary-down docutils">
 <li><p><code class="docutils literal notranslate"><span class="pre">%c</span></code>:  placeholder for a char value</p></li>
 </ul>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="85849e0d-9e16-4a05-a503-6378332dce57" name="e80fc344-08d1-420f-8bb3-786208768f28" type="radio">
-</input><label class="sd-tab-label" for="85849e0d-9e16-4a05-a503-6378332dce57">
+<input checked="checked" id="c86fabe6-2842-41f3-b62f-1e128d3e06c5" name="ee11bcb9-5456-4092-9fbf-a373263b5208" type="radio">
+</input><label class="sd-tab-label" for="c86fabe6-2842-41f3-b62f-1e128d3e06c5">
 readInput.c</label><div class="sd-tab-content docutils">
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
 
@@ -866,8 +871,8 @@ readInput.c</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="ee0d8a9e-4b29-4ef7-8df5-482ee6eaf11b" name="e80fc344-08d1-420f-8bb3-786208768f28" type="radio">
-</input><label class="sd-tab-label" for="ee0d8a9e-4b29-4ef7-8df5-482ee6eaf11b">
+<input id="62225f2b-9db4-40e7-9e32-28ad4fdbe2c5" name="ee11bcb9-5456-4092-9fbf-a373263b5208" type="radio">
+</input><label class="sd-tab-label" for="62225f2b-9db4-40e7-9e32-28ad4fdbe2c5">
 InputReader.java</label><div class="sd-tab-content docutils">
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Scanner</span><span class="p">;</span><span class="w"></span>
 
@@ -953,8 +958,8 @@ Answer<div class="sd-summary-down docutils">
 <li><p>Loops</p></li>
 </ul>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="1dca8e22-5d7f-40cd-a3cc-65a429d9bf4e" name="1265b249-aca7-47f3-847f-ad976af3f619" type="radio">
-</input><label class="sd-tab-label" for="1dca8e22-5d7f-40cd-a3cc-65a429d9bf4e">
+<input checked="checked" id="252e5c4c-1e04-4da8-9c6b-e00543cb16b4" name="24cf838f-51db-49d4-a211-8e4c830cb892" type="radio">
+</input><label class="sd-tab-label" for="252e5c4c-1e04-4da8-9c6b-e00543cb16b4">
 forLoop.c</label><div class="sd-tab-content docutils">
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
 
@@ -977,8 +982,8 @@ forLoop.c</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 </div>
-<input id="d98ad727-5dcc-4e36-aa75-f573b240e614" name="1265b249-aca7-47f3-847f-ad976af3f619" type="radio">
-</input><label class="sd-tab-label" for="d98ad727-5dcc-4e36-aa75-f573b240e614">
+<input id="0363d9f8-3670-42d7-bab6-d0aa1d0dd28c" name="24cf838f-51db-49d4-a211-8e4c830cb892" type="radio">
+</input><label class="sd-tab-label" for="0363d9f8-3670-42d7-bab6-d0aa1d0dd28c">
 whileLoop.c</label><div class="sd-tab-content docutils">
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
 

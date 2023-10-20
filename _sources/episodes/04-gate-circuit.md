@@ -1,4 +1,4 @@
-# Computer architecture
+# Gate and Circuit
 
 ```{admonition} Relevant Reading
 :class: tip

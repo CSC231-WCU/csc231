@@ -1,0 +1,1054 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>GDB Debugger &#8212; Computer Systems</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Introduction to the Linux Shell" href="10-intro-linux.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-C91ED1K883"></script>
+<script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){ dataLayer.push(arguments); }
+                    gtag('js', new Date());
+                    gtag('config', 'G-C91ED1K883');
+                </script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Computer Systems</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    CSC 231: Computer Systems
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Lectures
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="01-introduction.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="02-intro-to-c.html">
+   Introduction to C
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="03-data-representation.html">
+   Representing and manipulating information
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="04-gate-circuit.html">
+   Gate and Circuit
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="05-more-c.html">
+   Even more C
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="06-architecture.html">
+   Computer architecture
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="07-machine-language.html">
+   Machine language
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="08-memory-cache.html">
+   Memory hierarchy and cache memories
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="09-code-optimization.html">
+   Code optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="10-intro-linux.html">
+   Introduction to the Linux Shell
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   GDB Debugger
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/episodes/11-gdb.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tmux">
+   2. tmux
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#running-and-exiting-gdb">
+   3. Running and exiting gdb
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>GDB Debugger</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tmux">
+   2. tmux
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#running-and-exiting-gdb">
+   3. Running and exiting gdb
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="gdb-debugger">
+<h1>GDB Debugger<a class="headerlink" href="#gdb-debugger" title="Permalink to this headline">#</a></h1>
+<section id="introduction">
+<h2>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+In a nutshell<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Developed in 1986 by Richard Stallman at MIT.</p></li>
+<li><p class="sd-card-text">Current official maintainers come from RedHat, AdaCore, and Google.</p></li>
+<li><p class="sd-card-text">Significant contribution from the open source community.</p></li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Brief technical details<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Allows programmers to see inside and interact/modify with all components of a programs,
+including information inside the registers.</p></li>
+<li><p class="sd-card-text">Allows programmers to walk through the program step by step, including down to
+instruction level, to debug the program.</p></li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Cheatsheet<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Study this <a class="reference external" href="https://cs.brown.edu/courses/cs033/docs/guides/gdb.pdf">cheatsheet</a></p></li>
+<li><p class="sd-card-text">Developed by Dr. Doeppner at Brown University.</p></li>
+<li><p class="sd-card-text">Become very comfortable with terminal!</p></li>
+</ul>
+</div>
+</details></section>
+<section id="tmux">
+<h2>2. tmux<a class="headerlink" href="#tmux" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Introduction<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Our workspace is limited within the scope of a single terminal (a single shell)
+to interact with the operating system.</p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">tmux</span></code>: <em>terminal multiplexer</em>.</p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">tmux</span></code> allows user to open multiple terminals and organize split-views (panes)
+within these terminals within a single original terminal.</p></li>
+<li><p class="sd-card-text">We can run/keep track off multiple programs within a single terminal.</p></li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Beginning with tmux<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">SSH into <code class="docutils literal notranslate"><span class="pre">molly</span></code></p></li>
+<li><p class="sd-card-text">Start new with a session name:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tmux new -s csc231
+</pre></div>
+</div>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/013.png"><img alt="A new tmux windows" class="bg-primary mb-1 align-center" src="../_images/013.png" style="height: 600px;" /></a>
+<ul class="simple">
+<li><p class="sd-card-text">You are now in the new tmux session.</p></li>
+<li><p class="sd-card-text">You can list all active tmux sessions.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tmux ls
+</pre></div>
+</div>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/024.png"><img alt="List active tmux sessions" class="bg-primary mb-1 align-center" src="../_images/024.png" style="height: 600px;" /></a>
+<ul class="simple">
+<li><p class="sd-card-text"><strong>Notation</strong>: Key press combinations connected with a single dash (<code class="docutils literal notranslate"><span class="pre">-</span></code>) means to
+be pressed together, otherwise, it means <strong>lift your finger, then press …</strong>.</p></li>
+<li><p class="sd-card-text">To go back to the main terminal, press <code class="docutils literal notranslate"><span class="pre">Ctrl-b</span></code>, then press <code class="docutils literal notranslate"><span class="pre">d</span></code>.</p></li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/035.png"><img alt="Go back to main terminal" class="bg-primary mb-1 align-center" src="../_images/035.png" style="height: 50px;" /></a>
+<ul class="simple">
+<li><p class="sd-card-text">To go back into the <code class="docutils literal notranslate"><span class="pre">csc231</span></code> session: <code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">attach-session</span> <span class="pre">-t</span> <span class="pre">csc231</span></code>.</p></li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/045.png"><img alt="Go back to the previous tmux session" class="bg-primary mb-1 align-center" src="../_images/045.png" style="height: 600px;" /></a>
+<ul class="simple">
+<li><p class="sd-card-text">To kill a session:</p>
+<ul>
+<li><p class="sd-card-text">From inside the session: <code class="docutils literal notranslate"><span class="pre">exit</span></code>, or</p></li>
+<li><p class="sd-card-text">From outside the session: <code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">kill-session</span> <span class="pre">-t</span> <span class="pre">csc231</span></code></p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">By the end of this slide your should exit out/terminate the <code class="docutils literal notranslate"><span class="pre">csc231</span></code> tmux session.</p></li>
+<li><p class="sd-card-text">Be careful to not exit out of molly altogether.</p></li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Hands on: navigating among multiple tmux sessions<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Run <code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">ls</span></code> to check and <code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">kill-session</span></code> to clean up all existing
+tmux sessions.</p></li>
+<li><p class="sd-card-text">Create a new session called <code class="docutils literal notranslate"><span class="pre">s1</span></code>.</p></li>
+<li><p class="sd-card-text">Detach from <code class="docutils literal notranslate"><span class="pre">s1</span></code> and go back to the main terminal.</p></li>
+<li><p class="sd-card-text">Create a second session called <code class="docutils literal notranslate"><span class="pre">s2</span></code>.</p></li>
+<li><p class="sd-card-text">Detach from <code class="docutils literal notranslate"><span class="pre">s2</span></code>, go back to the main terminal, and create a third session called <code class="docutils literal notranslate"><span class="pre">s3</span></code>.</p></li>
+<li><p class="sd-card-text">Use <code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">ls</span></code> to view the list of tmux sessions.</p></li>
+<li><p class="sd-card-text">Navigate back and forth between the three sessions several times.</p></li>
+<li><p class="sd-card-text">Kill all three sessions using only <code class="docutils literal notranslate"><span class="pre">exit</span></code>!</p></li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/054.png"><img alt="Listing multiple tmux sessions" class="bg-primary mb-1 align-center" src="../_images/054.png" style="height: 600px;" /></a>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Multiple panes in tmux<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Create a new session called <code class="docutils literal notranslate"><span class="pre">p1</span></code>.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tmux new -s p1
+</pre></div>
+</div>
+<ul class="simple">
+<li><p class="sd-card-text">Splits terminal into vertical panels: <code class="docutils literal notranslate"><span class="pre">Ctrl-b</span></code> then <code class="docutils literal notranslate"><span class="pre">Shift-5</span></code> (technical documents
+often write this as <code class="docutils literal notranslate"><span class="pre">Ctrl-b</span></code> and <code class="docutils literal notranslate"><span class="pre">%</span></code>).</p></li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/064.png"><img alt="Tmux session with two vertical panels" class="bg-primary mb-1 align-center" src="../_images/064.png" style="height: 600px;" /></a>
+<ul class="simple">
+<li><p class="sd-card-text">Splits terminal (the current pane) into horizontal panels: <code class="docutils literal notranslate"><span class="pre">Ctrl-b</span></code> then <code class="docutils literal notranslate"><span class="pre">Shift-'</span></code>
+( technical documents often write this as <code class="docutils literal notranslate"><span class="pre">Ctrl-b</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;</span></code>).</p></li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/013.png"><img alt="Tmux sessions with one vertical panel and the other vertical panel splitted into two horizontal panels" class="bg-primary mb-1 align-center" src="../_images/013.png" style="height: 600px;" /></a>
+<ul class="simple">
+<li><p class="sd-card-text">Toggle between panels: <code class="docutils literal notranslate"><span class="pre">Ctrl-b</span></code> then <code class="docutils literal notranslate"><span class="pre">Space</span></code>.</p></li>
+<li><p class="sd-card-text">To move from one panel to other directionally: <code class="docutils literal notranslate"><span class="pre">Ctrl-b</span></code>then the corresponding
+arrow key.</p></li>
+<li><p class="sd-card-text">Typing <code class="docutils literal notranslate"><span class="pre">exit</span></code> will close the pane with the activate cursor.</p></li>
+<li><p class="sd-card-text">Run <code class="docutils literal notranslate"><span class="pre">exit</span></code> multiple times to completely close out the <code class="docutils literal notranslate"><span class="pre">p1</span></code> session. Pay attention
+to not get out of the container.</p></li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Hands on: creating multiple panes<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Run <code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">ls</span></code> to check and <code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">kill-session</span></code> to clean up all existing
+tmux sessions.</p></li>
+<li><p class="sd-card-text">Create a new session called <code class="docutils literal notranslate"><span class="pre">p1</span></code>.</p></li>
+<li><p class="sd-card-text">Organize <code class="docutils literal notranslate"><span class="pre">p1</span></code> such that:</p>
+<ul>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">p1</span></code> has four vertical panes.</p></li>
+<li><p class="sd-card-text">The last vertical pane of <code class="docutils literal notranslate"><span class="pre">p1</span></code> has three internal horizontal panes.</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Kill all panes using <code class="docutils literal notranslate"><span class="pre">exit</span></code>!</p></li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/083.png"><img alt="Tmux with multiple panels" class="bg-primary mb-1 align-center" src="../_images/083.png" style="height: 600px;" /></a>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Resizing panels<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">What we did in the previous hands-on was not quite usable.</p></li>
+<li><p class="sd-card-text">We need to be able to adjust the panes to the proper sizes.</p></li>
+<li><p class="sd-card-text">This can be done by issuing additional commands via tmux’s command line terminal.</p></li>
+<li><p class="sd-card-text">Run <code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">ls</span></code> to check and <code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">kill-session</span></code> to clean up all existing
+tmux sessions.</p></li>
+<li><p class="sd-card-text">Create a new session called <code class="docutils literal notranslate"><span class="pre">p1</span></code>.</p></li>
+<li><p class="sd-card-text">Split the session horizontally.</p></li>
+<li><p class="sd-card-text">Windows:</p>
+<ul>
+<li><p class="sd-card-text">You can adjust the size of two adjacent horizontal panes by <strong>press and hold</strong> <code class="docutils literal notranslate"><span class="pre">Ctrl-b</span></code> then
+the left/right arrows.</p></li>
+<li><p class="sd-card-text">You can adjust the size of two adjacent vertical panes by <strong>press and hold</strong> <code class="docutils literal notranslate"><span class="pre">Ctrl-b</span></code> then
+the up/down arrows.</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Mac and Windows:</p>
+<ul>
+<li><p class="sd-card-text">Press <code class="docutils literal notranslate"><span class="pre">Ctrl-b</span></code> then <code class="docutils literal notranslate"><span class="pre">Shift-;</span></code> to open up the command line bar at the bottom. Type in:</p>
+<ul>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">rezise-pane</span> <span class="pre">-U</span> <span class="pre">20</span></code> then press <code class="docutils literal notranslate"><span class="pre">Enter</span></code> to move the horitontal bar up 20 pixels</p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">rezise-pane</span> <span class="pre">-D</span> <span class="pre">20</span></code> then press <code class="docutils literal notranslate"><span class="pre">Enter</span></code> to move the horitontal bar down 20 pixels</p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">rezise-pane</span> <span class="pre">-L</span> <span class="pre">20</span></code> then press <code class="docutils literal notranslate"><span class="pre">Enter</span></code> to move the vertical bar left 20 pixels</p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">rezise-pane</span> <span class="pre">-R</span> <span class="pre">20</span></code> then press <code class="docutils literal notranslate"><span class="pre">Enter</span></code> to move the vertical bar right 20 pixels</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">You can adjust the number for aesthetic purpose.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Challenge<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Redo the hands-on activity of slide 8 so that all the panes are aesthetically
+proportional.</p></li>
+<li><p class="sd-card-text">After complete, finish and exit out of all tmux sessions</p></li>
+</ul>
+</div>
+</details></section>
+<section id="running-and-exiting-gdb">
+<h2>3. Running and exiting gdb<a class="headerlink" href="#running-and-exiting-gdb" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Setup pretty gdb<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Create a new tmux session called <code class="docutils literal notranslate"><span class="pre">gdb</span></code>.</p></li>
+<li><p class="sd-card-text">Run the following command in the <code class="docutils literal notranslate"><span class="pre">gdb</span></code> session.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> 
+git clone https://github.com/longld/peda.git
+<span class="nb">echo</span> <span class="s2">&quot;source </span><span class="nv">$HOME</span><span class="s2">/peda/peda.py&quot;</span> &gt; <span class="nv">$HOME</span>/.gdbinit
+gdb
+</pre></div>
+</div>
+<ul class="simple">
+<li><p class="sd-card-text">To exit from gdb type <code class="docutils literal notranslate"><span class="pre">q</span></code> and hit <code class="docutils literal notranslate"><span class="pre">Enter</span></code>.</p></li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/093.png"><img alt="Color-coded gdb" class="bg-primary mb-1 align-center" src="../_images/093.png" style="height: 600px;" /></a>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Setup an application with gdb<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">To use <code class="docutils literal notranslate"><span class="pre">gdb</span></code> to debug, we need to compile the program with a <code class="docutils literal notranslate"><span class="pre">-g</span></code> flag.</p></li>
+<li><p class="sd-card-text">Split the <code class="docutils literal notranslate"><span class="pre">gdb</span></code> session into two <strong>horizontal</strong> panes.</p></li>
+<li><p class="sd-card-text">In the top pane, run the followings command:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/csc231/intro-c
+gcc -g -o hello hello.c
+</pre></div>
+</div>
+<ul class="simple">
+<li><p class="sd-card-text">In the bottom pane, run the followings command:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>cd ~/intro-c
+gdb hello
+gdb-peda$ run
+</pre></div>
+</div>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/103.png"><img alt="Running gdb on hello.c" class="bg-primary mb-1 align-center" src="../_images/103.png" style="height: 800px;" /></a>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Debugging with gdb<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">This is a continue from the previous slide’s tmux windows</p></li>
+<li><p class="sd-card-text">We need to set a <code class="docutils literal notranslate"><span class="pre">breakpoint</span></code>:</p>
+<ul>
+<li><p class="sd-card-text">Could be a line number or</p></li>
+<li><p class="sd-card-text">Could be a function name</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gdb-peda$ b main
+gdb-peda$ run
+</pre></div>
+</div>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/112.png"><img alt="Set break points and run" class="bg-primary mb-1 align-center" src="../_images/112.png" style="height: 800px;" /></a>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Scrolling within tmux’s panes<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Mouse scrolling does not work with tmux.</p></li>
+<li><p class="sd-card-text">To enable scrolling mode in tmux, type <code class="docutils literal notranslate"><span class="pre">Ctr-b</span></code> then <code class="docutils literal notranslate"><span class="pre">[</span></code>.</p></li>
+<li><p class="sd-card-text">You can use the <code class="docutils literal notranslate"><span class="pre">Up</span></code>/<code class="docutils literal notranslate"><span class="pre">Down</span></code>/<code class="docutils literal notranslate"><span class="pre">PgUp</span></code>/<code class="docutils literal notranslate"><span class="pre">PgDn</span></code> keys to navigate.</p></li>
+<li><p class="sd-card-text">To quit scrolling mode, type <code class="docutils literal notranslate"><span class="pre">q</span></code> or <code class="docutils literal notranslate"><span class="pre">Esc</span></code>.</p></li>
+</ul>
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/122.png"><img alt="Scrolling in tmux" class="bg-primary mb-1 align-center" src="../_images/122.png" style="height: 800px;" /></a>
+<ul class="simple">
+<li><p class="sd-card-text">At a glance</p>
+<ul>
+<li><p class="sd-card-text">Registers’ contents</p></li>
+<li><p class="sd-card-text">Code</p></li>
+<li><p class="sd-card-text">Stack contents</p></li>
+<li><p class="sd-card-text">Assembly codes</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">gdb</span></code> stops at our breakpoint, just before function <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p></li>
+<li><p class="sd-card-text">The last line (before the <code class="docutils literal notranslate"><span class="pre">gdb-peda$</span></code> prompt) indicates the next line of
+C code to be executed.</p></li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Hands on: finish running hello<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Type <code class="docutils literal notranslate"><span class="pre">q</span></code> or <code class="docutils literal notranslate"><span class="pre">Esc</span></code> to quit scrolling mode.</p></li>
+<li><p class="sd-card-text">To continue executing the next line of code, type <code class="docutils literal notranslate"><span class="pre">n</span></code> then <code class="docutils literal notranslate"><span class="pre">Enter</span></code>.</p></li>
+<li><p class="sd-card-text">Turn back into the scrolling mode and scroll back up
+to observe what happens after typing <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p></li>
+<li><p class="sd-card-text">What is the next line of code to be executed?</p></li>
+<li><p class="sd-card-text">Type <code class="docutils literal notranslate"><span class="pre">n</span></code> three more times to observe the line of codes being executed
+and the final warning from <code class="docutils literal notranslate"><span class="pre">gdb</span></code>.</p></li>
+<li><p class="sd-card-text">Type <code class="docutils literal notranslate"><span class="pre">q</span></code> to exit from <code class="docutils literal notranslate"><span class="pre">gdb</span></code>.</p></li>
+</ul>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Examining contents of program while debugging  malloc-1.c<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">This slide should start in a two-horizontal-panel tmux session</p></li>
+<li><p class="sd-card-text">Change to the directory containing your <code class="docutils literal notranslate"><span class="pre">malloc-1.c</span></code> that was
+created from the previous lectures. If you don’t have it, create a new <code class="docutils literal notranslate"><span class="pre">malloc-1.c</span></code>
+with the code below</p></li>
+</ul>
+<script src="https://gist.github.com/linhbngo/d1e9336a82632c528ea797210ed0f553.js?file=malloc-1.c"></script>
+<ul class="simple">
+<li><p class="sd-card-text">In the top pane, compile <code class="docutils literal notranslate"><span class="pre">malloc-1.c</span></code> in debugging mode.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gcc -g -o malloc-1 malloc-1.c
+cat -n malloc-1.c
+</pre></div>
+</div>
+<ul class="simple">
+<li><p class="sd-card-text">Adjust the top/bottom panes proportion as needed.</p></li>
+<li><p class="sd-card-text">In the bottom pane, quit the current gdb session and
+rerun it on the recently created <code class="docutils literal notranslate"><span class="pre">malloc-1</span></code> executable.</p></li>
+<li><p class="sd-card-text">Setup <code class="docutils literal notranslate"><span class="pre">main</span></code> as the <code class="docutils literal notranslate"><span class="pre">breakpoint</span></code> and start running.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gdb malloc-1
+gdb-peda$ b main
+gdb-peda$ run
+</pre></div>
+</div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+After initial run command<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/malloc-01.png"><img alt="After initial run command" class="bg-primary mb-1 align-center" src="../_images/malloc-01.png" style="height: 800px;" /></a>
+</div>
+</details><ul class="simple">
+<li><p class="sd-card-text">Type <code class="docutils literal notranslate"><span class="pre">n</span></code> and <code class="docutils literal notranslate"><span class="pre">Enter</span></code> to run the next line of code: <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">main(int</span> <span class="pre">argc,</span> <span class="pre">char</span> <span class="pre">*argv[])</span> <span class="pre">{</span></code></p></li>
+<li><p class="sd-card-text">Type <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">p</span></code>: the first <code class="docutils literal notranslate"><span class="pre">p</span></code> is short for <code class="docutils literal notranslate"><span class="pre">print</span></code> and the second <code class="docutils literal notranslate"><span class="pre">p</span></code> is the
+void pointer variable <code class="docutils literal notranslate"><span class="pre">p</span></code> in the program.</p></li>
+<li><p class="sd-card-text">Try running <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">*p</span></code>. What does that feedback mean?</p></li>
+</ul>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+After running int main(int argc, char *argv[]) {<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/malloc-02.png"><img alt="After running int main(int argc, char *argv[]) {" class="bg-primary mb-1 align-center" src="../_images/malloc-02.png" style="height: 800px;" /></a>
+</div>
+</details><ul class="simple">
+<li><p class="sd-card-text">Type <code class="docutils literal notranslate"><span class="pre">n</span></code> and <code class="docutils literal notranslate"><span class="pre">Enter</span></code> to run the next line of code: <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">*p</span> <span class="pre">=</span> <span class="pre">malloc(4);</span></code></p></li>
+<li><p class="sd-card-text">Type <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">p</span></code> then <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">*p</span></code> again.</p>
+<ul>
+<li><p class="sd-card-text">Why do we have the change in value of <code class="docutils literal notranslate"><span class="pre">p</span></code>?</p></li>
+<li><p class="sd-card-text">Why doesn’t value of <code class="docutils literal notranslate"><span class="pre">*p</span></code> change?</p></li>
+</ul>
+</li>
+</ul>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+After running void *p = malloc(4);<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/malloc-02.png"><img alt="After running void *p = malloc(4);" class="bg-primary mb-1 align-center" src="../_images/malloc-02.png" style="height: 800px;" /></a>
+</div>
+</details><ul class="simple">
+<li><p class="sd-card-text">Type <code class="docutils literal notranslate"><span class="pre">n</span></code> and <code class="docutils literal notranslate"><span class="pre">Enter</span></code> to run the next line of code: <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">*ip</span> <span class="pre">=</span> <span class="pre">(int</span> <span class="pre">*)p;</span></code></p></li>
+<li><p class="sd-card-text">Type <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">ip</span></code>: what is the printed value?</p></li>
+<li><p class="sd-card-text">Type <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">*ip</span></code>: what is the printed value?</p></li>
+<li><p class="sd-card-text">Type <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">/t</span> <span class="pre">*ip</span></code>: what type of data is value? what is the corresponding value in
+decimal?</p></li>
+</ul>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+After running int *ip = (int *)p;<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/malloc-03.png"><img alt="After running int *ip = (int *)p;" class="bg-primary mb-1 align-center" src="../_images/malloc-03.png" style="height: 800px;" /></a>
+</div>
+</details><ul class="simple">
+<li><p class="sd-card-text">Type <code class="docutils literal notranslate"><span class="pre">n</span></code> and <code class="docutils literal notranslate"><span class="pre">Enter</span></code> to run the next line of code: <code class="docutils literal notranslate"><span class="pre">*ip</span> <span class="pre">=</span> <span class="pre">98765;</span></code></p></li>
+<li><p class="sd-card-text">Type <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">ip</span></code>: what is the printed value?</p></li>
+<li><p class="sd-card-text">Type <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">*ip</span></code>: what is the printed value?</p></li>
+<li><p class="sd-card-text">Type <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">/t</span> <span class="pre">*ip</span></code>: what type of data is value? what is the corresponding value in
+decimal?</p></li>
+</ul>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+After running *ip = 98765;<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/malloc-04.png"><img alt="After running *ip = 98765;" class="bg-primary mb-1 align-center" src="../_images/malloc-04.png" style="height: 800px;" /></a>
+</div>
+</details><ul class="simple">
+<li><p class="sd-card-text">Keep hitting <code class="docutils literal notranslate"><span class="pre">n</span></code> until you finish stepping through all the remain lines of code.</p></li>
+</ul>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+After finish <div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/malloc-05.png"><img alt="After finish" class="bg-primary mb-1 align-center" src="../_images/malloc-05.png" style="height: 800px;" /></a>
+</div>
+</details></div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Examining contents of program while debugging array-4.c<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">In the top pane, compile <code class="docutils literal notranslate"><span class="pre">array-4.c</span></code> in debugging mode.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gcc -g -o array-4 array-4.c
+cat -n array-4.c
+</pre></div>
+</div>
+<ul class="simple">
+<li><p class="sd-card-text">In the bottom pane, quit the current gdb session and
+rerun it on the recently created <code class="docutils literal notranslate"><span class="pre">array-4</span></code> executable as follows:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gdb array-4
+gdb-peda$ b main
+gdb-peda$ run
+</pre></div>
+</div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+After initial run command<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/array-01.png"><img alt="After initial run command" class="bg-primary mb-1 align-center" src="../_images/array-01.png" style="height: 800px;" /></a>
+</div>
+</details><ul class="simple">
+<li><p class="sd-card-text">The next line of code to be run is <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">main(int</span> <span class="pre">argc,</span> <span class="pre">char</span> <span class="pre">*argv[])</span> <span class="pre">{</span></code></p></li>
+<li><p class="sd-card-text">Type <code class="docutils literal notranslate"><span class="pre">n</span></code> and <code class="docutils literal notranslate"><span class="pre">Enter</span></code> to run the next line of code: <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">main(int</span> <span class="pre">argc,</span> <span class="pre">char</span> <span class="pre">*argv[])</span> <span class="pre">{</span></code></p></li>
+<li><p class="sd-card-text">Run the following commands and observe the outcomes:</p>
+<ul>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">argc</span></code></p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">argv[0]</span></code></p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">argv[1]</span></code></p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">argv[2]</span></code></p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">argv[3]</span></code></p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">argv[4]</span></code></p></li>
+<li><p class="sd-card-text">…</p></li>
+</ul>
+</li>
+</ul>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+After running int main(int argc, char *argv[]) {<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/array-02.png"><img alt="After running int main(int argc, char *argv[]) {" class="bg-primary mb-1 align-center" src="../_images/array-02.png" style="height: 800px;" /></a>
+</div>
+</details><ul class="simple">
+<li><p class="sd-card-text">Type <code class="docutils literal notranslate"><span class="pre">n</span></code> and <code class="docutils literal notranslate"><span class="pre">Enter</span></code> to run the next line of code: <code class="docutils literal notranslate"><span class="pre">size</span> <span class="pre">=</span> <span class="pre">atoi(argv[1]);</span></code></p></li>
+<li><p class="sd-card-text">Observe that dreaded <code class="docutils literal notranslate"><span class="pre">Segmentation</span> <span class="pre">fault</span></code> notice: <code class="docutils literal notranslate"><span class="pre">SIGSEGV</span></code></p></li>
+<li><p class="sd-card-text">Type <code class="docutils literal notranslate"><span class="pre">q</span></code> to exit <code class="docutils literal notranslate"><span class="pre">gdb</span></code>.</p></li>
+</ul>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+After running size = atoi(argv[1]);<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/array-03.png"><img alt="After running size = atoi(argv[1]);" class="bg-primary mb-1 align-center" src="../_images/array-03.png" style="height: 800px;" /></a>
+</div>
+</details><ul class="simple">
+<li><p class="sd-card-text">Rerun gdb on <code class="docutils literal notranslate"><span class="pre">array_4</span></code> executable as follows:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>gdb array-4
+gdb-peda$ b main
+gdb-peda$ run 3
+</pre></div>
+</div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+After initial run command<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/array-04.png"><img alt="After initial run command" class="bg-primary mb-1 align-center" src="../_images/array-04.png" style="height: 800px;" /></a>
+</div>
+</details><ul class="simple">
+<li><p class="sd-card-text">The next line of code to be run is <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">main(int</span> <span class="pre">argc,</span> <span class="pre">char</span> <span class="pre">*argv[])</span> <span class="pre">{</span></code></p></li>
+<li><p class="sd-card-text">Type <code class="docutils literal notranslate"><span class="pre">n</span></code> and <code class="docutils literal notranslate"><span class="pre">Enter</span></code> to run the next line of code: <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">main(int</span> <span class="pre">argc,</span> <span class="pre">char</span> <span class="pre">*argv[])</span> <span class="pre">{</span></code></p></li>
+<li><p class="sd-card-text">Run the following commands and observe the outcomes:</p>
+<ul>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">argc</span></code></p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">argv[0]</span></code></p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">argv[1]</span></code></p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">argv[2]</span></code></p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">argv[3]</span></code></p></li>
+<li><p class="sd-card-text">…</p></li>
+</ul>
+</li>
+</ul>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+After running int main(int argc, char *argv[]) {<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/array-05.png"><img alt="After running int main(int argc, char *argv[]) {" class="bg-primary mb-1 align-center" src="../_images/array-05.png" style="height: 800px;" /></a>
+</div>
+</details><ul class="simple">
+<li><p class="sd-card-text">Type <code class="docutils literal notranslate"><span class="pre">n</span></code> and <code class="docutils literal notranslate"><span class="pre">Enter</span></code> to run the next line of code: <code class="docutils literal notranslate"><span class="pre">size</span> <span class="pre">=</span> <span class="pre">atoi(argv[1]);</span></code></p></li>
+<li><p class="sd-card-text">Run the following commands and observe the outcomes:</p>
+<ul>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">size</span></code></p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">&amp;size</span></code></p></li>
+</ul>
+</li>
+</ul>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+After running size = atoi(argv[1]);<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<a class="bg-primary mb-1 reference internal image-reference" href="../_images/array-06.png"><img alt="After running size = atoi(argv[1]);" class="bg-primary mb-1 align-center" src="../_images/array-06.png" style="height: 800px;" /></a>
+</div>
+</details></div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Hands on: finish running array-4<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<ul class="simple">
+<li><p class="sd-card-text">Use <code class="docutils literal notranslate"><span class="pre">n</span></code> to run the next two lines (<code class="docutils literal notranslate"><span class="pre">printf...</span></code> and <code class="docutils literal notranslate"><span class="pre">malloc..</span></code>).</p></li>
+<li><p class="sd-card-text">Step through the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop and printing out values of <code class="docutils literal notranslate"><span class="pre">i</span></code>, <code class="docutils literal notranslate"><span class="pre">p[i]</span></code>, <code class="docutils literal notranslate"><span class="pre">&amp;p[i]</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">+</span> <span class="pre">i</span></code> at every iteration.</p></li>
+<li><p class="sd-card-text">Make sure that you understand the lines of code that cause these variables to
+change value.</p></li>
+<li><p class="sd-card-text">Utilize scrolling as needed.</p></li>
+</ul>
+</div>
+</details></section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./episodes"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="10-intro-linux.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Introduction to the Linux Shell</p>
+        </div>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Linh Ngo<br/>
+  
+      &copy; Copyright 2022.<br/>
+    <div class="extra_footer">
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"></a> <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Computer Systems</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
