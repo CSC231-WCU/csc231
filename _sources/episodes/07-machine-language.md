@@ -271,14 +271,6 @@ through `%rsp`. Eight new registered were added: `%r8` through `%r15`.
 
 ```
 
-## Midterm
-
-- Monday October 24, 2022
-- 20-25 questions (similar in format to the quizzes).
-- 50 minutes
-- Everything (including source codes) up to and including the episode on **Representing and manipulating information**.
-
-
 ## 4. Data movement
 
 ```{admonition} Definition
