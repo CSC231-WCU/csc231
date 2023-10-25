@@ -11,7 +11,6 @@ parts:
     - file: episodes/03-data-representation.md
     - file: episodes/04-gate-circuit.md
     - file: episodes/05-more-c.md
-    - file: episodes/06-architecture.md
     - file: episodes/07-machine-language.md
     - file: episodes/08-memory-cache.md
     - file: episodes/09-code-optimization.md
