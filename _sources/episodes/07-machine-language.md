@@ -409,15 +409,7 @@ $ gcc -Og -c m12.c
 $ objdump -d m12.o
 ~~~
 
-![swapping via single-valued pointers](../fig/04-machine/07.png)
-
-
-:::{image} ../fig/04-machine/09.png
-:alt: demonstrating load effective addresss
-:class: bg-primary mb-1
-:height: 800px
-:align: center
-:::
+![demonstrating load effective address](../fig/04-machine/09.png)
 
 - Assembly code explanation of `m12.c`:
   - `%rdi`: x
@@ -481,12 +473,9 @@ $ gcc -Og -c scale.c
 $ objdump -d scale.o
 ~~~
 
-:::{image} ../fig/04-machine/10.png
-:alt: scale.c
-:class: bg-primary mb-1
-:height: 500px
-:align: center
-:::
+
+![Scale.c](../fig/04-machine/10.png)
+
 
 - Identify the registers holding x, y, and z.  
 - Which register contains the final return value?
@@ -520,12 +509,7 @@ $ objdump -d arith.o
 
 - Understand how the Assembly code represents the actual arithmetic operation in the C code. 
 
-:::{image} ../fig/04-machine/11.png
-:alt: arith.c
-:class: bg-primary mb-1
-:height: 500px
-:align: center
-:::
+![arith.c](../fig/04-machine/11.png)
 
 ```
 
@@ -542,12 +526,7 @@ $ objdump -d arith.o
   - location of current code control point (`%rip`,...)
   - status of recent tests (`CF`, `ZF`, `SF`, `OF` in `%EFLAGS`)
 
-:::{image} ../fig/04-machine/12.png
-:alt: processor state
-:class: bg-primary mb-1
-:height: 500px
-:align: center
-:::
+![processor state](../fig/04-machine/12.png)
 
 ```
 
@@ -702,12 +681,7 @@ These choices make up the **Application Binary Interface (ABI).**
   - Register `%rsp` contains **lowest stack address**. 
   - address of "top" element
 
-:::{image} ../fig/04-machine/16.png
-:alt: stack frames
-:class: bg-primary mb-1
-:height: 500px
-:align: center
-:::
+![Stack frames](../fig/04-machine/16.png)
 
 ```
 
@@ -723,13 +697,7 @@ These choices make up the **Application Binary Interface (ABI).**
   - Increment `%rsp` by 8
   - Store value at Dest (usually a register)
 
-
-:::{image} ../fig/04-machine/17.png
-:alt: stack push and pop
-:class: bg-primary mb-1
-:height: 500px
-:align: center
-:::
+![Stack push and pop](../fig/04-machine/17.png)
 
 ```
 
