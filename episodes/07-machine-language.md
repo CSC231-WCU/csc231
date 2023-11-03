@@ -192,6 +192,9 @@ microarchitecture's machine code instructions
 ```{admonition} Data format
 :class: dropdown
 
+:::::{tab-set}
+::::{tab-item} Intel data type
+
 | C data type | Intel data type  | Assembly-code suffix | Size  |  
 | ----------- | ---------------- | -------------------- | ----- |  
 | char        | Byte             | b                    | 1     |  
@@ -201,6 +204,9 @@ microarchitecture's machine code instructions
 | char *      | Quad word        | q                    | 8     |  
 | float       | Single precision | s                    | 4     |  
 | double      | Double precision | l                    | 8     |  
+
+::::
+:::::
 
 ```
 
@@ -276,6 +282,9 @@ through `%rsp`. Eight new registered were added: `%r8` through `%r15`.
 ```{admonition} movq Operand Combinations
 :class: dropdown
 
+:::::{tab-set}
+::::{tab-item} 
+
 | `movq` | Source | Dest  | Src, Dest           |  C Analog    |
 | ------ | ------ | ----- | ------------------- | ------------ |
 |        | Imm    | Reg   | `movq $0x4, %rax`   | tmp = 0x4;   |
@@ -283,6 +292,8 @@ through `%rsp`. Eight new registered were added: `%r8` through `%r15`.
 |        | Reg    | Reg   | `movq %rax,%rdx`    | tmp2 = tmp1; |
 |        | Reg    | Mem   | `movq %rax,(%rdx)`  | *p = tmp;    |
 |        | Mem    | Reg   | `movq (%rax),%rdx`  | tmp = *p;    |
+::::
+:::::
 
 ```
 
@@ -346,13 +357,7 @@ $ gcc -Og -c swap_dsp.c
 $ objdump -d swap_dsp.o
 ~~~
 
-
-:::{image} ../fig/04-machine/08.png
-:alt: swapping positions in an array (via pointer)
-:class: bg-primary mb-1
-:height: 500px
-:align: center
-:::
+![swapping position in an array via pointers](../fig/04-machine/08.png)
 
 - What is the meaning of `0x190`?
 
@@ -404,6 +409,9 @@ $ gcc -Og -c m12.c
 $ objdump -d m12.o
 ~~~
 
+![swapping via single-valued pointers](../fig/04-machine/07.png)
+
+
 :::{image} ../fig/04-machine/09.png
 :alt: demonstrating load effective addresss
 :class: bg-primary mb-1
@@ -427,6 +435,8 @@ $ objdump -d m12.o
 - `Src`: `S`
 - `Dest`: `D`
 
+:::::{tab-set}
+::::{tab-item} 
 | Format          | Computation |  Description       |
 | --------------- | ----------- | ------------------ |  
 | `add Src,Dest`  | D <- D + S  | add                |   
@@ -446,7 +456,8 @@ $ objdump -d m12.o
 | `dec Src`       | D <- D - 1  | decrement          |  
 | `neg Src`       | D <- -D     | negate             |  
 | `not Src`       | D <- -D     | complement         |  
-
+::::
+:::::
 
 - Watch out for argument order (ATT versus Intel)
 - No distinction between signed and unsigned int. 
@@ -575,6 +586,9 @@ $ objdump -d arith.o
 - Jump to different part of code depending on condition codes
 - Implicit reading of condition codes
 
+:::::{tab-set}
+::::{tab-item} 
+
 | jX    | Condition      |  Description         |
 | ----- | -------------- | -------------------- |  
 | `jmp` | 1              | direct jump          |   
@@ -588,6 +602,9 @@ $ objdump -d arith.o
 | `jle` | SF^OF \| ZF    | lesser or equal to   |  
 | `ja`  | ~CF & ~ZF      | above                |    
 | `jb`  | CF             | below                |  
+
+::::
+:::::
 
 ```
 
