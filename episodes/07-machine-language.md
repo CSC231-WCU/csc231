@@ -102,13 +102,7 @@ This lecture will cover contents from [Chapter 6](https://diveintosystems.org/bo
 ```{admonition} Overview
 :class: dropdown
 
-:::{image} ../fig/04-machine/03.png
-:alt: levels of abstraction
-:class: bg-primary mb-1
-:height: 300px
-:align: center
-:::
-
+![Level of abstraction](../fig/04-machine/03.png)
 
 - `Architecture`: (also `ISA`: instruction set architecture) The parts of a processor 
 design that one needs to understand for writing correct machine/assembly code
