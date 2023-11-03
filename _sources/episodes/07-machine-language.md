@@ -428,7 +428,7 @@ $ objdump -d m12.o
 - `Dest`: `D`
 
 :::::{tab-set}
-::::{tab-item} 
+::::{tab-item} Arithmetic operations
 | Format          | Computation |  Description       |
 | --------------- | ----------- | ------------------ |  
 | `add Src,Dest`  | D <- D + S  | add                |   
@@ -566,7 +566,7 @@ $ objdump -d arith.o
 - Implicit reading of condition codes
 
 :::::{tab-set}
-::::{tab-item} 
+::::{tab-item} Jump operations
 
 | jX    | Condition      |  Description         |
 | ----- | -------------- | -------------------- |  
