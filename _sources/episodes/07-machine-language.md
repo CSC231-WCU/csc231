@@ -140,13 +140,8 @@ are now visible.
     - Contains code and user data
     - Stack to support procedures
 
+![Assembly programmer](../fig/04-machine/04.png)
 
-:::{image} ../fig/04-machine/04.png
-:alt: Assembly programmer
-:class: bg-primary mb-1
-:height: 300px
-:align: center
-:::
 ```
 
 
@@ -169,13 +164,7 @@ $ gcc -Og -c mstore.c
 $ objdump -d mstore.o
 ~~~
 
-:::{image} ../fig/04-machine/05.png
-:alt: Assembly code
-:class: bg-primary mb-1
-:height: 700px
-:align: center
-:::
-
+![Assembly code](../fig/04-machine/05.png)
 
 - x86_64 instructions range in length from 1 to 15 bytes
 - The disassembler determines the assembly code based purely on the 
@@ -196,12 +185,7 @@ byte-sequence in the machine-code file.
 microarchitecture's machine code instructions
 - ../figure from **Programming the IBM 1401 Manual** (1962)
 
-:::{image} ../fig/04-machine/assembly-01.png
-:alt: Programming the IBM 1401
-:class: bg-primary mb-1
-:height: 300px
-:align: center
-:::
+![Programming the IBM 1401](../fig/04-machine/assembly-01.png)
 
 ````
 
@@ -240,12 +224,7 @@ through `%rsp`. Eight new registered were added: `%r8` through `%r15`.
 - Instructions can operate on data of different sizes stored in low-order bytes of the
 16 registers. 
 
-:::{image} ../fig/04-machine/06.png
-:alt: General purpose registers
-:class: bg-primary mb-1
-:height: 800px
-:align: center
-:::
+![General purpose registers](../fig/04-machine/06.png)
 
 *Bryant and O' Hallaron, Computer Systems: A Programmer's Perspective, Third Edition*
 
@@ -342,12 +321,7 @@ $ gcc -Og -c swap.c
 $ objdump -d swap.o
 ~~~
 
-:::{image} ../fig/04-machine/07.png
-:alt: swapping via single-valued pointers
-:class: bg-primary mb-1
-:height: 500px
-:align: center
-:::
+![swapping via single-valued pointers](../fig/04-machine/07.png)
 
 - [Why `%rsi` and `%rdi`?](http://6.s081.scripts.mit.edu/sp18/x86-64-architecture-guide.html)
 - Procedure Data Flow:
